@@ -1,0 +1,265 @@
+%l [page size, font size, recto-verso]{style of the document}
+\documentclass[a4paper, 12pt, oneside]{article}
+
+% Encoding of this file. On Linux, all files are UTF8 encoded.
+\usepackage[utf8x]{inputenc}
+
+%Used to make nice looking listings:
+\usepackage{listings}
+
+% To write mathematical formula:
+% \begin{align} ... \end{align}, \begin{equation} ... \end{equation}
+\usepackage{amsmath, amssymb}
+
+% To insert graphics:
+% \includegraphics[options]{path}
+\usepackage{graphicx}
+
+% The allowed type of image files.
+\DeclareGraphicsExtensions{.pdf, .png}
+
+% To include code file without any layout
+% \verbatiminput{path}
+\usepackage{verbatim}
+
+% To include PDF files
+% \includepdf[pages = z,x-y]{path}
+\usepackage{pdfpages}
+
+% To do tables on many pages
+% \begin{longtable}{define the columns} ... \end{longtable}
+\usepackage{longtable}
+
+
+\textwidth=16cm
+\oddsidemargin=0pt
+\evensidemargin=0pt
+
+%% The 3 variables which you must initialize:
+% Title of the document,
+\newcommand{\titleVariable}{PAS1: Soccer Regulations}
+% The author(s),
+\newcommand{\authorVariable}{}
+% The date of the first release.
+\newcommand{\firstRelease}{2013-03-12}
+
+\usepackage{hyperref}
+% To create all hypertext links for the bibliography, the figures, the bookmarks etc.
+% \url{http://www.thewebsite.org}
+\hypersetup{
+% 	backref=true,
+% 	pagebackref=true,
+% 	hyperindex=true,
+	colorlinks=true,
+	breaklinks=true,
+	urlcolor= blue,
+	linkcolor= blue,
+% 	bookmarks=true,
+	bookmarksopen=true,
+	pdftitle={\titleVariable},
+	pdfauthor={\authorVariable},
+	pdfsubject={Documentation}
+}
+
+\title{\titleVariable}
+\author{\authorVariable}
+
+
+\date{\centering First release: \firstRelease \\ Last modification: \today}
+
+\begin{document}
+\maketitle
+
+\section{The Game}
+
+The purpose of the game is to have each team put the soccer ball into its opponent's goal.
+
+\subsection{A Single Match}
+
+Every single match has the following schedule (in minutes):
+
+\begin{enumerate}
+    \item[00:00 - 05:00:] Setup time for both teams.
+    \item[05:00 - 10:00:] First half. 
+        The team that is mentioned first on the schedule has goal \#1.
+    \item[10:00 - 14:00:] Setup time for both teams.
+    \item[14:00 - 19:00:] Second half. 
+        The team that is mentioned second on the schedule has goal \#1
+    \item[19:00 - 20:00:] Cleanup time (make sure to leave the green area within 1 minute).
+\end{enumerate}
+
+\subsection{Type of Matches}
+
+\begin{enumerate}
+    \item Type 1:
+    \begin{enumerate}
+        \item Team 1: One attacker.
+        \item Team 2: One defender.
+    \end{enumerate}
+    \item Type 2:
+    \begin{enumerate}
+        \item Team 1: One attacker and one defender.
+        \item Team 2: One attacker and one defender.
+    \end{enumerate}
+\end{enumerate}
+
+\subsection{Weekly Matches}
+
+\subsubsection{Quarterfinals}
+
+In first round there will be the same amount of matches as there are teams (7 in 2013).
+Each match has 2 halves, each team will thus play twice, every time with a \emph{different} opponent.
+If you win a match, you will get 3 points. If there is a tie, each team will get 1 point.
+
+\subsubsection{Semifinals}
+
+The best 4 teams will continue to the semifinals.
+Which will result in 2 matches.
+
+\subsubsection{Finals}
+
+The winners of the semifinals will continue to the finals.
+This will result result in 1 match in which the winner becomes champion!
+
+\section{Arena}
+
+\subsection{Dimensions} 
+\label{sec:dimensions}
+
+\begin{enumerate}
+    \item[\textbf{arena length:}] ?cm
+    \item[\textbf{arena width:}] ?cm
+    \item[\textbf{goal width:}] 80cm (in-between the poles)
+    \item[\textbf{dead zone:}] area within 30cm from the wall except right in front of the goals.
+\end{enumerate}
+
+\subsection{Locations}
+
+South is towards the wall with the doors.
+
+\begin{enumerate}
+    \item[\textbf{left wall:}] on the west side of the lab
+    \item[\textbf{right wall:}] on the east side of the lab
+    \item[\textbf{goal \#1:}] in the middle of the south wall
+    \item[\textbf{goal \#2:}] in the middle of the north wall
+    \item[\textbf{left marker:}] in the middle of the left wall
+    \item[\textbf{right marker:}] in the middle of the right wall
+    \item[\textbf{ball kickoff:}] at the very center of the arena
+\end{enumerate}
+
+\subsection{Colors}
+
+\begin{enumerate}
+    \item[\textbf{floor:}] dark green
+    \item[\textbf{ball:}] shiny red
+    \item[\textbf{goal \#1:}] yellow
+    \item[\textbf{goal \#2:}] blue
+    \item[\textbf{left marker:}] blue/yellow banner (top: yellow, bottom: blue)
+    \item[\textbf{right marker:}] blue/yellow banner (top: blue, bottom: yellow)
+    \item[\textbf{robots:}] grey/white
+\end{enumerate}
+
+\section{Rules}
+
+\subsection{Humans in the Arena}
+
+Humans are not allowed in the arena unless:
+\begin{enumerate}
+    \item There is not a match going on (this includes setup time).
+    \item It is the referee.
+    \item It is a team member doing any of the following:
+    \begin{enumerate}
+        \item Guiding the cables connected to the robot (touching the robot results in a robot restart).
+        \item Picking up the robot or the ball for the kick-off position or after a time-out penalty.
+    \end{enumerate}
+\end{enumerate}
+
+Humans should not be wearing shoes while being inside the arena.
+Robots are not allowed to wear any shoes at any time. 
+
+\subsection{Time-out Penalty}
+
+A timeout penalty is given to any robot that does not comply to the rules stated in this document.
+During the time-out penalty, the robot is removed from the arena for the specified amount of time.
+The time-out penalty of a robot can be extended if the corresponding team decides to do so.
+
+Whenever a time-out penalty passes, the robot will be placed to the closest edge of the dead zone from where the penalty was issued.
+This with the exception of the defender which will be placed inside the arena from its initial position.
+
+\subsection{(Re)Starting the Robot}
+
+The robot can be (re)started whenever:
+
+\begin{enumerate}
+    \item A kick-off is issued.
+    \item After a timeout penalty passed.
+    \item When the teams decides to do so at the cost of a time-out penalty of 30 seconds\footnote{This can be useful in case your robot crashes or you want to tweak a few incorrect parameters.}.
+\end{enumerate}
+
+Restarting the robot should only require pushing a single button (no in-game tweaking is allowed inside the arena).
+
+\subsection{Abnormal Robot Behavior}
+
+Whenever a robot behaves abnormal, a time-out penalty of 30 seconds is issued for the corresponding robot. 
+Abnormal robot behavior includes:
+\begin{enumerate}
+    \item Lying on the floor for more than 10 seconds.
+    \item Standing still (without moving anything) for more than 10 seconds.
+    \item Moving the limbs in a way so it will damage itself or anything else.
+\end{enumerate}
+
+\subsection{Manual Control}
+
+The robot can only be controlled manually under the following conditions:
+\begin{enumerate}
+    \item While the robot is outside the arena (e.d. while waiting for the timeout penalty).
+    \item During the setup time of each half.
+    \item Right before a restart of a robot is issued (by pushing a single button).
+\end{enumerate}
+
+Manual control includes touching the robot or any computers that controls the robot.
+
+\subsection{Collisions}
+
+\begin{enumerate}
+    \item If a robot collides into a wall, a timeout penalty of 15 seconds is issued for that robot.
+    \item If two or more robots collide into each other, then the one causing the collision will get a timeout penalty of 15 seconds.
+        However if the other robot falls because of the collision, then a kickoff is issued in favour of the team that did not cause the collision.
+        The kickoff in this case will be at the same spot of the collision.
+    \item If two or more robots collide into each, and they both caused the collision, a new kickoff is issued.
+        The team doing the actual kickoff is picked using a coin-flip.
+    %\item A referee may decide to pick up a robot and issue a timeout penalty for that robot whenever he or she thinks that the robot is \emph{about to} collide into an object or another robot.
+\end{enumerate}
+
+\subsection{Ball Location}
+
+\begin{enumerate}
+    \item If a robot kicks the ball outside the arena, a new kickoff is issued in favour of the opponents.
+    \item If the ball does not move for more than 10 seconds inside the dead zone (see section \ref{sec:dimensions}), a new kickoff is issued in favour of the team that did not cause it.
+\end{enumerate}
+
+\subsection{Defender}
+
+\begin{enumerate}
+    \item Initial position (after restart): the defender should be placed within 80 cm from the goal (from either pole).
+    %\item During the whole game, every defender should remain in their own half. 
+        %If they leave their half, they get a timeout penalty of 30 seconds. 
+\end{enumerate}
+
+\subsection{Attacker}
+
+\begin{enumerate}
+    \item During kickoff, all attackers should be placed within their own half.
+    \item The attacker doing the kickoff can be placed right in front of the ball.
+    \item The attacker \emph{not} doing the kickoff should initially be placed inside its own half with a distance of 50cm from the ball.
+\end{enumerate}
+
+\subsection{Disqualification}
+
+Any referee may decide to disqualify a robot or its team for any half or the whole competition for, but not limited to, demonstrating the following behavior:
+\begin{enumerate}
+    \item Jumping (humans are allowed to jump).
+    \item Kicking, slapping, strangling and spitting of/to other robots/humans on purpose.
+\end{enumerate}
+
+\end{document}

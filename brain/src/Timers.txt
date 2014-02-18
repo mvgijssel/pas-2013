@@ -1,0 +1,1865 @@
+START : 	2013-04-08  15:47:16
+Searchball:				15:47:21
+Tijd: N/a
+
+START : 	2013-04-08  15:47:16
+Searchball:				15:47:21
+Tijd: N/a
+
+START : 	2013-04-08  15:47:16
+Searchball:				15:47:34
+Approachball:			15:47:34
+Approachlowball:		15:48:00
+Aligngoal:				15:48:28
+Alignball:				15:48:30
+Tijd: 27.435254097
+
+START : 	2013-04-08  16:06:27
+Searchball:				16:06:47
+Approachball:			16:06:47
+Approachlowball:		16:07:02
+Aligngoal:				16:07:20
+Alignball:				16:07:30
+Tijd: 18.2067120075
+
+START : 	2013-04-08  16:13:07
+Searchball:				16:13:21
+Approachball:			16:13:21
+Approachlowball:		16:13:22
+Aligngoal:				16:13:52
+Alignball:				16:13:59
+Tijd: 30.5447950363
+
+START : 	2013-04-08  16:19:48
+Searchball:				16:20:01
+Approachball:			16:20:01
+Approachlowball:		16:20:02
+Aligngoal:				16:20:27
+Alignball:				16:20:52
+Tijd: 24.9569270611
+
+START : 	2013-04-08  16:27:16
+Searchball:				16:27:30
+Approachball:			16:27:30
+Approachlowball:		16:27:43
+Aligngoal:				16:28:14
+Alignball:				16:28:20
+Tijd: 30.5674071312
+
+START : 	2013-04-08  16:34:25
+Searchball:				16:34:38
+Approachball:			16:34:38
+Approachlowball:		16:34:47
+Aligngoal:				16:36:00
+Alignball:				16:36:13
+Tijd: 72.9884488583
+
+START : 	2013-04-08  16:44:46
+Searchball:				16:45:00
+Approachball:			16:45:00
+Approachlowball:		16:45:09
+Aligngoal:				16:45:52
+Alignball:				16:46:02
+Tijd: 42.5202741623
+
+START : 	2013-04-08  16:49:48
+Searchball:				16:50:09
+Tijd: N/a
+
+START : 	2013-04-08  16:49:48
+Searchball:				16:50:09
+Tijd: N/a
+
+START : 	2013-04-08  16:49:48
+Searchball:				16:50:27
+Approachball:			16:50:27
+Approachlowball:		16:50:38
+Aligngoal:				16:51:15
+Alignball:				16:51:26
+Tijd: 37.2607188225
+
+START : 	2013-04-08  16:55:18
+Searchball:				16:55:34
+Approachball:			16:55:34
+Approachlowball:		16:56:23
+Aligngoal:				16:57:43
+Alignball:				16:58:12
+Tijd: 80.3167049885
+
+START : 	2013-04-08  16:55:18
+Searchball:				16:55:34
+Approachball:			16:55:34
+Approachlowball:		16:56:23
+Aligngoal:				16:57:43
+Alignball:				16:58:12
+Tijd: 80.3167049885
+
+START : 	2013-04-08  16:55:18
+Searchball:				16:58:33
+Approachball:			16:55:34
+Approachlowball:		16:56:23
+Aligngoal:				16:57:43
+Alignball:				16:58:12
+Tijd: 80.3167049885
+
+START : 	2013-04-08  17:02:23
+Searchball:				17:02:36
+Approachball:			17:02:36
+Approachlowball:		17:02:42
+Aligngoal:				17:04:08
+Tijd: 85.2156529427
+
+START : 	2013-04-08  17:02:23
+Searchball:				17:02:36
+Approachball:			17:02:36
+Approachlowball:		17:02:42
+Aligngoal:				17:04:08
+Tijd: 85.2156529427
+
+START : 	2013-04-08  17:02:23
+Searchball:				17:04:23
+Approachball:			17:04:23
+Approachlowball:		17:04:37
+Aligngoal:				17:05:02
+Alignball:				17:05:12
+Tijd: 24.3456659317
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:22:52
+Tijd: N/a
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:22:52
+Tijd: N/a
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:23:08
+Approachball:			17:23:08
+Approachlowball:		17:23:26
+Aligngoal:				17:24:03
+Alignball:				17:24:09
+Tijd: 36.3428528309
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:22:52
+Tijd: N/a
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:23:08
+Approachball:			17:23:08
+Approachlowball:		17:23:26
+Aligngoal:				17:24:03
+Alignball:				17:24:09
+Tijd: 36.3428528309
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:24:44
+Approachball:			17:23:08
+Approachlowball:		17:23:26
+Aligngoal:				17:24:03
+Alignball:				17:24:09
+Tijd: 36.3428528309
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:22:52
+Tijd: N/a
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:23:08
+Approachball:			17:23:08
+Approachlowball:		17:23:26
+Aligngoal:				17:24:03
+Alignball:				17:24:09
+Tijd: 36.3428528309
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:24:44
+Approachball:			17:23:08
+Approachlowball:		17:23:26
+Aligngoal:				17:24:03
+Alignball:				17:24:09
+Tijd: 36.3428528309
+
+START : 	2013-04-08  17:22:32
+Searchball:				17:25:15
+Approachball:			17:25:15
+Approachlowball:		17:25:35
+Aligngoal:				17:26:11
+Alignball:				17:26:37
+Tijd: 36.499078989
+
+START : 	2013-04-09  10:28:16
+Searchball:				10:28:28
+Approachball:			10:28:28
+Approachlowball:		10:28:51
+Aligngoal:				10:29:34
+Alignball:				10:29:57
+Tijd: 42.4096620083
+
+START : 	2013-04-09  10:28:16
+Searchball:				10:28:28
+Approachball:			10:28:28
+Approachlowball:		10:28:51
+Aligngoal:				10:29:34
+Alignball:				10:29:57
+Tijd: 42.4096620083
+
+START : 	2013-04-09  10:28:16
+Searchball:				10:30:16
+Approachball:			10:28:28
+Approachlowball:		10:28:51
+Aligngoal:				10:29:34
+Alignball:				10:29:57
+Tijd: 42.4096620083
+
+START : 	2013-04-09  10:28:16
+Searchball:				10:28:28
+Approachball:			10:28:28
+Approachlowball:		10:28:51
+Aligngoal:				10:29:34
+Alignball:				10:29:57
+Tijd: 42.4096620083
+
+START : 	2013-04-09  10:28:16
+Searchball:				10:30:16
+Approachball:			10:28:28
+Approachlowball:		10:28:51
+Aligngoal:				10:29:34
+Alignball:				10:29:57
+Tijd: 42.4096620083
+
+START : 	2013-04-09  10:28:16
+Searchball:				10:30:32
+Approachball:			10:30:32
+Approachlowball:		10:30:36
+Aligngoal:				10:33:32
+Alignball:				10:29:57
+Tijd: 175.939467907
+
+START : 	2013-04-09  10:39:49
+Searchball:				10:39:54
+Approachball:			10:39:59
+Tijd: N/a
+
+START : 	2013-04-09  10:40:51
+Searchball:				10:40:55
+Tijd: N/a
+
+START : 	2013-04-09  10:40:51
+Searchball:				10:40:55
+Tijd: N/a
+
+START : 	2013-04-09  10:40:51
+Searchball:				10:41:07
+Tijd: N/a
+
+START : 	2013-04-09  10:40:51
+Searchball:				10:40:55
+Tijd: N/a
+
+START : 	2013-04-09  10:40:51
+Searchball:				10:41:07
+Tijd: N/a
+
+START : 	2013-04-09  10:40:51
+Searchball:				10:41:20
+Approachball:			10:41:28
+Tijd: N/a
+
+START : 	2013-04-09  10:42:25
+Searchball:				10:42:43
+Approachball:			10:42:56
+Tijd: N/a
+
+START : 	2013-04-09  10:44:01
+Searchball:				10:44:18
+Tijd: N/a
+
+START : 	2013-04-09  10:44:01
+Searchball:				10:44:18
+Tijd: N/a
+
+START : 	2013-04-09  10:44:01
+Searchball:				10:44:57
+Approachball:			10:44:57
+Approachlowball:		10:45:18
+Aligngoal:				10:45:42
+Alignball:				10:46:00
+Tijd: 24.3675909042
+
+START : 	2013-04-09  10:44:01
+Searchball:				10:44:18
+Tijd: N/a
+
+START : 	2013-04-09  10:44:01
+Searchball:				10:44:57
+Approachball:			10:44:57
+Approachlowball:		10:45:18
+Aligngoal:				10:45:42
+Alignball:				10:46:00
+Tijd: 24.3675909042
+
+START : 	2013-04-09  10:44:01
+Searchball:				10:46:12
+Approachball:			10:46:12
+Approachlowball:		10:45:18
+Aligngoal:				10:45:42
+Alignball:				10:46:00
+Tijd: 24.3675909042
+
+START : 	2013-04-09  10:51:28
+Searchball:				10:51:48
+Tijd: N/a
+
+START : 	2013-04-09  10:51:28
+Searchball:				10:51:48
+Tijd: N/a
+
+START : 	2013-04-09  10:51:28
+Searchball:				10:52:04
+Approachball:			10:52:04
+Approachlowball:		10:52:32
+Aligngoal:				10:53:57
+Alignball:				10:54:33
+Tijd: 84.8047361374
+
+START : 	2013-04-09  11:01:30
+Searchball:				11:01:35
+Tijd: N/a
+
+START : 	2013-04-09  11:01:30
+Searchball:				11:01:35
+Tijd: N/a
+
+START : 	2013-04-09  11:01:30
+Searchball:				11:01:47
+Approachball:			11:02:07
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:01
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:01
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:15
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:01
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:15
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:24
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:01
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:15
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:24
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:45
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:01
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:15
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:24
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:45
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:24:06
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:01
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:15
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:24
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:45
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:24:06
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:24:28
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:01
+Tijd: N/a
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:21:15
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:24
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:23:45
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:24:06
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:24:28
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:20:57
+Searchball:				11:25:10
+Approachball:			11:21:26
+Approachlowball:		11:22:42
+Aligngoal:				11:23:06
+Alignball:				11:23:16
+Tijd: 24.3234181404
+
+START : 	2013-04-09  11:25:47
+Searchball:				11:25:52
+Tijd: N/a
+
+START : 	2013-04-09  11:50:15
+Searchball:				11:50:22
+Approachball:			11:50:32
+Tijd: N/a
+
+START : 	2013-04-09  11:54:16
+Searchball:				11:54:22
+Tijd: N/a
+
+START : 	2013-04-09  11:54:16
+Searchball:				11:54:22
+Tijd: N/a
+
+START : 	2013-04-09  11:54:16
+Searchball:				11:54:34
+Tijd: N/a
+
+START : 	2013-04-09  11:54:16
+Searchball:				11:54:22
+Tijd: N/a
+
+START : 	2013-04-09  11:54:16
+Searchball:				11:54:34
+Tijd: N/a
+
+START : 	2013-04-09  11:54:16
+Searchball:				11:54:58
+Approachball:			11:55:17
+Approachlowball:		11:55:38
+Aligngoal:				11:55:44
+Alignball:				11:55:54
+Tijd: 6.15874195099
+
+START : 	2013-04-09  11:57:48
+Searchball:				11:57:56
+Approachball:			11:58:08
+Approachlowball:		11:58:23
+Aligngoal:				11:59:24
+Alignball:				11:59:45
+Tijd: 60.8923099041
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:01:59
+Tijd: N/a
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:01:59
+Tijd: N/a
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:02:13
+Approachball:			12:02:13
+Tijd: N/a
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:01:59
+Tijd: N/a
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:02:13
+Approachball:			12:02:13
+Tijd: N/a
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:02:46
+Approachball:			12:02:46
+Approachlowball:		12:02:54
+Aligngoal:				12:03:06
+Alignball:				12:04:21
+Tijd: 12.2152569294
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:01:59
+Tijd: N/a
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:02:13
+Approachball:			12:02:13
+Tijd: N/a
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:02:46
+Approachball:			12:02:46
+Approachlowball:		12:02:54
+Aligngoal:				12:03:06
+Alignball:				12:04:21
+Tijd: 12.2152569294
+
+START : 	2013-04-09  12:01:37
+Searchball:				12:04:32
+Approachball:			12:02:46
+Approachlowball:		12:02:54
+Aligngoal:				12:03:06
+Alignball:				12:04:21
+Tijd: 12.2152569294
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:03
+Approachball:			12:08:08
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:03
+Approachball:			12:08:08
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:26
+Approachball:			12:08:26
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:03
+Approachball:			12:08:08
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:26
+Approachball:			12:08:26
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:01
+Approachball:			12:09:09
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:03
+Approachball:			12:08:08
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:26
+Approachball:			12:08:26
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:01
+Approachball:			12:09:09
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:34
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:03
+Approachball:			12:08:08
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:26
+Approachball:			12:08:26
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:01
+Approachball:			12:09:09
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:34
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:10:04
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:03
+Approachball:			12:08:08
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:26
+Approachball:			12:08:26
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:01
+Approachball:			12:09:09
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:34
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:10:04
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:10:28
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:02
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:07:30
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:03
+Approachball:			12:08:08
+Tijd: N/a
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:08:26
+Approachball:			12:08:26
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:01
+Approachball:			12:09:09
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:09:34
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:10:04
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:10:28
+Approachball:			12:09:34
+Approachlowball:		12:08:36
+Aligngoal:				12:08:42
+Alignball:				12:08:53
+Tijd: 6.15556406975
+
+START : 	2013-04-09  12:06:54
+Searchball:				12:10:43
+Approachball:			12:10:43
+Approachlowball:		12:11:37
+Aligngoal:				12:11:43
+Alignball:				12:11:53
+Tijd: 6.1764960289
+
+START : 	2013-04-09  12:26:35
+Searchball:				12:27:09
+Tijd: N/a
+
+START : 	2013-04-09  12:26:35
+Searchball:				12:27:09
+Tijd: N/a
+
+START : 	2013-04-09  12:26:35
+Searchball:				12:27:24
+Approachball:			12:27:24
+Tijd: N/a
+
+START : 	2013-04-09  12:26:35
+Searchball:				12:27:09
+Tijd: N/a
+
+START : 	2013-04-09  12:26:35
+Searchball:				12:27:24
+Approachball:			12:27:24
+Tijd: N/a
+
+START : 	2013-04-09  12:26:35
+Searchball:				12:27:51
+Approachball:			12:27:24
+Tijd: N/a
+
+START : 	2013-04-09  12:29:17
+Searchball:				12:29:22
+Tijd: N/a
+
+START : 	2013-04-09  12:29:17
+Searchball:				12:29:22
+Tijd: N/a
+
+START : 	2013-04-09  12:29:17
+Searchball:				12:29:37
+Approachball:			12:29:37
+Approachlowball:		12:29:52
+Aligngoal:				12:29:58
+Tijd: 6.10950398445
+
+START : 	2013-04-09  12:34:09
+Searchball:				12:34:13
+Tijd: N/a
+
+START : 	2013-04-09  12:34:09
+Searchball:				12:34:13
+Tijd: N/a
+
+START : 	2013-04-09  12:34:09
+Searchball:				12:34:27
+Approachball:			12:34:27
+Approachlowball:		12:34:32
+Aligngoal:				12:34:38
+Alignball:				12:35:06
+Tijd: 6.17216682434
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:14
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:14
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:29
+Approachball:			12:36:29
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:14
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:29
+Approachball:			12:36:29
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:44
+Approachball:			12:36:29
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:14
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:29
+Approachball:			12:36:29
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:44
+Approachball:			12:36:29
+Tijd: N/a
+
+START : 	2013-04-09  12:36:08
+Searchball:				12:36:59
+Approachball:			12:36:59
+Approachlowball:		12:37:13
+Aligngoal:				12:37:19
+Alignball:				12:37:29
+Tijd: 6.10173797607
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:47:11
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:47:11
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:00
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:47:11
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:00
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:08
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:47:11
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:00
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:08
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:34
+Approachball:			12:49:39
+Approachlowball:		12:49:50
+Aligngoal:				12:49:56
+Alignball:				12:50:16
+Tijd: 6.17529416084
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:47:11
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:00
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:08
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:34
+Approachball:			12:49:39
+Approachlowball:		12:49:50
+Aligngoal:				12:49:56
+Alignball:				12:50:16
+Tijd: 6.17529416084
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:50:40
+Approachball:			12:49:39
+Approachlowball:		12:49:50
+Aligngoal:				12:49:56
+Alignball:				12:50:16
+Tijd: 6.17529416084
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:47:11
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:00
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:08
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:34
+Approachball:			12:49:39
+Approachlowball:		12:49:50
+Aligngoal:				12:49:56
+Alignball:				12:50:16
+Tijd: 6.17529416084
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:50:40
+Approachball:			12:49:39
+Approachlowball:		12:49:50
+Aligngoal:				12:49:56
+Alignball:				12:50:16
+Tijd: 6.17529416084
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:50:55
+Approachball:			12:50:55
+Approachlowball:		12:51:09
+Aligngoal:				12:51:15
+Alignball:				12:51:47
+Tijd: 6.13480806351
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:47
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:43:59
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:28
+Approachball:			12:44:06
+Tijd: N/a
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:44:43
+Approachball:			12:44:43
+Approachlowball:		12:45:03
+Aligngoal:				12:45:09
+Alignball:				12:45:36
+Tijd: 6.15221118927
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:45:45
+Approachball:			12:46:03
+Approachlowball:		12:46:10
+Aligngoal:				12:46:47
+Alignball:				12:47:04
+Tijd: 36.4143719673
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:47:11
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:00
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:08
+Approachball:			12:47:39
+Approachlowball:		12:48:03
+Aligngoal:				12:48:15
+Alignball:				12:48:37
+Tijd: 12.2618839741
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:49:34
+Approachball:			12:49:39
+Approachlowball:		12:49:50
+Aligngoal:				12:49:56
+Alignball:				12:50:16
+Tijd: 6.17529416084
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:50:40
+Approachball:			12:49:39
+Approachlowball:		12:49:50
+Aligngoal:				12:49:56
+Alignball:				12:50:16
+Tijd: 6.17529416084
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:50:55
+Approachball:			12:50:55
+Approachlowball:		12:51:09
+Aligngoal:				12:51:15
+Alignball:				12:51:47
+Tijd: 6.13480806351
+
+START : 	2013-04-09  12:43:35
+Searchball:				12:52:56
+Approachball:			12:50:55
+Approachlowball:		12:51:09
+Aligngoal:				12:51:15
+Alignball:				12:51:47
+Tijd: 6.13480806351
+
+START : 	2013-04-09  14:06:46
+Searchball:				14:06:51
+Tijd: N/a
+
+START : 	2013-04-09  14:07:39
+Searchball:				14:07:45
+Approachball:			14:07:49
+Tijd: N/a
+
+START : 	2013-04-09  14:07:39
+Searchball:				14:07:45
+Approachball:			14:07:49
+Tijd: N/a
+
+START : 	2013-04-09  14:07:39
+Searchball:				14:08:04
+Approachball:			14:08:04
+Approachlowball:		14:08:15
+Aligngoal:				14:08:45
+Alignball:				14:08:51
+Tijd: 30.3744440079
+
+START : 	2013-04-09  14:07:39
+Searchball:				14:07:45
+Approachball:			14:07:49
+Tijd: N/a
+
+START : 	2013-04-09  14:07:39
+Searchball:				14:08:04
+Approachball:			14:08:04
+Approachlowball:		14:08:15
+Aligngoal:				14:08:45
+Alignball:				14:08:51
+Tijd: 30.3744440079
+
+START : 	2013-04-09  14:07:39
+Searchball:				14:09:00
+Approachball:			14:09:06
+Approachlowball:		14:08:15
+Aligngoal:				14:08:45
+Alignball:				14:08:51
+Tijd: 30.3744440079
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:09:50
+Approachball:			14:09:50
+Approachlowball:		14:10:00
+Aligngoal:				14:10:24
+Alignball:				14:10:30
+Tijd: 24.310090065
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:09:50
+Approachball:			14:09:50
+Approachlowball:		14:10:00
+Aligngoal:				14:10:24
+Alignball:				14:10:30
+Tijd: 24.310090065
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:10:52
+Approachball:			14:11:02
+Approachlowball:		14:11:32
+Aligngoal:				14:11:38
+Alignball:				14:11:48
+Tijd: 6.15179395676
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:09:50
+Approachball:			14:09:50
+Approachlowball:		14:10:00
+Aligngoal:				14:10:24
+Alignball:				14:10:30
+Tijd: 24.310090065
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:10:52
+Approachball:			14:11:02
+Approachlowball:		14:11:32
+Aligngoal:				14:11:38
+Alignball:				14:11:48
+Tijd: 6.15179395676
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:12:13
+Approachball:			14:11:02
+Approachlowball:		14:11:32
+Aligngoal:				14:11:38
+Alignball:				14:11:48
+Tijd: 6.15179395676
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:09:50
+Approachball:			14:09:50
+Approachlowball:		14:10:00
+Aligngoal:				14:10:24
+Alignball:				14:10:30
+Tijd: 24.310090065
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:10:52
+Approachball:			14:11:02
+Approachlowball:		14:11:32
+Aligngoal:				14:11:38
+Alignball:				14:11:48
+Tijd: 6.15179395676
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:12:13
+Approachball:			14:11:02
+Approachlowball:		14:11:32
+Aligngoal:				14:11:38
+Alignball:				14:11:48
+Tijd: 6.15179395676
+
+START : 	2013-04-09  14:09:36
+Searchball:				14:12:23
+Approachball:			14:12:32
+Approachlowball:		14:12:43
+Aligngoal:				14:12:50
+Alignball:				14:13:10
+Tijd: 6.13348603249
+
+START : 	2013-04-09  14:14:25
+Searchball:				14:14:38
+Approachball:			14:14:38
+Approachlowball:		14:14:47
+Aligngoal:				14:14:53
+Alignball:				14:14:59
+Tijd: 6.13315606117
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:36:58
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:36:58
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:36:58
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:36:58
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:36:58
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:37:06
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:36:58
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:36:58
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:37:06
+Tijd: N/a
+
+START : 	2013-04-09  15:36:38
+Searchball:				15:37:22
+Approachball:			15:37:22
+Tijd: N/a
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:54:26
+Approachball:			15:54:26
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:54:26
+Approachball:			15:54:26
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:42
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:54:26
+Approachball:			15:54:26
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:42
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:51
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:54:26
+Approachball:			15:54:26
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:42
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:51
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:56:17
+Approachball:			15:56:17
+Approachlowball:		15:56:22
+Aligngoal:				15:56:34
+Alignball:				15:56:52
+Tijd: 12.2463598251
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:54:26
+Approachball:			15:54:26
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:42
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:51
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:56:17
+Approachball:			15:56:17
+Approachlowball:		15:56:22
+Aligngoal:				15:56:34
+Alignball:				15:56:52
+Tijd: 12.2463598251
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:57:18
+Approachball:			15:57:32
+Approachlowball:		15:57:46
+Aligngoal:				15:57:58
+Alignball:				15:58:00
+Tijd: 12.2242059708
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:54:26
+Approachball:			15:54:26
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:42
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:55:51
+Approachball:			15:55:42
+Approachlowball:		15:54:51
+Aligngoal:				15:55:15
+Alignball:				15:55:29
+Tijd: 24.4207189083
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:56:17
+Approachball:			15:56:17
+Approachlowball:		15:56:22
+Aligngoal:				15:56:34
+Alignball:				15:56:52
+Tijd: 12.2463598251
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:57:18
+Approachball:			15:57:32
+Approachlowball:		15:57:46
+Aligngoal:				15:57:58
+Alignball:				15:58:00
+Tijd: 12.2242059708
+
+START : 	2013-04-09  15:54:15
+Searchball:				15:58:28
+Approachball:			15:58:28
+Approachlowball:		15:58:42
+Aligngoal:				15:59:18
+Alignball:				15:58:00
+Tijd: 36.5897169113
+
