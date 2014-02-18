@@ -6,10 +6,7 @@
 #description = "a description of the behavior"
 ##added things to find out
 
-# underscore is removed and replaced with nothing
-[silly_walkers]
-postcondition = False
-description = "Silly Walkers behaviour"
+
 
 [example]
 postcondition = False
@@ -48,6 +45,7 @@ postcondition = m.is_now('alignball',['True'])
 description = "Centers ball in Nao's FoV."
 
 [soccer]
+postcondition = False
 postcondition = False
 description = "The core soccer behavior."
 
@@ -95,10 +93,6 @@ description = "This behavior will try to stand up"
 postcondition = False
 description = "Simple defender behavior for PAS course."
 
-[pluk_kleur]
-postcondition = False
-description = "Detects in which direction the ball is."
-
 [newbehavior]
 postcondition = False
 
@@ -106,3 +100,18 @@ postcondition = False
 [dummy]
 postcondition = False
 description = "Just a dummy behavior for testing."
+
+
+
+
+
+################################ CUSTOM BEHAVIOURS ############################
+
+[pluk_kleur]
+postcondition = False
+description = "Detects in which direction the ball is."
+
+# underscore is removed and replaced with nothing
+[silly_walkers]
+postcondition = False
+description = "Silly Walkers behaviour"

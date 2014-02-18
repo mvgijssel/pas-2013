@@ -29,7 +29,7 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
 
         # update function at 10Hz
 
-        execfile(self.eval_file)
+        #execfile(self.eval_file)
 
         # you can do things here that are low-level, not consisting of other behaviors
 
