@@ -9,10 +9,6 @@ import balherkenning
 
 class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
-    '''this is a behavior implementation template'''
-
-    #this implementation should not define an __init__ !!!
-
 
     def implementation_init(self):
 
@@ -43,6 +39,3 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             self.nao.say("RIGHT DOWN")
         self.set_finished()
         return
-
-
-

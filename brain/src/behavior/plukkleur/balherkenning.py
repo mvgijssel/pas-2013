@@ -14,9 +14,10 @@ pygame.init()
 # (posx,posy) = detector.getPos()
 #
 
-class rasterImage:
+class RasterImage:
+
     def __init__(self,color="red"):
-        self.__vmr = util.vidmemreader.VidMemReader([source])
+        self.__vmr = util.vidmemreader.VidMemReader(["webcam"])
         self.color = color
 
     def get_new_image(self):
