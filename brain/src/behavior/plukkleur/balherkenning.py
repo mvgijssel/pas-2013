@@ -16,7 +16,6 @@ pygame.init()
 
 class rasterImage:
     def __init__(self,color="red"):
-        self.pic1 = image
         self.__vmr = util.vidmemreader.VidMemReader([source])
         self.color = color
 
