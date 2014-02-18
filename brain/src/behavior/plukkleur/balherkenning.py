@@ -26,8 +26,8 @@ class RasterImage:
     def getPos(self):
         color = self.color
         oldpic = self.get_new_image()
-        W = self.pic1.get_width()
-        H = self.pic1.get_height()
+        W = oldpic.get_width()
+        H = oldpic.get_height()
         W2 = 300
         Scale = float(float(W2 * 100) / float(W * 100))
         W = W2

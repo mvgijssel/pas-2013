@@ -15,7 +15,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao = self.body.nao(0)
         self.nao.say("Let's see if I can find the ball.")
         self.timer = 30
-        self.detector = balherkenning.rasterImage()
+        self.detector = balherkenning.RasterImage()
 
     def implementation_update(self):
 
