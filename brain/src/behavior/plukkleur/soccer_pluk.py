@@ -14,8 +14,8 @@ class Soccer_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         #Select Nao to use:
 
-        
+        pass
 
     def implementation_update(self):
 
-
+        pass
