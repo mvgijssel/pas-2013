@@ -20,11 +20,11 @@ end_port = 52000
 
 #Startup commands and alias for each module
 modules_settings:
-    exampledetector = example
+#    blobdetect = blobdetector train=True nao=<nao_ip> camera=1 inputres=160x120 outputres=160x120 video_source=naovideo blob_dir=$BORG/brain/data/colorblob vidport=19559
     
 #Modules to run on each host
 modules:
-    localhost = exampledetector
+#    localhost = blobdetect
 
 [sonar_controller]
 
