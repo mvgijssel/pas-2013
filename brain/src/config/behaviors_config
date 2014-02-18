@@ -95,6 +95,10 @@ description = "This behavior will try to stand up"
 postcondition = False
 description = "Simple defender behavior for PAS course."
 
+[pluk_kleur]
+postcondition = False
+description = "Detects in which direction the ball is."
+
 [newbehavior]
 postcondition = False
 
