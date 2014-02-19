@@ -21,8 +21,10 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # somevar is passed to the config_sillywalkers
         # print self.somevar; 
         
-        self.eval_file = os.getcwd() + '/behavior/sillywalkers/eval_code.py';        
-        
+        # self.eval_file = os.getcwd() + '/behavior/sillywalkers/eval_code.py';
+
+        print 'init!'
+
         pass
 
     def implementation_update(self):
