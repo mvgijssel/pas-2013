@@ -9,6 +9,12 @@ IP tables workaround:
 iptables -t nat -A OUTPUT -p tcp --dport 9559 -j DNAT --to-destination 129.125.178.4:6571
 iptables -t nat -A OUTPUT -p udp --dport 9559 -j DNAT --to-destination 129.125.178.4:6571
 
+- Voor de Linksys AE3000 wireless usb dongle:
+http://geekniggle.blogspot.nl/2012/07/cisco-linksys-ae3000-wifi-usb-dongle.html
+
+- Vervolgens wireless instellen via:
+nm-tool
+sudo nm-connection-editor
 
 IP adresses of Nao's:
 

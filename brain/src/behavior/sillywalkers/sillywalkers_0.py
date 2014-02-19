@@ -16,18 +16,24 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
 
     def implementation_init(self):
 
-        # constructor
-       
-        # somevar is passed to the config_sillywalkers
-        # print self.somevar; 
-        
-        # self.eval_file = os.getcwd() + '/behavior/sillywalkers/eval_code.py';
-
         print 'init!'
 
-        pass
+        # get the nao reference
+        # get the nao reference
+        nao = self.body.nao(0)
+
+        # say something
+        nao.say('Dikke shine')
+
+        # idea:
+        # - one behaviour which walks towards whatever is in the center of the screen
+        # - another behaviour which centers the field of view while rotating the head
+        # - rotate the nao based on the rotation of the head to correct the course it is walking
+
 
     def implementation_update(self):
+
+        print 'running'
 
         # update function at 10Hz
 
@@ -37,7 +43,10 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
 
         # in this function you can check what behaviors have failed or finished
         # and do possibly other things when something has failed
+
         pass
+
+
 
 
 

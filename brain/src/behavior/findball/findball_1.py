@@ -40,13 +40,14 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                     self.__nao.walkNav(0, 0, random.random() * 2 - 1, 0.1)
 
         #Try to see if there is a ball in sight:
-        if (self.m.n_occurs("red.colorblob") > 0):
-            (recogtime, obs) = self.m.get_last_observation("red.colorblob")
+        if (self.m.n_occurs("combined_red") > 0):
+            (recogtime, observation) = self.m.get_last_observation("combined_red")
+            obs = observation['sorted_contours'][0]     # 0 Corresponds to the largest blob in the list
             if not obs == None and recogtime > self.__last_recogtime:
-                print "red: x=%d, y=%d, size=%f" % (obs['x'], obs['y'], obs['size'])
+                print "red: x=%d, y=%d, size=%f" % (obs['x'], obs['y'], obs['surface'])
                 self.__last_recogtime = recogtime
                 #Ball is found if the detected ball is big enough (thus filtering noise):
-                if obs['size'] > 0.0015:
+                if obs['surface'] > 40:
                     self.__nao.say("I see the ball!")
                     # Once the ball is properly found, use: self.m.add_item('ball_found',time.time(),{}) to finish this behavior.
                     self.m.add_item('ball_found',time.time(),{})

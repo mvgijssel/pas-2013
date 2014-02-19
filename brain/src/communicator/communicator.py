@@ -26,6 +26,10 @@ from util.ticker import Ticker
 import util.iopoll as iopoll
 import videomanager
 
+#Used to compare to ros image topics:
+import re
+ros_pattern = re.compile("ros_")
+
 logging.getLogger('Borg.Brain.Communicator').addHandler(util.nullhandler.NullHandler())
 logging.getLogger('Borg.Brain.Communicator.Listener').addHandler(util.nullhandler.NullHandler())
 logging.getLogger('Borg.Brain.Communicator.ConnectionHandler').addHandler(util.nullhandler.NullHandler())
@@ -371,12 +375,12 @@ class Communicator(object):
             for conn, conn_id in self.__connection_list:
                 conn.send_sources()
             
-    def start_video_source(self, camType, ip=None, inputres="640x480", outputres="640x480", vidport = 9559):
+    def start_video_source(self, camType, ip=None, inputres="640x480", outputres="640x480"):
         if not camType or camType == "None":
             return True
 
         self.__video_source_settings[camType] = (ip, inputres, outputres, self.__camera)
-        command = {"command": "start", "source": camType, "ip": ip, "inputres": inputres, "outputres": outputres, "camera": self.__camera, "vidport" : vidport}
+        command = {"command": "start", "source": camType, "ip": ip, "inputres": inputres, "outputres": outputres, "camera": self.__camera}
         self.__pipe.send(command)
         
         cmd = self.check_video_manager("source_started", 5000)
@@ -485,6 +489,7 @@ class Communicator(object):
         indices = []
         for i in x:
             if processList[i][1] == processname:
+                print "FOUND PROCESS TO KILL FOR %s: %s" % (processname, repr(processList[i]))
                 pid = processList[i][0].pid
                 video_source = processList[i][2]
                 os.killpg(pid, signal.SIGTERM)
@@ -568,7 +573,10 @@ class Communicator(object):
         inputres = "640x480"
         outputres = "640x480"
 
-        if source == "webcam":
+        if source and ros_pattern.match(source):
+            self.logger.info("I'm starting %s" % source)
+            start_what = source
+        elif source == "webcam":
             self.logger.info("I'm starting webcam")
             start_what = "webcam"
         elif source == "kinect":
@@ -584,8 +592,6 @@ class Communicator(object):
             self.logger.info("I'm starting nao camera")
             if "nao" in arguments:
                 ip = arguments['nao']
-            if "vidport" in arguments:
-                vidport = arguments['vidport']
             if "inputres" in arguments:
                 inputres = arguments['inputres']
             if "outputres" in arguments:
@@ -595,7 +601,7 @@ class Communicator(object):
             self.logger.info("I'm not starting anything")
             start_what = "None"
             
-        if not self.start_video_source(start_what, ip, inputres, outputres, vidport):
+        if not self.start_video_source(start_what, ip, inputres, outputres):
             self.logger.error("Video source not available. Not starting module")
             return -1, "Video source not available. Not starting module"
                 

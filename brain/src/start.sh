@@ -151,7 +151,6 @@ fi
 #########################
 
 #start main program, storing the pid
-
 python brain.py $LOGGING_OPTS --pioneer_port=$PIONEER_PORT --communicator_port=$COMMUNICATOR_PORT --speech_port=$SPEECH_PORT $ARGS &
 #/opt/python/usr/bin/python brain.py $LOGGING_OPTS --pioneer_port=$PIONEER_PORT --communicator_port=$COMMUNICATOR_PORT --speech_port=$SPEECH_PORT $ARGS &
 pids=$!

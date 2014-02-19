@@ -29,7 +29,7 @@ class FindBall(basebehavior.abstractbehavior.AbstractBehavior):
 
     def check_postcondition(self):
         m = memory.Memory()
-        return eval("m.is_now('findball',['True'])")
+        return eval("m.is_now('ball_found',['True'])")
 
     def load_exceptions(self):
         self._all_exceptions = []

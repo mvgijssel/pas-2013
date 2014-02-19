@@ -4,7 +4,7 @@ starting_behavior = exampleblobdetector({})
 [body]
 number_of_naos = 1
 number_of_pioneers = 0
-nao_ip_0 = 10.0.0.151
+nao_ip_0 = 192.168.1.202
 nao_port_0 = 9559
 pioneer_ip_0 = localhost
 pioneer_port_0 = 12345
@@ -12,7 +12,6 @@ pioneer_port_0 = 12345
 [sensor_integration]
 
 [speech_controller]
-
 
 [vision_controller]
 update_frequency = 10

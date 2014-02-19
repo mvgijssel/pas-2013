@@ -11,7 +11,6 @@ class Example_x(basebehavior.behaviorimplementation.BehaviorImplementation):
     '''
 
     def implementation_init(self):
-    
         print "Example Behavior Started!"
 #self.body.nao(0).say("Hello, lets get started!")
 #        self.body.nao(0).start_behavior("wipe_forehead")

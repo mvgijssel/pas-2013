@@ -29,7 +29,7 @@ class AlignGoal(basebehavior.abstractbehavior.AbstractBehavior):
 
     def check_postcondition(self):
         m = memory.Memory()
-        return eval("m.is_now('aligngoal',['True'])")
+        return eval("m.is_now('goal_aligned',['True'])")
 
     def load_exceptions(self):
         self._all_exceptions = []

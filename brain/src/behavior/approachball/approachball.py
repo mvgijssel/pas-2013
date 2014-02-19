@@ -29,7 +29,7 @@ class ApproachBall(basebehavior.abstractbehavior.AbstractBehavior):
 
     def check_postcondition(self):
         m = memory.Memory()
-        return eval("m.is_now('approachball',['True'])")
+        return eval("m.is_now('ball_approached',['True'])")
 
     def load_exceptions(self):
         self._all_exceptions = []
