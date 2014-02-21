@@ -2,6 +2,9 @@
 
 import pygame,random
 import util.vidmemreader
+import Image
+import cv2.cv as cv
+import cv2
 from pygame.locals import *
 
 pygame.init()
@@ -16,29 +19,27 @@ pygame.init()
 
 class RasterImage:
 
-    def __init__(self,color="red"):
-        self.__vmr = util.vidmemreader.VidMemReader(["webcam"])
+    def __init__(self,source,color="red"):
+        self.vid = source # must be a naovideo class
         self.color = color
 
     def get_new_image(self):
-        return self.__vmr.get_latest_image()
+        img = self.vid.get_image()
+        return img
     
     def getPos(self):
         color = self.color
-        oldpic = pygame.image.load(self.get_new_image())
+        oldpic = self.get_new_image()
+        ImgArr = oldpic[6]
+        #oldpic2 = Image.fromstring("RGB",(oldpic.size),oldpic)
+        oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
-        W2 = 300
-        Scale = float(float(W2 * 100) / float(W * 100))
-        W = W2
-        H = H * Scale
-        W = int(W)
-        H = int(H)
 
         print("color detection - redscaling")
         redpic = pygame.transform.scale(oldpic,(W,H))
-        for i in range(0,redpic.get_width()):
-            for j in range(0,redpic.get_height()):
+        for i in range(0,W):
+            for j in range(0,H):
                 col = oldpic.get_at((i,j))
                 r = col.r
                 g = col.g
@@ -122,7 +123,7 @@ class RasterImage:
                 downY = downY
             else:
                 # dit zou niet moeten kunnen
-                print("color detection - bug 1 - see code")
+                print("error: no color detection")
 
             midX = (leftX + rightX) / 2
             midY = (upY + downY) / 2
@@ -130,6 +131,11 @@ class RasterImage:
             upright = 0
             downleft = 0
             downright = 0
+
+        cv2.namedWindow("Bal herkenner")
+        cv2.moveWindow("Bal herkenner",100,100)
+        cv2.imshow("Bal herkenner", redpic)
+        cv2.waitKey(1)
             
         for i in range(leftX,rightX):
             for j in range(upY,downY):

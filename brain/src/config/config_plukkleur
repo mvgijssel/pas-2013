@@ -4,7 +4,8 @@ starting_behavior = plukkleur({'somevar': 'somevalue'})
 [body]
 number_of_naos = 1
 number_of_pioneers = 0
-nao_ip_0 = 192.168.1.202
+
+nao_ip_0 = 192.168.1.204
 nao_port_0 = 9559
 pioneer_ip_0 = localhost
 pioneer_port_0 = 12345
