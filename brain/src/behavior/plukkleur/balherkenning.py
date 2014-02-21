@@ -25,7 +25,7 @@ class RasterImage:
     
     def getPos(self):
         color = self.color
-        oldpic = self.get_new_image()
+        oldpic = pygame.image.load(self.get_new_image())
         W = oldpic.get_width()
         H = oldpic.get_height()
         W2 = 300
