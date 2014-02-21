@@ -16,8 +16,6 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
 
     def implementation_init(self):
 
-        print 'init!'
-
         # get the nao reference
         # get the nao reference
         nao = self.body.nao(0)
