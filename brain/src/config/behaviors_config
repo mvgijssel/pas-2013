@@ -10,3 +10,7 @@
 [silly_walkers]
 postcondition = False
 description = "Main Silly Walkers behaviour"
+
+[head_follow_ball]
+postcondition = False
+description = "Follow the ball with the head motor."

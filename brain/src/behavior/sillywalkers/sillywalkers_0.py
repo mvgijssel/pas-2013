@@ -29,6 +29,8 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # - rotate the nao based on the rotation of the head to correct the course it is walking
 
 
+
+
     def implementation_update(self):
 
         print 'running'

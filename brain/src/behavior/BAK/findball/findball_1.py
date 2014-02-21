@@ -41,8 +41,11 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         #Try to see if there is a ball in sight:
         if (self.m.n_occurs("combined_red") > 0):
+
             (recogtime, observation) = self.m.get_last_observation("combined_red")
+
             obs = observation['sorted_contours'][0]     # 0 Corresponds to the largest blob in the list
+
             if not obs == None and recogtime > self.__last_recogtime:
                 print "red: x=%d, y=%d, size=%f" % (obs['x'], obs['y'], obs['surface'])
                 self.__last_recogtime = recogtime
