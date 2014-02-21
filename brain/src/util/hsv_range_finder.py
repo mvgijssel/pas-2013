@@ -47,8 +47,8 @@ class HSVRangeFinder():
         # Set initial parameters
         self.cnt = 0
         self.current_image = np.array([])
-        self.lower_bound = np.array([0, 0, 0])
-        self.upper_bound = np.array([255, 255, 255])
+        self.lower_bound = np.array([0, 0, 0], dtype=np.uint8)
+        self.upper_bound = np.array([255, 255, 255], dtype=np.uint8)
         self.prev_lower_bound = []
         self.prev_upper_bound = []
         self.range = 10
