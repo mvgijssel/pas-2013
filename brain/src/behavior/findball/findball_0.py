@@ -1,4 +1,3 @@
-__author__ = 'student'
 import basebehavior.behaviorimplementation
 
 import time
