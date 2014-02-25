@@ -5,14 +5,8 @@ import math
 from ftplib import FTP, error_perm
 import glob
 import time
+
 from util.euclid import Vector3 as V3
-
-# TODO TODO TODO
-
-Kees = False
-Boo = False
-
-# TODO TODO TODO
 
 # Aldebaran Imports
 try:
@@ -114,15 +108,7 @@ class Nao(object):
         self.__Motion.setAngles(Joint, Angle, Speed)
 
     def walk(self, X=0, Y=0, Teta=0):
-        if Kees: 
-            self.__Motion.walkTo(X+.05, Y, Teta)
-        elif Boo:
-            if (X+Y) > .20: 
-                self.__Motion.walkTo(X,Y,Teta-0.23)
-            else:
-                self.__Motion.walkTo(X, Y, Teta)
-        else: 
-            self.__Motion.walkTo(X, Y, Teta)
+        self.__Motion.walkTo(X, Y, Teta)
 
     def walkNav(self, X=0, Y=0, Teta=0, distance = 0.4):
         self.__Navigation.setSecurityDistance(distance)
@@ -130,9 +116,6 @@ class Nao(object):
 
     def isWalking(self):
         return self.__Motion.walkIsActive()    
-        
-    def isMoving(self):
-        return self.__Motion.moveIsActive()    
         
     def stopwalk(self):
         self.__Motion.stopWalk()
@@ -522,13 +505,6 @@ class Nao(object):
         """
         self.get_proxy("motion").setStiffnesses("Head", 1.0)
         self.get_proxy("motion").angleInterpolation("HeadPitch", 0, 1.0, True)
-        
-    def look_up(self):
-        """
-        Makes the Nao look up.
-        """
-        self.get_proxy("motion").setStiffnesses("Head",1.0)
-        self.get_proxy("motion").angleInterpolation("HeadPitch",-.4,1.0,True)
 
 
     def sit_down(self):
@@ -708,89 +684,7 @@ class Nao(object):
         pitch = HEAD_PITCH + center_pitch
         self.set_angles(['HeadYaw', 'HeadPitch'], [yaw, pitch], 0.2, radians=True)
         
-    def set_cam_vars(self):
-        kCameraBrightnessID = 0
-        kCameraContrastID = 1
-        kCameraSaturationID = 2
-        kCameraHueID = 3
-        kCameraRedChromaID = 4
-        kCameraBlueChromaID = 5
-        kCameraGainID = 6
-        kCameraAutoExpositionID = 11
-        kCameraAutoWhiteBalanceID = 12
-        kCameraAutoGainID = 13
-        kCameraExposureID = 17
-        kCameraExposureCorrectionID = 21
-        
-        self.get_proxy("video").setParam(kCameraAutoGainID, 0)
-        self.get_proxy("video").setParam(kCameraAutoExpositionID, 0)
-        self.get_proxy("video").setParam(kCameraAutoWhiteBalanceID, 0)
 
-        self.get_proxy("video").setParam(kCameraExposureID, 504)			#exposure = 274
-        self.get_proxy("video").setParam(kCameraGainID, 89)					#Gain (steps) = 76
-        self.get_proxy("video").setParam(kCameraExposureCorrectionID, 0)	#Exposure correction = 0
-        self.get_proxy("video").setParam(kCameraBlueChromaID, 142)			#Blue chroma = 134
-        self.get_proxy("video").setParam(kCameraRedChromaID, 52)			#Red chroma = 66
-        self.get_proxy("video").setParam(kCameraBrightnessID, 124) 			#brightness = 124
-        self.get_proxy("video").setParam(kCameraContrastID, 59) 			#contrast = 70
-        self.get_proxy("video").setParam(kCameraSaturationID, 255) 			#saturation = 170
-        self.get_proxy("video").setParam(kCameraHueID, 0) 					#Hue = 0
-        
-    def ball_location(self,x,y,p_rad,y_rad):
-        '''
-        Given the X and Y coordinates { 0-160 ; 0-120} of the upperleft corner of a blob, this function returns the distance in cm's and the angle in radian.
-        '''
-       
-        p = (25.2/0.43)*float(p_rad) -0.5
-       
-        # found by training, could be changed
-        Xrange = 150
-        Yrange = 100
-       
-        '''   
-        A--B--C    Locations on screen, measurements on floor.
-        |  |  |
-        D--E--F
-       
-        Afstand = E_nao + abs(float(x)-Xrange/2)/Xrange * E_F + abs(float(-y+Yrange)/Yrange) * B_E + abs(float(x)-Xrange/2)*abs(float(-y+Yrange)/Yrange) * (Nao_C - (B_C + E_F)   
-        Hoek = /A_Nao + x/Xrange*A_C * ( 1 + Y (/D_Nao-/A_Nao)/(/A_Nao*Yrange))
-        '''
-            
-        A = 21.7 - (32.5/25.2)*float(p)
-        B = 30 - (27.5/25.2)*float(p)
-        C = 100 - (102/25.2)*float(p)
-        D = -46.6 + (56/25.2)*float(p)
-       
-        E = -26.6 - float(-11/25.2)*p
-        F = 95 + float(-64/25.2)*p
-        G = -54 + float(-48/25.2)*p
-        # G = /D(E+float(x)/150*F)*(float(y)*(G-E)/E*Yrange+1)
-        #
-       
-        # choregraph pitch = 16.9
-        A = 0
-        B = 10.5
-        C = 36
-        D = -9
-       
-        E = -0.2621
-        F = 0.52
-        G = 0
-       
-        Distance = A+abs(float(x-75)/75)*B + abs(float(-y+100)/100)*C + abs(float(x-75)*float(-y+100))/7500*D
-        # The distance in cm's
-       
-        Angle = (E+float(x)/150*F)*(float(y)*3.3655/100 + 1) - (1+(.8/100)*y)*y_rad
-        
-        
-       
-        return [max(Distance*math.cos(-Angle),1),Distance*math.sin(-Angle),Distance,Angle]        
-        
-    def set_eyes(self,left=None,right=None):
-        if not left is None: 
-            self.get_proxy("leds").post.fadeRGB("LeftFaceLeds", 256*256*left[0] + 256*left[1] + left[2],1)
-        if not right is None: 
-            self.get_proxy("leds").post.fadeRGB("RightFaceLeds", 256*256*right[0] + 256*right[1] + right[2],1)
 
 #########
 # NOTES #
@@ -817,4 +711,3 @@ class Nao(object):
 # are not noticeable anymore, it is not necessary to
 # be more precise than that when giving it commands.
 #
-

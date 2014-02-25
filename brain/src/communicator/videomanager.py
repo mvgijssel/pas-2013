@@ -14,6 +14,11 @@ import util.vidmemwriter as vidmemwriter
 import util.takeimages as takeimages
 import util.iomanager as iomanager
 
+#Used to compare to ros image topics:
+import re
+ros_pattern = re.compile("ros_")
+#import util.rosimage as rosimage
+
 vminstance = None
 class VideoSourceServer(BinarySocket):
     """
@@ -237,7 +242,6 @@ class VideoManager(multiprocessing.Process):
             ip = None
             inputres = None
             outputres = None
-            port = 9559
             if "ip" in data:
                 ip = data['ip']
             if "inputres" in data:
@@ -246,9 +250,7 @@ class VideoManager(multiprocessing.Process):
                 outputres = data['outputres']
             if "camera" in data:
                 self.__camera = data['camera']
-            if "vidport" in data:
-                vidport = data['vidport']
-            result = self._start_video_source(source, ip, inputres, outputres, vidport)
+            result = self._start_video_source(source, ip, inputres, outputres)
             self.__check_image_handlers()
             self.__pipe.send({"command": "source_started", "result": result})
         elif cmd == "stop":
@@ -278,7 +280,7 @@ class VideoManager(multiprocessing.Process):
             # End the VideoManager
             self._running = False
 
-    def _start_video_source(self, source, ip=None, inputres="640x480", outputres="640x480", vidport = 9559):
+    def _start_video_source(self, source, ip=None, inputres="640x480", outputres="640x480"):
         """
         This method starts a new video source, which some optional arguments
         specified such as input and output resolution and a IP address.
@@ -290,11 +292,11 @@ class VideoManager(multiprocessing.Process):
         if not source or source == "None":
             return True
 
-        result = self._start_vidmemwriter(source, ip, inputres, outputres, vidport = vidport)
+        result = self._start_vidmemwriter(source, ip, inputres, outputres)
 
         return result
 
-    def _start_vidmemwriter(self, camType, ip=None, inputres="640x480", outputres="640x480", vidport = 9559):
+    def _start_vidmemwriter(self, camType, ip=None, inputres="640x480", outputres="640x480"):
         """
         Start the vidmemwriter and a video source, if required. If in server
         mode, no vidmemwriter will be started. Instead, the video module will
@@ -308,7 +310,26 @@ class VideoManager(multiprocessing.Process):
 
         self.__logger.info("I'm starting %s" % camType)
 
-        if camType == "webcam":
+        if ros_pattern.match(camType):
+            #The first 4 characters "ros_" identify that is a specific ros image
+            #The second part *** in "ros_***/topic" is the encoding:
+            topic = camType[4:]
+            encoding = "passthrough"
+            self.__logger.info("camType !!!!!! %s" % camType)
+            if not camType[4] == '/':
+                str_list = camType.split("_")
+                topic = '_'.join(str_list[2:])
+                encoding = str_list[1]
+            ros_image_source = rosimage.RosImage(topic, encoding)
+
+            if self.__server_mode:
+                self.__register_video_source(camType, ros_image_source)
+            else:
+                self.__vidmemwriter.add_video_source(ros_image_source, camType)
+            self.__video_sources.append(camType)
+            self.__logger.info("rosimage started for topic: %s, with encoding: %s" % (topic, encoding))
+            return True
+        elif camType == "webcam":
             self.__logger.debug("I'm starting webcam")
             webcamsource = takeimages.TakeImages(self.__camera)
             img = webcamsource.get_image()
@@ -415,7 +436,7 @@ class VideoManager(multiprocessing.Process):
             if self.__camera != 0 and self.__camera != 1:
                 self.__camera = 0
             try:
-                naocamsource = naovideo.VideoModule(naoip, inputres, outputres, camera=self.__camera, port = vidport)
+                naocamsource = naovideo.VideoModule(naoip, inputres, outputres, camera=self.__camera)
                 naocamsource.get_image()
             except:
                 self.__logger.error("Something went wrong using the camera of the nao (check connection!)")
@@ -551,7 +572,12 @@ class VideoManager(multiprocessing.Process):
             age = time.time() - last_time
             if age > 0.05:
                 new_image = self.__video_modules[source].get_image()
-                new_time = time.time()
+                try:
+                    new_time = self.__video_modules[source].get_time()
+                    print "Got time from ros: %f" % new_time
+                except:
+                    new_time = time.time()
+
                 if new_image:
                     last_time = new_time 
                     last_img = new_image

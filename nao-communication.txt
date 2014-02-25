@@ -1,0 +1,35 @@
+Router:
+
+IP: 129.125.178.4
+ww: !Borgsudo!
+
+
+IP tables workaround:
+
+iptables -t nat -A OUTPUT -p tcp --dport 9559 -j DNAT --to-destination 129.125.178.4:6571
+iptables -t nat -A OUTPUT -p udp --dport 9559 -j DNAT --to-destination 129.125.178.4:6571
+
+- Voor de Linksys AE3000 wireless usb dongle:
+http://geekniggle.blogspot.nl/2012/07/cisco-linksys-ae3000-wifi-usb-dongle.html
+
+- Vervolgens wireless instellen via:
+nm-tool
+sudo nm-connection-editor
+
+IP adresses of Nao's:
+
+Jen     129.125.178.4:6571
+        129.125.178.4:6581
+        192.168.1.201
+
+Nao     129.125.178.4:6572
+        129.125.178.4:6582
+        192.168.1.202
+
+Boo     129.125.178.4:6573
+        129.125.178.4:6583
+        192.168.1.203
+
+Kees    129.125.178.4:6574
+        129.125.178.4:6584
+        192.168.1.204

@@ -14,9 +14,9 @@ import logging
 import util.nullhandler
 import bbie.bbie
 
-'''"Main Silly Walkers behaviour"'''
+'''"This behavior will move the Nao around until the ball is seen in the middle of the FoV."'''
 
-class SillyWalkers(basebehavior.abstractbehavior.AbstractBehavior):
+class FindBall(basebehavior.abstractbehavior.AbstractBehavior):
 
     def behavior_init():
         bbie_setting = ["no_time","max_succes"] #TODO: get this from behavior_config
@@ -25,11 +25,11 @@ class SillyWalkers(basebehavior.abstractbehavior.AbstractBehavior):
         self.logger.addHandler(util.nullhandler.NullHandler())
 
     def get_name(self):
-        return "SillyWalkers"
+        return "FindBall"
 
     def check_postcondition(self):
         m = memory.Memory()
-        return eval("False")
+        return eval("m.is_now('ball_found',['True'])")
 
     def load_exceptions(self):
         self._all_exceptions = []
