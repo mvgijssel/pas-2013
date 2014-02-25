@@ -149,6 +149,7 @@ class RasterImage:
         # stuur foto naar window met naam "balhekenner"
         disp_image = cv2.cvtColor(oldpic,cv2.COLOR_HSV2BGR)
         cv2.imshow("Balherkenner", disp_image)
+        cv2.waitKey(10)
 
         pygame.image.save(oldpic,"testpic.png")
 
