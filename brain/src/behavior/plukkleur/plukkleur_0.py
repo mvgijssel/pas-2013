@@ -4,10 +4,12 @@
 this is an automatically generated template, if you don't rename it, it will be overwritten!
 '''
 
-import basebehavior.behaviorimplementation
-import balherkenning
 import random
+
+import basebehavior.behaviorimplementation
+from behavior.plukkleur import balherkenning
 import util.naovideo as naovideo
+
 
 class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
