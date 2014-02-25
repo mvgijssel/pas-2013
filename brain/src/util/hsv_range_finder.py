@@ -102,60 +102,60 @@ class HSVRangeFinder():
         
     # Check key
     def checkKeyPress(self, k):
-        if k == 113:
+        if k == 113 or k == 1048689:
             # Pressed: Q - H lower bound down
             self.lower_bound[0] = max(self.lower_bound[0] - 1, 0)
             cv2.setTrackbarPos('H - Lower bound', 'Parameters', self.lower_bound[0])
-        elif k == 119:
+        elif k == 119 or k == 1048695:
             # Pressed: W - H lower bound up
             self.lower_bound[0] = min(self.lower_bound[0] + 1, 255)
             cv2.setTrackbarPos('H - Lower bound', 'Parameters', self.lower_bound[0])
-        elif k == 101:
+        elif k == 101 or k == 1048677:
             # Pressed: E - H upper bound down
             self.upper_bound[0] = max(self.upper_bound[0] - 1, 0)
             cv2.setTrackbarPos('H - Upper bound', 'Parameters', self.upper_bound[0])
-        elif k == 114:
+        elif k == 114 or k == 1048690:
             # Pressed: R - H upper bound up
             self.upper_bound[0] = min(self.upper_bound[0] + 1, 255)
             cv2.setTrackbarPos('H - Upper bound', 'Parameters', self.upper_bound[0])
-        elif k == 97:
+        elif k == 97 or k == 1048673:
             # Pressed: A - S lower bound down
             self.lower_bound[1] = max(self.lower_bound[1] - 1, 0)
             cv2.setTrackbarPos('S - Lower bound', 'Parameters', self.lower_bound[1])
-        elif k == 115:
+        elif k == 115 or k == 1048691:
             # Pressed: S - S lower bound up
             self.lower_bound[1] = min(self.lower_bound[1] + 1, 255)
             cv2.setTrackbarPos('S - Lower bound', 'Parameters', self.lower_bound[1])
-        elif k == 100:
+        elif k == 100 or k == 1048676:
             # Pressed: D - S upper bound down
             self.upper_bound[1] = max(self.upper_bound[1] - 1, 0)
             cv2.setTrackbarPos('S - Upper bound', 'Parameters', self.upper_bound[1])
-        elif k == 102:
+        elif k == 102 or k == 1048678:
             # Pressed: F - S upper bound up
             self.upper_bound[1] = min(self.upper_bound[1] + 1, 255)
             cv2.setTrackbarPos('S - Upper bound', 'Parameters', self.upper_bound[1])
-        elif k == 122:
+        elif k == 122 or k == 1048698:
             # Pressed: Z - V lower bound down
             self.lower_bound[2] = max(self.lower_bound[2] - 1, 0)
             cv2.setTrackbarPos('V - Lower bound', 'Parameters', self.lower_bound[2])
-        elif k == 120:
+        elif k == 120 or k == 1048696:
             # Pressed: X - V lower bound up
             self.lower_bound[2] = min(self.lower_bound[2] + 1, 255)
             cv2.setTrackbarPos('V - Lower bound', 'Parameters', self.lower_bound[2])
-        elif k == 99:
+        elif k == 99 or k == 1048675:
             # Pressed: C - V upper bound down
             self.upper_bound[2] = max(self.upper_bound[2] - 1, 0)
             cv2.setTrackbarPos('V - Upper bound', 'Parameters', self.upper_bound[2])
-        elif k == 118:
+        elif k == 118 or k == 1048694:
             # Pressed: V - V upper bound up
             self.upper_bound[2] = min(self.upper_bound[2] + 1, 255)
             cv2.setTrackbarPos('V - Upper bound', 'Parameters', self.upper_bound[2])
-        elif k == 65288 and len(self.prev_lower_bound) > 0:
+        elif (k == 65288 or k == 1113864) and len(self.prev_lower_bound) > 0:
             # Pressed: Backspace
             self.lower_bound = np.copy(self.prev_lower_bound)
             self.upper_bound = np.copy(self.prev_upper_bound)
             self.updateSliders()
-        elif k == 10:
+        elif k == 10 or k == 1048586:
             # Pressed: Enter
             self.saveColor()
     
@@ -294,7 +294,7 @@ class HSVRangeFinder():
         
         # Wait until key is pressed or update
         k = cv2.waitKey(300)
-        if k == 0x1b:
+        if k == 0x1b or k == 1048603:
             print "**************************"
             print "Escape was pressed. Saving and quitting ..."
             self.saveColorsToFile()

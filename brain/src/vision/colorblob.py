@@ -92,8 +92,8 @@ class Colorblob(AbstractVisionModule):
         #Try to detects blobs in observation
         for blob in self.blobs:
             #Get the upper and lower HSV values. [H, S, V]
-            lower = numpy.asarray(self.blobs[blob]['lower'])
-            upper = numpy.asarray(self.blobs[blob]['upper'])
+            lower = numpy.asarray(self.blobs[blob]['lower'], dtype=numpy.uint8)
+            upper = numpy.asarray(self.blobs[blob]['upper'], dtype=numpy.uint8)
 
             #Get colorblobs
             self.get_colorblobs(image, lower, upper, blob)
