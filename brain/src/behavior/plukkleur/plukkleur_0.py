@@ -18,7 +18,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.nao.say("Test Mode Us: Cluuhr vahn bahl.")
+        self.nao.say("Test Mode Us: Sook bahl.")
         self.timer = 20
         self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.nao.get_robot_ip()))
         self.nao.complete_behavior("standup")
