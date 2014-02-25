@@ -28,6 +28,9 @@ class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation)
         # time interval for detection
         self._time_interval = 0.5
 
+        # minimal surface
+        self._minimal_surface = 40;
+
         pass
 
     def implementation_update(self):
@@ -55,16 +58,26 @@ class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation)
             # if there are any observations
             if len(observations):
 
-                # filter the observations
+                print "Unfiltered: " + str(observations)
 
-                # get the most recent observation with surface larger than??
+                # filter the observations, remove all the surfaces smaller than 40
+                filtered_observations = [obs for obs in observations if obs.surface >= self._minimal_surface]
 
-                for idx, obs in enumerate(observations):
-                    print obs
+                print "Filtered: " + str(observations)
 
-                print ""
+                if len(filtered_observations):
+
+                      # get the most recent observation with surface larger than??
+                    for idx, obs in enumerate(filtered_observations):
+                        print obs
+
+            else:
+
+                print "No observations"
 
             pass
+
+            print ""
 
         # add something to memory
         # self.m.add_item('ball_found',time.time(),{})
