@@ -150,7 +150,7 @@ class RasterImage:
         # stuur foto naar window met naam "balhekenner"
         cv2.namedWindow("Balherkenner")
         cv2.moveWindow("Balherkenner",100,100)
-        cv_image = pygame.surfarray.array2d(oldpic)
+        cv_image = pygame.surfarray.array3d(oldpic)
         cv2.imshow("Balherkenner", cv_image)
         cv2.waitKey(10)
 
