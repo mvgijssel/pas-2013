@@ -506,7 +506,6 @@ class Nao(object):
         self.get_proxy("motion").setStiffnesses("Head", 1.0)
         self.get_proxy("motion").angleInterpolation("HeadPitch", 0, 1.0, True)
 
-
     def sit_down(self):
         """
         This method lets the NAO sit down in a stable crouching position and 
