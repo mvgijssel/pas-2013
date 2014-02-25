@@ -3,6 +3,7 @@
 import pygame,random
 import util.vidmemreader
 import Image
+import cv2
 from pygame.locals import *
 
 pygame.init()
@@ -144,6 +145,10 @@ class RasterImage:
             oldpic.set_at((i,midY),(255,255,255))
         for j in range(0,redpic.get_height()):
             oldpic.set_at((midX,j),(255,255,255))
+
+        # stuur foto naar window met naam "balhekenner"
+        disp_image = cv2.cvtColor(oldpic,cv2.COLOR_HSV2BGR)
+        cv2.imshow("Balherkenner", disp_image)
 
         pygame.image.save(oldpic,"testpic.png")
 

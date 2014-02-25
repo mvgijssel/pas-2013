@@ -4,10 +4,13 @@
 this is an automatically generated template, if you don't rename it, it will be overwritten!
 '''
 
-import basebehavior.behaviorimplementation
-import balherkenning
 import random
+
+import basebehavior.behaviorimplementation
+from behavior.plukkleur import balherkenning
+import cv2
 import util.naovideo as naovideo
+
 
 class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
@@ -15,11 +18,14 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.nao.say("Test Mode Us: Cluuhr vahn bahl.")
+        self.nao.say("Test Mode Us: Sook bahl.")
         self.timer = 20
         self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.nao.get_robot_ip()))
         self.nao.complete_behavior("standup")
         self.nao.look_at(0.5,0.75)
+
+        cv2.namedWindow("Balherkenner")
+        cv2.moveWindow("Balherkenner",100,100)
 
 
     def implementation_update(self):
