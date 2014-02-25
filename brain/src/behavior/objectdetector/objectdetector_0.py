@@ -94,10 +94,13 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
         if obj.is_found != obj.previous_is_found:
 
             # debugging
-            print "Found the ball: " + str(obj.is_found)
+            print "Found the '" + str(obj.name) + "': " + str(obj.is_found)
 
             # ball properties
             props = {'is_found': obj.is_found}
+
+            print largest_observation
+            print ""
 
             # if the blob is found
             if obj.is_found:
