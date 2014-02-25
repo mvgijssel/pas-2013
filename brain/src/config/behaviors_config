@@ -18,3 +18,7 @@ description = "Always scans the area if there is a ball present. If it finds it,
 [head_follow_ball]
 postcondition = False
 description = "Follow the ball with the head motor."
+
+[object_detector]
+postcondition = False
+description = "Behaviour always running in th background to supply the Nao with object locations like Ball / Goal / etc"
