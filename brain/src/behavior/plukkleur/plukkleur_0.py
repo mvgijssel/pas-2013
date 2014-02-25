@@ -41,7 +41,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         # yaw = horizontaal draaien hoofd, pitch = verticaal draaien hoofd
         # gemeten: bij een head angle van "0.75", is het onderste stipje op 35 cm afstand, en het bovenste stipje op 130 cm
 
-
+        # afstand (cm) = tan(hoek) * 45cm
 
         if (posx == -999 or posy == -999):
             #self.nao.say("Ik zie de bal niet.")
