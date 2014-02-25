@@ -148,9 +148,7 @@ class RasterImage:
             oldpic.set_at((midX,j),(255,255,255))
 
         # stuur foto naar window met naam "balhekenner"
-        picdata = pygame.image.tostring(oldpic, 'RGB')
-        cv_image = cv.CreateImageHeader(oldpic.get_size(), cv.IPL_DEPTH_8U, 3)
-        cv.SetData(cv_image, picdata)
+        cv_image = pygame.surfarray.array2d(oldpic)
         cv2.imshow("Balherkenner", cv_image)
         cv2.waitKey(10)
 
