@@ -11,6 +11,10 @@
 postcondition = False
 description = "Main Silly Walkers behaviour"
 
+[ball_detector]
+postcondition = False
+description = "Always scans the area if there is a ball present. If it finds it, add it to memory"
+
 [head_follow_ball]
 postcondition = False
 description = "Follow the ball with the head motor."
