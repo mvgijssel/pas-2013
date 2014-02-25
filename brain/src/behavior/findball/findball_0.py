@@ -2,6 +2,7 @@ import basebehavior.behaviorimplementation
 
 import time
 import random
+import almath
 
 
 class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
@@ -25,43 +26,43 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.__last_recogtime = time.time()
 
     def implementation_update(self):
-        haha = false #self.__nao.m.ball = false?????)
+        haha = False #self.__nao.m.ball = false?????)
         if not haha:
             #niet voor zijn neus, kijk bij voeten
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
             self.__nao.look_down()
         if not haha:
             #niet bij voeten kijk naar linkslaag1
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadYaw',25 * almath.TO_RAD,0.5, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadYaw',25 * almath.TO_RAD,0.5, radians=True)
         if not haha:
             #niet op links1 kijk op linkslaag2
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadYaw',25 * almath.TO_RAD,0.5, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadYaw',25 * almath.TO_RAD,0.5, radians=True)
         if not haha:
             #niet op links1 kijk op linkshoog2
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadPitch',0 * almath.TO_RAD,1.0, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadPitch',0 * almath.TO_RAD,1.0, radians=True)
         if not haha:
             #niet op links1 kijk op linkshoog1
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadYaw',-25 * almath.TO_RAD,0.5, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadYaw',-25 * almath.TO_RAD,0.5, radians=True)
         if not haha:
             #niet op links1 kijk op rechtshoog1
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadYaw',-50 * almath.TO_RAD,0.5, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadYaw',-50 * almath.TO_RAD,0.5, radians=True)
         if not haha:
             #niet op links1 kijk op rechtshoog2
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadYaw',-25 * almath.TO_RAD,0.5, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadYaw',-25 * almath.TO_RAD,0.5, radians=True)
         if not haha:
             #niet op links1 kijk op rechtslaag2
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadPitch', 25 * almath.TO_RAD,1.0, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadPitch', 25 * almath.TO_RAD,1.0, radians=True)
         if not haha:
             #niet bij voeten kijk naar rechtslaag1
-            self.get_proxy("motion").setStiffnesses("Head", 1.0)
-            self.__nao.setAngles('HeadYaw',25 * almath.TO_RAD,0.5, radians=TRUE)
+            self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+            self.__nao.set_angles('HeadYaw',25 * almath.TO_RAD,0.5, radians=True)
         # Turn around in a certain direction unless you see the ball.
         # In that case, turn towards it until you have it fairly central in the Field of Vision.
         #if (time.time() - self.__start_time) > 10:
