@@ -3,7 +3,6 @@
 import pygame,random
 import util.vidmemreader
 import Image
-import cv2.cv as cv
 import cv2
 from pygame.locals import *
 
@@ -30,32 +29,37 @@ class RasterImage:
     def getPos(self):
         color = self.color
         oldpic = self.get_new_image()
-        ImgArr = oldpic[6]
-        #oldpic2 = Image.fromstring("RGB",(oldpic.size),oldpic)
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
+        W2 = 100
+        Scale = float(float(W2 * 100) / float(W * 100))
+        W = W2
+        H = H * Scale
+        W = int(W)
+        H = int(H)
+        oldpic = pygame.transform.scale(oldpic,(W,H))
 
         print("color detection - redscaling")
         redpic = pygame.transform.scale(oldpic,(W,H))
         for i in range(0,W):
             for j in range(0,H):
                 col = oldpic.get_at((i,j))
-                r = col.r
+                r = col.b
                 g = col.g
-                b = col.b
+                b = col.r
                 if (color == "red"):
-                    if (r > (b+g)*0.9):
+                    if (r > (b+g)*1.1):
                         redpic.set_at((i,j),(r,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "blue"):
-                    if (b > (r+g)*0.9):
+                    if (b > (r+g)*1.1):
                         redpic.set_at((i,j),(b,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "green"):
-                    if (g > (b+r)*0.9):
+                    if (g > (b+r)*1.1):
                         redpic.set_at((i,j),(g,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
@@ -131,29 +135,22 @@ class RasterImage:
             upright = 0
             downleft = 0
             downright = 0
-
-        cv2.namedWindow("Bal herkenner")
-        cv2.moveWindow("Bal herkenner",100,100)
-        cv2.imshow("Bal herkenner", redpic)
-        cv2.waitKey(1)
             
         for i in range(leftX,rightX):
             for j in range(upY,downY):
-                r = redpic.get_at((i,j)).r
-                redpic.set_at((i,j),(r,50,0))
+                r = oldpic.get_at((i,j)).r
+                oldpic.set_at((i,j),(r,50,0))
 
         for i in range(0,redpic.get_width()):
-            redpic.set_at((i,midY),(255,255,255))
+            oldpic.set_at((i,midY),(255,255,255))
         for j in range(0,redpic.get_height()):
-            redpic.set_at((midX,j),(255,255,255))
-        return (midX-W/2,midY-H/2)
+            oldpic.set_at((midX,j),(255,255,255))
 
-# this was for testing, debugging
-#
-#    def printMe(self,name):
-#        pygame.image.save(self.pic_ball,name)
-#
-#for num in range(1,10):
-#    pic_of_head = pygame.image.load("sc" + str(num) + ".png")
-#    raster = rasterImage(pic_of_head)
-#    raster.printMe("sc" + str(num) + "-find.png")
+        # stuur foto naar window met naam "balhekenner"
+        disp_image = cv2.cvtColor(oldpic,cv2.COLOR_HSV2BGR)
+        cv2.imshow("Balherkenner", disp_image)
+        cv2.waitKey(10)
+
+        pygame.image.save(oldpic,"testpic.png")
+
+        return (float((midX-W/2))/(W/2),float((midY-H/2))/(H/2))
