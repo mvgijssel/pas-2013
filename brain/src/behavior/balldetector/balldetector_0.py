@@ -11,7 +11,7 @@ import basebehavior.behaviorimplementation
 import time
 
 # import used for sorting list of dictionaries
-import operator
+# import operator
 
 
 class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation):
@@ -29,7 +29,17 @@ class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation)
         self._time_interval = 0.5
 
         # minimal surface
-        self._minimal_surface = 40;
+        self._minimal_surface = 40
+
+        # the ball finding state, None for initial so always adds the ball to the memory
+        self._is_found = None
+
+        # maybe refactor to local?
+        self._previous_is_found = None
+
+        # tweaking on multiple parameters:
+        # - surface of the blob
+        # - color settings of the blob
 
         pass
 
@@ -38,55 +48,39 @@ class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation)
         # get the time for this iteration
         self._current_time = time.time()
 
-        # tweaking on multiple parameters:
-        # - surface of the blob
-        # - color settings of the blob
+        # copy the current is found state
+        self._previous_is_found = self._is_found
 
-        # check if the ball is in memory
+        # set the found default, False
+        self._is_found = False
+
+        # check if the ball color is in memory
         # maybe a redundant check?
         if self.m.n_occurs(self._ball_color_name) > 0:
-
-            # get the last observation of the ball
-            #( recogtime, observation) = self.m.get_last_observation(self._ball_color_name)
 
             # get the last observations in a specific interval
             # returns an (empty) array
             observations = self.m.get_recent_observations(self._ball_color_name, self._current_time - self._time_interval)
 
             # sort the observations
-
             # if there are any observations
             if len(observations):
 
-                print "Unfiltered: " + str(observations)
+                # sort the observations on the surface key, with the largest first
+                # use the [1] index because the observations is a list of tuples: (recognition time, observations)
+                observations.sort(key=lambda obs: obs[1]['surface'], reverse=True)
 
-                # filter the observations, remove all the surfaces smaller than 40
-                filtered_observations = [obs for obs in observations if obs.surface >= self._minimal_surface]
+                # get the first observation, get the second key of the tuple
+                if observations[0][1]['surface'] > self._minimal_surface:
 
-                print "Filtered: " + str(observations)
+                    # found the ball!
+                    self._is_found = True
 
-                if len(filtered_observations):
+        # if the previous state is different from the current state, add to memory
+        if self._is_found != self._previous_is_found:
 
-                      # get the most recent observation with surface larger than??
-                    for idx, obs in enumerate(filtered_observations):
-                        print obs
+            # debugging
+            print "Found the ball: " + str(self._is_found)
 
-            else:
-
-                print "No observations"
-
-            pass
-
-            print ""
-
-        # add something to memory
-        # self.m.add_item('ball_found',time.time(),{})
-
-        #you can do things here that are low-level, not consisting of other behaviors
-
-        #in this function you can check what behaviors have failed or finished
-        #and do possibly other things when something has failed
-        pass
-
-
-
+            # add the item to memory
+            self.m.add_item('ball', self._current_time, {'is_found': self._is_found})
