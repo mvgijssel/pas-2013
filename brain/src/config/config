@@ -1,5 +1,5 @@
 [general]
-starting_behavior = headfollowball({})
+starting_behavior = soccerdefender({})
 
 [body]
 number_of_naos = 1
