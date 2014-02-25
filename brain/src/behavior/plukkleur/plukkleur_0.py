@@ -24,9 +24,6 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao.complete_behavior("standup")
         self.nao.look_at(0.5,0.75)
 
-        cv2.namedWindow("Balherkenner")
-        cv2.moveWindow("Balherkenner",100,100)
-
 
     def implementation_update(self):
 
