@@ -7,7 +7,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 
 
-class Ragnarok_x(basebehavior.behaviorimplementation.BehaviorImplementation):
+class HeadFollowBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 
@@ -17,8 +17,8 @@ class Ragnarok_x(basebehavior.behaviorimplementation.BehaviorImplementation):
     def implementation_init(self):
 
         #define list of sub-behavior here
-        self.nao = self.body.nao(0)
-        self.nao.say("Why hello there my friends, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.")
+        pass
+
     def implementation_update(self):
 
         #you can do things here that are low-level, not consisting of other behaviors

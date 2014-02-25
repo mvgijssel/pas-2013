@@ -16,8 +16,6 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
 
     def implementation_init(self):
 
-        print 'init!'
-
         # get the nao reference
         # get the nao reference
         nao = self.body.nao(0)
@@ -29,6 +27,8 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # - one behaviour which walks towards whatever is in the center of the screen
         # - another behaviour which centers the field of view while rotating the head
         # - rotate the nao based on the rotation of the head to correct the course it is walking
+
+
 
 
     def implementation_update(self):
