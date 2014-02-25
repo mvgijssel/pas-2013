@@ -3,3 +3,4 @@
 *.pyc
 *.py~
 *~
+.idea/workspace.xml
