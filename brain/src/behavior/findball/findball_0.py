@@ -28,7 +28,7 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.__last_recogtime = time.time()
 
     def implementation_update(self):
-        haha = False #self.__nao.m.ball = false?????))
+        haha = False #self.__nao.m.ball = false?????)
         if not haha:
                 #niet voor zijn neus, kijk bij voeten
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
