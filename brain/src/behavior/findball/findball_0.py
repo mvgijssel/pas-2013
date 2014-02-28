@@ -30,51 +30,60 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
     def implementation_update(self):
         haha = False #self.__nao.m.observations == none
 
-        if (time.time() - self.__start_time) > 10:
+        if (time.time() - self.__start_time) > 5 and time.time() - self.__start_time < 10:
             if not haha:
                 #niet voor zijn neus, kijk bij voeten
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.look_down()
-        if (time.time() - self.__start_time) > 20:
+                print("beneden")
+        if (time.time() - self.__start_time) > 10 and time.time() - self.__start_time < 15:
             if not haha:
                 #niet bij voeten kijk naar linkslaag1
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-                self.__nao.set_angles('HeadYaw',25 * almath.TO_RAD,0.5, radians=True)
-        if (time.time() - self.__start_time) >30:
+                self.__nao.set_angles('HeadYaw',45 * almath.TO_RAD,0.1, radians=True)
+                print("linkslaag1")
+        if (time.time() - self.__start_time) >15 and time.time() - self.__start_time < 20:
             if not haha:
                 #niet op links1 kijk op linkslaag2
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-                self.__nao.set_angles('HeadYaw',25 * almath.TO_RAD,0.5, radians=True)
-        if (time.time() - self.__start_time) > 40:
+                self.__nao.set_angles('HeadYaw',119 * almath.TO_RAD,0.1, radians=True)
+                print("linkslaag2")
+        if (time.time() - self.__start_time) > 20 and time.time() - self.__start_time < 25:
             if not haha:
                 #niet op links1 kijk op linkshoog2
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-                self.__nao.set_angles('HeadPitch',0 * almath.TO_RAD,1.0, radians=True)
-        # if (time.time() - self.__start_time) > 10:
-        #     if not haha:
-        #         #niet op links1 kijk op linkshoog1
-        #         self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-        #         self.__nao.set_angles('HeadYaw',-25 * almath.TO_RAD,0.5, radians=True)
-        # if (time.time() - self.__start_time) > 12:
-        #     if not haha:
-        #         #niet op links1 kijk op rechtshoog1
-        #         self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-        #         self.__nao.set_angles('HeadYaw',-50 * almath.TO_RAD,0.5, radians=True)
-        # if (time.time() - self.__start_time) > 14:
-        #     if not haha:
-        #         #niet op links1 kijk op rechtshoog2
-        #         self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-        #         self.__nao.set_angles('HeadYaw',-25 * almath.TO_RAD,0.5, radians=True)
-        # if (time.time() - self.__start_time) > 16:
-        #     if not haha:
-        #         #niet op links1 kijk op rechtslaag2
-        #         self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-        #         self.__nao.set_angles('HeadPitch', 25 * almath.TO_RAD,1.0, radians=True)
-        # if (time.time() - self.__start_time) > 18:
-        #     if not haha:
-        #         #niet bij voeten kijk naar rechtslaag1
-        #         self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
-        #         self.__nao.set_angles('HeadYaw',25 * almath.TO_RAD,0.5, radians=True)
+                self.__nao.set_angles('HeadPitch',0 * almath.TO_RAD,0.1, radians=True)
+                print("linkshoog2")
+        if (time.time() - self.__start_time) > 25 and time.time() - self.__start_time < 30:
+            if not haha:
+                #niet op links1 kijk op linkshoog1
+                self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+                self.__nao.set_angles('HeadYaw',45 * almath.TO_RAD,0.1, radians=True)
+                print("linkshoog1")
+        if (time.time() - self.__start_time) > 30 and time.time() - self.__start_time < 35:
+            if not haha:
+                #niet op links1 kijk op rechtshoog1
+                self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+                self.__nao.set_angles('HeadYaw',-45 * almath.TO_RAD,0.1, radians=True)
+                print("rechtshoog1")
+        if (time.time() - self.__start_time) > 35 and time.time() - self.__start_time < 40:
+            if not haha:
+                #niet op links1 kijk op rechtshoog2
+                self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+                self.__nao.set_angles('HeadYaw',-119 * almath.TO_RAD,0.1, radians=True)
+                print("rechtshoog2")
+        if (time.time() - self.__start_time) > 40 and time.time() - self.__start_time < 45:
+            if not haha:
+                #niet op links1 kijk op rechtslaag2
+                self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+                self.__nao.set_angles('HeadPitch', 25 * almath.TO_RAD,0.1, radians=True)
+                print("rechtslaag2")
+        if (time.time() - self.__start_time) > 45 and time.time() - self.__start_time < 50:
+            if not haha:
+                #niet bij voeten kijk naar rechtslaag1
+                self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+                self.__nao.set_angles('HeadYaw',-45 * almath.TO_RAD,0.1, radians=True)
+                print("rechtslaag1")
 
 
 
