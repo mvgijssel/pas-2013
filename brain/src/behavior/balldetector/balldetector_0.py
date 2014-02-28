@@ -34,9 +34,6 @@ class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation)
         # the ball finding state, None for initial so always adds the ball to the memory
         self._is_found = None
 
-        # maybe refactor to local?
-        self._previous_is_found = None
-
         # tweaking on multiple parameters:
         # - surface of the blob
         # - color settings of the blob
@@ -49,10 +46,13 @@ class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation)
         self._current_time = time.time()
 
         # copy the current is found state
-        self._previous_is_found = self._is_found
+        previous_is_found = self._is_found
 
         # set the found default, False
         self._is_found = False
+
+        # scope for the largest observation
+        largest_observation = None
 
         # check if the ball color is in memory
         # maybe a redundant check?
@@ -70,17 +70,31 @@ class BallDetector_x(basebehavior.behaviorimplementation.BehaviorImplementation)
                 # use the [1] index because the observations is a list of tuples: (recognition time, observations)
                 observations.sort(key=lambda obs: obs[1]['surface'], reverse=True)
 
+                # get the observation with the largest surface
+                largest_observation = observations[0][1]
+
                 # get the first observation, get the second key of the tuple
-                if observations[0][1]['surface'] > self._minimal_surface:
+                if largest_observation['surface'] > self._minimal_surface:
 
                     # found the ball!
                     self._is_found = True
 
         # if the previous state is different from the current state, add to memory
-        if self._is_found != self._previous_is_found:
+        if self._is_found != previous_is_found:
 
             # debugging
             print "Found the ball: " + str(self._is_found)
 
+            # ball properties
+            props = {'is_found': self._is_found}
+
+            # if the blob is found
+            if self._is_found:
+
+                # copy the properties to the memory object
+                props['x'] = largest_observation['x']
+                props['y'] = largest_observation['y']
+                props['surface'] = largest_observation['surface']
+
             # add the item to memory
-            self.m.add_item('ball', self._current_time, {'is_found': self._is_found})
+            self.m.add_item('ball', self._current_time, props)

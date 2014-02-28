@@ -1,5 +1,5 @@
 [general]
-starting_behavior = balldetector({})
+starting_behavior = objectdetector({})
 
 [body]
 number_of_naos = 1
@@ -32,15 +32,13 @@ end_port = 52000
 
 #Startup commands and alias for each module
 modules_settings:
-    # camera 1 is the bottom camera
-    blobdetect = blobdetector_new  nao=<nao_ip> inputres=160x120 outputres=160x120 video_source=naovideo camera=1 trainable=True targets=vision/colorblob/silly_red.pkl denoise_value=5 frequency=10
-
     # camera 0 is the top camera
-    blobdetect = blobdetector_new  nao=<nao_ip> inputres=160x120 outputres=160x120 video_source=naovideo camera=1 trainable=True targets=vision/colorblob/silly_red.pkl denoise_value=5 frequency=10
+    # camera 1 is the bottom camera
+    colorblob = colorblob updatefreq=5 video_source=naovideo nao=<nao_ip> camera=0
 
 #Modules to run on each host
 modules:
-    localhost = blobdetect
+    localhost = colorblob
 
 [sonar_controller]
 

@@ -3,6 +3,7 @@ import util.naovideo as naovid
 import numpy as np
 import sys
 import socket
+import os
 
 class HSVRangeFinder():
 
@@ -12,13 +13,17 @@ class HSVRangeFinder():
         if len(sys.argv) <= 1:
             while True:
                 try:
-                    self.nao_ip = raw_input("You didn't specify the IP of the NAO, please specify it here:")
+                    self.nao_ip = raw_input("You didn't specify the IP of the NAO, please specify it here: ")
                     socket.inet_aton(str(self.nao_ip))
                     break
                 except socket.error:
                     print("Not a valid IP address")
         else:
             self.nao_ip = sys.argv[1]
+            
+        print "**************************"
+        print "**** HSV RANGE FINDER ****"
+        print "**************************"
     
         # Get Nao video source
         self.vidsource = naovid.VideoModule(IP=self.nao_ip, resolution="160x120", output="160x120", camera=0, port=9559)
@@ -41,8 +46,8 @@ class HSVRangeFinder():
         
         # Move windows to appropriate position
         cv2.moveWindow('Nao video', 0, 50)
-        cv2.moveWindow('Thresholded image', 322, 50)
-        cv2.moveWindow('Parameters', 644, 50)
+        cv2.moveWindow('Thresholded image', 388, 50)
+        cv2.moveWindow('Parameters', 711, 50)
         
         # Set initial parameters
         self.cnt = 0
@@ -53,9 +58,17 @@ class HSVRangeFinder():
         self.prev_upper_bound = []
         self.range = 10
         self.cut_side = 0
+        self.saved_colors = {}
+        #self.blobs = {'Goal_1': {'upper': [185, 110, 255], 'lower': [135, 35, 90]}, 'Goal_2': {'upper': [45, 130, 255], 'lower': [0, 30, 205]}, 'Ball': {'upper': [130, 255, 255], 'lower': [110, 50, 50]}}
+        self.mouse_free = True
         
         # Set initial trackbar pos
         self.updateSliders()
+        
+        print "**************************"
+        
+        print "If you want to save a color, focus on a window and press 'ENTER'."
+        print "When done, press 'ESC' to stop and save the colors to a file."
         
     # Changing parameters
     def parameterChangeHLower(self, value):
@@ -89,77 +102,101 @@ class HSVRangeFinder():
         
     # Check key
     def checkKeyPress(self, k):
-        if k == 113:
+        if k == 113 or k == 1048689:
             # Pressed: Q - H lower bound down
             self.lower_bound[0] = max(self.lower_bound[0] - 1, 0)
             cv2.setTrackbarPos('H - Lower bound', 'Parameters', self.lower_bound[0])
-        elif k == 119:
+        elif k == 119 or k == 1048695:
             # Pressed: W - H lower bound up
             self.lower_bound[0] = min(self.lower_bound[0] + 1, 255)
             cv2.setTrackbarPos('H - Lower bound', 'Parameters', self.lower_bound[0])
-        elif k == 101:
+        elif k == 101 or k == 1048677:
             # Pressed: E - H upper bound down
             self.upper_bound[0] = max(self.upper_bound[0] - 1, 0)
             cv2.setTrackbarPos('H - Upper bound', 'Parameters', self.upper_bound[0])
-        elif k == 114:
+        elif k == 114 or k == 1048690:
             # Pressed: R - H upper bound up
             self.upper_bound[0] = min(self.upper_bound[0] + 1, 255)
             cv2.setTrackbarPos('H - Upper bound', 'Parameters', self.upper_bound[0])
-        elif k == 97:
+        elif k == 97 or k == 1048673:
             # Pressed: A - S lower bound down
             self.lower_bound[1] = max(self.lower_bound[1] - 1, 0)
             cv2.setTrackbarPos('S - Lower bound', 'Parameters', self.lower_bound[1])
-        elif k == 115:
+        elif k == 115 or k == 1048691:
             # Pressed: S - S lower bound up
             self.lower_bound[1] = min(self.lower_bound[1] + 1, 255)
             cv2.setTrackbarPos('S - Lower bound', 'Parameters', self.lower_bound[1])
-        elif k == 100:
+        elif k == 100 or k == 1048676:
             # Pressed: D - S upper bound down
             self.upper_bound[1] = max(self.upper_bound[1] - 1, 0)
             cv2.setTrackbarPos('S - Upper bound', 'Parameters', self.upper_bound[1])
-        elif k == 102:
+        elif k == 102 or k == 1048678:
             # Pressed: F - S upper bound up
             self.upper_bound[1] = min(self.upper_bound[1] + 1, 255)
             cv2.setTrackbarPos('S - Upper bound', 'Parameters', self.upper_bound[1])
-        elif k == 122:
+        elif k == 122 or k == 1048698:
             # Pressed: Z - V lower bound down
             self.lower_bound[2] = max(self.lower_bound[2] - 1, 0)
             cv2.setTrackbarPos('V - Lower bound', 'Parameters', self.lower_bound[2])
-        elif k == 120:
+        elif k == 120 or k == 1048696:
             # Pressed: X - V lower bound up
             self.lower_bound[2] = min(self.lower_bound[2] + 1, 255)
             cv2.setTrackbarPos('V - Lower bound', 'Parameters', self.lower_bound[2])
-        elif k == 99:
+        elif k == 99 or k == 1048675:
             # Pressed: C - V upper bound down
             self.upper_bound[2] = max(self.upper_bound[2] - 1, 0)
             cv2.setTrackbarPos('V - Upper bound', 'Parameters', self.upper_bound[2])
-        elif k == 118:
+        elif k == 118 or k == 1048694:
             # Pressed: V - V upper bound up
             self.upper_bound[2] = min(self.upper_bound[2] + 1, 255)
             cv2.setTrackbarPos('V - Upper bound', 'Parameters', self.upper_bound[2])
-        elif k == 65288 and len(self.prev_lower_bound) > 0:
+        elif (k == 65288 or k == 1113864) and len(self.prev_lower_bound) > 0:
             # Pressed: Backspace
             self.lower_bound = np.copy(self.prev_lower_bound)
             self.upper_bound = np.copy(self.prev_upper_bound)
             self.updateSliders()
+        elif k == 10 or k == 1048586:
+            # Pressed: Enter
+            self.saveColor()
+    
+    def saveColor(self):
+        new_color_name = ""
+        while True:
+            try:
+                new_color_name = raw_input("Specify the name of the color here: ")
+                break
+            except:
+                print("Not a valid name")
+        self.saved_colors[new_color_name] = {'lower': [self.lower_bound[0], self.lower_bound[1], self.lower_bound[2]], 'upper': [self.upper_bound[0], self.upper_bound[1], self.upper_bound[2]]}
+        print "Saved color:", new_color_name, str(self.saved_colors[new_color_name])
     
     def mouseCallback(self, event, x, y, flags, params):
         # Get pixel value
-        rgb = np.array([[self.current_image[y, x]]])
+        try:
+            rgb = np.array([[self.current_image[y, x]]])
+        except:
+            return
         
         # Convert to HSV
         hsv = cv2.cvtColor(rgb, cv2.COLOR_BGR2HSV)
         
-        # Add range
-        if flags & cv2.EVENT_FLAG_LBUTTON:
-            self.addRange(hsv[0, 0])
-        # Delete range
-        elif flags & cv2.EVENT_FLAG_RBUTTON:
-            self.delRange(hsv[0, 0])
+        # If mouse down-clicks have already been processed, don't do anything until mouse release
+        if self.mouse_free:
+            # Add range
+            if event == cv2.EVENT_LBUTTONDOWN:
+                self.addRange(hsv[0, 0])
+                self.mouse_free = False
+            # Delete range
+            elif event == cv2.EVENT_RBUTTONDOWN:
+                self.delRange(hsv[0, 0])
+                self.mouse_free = False
+        if not self.mouse_free:
+            if event == cv2.EVENT_LBUTTONUP or event == cv2.EVENT_RBUTTONUP:
+                self.mouse_free = True
         
     def addRange(self, hsv):
         # Add
-        print "Add: " + str(hsv)
+        #print "Add: " + str(hsv)
         self.prev_lower_bound = np.copy(self.lower_bound)
         self.prev_upper_bound = np.copy(self.upper_bound)
         self.lower_bound[0] = max(min(hsv[0] - self.range, self.lower_bound[0]), 0)
@@ -172,7 +209,7 @@ class HSVRangeFinder():
         
     def delRange(self, hsv):
         # Del (doesn't always work as expected (sorry)
-        print "Delete: " + str(hsv)
+        #print "Delete: " + str(hsv)
         self.prev_lower_bound = np.copy(self.lower_bound)
         self.prev_upper_bound = np.copy(self.upper_bound)
         if not ((hsv[0] - self.range) > self.upper_bound[0] or (hsv[0] + self.range) < self.lower_bound[0]):
@@ -217,6 +254,18 @@ class HSVRangeFinder():
             self.cut_side = 0
         self.updateSliders()
         
+    def saveColorsToFile(self):
+        file_name = "Colors"
+        directory = os.path.abspath(os.environ['BORG'] + '/brain/data/colorblob_new')
+        # Create dir if not exists
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        f = open(directory + '/' + file_name, 'w')
+        f.write(str(self.saved_colors) + '\n')
+        f.close()
+        print "Saved colors to", directory + '/' + file_name
+        
+        
     def updateSliders(self):
         cv2.setTrackbarPos('H - Lower bound', 'Parameters', self.lower_bound[0])
         cv2.setTrackbarPos('H - Upper bound', 'Parameters', self.upper_bound[0])
@@ -225,6 +274,10 @@ class HSVRangeFinder():
         cv2.setTrackbarPos('V - Lower bound', 'Parameters', self.lower_bound[2])
         cv2.setTrackbarPos('V - Upper bound', 'Parameters', self.upper_bound[2])
     
+    def blur_image(self, image, value):
+        #Add blur
+        return cv2.blur(image, (value,value))
+    
     def update(self):
         # Get latest image from Nao
         iplimage = self.vidsource.get_image()
@@ -232,18 +285,23 @@ class HSVRangeFinder():
         # Convert IPLImage to NParray
         self.current_image = np.asarray(iplimage[:,:])
         
+        #Get new image and add blur to it
+        self.current_image = self.blur_image(self.current_image, 5)
+        
         # Show windows
         cv2.imshow('Nao video', self.current_image)
         cv2.imshow('Thresholded image', self.thresholdImage(self.current_image))
         
         # Wait until key is pressed or update
         k = cv2.waitKey(300)
-        if k == 0x1b:
-            print "Escape was pressed. Quitting ..."
+        if k == 0x1b or k == 1048603:
+            print "**************************"
+            print "Escape was pressed. Saving and quitting ..."
+            self.saveColorsToFile()
             return False
         else:
             self.checkKeyPress(k)
-        print "Got image " + str(self.cnt)
+        #print "Got image " + str(self.cnt)
         self.cnt = self.cnt + 1
         return True
     
