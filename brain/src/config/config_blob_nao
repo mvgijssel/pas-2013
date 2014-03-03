@@ -1,22 +1,11 @@
 [general]
-starting_behavior = objectdetector({})
+starting_behavior = blobnao({})
 
 [body]
-number_of_naos = 1
+number_of_naos = 1 
 number_of_pioneers = 0
-
-# Jen
-# nao_ip_0 = 192.168.1.201
-
-# Nao
-# nao_ip_0 = 192.168.1.202
-
-# Boo
-# nao_ip_0 = 192.168.1.203
-
-# Kees
 nao_ip_0 = 192.168.1.204
-
+#nao_ip_0 = 129.125.178.4
 nao_port_0 = 9559
 pioneer_ip_0 = localhost
 pioneer_port_0 = 12345
@@ -26,15 +15,13 @@ pioneer_port_0 = 12345
 [speech_controller]
 
 [vision_controller]
-update_frequency = 10
+update_frequency = 10 
 start_port = 50000
-end_port = 52000
+end_port = 52000    
 
 #Startup commands and alias for each module
 modules_settings:
-    # camera 0 is the top camera
-    # camera 1 is the bottom camera
-    colorblob = colorblob updatefreq=5 video_source=naovideo nao=<nao_ip> camera=0
+    colorblob = colorblob updatefreq=5 video_source=naovideo nao=<nao_ip> camera=1
 
 #Modules to run on each host
 modules:
@@ -43,3 +30,4 @@ modules:
 [sonar_controller]
 
 [navigation_controller]
+

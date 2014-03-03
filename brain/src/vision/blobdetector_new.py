@@ -333,7 +333,6 @@ class BlobDetector(AbstractVisionModule):
         """"This will display the image with the found contours and relevant text on it."""
         # Convert to BGR for display.
         disp_image = cv2.cvtColor(image,cv2.COLOR_HSV2BGR)
-
         if self._trainable:
             line_list = []
 
