@@ -7,7 +7,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import random
 
 import basebehavior.behaviorimplementation
-from behavior.plukkleur import balherkenning
+import util.balherkenning
 import cv2
 import util.naovideo as naovideo
 

@@ -5,6 +5,8 @@ import math
 from ftplib import FTP, error_perm
 import glob
 import time
+import util.balherkenning as balherkenning
+import util.naovideo as naovideo
 
 from util.euclid import Vector3 as V3
 
@@ -57,6 +59,9 @@ class Nao(object):
         self.__behaviorIDs = {}
         self.__stop_crouch = True
         self.__nobody = nobody
+
+        # toegevoegd door paul-luuk: initialisatie van de balherkenner
+        self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.nao.get_robot_ip()))
 
         # Enable TTS notifications, just in case (so we can determine if the nao is currently speaking or not):
         if not self.__TTS == None:
@@ -682,6 +687,21 @@ class Nao(object):
         yaw = HEAD_YAW + center_yaw
         pitch = HEAD_PITCH + center_pitch
         self.set_angles(['HeadYaw', 'HeadPitch'], [yaw, pitch], 0.2, radians=True)
+
+    # toegevoegd door paul-luuk: functie voor het vinden van de bal
+    def waar_is_bal(self):
+        # returned (x,y) waar de bal is op het scherm
+        # x en y zijn tussen -1 en 1, waar (0,0) het midden van het scherm is,
+        # (-1,-1) links boven en (1,1) rechts onder
+        (posx,posy) = self.detector.getPos()
+        return (posx,posy)
+    def hoe_ver_bal(self):
+        # returned afstand van bal (in meters), maar werkt alleen als de bal in het midden van het blikveld ligt!
+        # is niet nauwkeurig, alleen een indicatie. Moet worden getest om te zien wat de afwijking is.
+        # afstand (cm) = tan(hoek) * 45cm (want nao camera is 45cm hoog)
+        hoekhoofd = self.get_angles(['HeadPitch'], True)
+        dist = math.tan(hoekhoofd) * 0.45
+        return dist
         
 
 

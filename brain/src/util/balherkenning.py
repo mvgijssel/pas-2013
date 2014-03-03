@@ -12,7 +12,7 @@ pygame.init()
 
 #
 # hoe te gebruiken: een andere module kan dit typen:
-# import balherkenning
+# import util.balherkenning
 # detector = balherkenning.rasterImage()
 # (posx,posy) = detector.getPos()
 #
@@ -156,4 +156,4 @@ class RasterImage:
 
         #pygame.image.save(oldpic,"testpic.png")
 
-        return (float((midX-W/2))/(W/2),float((midY-H/2))/(H/2))
+        return ((float(midX / W)-0.5)*2,(float(midY / H)-0.5)*2)
