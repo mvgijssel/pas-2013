@@ -746,13 +746,21 @@ class Nao(object):
         elif (choice == "look up"):
             self.kijk_hoger()
     def kijk_hoger(self):
-        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
-        pitch = HEAD_PITCH[0] - 0.05
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        pitch = HEAD_PITCH - 0.05
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
+        self.corrigeer_hoofd()
     def kijk_lager(self):
-        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
-        pitch = HEAD_PITCH[0] + 0.05
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        pitch = HEAD_PITCH + 0.05
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
+    def corrigeer_hoofd(self):
+        # zet hoofd in het midden als het te hoog kijkt
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        if (HEAD_PITCH < 0):
+            print("Ik kijk te hoog. Ik doe mijn hoofd omlaag en ga ergens anders zoeken.")
+            self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
+            self.zoek_bal()
 
 
 #########
