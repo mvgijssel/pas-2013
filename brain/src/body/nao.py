@@ -688,6 +688,32 @@ class Nao(object):
         pitch = HEAD_PITCH + center_pitch
         self.set_angles(['HeadYaw', 'HeadPitch'], [yaw, pitch], 0.2, radians=True)
 
+
+
+
+
+    ################################# CUSTOM CODE #################################
+
+    # get the reference to the detectable object
+    def get_detectable_object(self, name):
+
+        # return the detectable object
+        return self._detectable_objects[name]
+
+    # copy the detectable objects to the nao
+    def set_detectable_objects(self, objects):
+
+        # instantiate and dictionary for storing the objects
+        self._detectable_objects = {}
+
+        for obj in objects:
+
+            # set the object
+            self._detectable_objects[obj.name] = obj
+
+        pass
+
+
     # toegevoegd door paul-luuk: functie voor het vinden van de bal
     def waar_is_bal(self):
         # returned (x,y) waar de bal is op het scherm
