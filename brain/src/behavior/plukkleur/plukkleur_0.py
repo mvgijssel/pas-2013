@@ -35,7 +35,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         (posx,posy) = self.nao.waar_is_bal()
         print("x: " + str(posx) + ", y: " + str(posy))
-        if (abs(posx) <= 0.3 and abs(posy) <= 0.3):
+        if (abs(posx) <= 0.3 and abs(posy) <= 0.1):
             # ligt in het midden van blikveld: loop er naar toe
             print("ik zie de bal. Ik loop er naar toe.")
             self.nao.loop_naar_bal()
