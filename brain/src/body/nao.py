@@ -710,12 +710,13 @@ class Nao(object):
         # draai tot je hem ziet, moet later beter
         self.walk(0,0,1)
     def kijk_hoger(self):
-        self.get_proxy("motion").setStiffnesses("Head", 1.0)
-        self.get_proxy("motion").angleInterpolation("HeadPitch", -1 * 15 * almath.TO_RAD, 1.0, True)
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
+        pitch = HEAD_PITCH - 5
+        self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
     def kijk_lager(self):
-        self.get_proxy("motion").setStiffnesses("Head", 1.0)
-        self.get_proxy("motion").angleInterpolation("HeadPitch", 15 * almath.TO_RAD, 1.0, True)
-
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
+        pitch = HEAD_PITCH + 5
+        self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
 
 
 #########
