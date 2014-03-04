@@ -17,11 +17,21 @@ pygame.init()
 # (posx,posy) = detector.getPos()
 #
 
+window = 0
+
+def init_window():
+    global window
+    if (window == 0):
+        screen = pygame.display.set_mode((100,100))
+        pygame.display.set_caption("Nao Balherkennning")
+        window = 1
+
 class RasterImage:
 
     def __init__(self,source,color="red"):
         self.vid = source # must be a naovideo class
         self.color = color
+        init_window()
 
     def get_new_image(self):
         img = self.vid.get_image()
@@ -148,11 +158,13 @@ class RasterImage:
             oldpic.set_at((midX,j),(255,255,255))
 
         # stuur foto naar window met naam "balhekenner"
-        cv2.namedWindow("Balherkenner")
-        cv2.moveWindow("Balherkenner",100,100)
-        cv_image = pygame.surfarray.array2d(redpic)
-        cv2.imshow("Balherkenner", cv_image)
-        cv2.waitKey(10)
+        #cv2.namedWindow("Balherkenner")
+        #cv2.moveWindow("Balherkenner",100,100)
+        #cv_image = pygame.surfarray.array2d(redpic)
+        #cv2.imshow("Balherkenner", cv_image)
+        #cv2.waitKey(10)
+
+        screen.blit(oldpic)
 
         #pygame.image.save(oldpic,"testpic.png")
 
