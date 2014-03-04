@@ -33,13 +33,13 @@ class RasterImage:
     def __init__(self,source,color="red"):
         self.vid = source # must be a naovideo class
         self.color = color
-        init_window()
 
     def get_new_image(self):
         img = self.vid.get_image()
         return img
     
     def getPos(self):
+        init_window()
         color = self.color
         oldpic = self.get_new_image()
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
