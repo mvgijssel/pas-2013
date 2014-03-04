@@ -707,7 +707,7 @@ class Nao(object):
         # rekent afstand uit, en loopt dan die afstand vooruit
         dist = self.hoe_ver_bal() * 10
         print("Ik schat de afstand zo'n " + str(dist) + " meter.")
-        self.walk(float(dist),0,0)
+        self.walk(float(dist * 0.5),0,0)
     def zoek_bal(self):
         # draai tot je hem ziet, moet later beter
         choice = random.choice(["turn left","turn right","look down","look down","look up"])
