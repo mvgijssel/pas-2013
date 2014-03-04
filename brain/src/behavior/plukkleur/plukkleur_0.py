@@ -44,10 +44,10 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.nao.zoek_bal()
             elif (posx < -0.5):
                 print ("Ik zie de bal links boven.")
-                self.nao.walk(0,0,-1)
+                self.nao.walk(0,0,1)
             elif (posx >= 0.5):
                 print ("Ik zie de bal rechts boven.")
-                self.nao.walk(0,0,1)
+                self.nao.walk(0,0,-1)
             elif (posx > -0.5 and posx < .5 and posy > 0):
                 print("ik zie de bal vlak voor me.")
                 self.nao.kijk_lager()
