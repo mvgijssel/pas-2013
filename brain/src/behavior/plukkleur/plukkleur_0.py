@@ -21,6 +21,10 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao.complete_behavior("standup")
         self.nao.look_at(0.5,0.75)
 
+        self.selected_behaviors = [
+            ("sw-pluk-findball", "True")
+        ]
+
 
     def implementation_update(self):
 
