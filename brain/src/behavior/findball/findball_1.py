@@ -42,6 +42,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.look_down()
                 print("beneden")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 8 and time.time() - self.__start_time < 12:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -49,6 +51,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadYaw', 45 * almath.TO_RAD, 0.4, radians=True)
                 print("linkslaag1")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 12 and time.time() - self.__start_time < 16:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -56,6 +60,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadYaw', 119 * almath.TO_RAD, 0.4, radians=True)
                 print("linkslaag2")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 16 and time.time() - self.__start_time < 20:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -63,6 +69,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadPitch', 0 * almath.TO_RAD, 0.4, radians=True)
                 print("linkshoog2")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 20 and time.time() - self.__start_time < 24:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -70,6 +78,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadYaw', 45 * almath.TO_RAD, 0.4, radians=True)
                 print("linkshoog1")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 24 and time.time() - self.__start_time < 28:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -77,6 +87,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadYaw', -45 * almath.TO_RAD, 0.4, radians=True)
                 print("rechtshoog1")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 28 and time.time() - self.__start_time < 32:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -84,6 +96,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadYaw', -119 * almath.TO_RAD, 0.4, radians=True)
                 print("rechtshoog2")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 32 and time.time() - self.__start_time < 36:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -91,6 +105,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadPitch', 25 * almath.TO_RAD, 0.4, radians=True)
                 print("rechtslaag2")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 36 and time.time() - self.__start_time < 40:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
@@ -98,6 +114,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.__nao.get_proxy("motion").setStiffnesses("Head", 1.0)
                 self.__nao.set_angles('HeadYaw', -45 * almath.TO_RAD, 0.4, radians=True)
                 print("rechtslaag1")
+            else:
+                print("Gevonden!!")
         if (time.time() - self.__start_time) > 40 and time.time() - self.__start_time < 44:
             (recogtime, observation) = self.m.get_last_observation('ball')
             if not observation.is_found:
