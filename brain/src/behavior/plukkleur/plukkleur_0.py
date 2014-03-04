@@ -55,7 +55,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.nao.kijk_lager()
                 dist = self.nao.hoe_ver_bal()
                 if (dist <= 0.05):
-                    # 5 cm verder
+                    # 5 cm of minder verderop
                     self.nao.walk(0.5,0,0)
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("ik zie de bal een eindje verderop.")
