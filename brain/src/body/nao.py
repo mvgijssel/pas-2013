@@ -705,8 +705,7 @@ class Nao(object):
     def loop_naar_bal(self):
         # rekent afstand uit, en loopt dan die afstand vooruit
         dist = self.hoe_ver_bal()
-        id = self.__Motion.walkTo(float(dist * 0.75), 0, 0)
-        self.__Motion.wait(id)
+        id = self.__Motion.walkTo(float(dist * 0.9), 0, 0)
     def zoek_bal(self):
         # draai tot je hem ziet, moet later beter
         self.walk(0,0,1)
