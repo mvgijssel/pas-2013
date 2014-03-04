@@ -18,9 +18,10 @@ pygame.init()
 #
 
 window = 0
+screen = None
 
 def init_window():
-    global window
+    global window,screen
     if (window == 0):
         screen = pygame.display.set_mode((500,500))
         pygame.display.set_caption("Nao Balherkennning")
