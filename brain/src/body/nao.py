@@ -699,13 +699,14 @@ class Nao(object):
         # returned afstand van bal (in meters), maar werkt alleen als de bal in het midden van het blikveld ligt!
         # is niet nauwkeurig, alleen een indicatie. Moet worden getest om te zien wat de afwijking is.
         # afstand (cm) = tan(hoek) * 45cm (want nao camera is 45cm hoog)
-        hoekhoofd = self.get_angles(['HeadPitch'], True)[0]
-        dist = float(math.tan(hoekhoofd) * 0.45)
+        float(hoekhoofd) = self.get_angles(['HeadPitch'], True)[0]
+        dist = float(math.tan(float(hoekhoofd)) * 0.45)
         return dist
     def loop_naar_bal(self):
         # rekent afstand uit, en loopt dan die afstand vooruit
         dist = self.hoe_ver_bal()
-        id = self.__Motion.walkTo(float(dist * 0.9), 0, 0)
+        print("Ik schat de afstand zo'n " + str(dist) + " meter.")
+        self.walk(float(dist),0,0)
     def zoek_bal(self):
         # draai tot je hem ziet, moet later beter
         self.walk(0,0,1)
