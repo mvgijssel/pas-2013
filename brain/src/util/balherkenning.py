@@ -61,18 +61,20 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
+                minwaarde = 50 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>
+                factor = 1.0 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 if (color == "red"):
-                    if (r > (b+g)*1.5):
+                    if (r > (b+g)*factor and r > minwaarde):
                         redpic.set_at((i,j),(r,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "blue"):
-                    if (b > (r+g)*1.5):
+                    if (b > (r+g)*factor and b > minwaarde):
                         redpic.set_at((i,j),(b,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "green"):
-                    if (g > (b+r)*1.5):
+                    if (g > (b+r)*factor and g > minwaarde):
                         redpic.set_at((i,j),(g,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
