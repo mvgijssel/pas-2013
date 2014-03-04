@@ -17,6 +17,7 @@ try:
 except:
     print "NAOQI Not available. Nao will not work, unless you are using FakeNao"
 import motion
+import random
 
 logging.getLogger('Borg.Brain.BodyController.Nao').addHandler(util.nullhandler.NullHandler())
 
@@ -700,7 +701,7 @@ class Nao(object):
         # is niet nauwkeurig, alleen een indicatie. Moet worden getest om te zien wat de afwijking is.
         # afstand (cm) = tan(hoek) * 45cm (want nao camera is 45cm hoog)
         hoekhoofd = self.get_angles(['HeadPitch'], True)[0]
-        dist = float(math.tan(float(hoekhoofd)) * 0.45)
+        dist = float(math.tan(float(-1 * hoekhoofd)) * 0.45)
         return dist
     def loop_naar_bal(self):
         # rekent afstand uit, en loopt dan die afstand vooruit
