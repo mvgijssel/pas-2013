@@ -21,6 +21,10 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao.complete_behavior("standup")
         self.nao.look_at(0.5,0.75)
 
+        self.selected_behaviors = [
+            ("sw-pluk-findball", "True")
+        ]
+
 
     def implementation_update(self):
 
@@ -35,7 +39,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         (posx,posy) = self.nao.waar_is_bal()
         print("x: " + str(posx) + ", y: " + str(posy))
-        if (abs(posx) <= 0.3 and abs(posy) <= 0.3):
+        if (abs(posx) <= 0.3 and abs(posy) <= 0.1):
             # ligt in het midden van blikveld: loop er naar toe
             print("ik zie de bal. Ik loop er naar toe.")
             self.nao.loop_naar_bal()
@@ -55,7 +59,8 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.nao.kijk_lager()
                 dist = self.nao.hoe_ver_bal()
                 if (dist <= 0.05):
-                    # 5 cm verder
+                    # 5 cm of minder verderop
+                    print("de bal ligt op minder dan 5 cm, I loop er tegen aan.")
                     self.nao.walk(0.5,0,0)
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("ik zie de bal een eindje verderop.")

@@ -37,7 +37,7 @@ class RasterImage:
     def get_new_image(self):
         img = self.vid.get_image()
         return img
-    
+
     def getPos(self):
         init_window()
         color = self.color
@@ -62,21 +62,21 @@ class RasterImage:
                 g = col.g
                 b = col.r
                 minwaarde = 50 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
-                factor = 0.85 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+                factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = 300 # de andere kleuren samen mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and (g+b) < maxwaarde):
-                        redpic.set_at((i,j),(r,0,0))
+                        redpic.set_at((i,j),(r-(b+g)/2,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "blue"):
                     if (b > (r+g)*factor and b > minwaarde and (r+g) < maxwaarde):
-                        redpic.set_at((i,j),(b,0,0))
+                        redpic.set_at((i,j),(b-(r+g)/2,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "green"):
                     if (g > (b+r)*factor and g > minwaarde and (r+b) < maxwaarde):
-                        redpic.set_at((i,j),(g,0,0))
+                        redpic.set_at((i,j),(g-(b+r)/2,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
         self.pic_ball = redpic
@@ -111,6 +111,7 @@ class RasterImage:
                         else:
                             downright += r
             crude -= 1
+            highest = 0
             if (max(max(upleft,upright),max(downleft,downright)) == 0):
                 # if we did not find any pixes at all, do not "rezoom", just zoom in
                 if (crude == 0):
@@ -125,24 +126,28 @@ class RasterImage:
                 rightX = midX
                 upY = upY
                 downY = midY
+                highest = upleft
             elif (upright >= downleft and upright >= downright):
                 # etc, upright
                 leftX = midX
                 rightX = rightX
                 upY = upY
                 downY = midY
+                highest = upright
             elif (downleft >= downright):
                 # etc, downleft
                 leftX = leftX
                 rightX = midX
                 upY = midY
                 downY = downY
+                highest = downleft
             elif (downright >= downleft):
                 # etc, downright
                 leftX = midX
                 rightX = rightX
                 upY = midY
                 downY = downY
+                highest = downright
             else:
                 # dit zou niet moeten kunnen
                 print("error: no color detection")
@@ -176,7 +181,7 @@ class RasterImage:
         screen.blit(redpic,(0,0))
         pygame.display.flip()
 
-        print("plain x: " + str(midX) + ", plain y: " + str(midY))
+        print("plain x: " + str(midX) + ", plain y: " + str(midY) + ", 'redness' = " + str(highest))
         #pygame.image.save(oldpic,"testpic.png")
 
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
