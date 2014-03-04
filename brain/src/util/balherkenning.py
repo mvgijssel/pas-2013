@@ -168,6 +168,7 @@ class RasterImage:
         redpic.set_colorkey((0,0,0))
         screen.blit(oldpic,(0,0))
         screen.blit(redpic,(0,0))
+        pygame.display.flip()
 
         print("plain x: " + str(midX) + ", plain y: " + str(midY))
         #pygame.image.save(oldpic,"testpic.png")
