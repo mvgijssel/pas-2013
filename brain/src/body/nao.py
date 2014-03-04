@@ -700,12 +700,13 @@ class Nao(object):
         # is niet nauwkeurig, alleen een indicatie. Moet worden getest om te zien wat de afwijking is.
         # afstand (cm) = tan(hoek) * 45cm (want nao camera is 45cm hoog)
         hoekhoofd = self.get_angles(['HeadPitch'], True)[0]
-        dist = math.tan(hoekhoofd) * 0.45
+        dist = float(math.tan(hoekhoofd) * 0.45)
         return dist
     def loop_naar_bal(self):
         # rekent afstand uit, en loopt dan die afstand vooruit
         dist = self.hoe_ver_bal()
-        self.walk(dist*0.75,0,0)
+        self.walk(float(dist*0.75),0,0)
+
     def zoek_bal(self):
         # draai tot je hem ziet, moet later beter
         self.walk(0,0,1)
