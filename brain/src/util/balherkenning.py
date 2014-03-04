@@ -61,9 +61,9 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                minwaarde = 50 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>
-                factor = 1.1 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
-                maxwaarde = 400
+                minwaarde = 50 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+                factor = 1.0 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+                maxwaarde = 600 # samen (r+g+b) mag maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and (r+g+b) < maxwaarde):
                         redpic.set_at((i,j),(r,0,0))
@@ -114,6 +114,8 @@ class RasterImage:
             if (max(max(upleft,upright),max(downleft,downright)) == 0):
                 # if we did not find any pixes at all, do not "rezoom", just zoom in
                 if (crude == 0):
+                    screen.blit(oldpic,(0,0))
+                    pygame.display.flip()
                     return (-999,-999)
                 else:
                     pass
