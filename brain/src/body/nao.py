@@ -757,7 +757,7 @@ class Nao(object):
     def corrigeer_hoofd(self):
         # zet hoofd in het midden als het te hoog kijkt
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
-        if (HEAD_PITCH < -0.5*math.pi):
+        if (HEAD_PITCH < -0.5):
             print("Ik kijk te hoog. Ik doe mijn hoofd omlaag en ga ergens anders zoeken.")
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
             self.zoek_bal()
