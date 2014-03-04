@@ -716,7 +716,7 @@ class Nao(object):
             self.walk(0,0,-1)
         elif (choice == "look down"):
             self.kijk_lager()
-        elif (choice == "look up")
+        elif (choice == "look up"):
             self.kijk_hoger()
     def kijk_hoger(self):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)
