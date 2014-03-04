@@ -165,7 +165,7 @@ class RasterImage:
         #cv2.imshow("Balherkenner", cv_image)
         #cv2.waitKey(10)
 
-        screen.blit(oldpic)
+        screen.blit(oldpic,(0,0))
 
         #pygame.image.save(oldpic,"testpic.png")
 
