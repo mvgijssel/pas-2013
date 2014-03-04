@@ -73,3 +73,16 @@ description = "Just a dummy behavior for testing."
 [blob_nao]
 postcondition = False
 description = "Dummy behavior testing the color blob"
+
+# nieuwe behaviors
+[sw-pluk-main]
+postcondition = False
+description = "simpel soccer behavior op basis van RGB ipv HSV"
+
+[sw-pluk-findball]
+postcondition = m.is_now('bal_gevonden',['True'])
+description = "vindt de bal door rond te kijken"
+
+[sw-pluk-approachball]
+postcondition = m.is_now('bal_vlakbij',['True'])
+description = "loop naar de bal toe"

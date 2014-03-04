@@ -1,5 +1,5 @@
 [general]
-starting_behavior = plukkleur({'somevar': 'somevalue'})
+starting_behavior = sw-pluk-findball({'somevar': 'somevalue'})
 
 [body]
 number_of_naos = 1
@@ -21,11 +21,9 @@ end_port = 52000
 
 #Startup commands and alias for each module
 modules_settings:
-#    blobdetect = blobdetector train=True nao=<nao_ip> camera=1 inputres=160x120 outputres=160x120 video_source=naovideo blob_dir=$BORG/brain/data/colorblob vidport=19559
-    
+
 #Modules to run on each host
 modules:
-#    localhost = blobdetect
 
 [sonar_controller]
 
