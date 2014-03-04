@@ -702,7 +702,20 @@ class Nao(object):
         hoekhoofd = self.get_angles(['HeadPitch'], True)
         dist = math.tan(hoekhoofd) * 0.45
         return dist
-        
+    def loop_naar_bal(self):
+        # rekent afstand uit, en loopt dan die afstand vooruit
+        dist = self.hoe_ver_bal()
+        self.walk(dist*0.75,0,0)
+    def zoek_bal(self):
+        # draai tot je hem ziet, moet later beter
+        self.walk(0,0,1)
+    def kijk_hoger(self):
+        self.get_proxy("motion").setStiffnesses("Head", 1.0)
+        self.get_proxy("motion").angleInterpolation("HeadPitch", -1 * 15 * almath.TO_RAD, 1.0, True)
+    def kijk_lager(self):
+        self.get_proxy("motion").setStiffnesses("Head", 1.0)
+        self.get_proxy("motion").angleInterpolation("HeadPitch", 15 * almath.TO_RAD, 1.0, True)
+
 
 
 #########
