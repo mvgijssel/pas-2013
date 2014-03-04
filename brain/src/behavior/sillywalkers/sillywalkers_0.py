@@ -20,8 +20,7 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # get the nao reference
         nao = self.body.nao(0)
 
-        # say something
-        nao.say('Dikke shine')
+
 
         # idea:
         # - one behaviour which walks towards whatever is in the center of the screen

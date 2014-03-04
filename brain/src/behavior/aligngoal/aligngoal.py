@@ -14,9 +14,9 @@ import logging
 import util.nullhandler
 import bbie.bbie
 
-'''"Dummy behavior testing the color blob"'''
+'''"This behavior will circle around the ball until it and the target goal in in a line."'''
 
-class BlobNao(basebehavior.abstractbehavior.AbstractBehavior):
+class AlignGoal(basebehavior.abstractbehavior.AbstractBehavior):
 
     def behavior_init():
         bbie_setting = ["no_time","max_succes"] #TODO: get this from behavior_config
@@ -25,11 +25,11 @@ class BlobNao(basebehavior.abstractbehavior.AbstractBehavior):
         self.logger.addHandler(util.nullhandler.NullHandler())
 
     def get_name(self):
-        return "BlobNao"
+        return "AlignGoal"
 
     def check_postcondition(self):
         m = memory.Memory()
-        return eval("False")
+        return eval("m.is_now('goal_aligned',['True'])")
 
     def load_exceptions(self):
         self._all_exceptions = []

@@ -29,12 +29,16 @@ class Colorblob(AbstractVisionModule):
     def __init__(self, host, port, source):
         self.DEBUG = True 
         self.SHOW = True
-        self.logger = logging.getLogger("Borg.Brain.Vision.Colorblob")
+	self.logger = logging.getLogger("Borg.Brain.Vision.Colorblob")
         super(Colorblob, self).__init__(host, port)
         self.source = [source]
         self.vid_mem_reader = util.vidmemreader.VidMemReader(self.source)
         self.get_new_image()
-        self.blobs = self.load_colors()
+        #Test code
+	self.blobs = self.load_colors() #{'Green': {'upper': [81, 204, 255], 'lower': [31, 43, 0]},'Yellow' : {'upper' : [33, 255, 255], 'lower': [0, 6, 255]}}
+        print self.blobs
+	print "init"
+        #print self.load_colors()['Green']        
     
     def train(self):
         print "train"
@@ -58,17 +62,17 @@ class Colorblob(AbstractVisionModule):
                 cv2.waitKey(1)
 
     def load_colors(self):
-        directory = os.path.abspath(os.environ['BORG'] + '/brain/data/colorblob_new')
+	directory = os.path.abspath(os.environ['BORG'] + '/brain/data/colorblob_new')
 
-        if not os.path.exists(directory):
-            print "Unknown directory"
-            return {'Green': {'upper': [81, 204, 255], 'lower': [31, 43, 0]},'Yellow' : {'upper' : [33, 255, 255], 'lower': [0, 6, 255]}}
+	if not os.path.exists(directory):
+	   print "Unknown directory"
+	   return {'Green': {'upper': [81, 204, 255], 'lower': [31, 43, 0]},'Yellow' : {'upper' : [33, 255, 255], 'lower': [0, 6, 255]}}
 	
         f = open(directory + '/Colors', 'r')
-        print "Data"
-        colors = f.read()
-        f.close()
-        return eval(colors)
+	print "Data"
+	colors = f.read()
+	f.close()
+	return eval(colors)
 
     def get_new_image(self):
         """ Get new image from video shared memory """

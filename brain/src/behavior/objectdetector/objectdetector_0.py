@@ -33,7 +33,7 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
     def implementation_init(self):
 
         # create the detectable objects
-        ball1 = DetectableObject('ball1', 'workstation_red', 0.5, 40)
+        ball1 = DetectableObject('ball', 'workstation_red', 0.5, 40)
         #ball2 = DetectableObject('ball2', 'global_red_1', 0.5, 40)
 
         # instantiate an array of detectable objects
