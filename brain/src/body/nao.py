@@ -731,15 +731,17 @@ class Nao(object):
         return dist
     def loop_naar_bal(self):
         # rekent afstand uit, en loopt dan die afstand vooruit
-        dist = self.hoe_ver_bal() * 10
+        dist = abs(self.hoe_ver_bal() * 10)
         print("Ik schat de afstand zo'n " + str(dist) + " meter.")
         self.walk(float(dist * 0.2),0,0)
     def zoek_bal(self):
         # draai tot je hem ziet, moet later beter
-        choice = random.choice(["turn left","turn right","look down","look down","look up"])
+        choice = random.choice(["turn left","turn right","turn right","look down","look down","look up"])
         if (choice == "turn left"):
+            self.corrigeer_hoofd()
             self.walk(0,0,1)
         elif (choice == "turn right"):
+            self.corrigeer_hoofd()
             self.walk(0,0,-1)
         elif (choice == "look down"):
             self.kijk_lager()
@@ -758,9 +760,7 @@ class Nao(object):
         # zet hoofd in het midden als het te hoog kijkt
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         if (HEAD_PITCH < -0.5):
-            print("Ik kijk te hoog. Ik doe mijn hoofd omlaag en ga ergens anders zoeken.")
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
-            self.zoek_bal()
 
 
 #########
