@@ -6,6 +6,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 
 import basebehavior.behaviorimplementation
 import os
+import time
 
 class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
@@ -17,10 +18,21 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
     def implementation_init(self):
 
         # get the nao reference
-        # get the nao reference
-        nao = self.body.nao(0)
 
+        #define list of sub-behavior here
+        self.findball = self.ab.findball({})
+        self.objectdetector = self.ab.objectdetector({})
 
+        self.selected_behaviors = [
+            ("objectdetector", "True"),
+            ("findball", "True"),
+        ]
+
+        self.restart_time = time.time()
+
+        #Select Nao to use:
+        self.nao = self.body.nao(0)
+        self.nao.say("Lets play soccer!")
 
         # idea:
         # - one behaviour which walks towards whatever is in the center of the screen
@@ -29,19 +41,10 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
 
 
 
-
     def implementation_update(self):
 
-        print 'running'
 
-        # update function at 10Hz
 
-        #execfile(self.eval_file)
-
-        # you can do things here that are low-level, not consisting of other behaviors
-
-        # in this function you can check what behaviors have failed or finished
-        # and do possibly other things when something has failed
 
         pass
 
