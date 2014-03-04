@@ -62,7 +62,7 @@ class RasterImage:
                 g = col.g
                 b = col.r
                 minwaarde = 50 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>
-                factor = 1.0 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+                factor = 1.1 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = 400
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and (r+g+b) < maxwaarde):
