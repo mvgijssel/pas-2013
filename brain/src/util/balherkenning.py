@@ -19,11 +19,12 @@ pygame.init()
 
 window = 0
 screen = None
+imgsize = 200
 
 def init_window():
-    global window,screen
+    global window,screen,imgsize
     if (window == 0):
-        screen = pygame.display.set_mode((100,100))
+        screen = pygame.display.set_mode((imgsize,imgsize))
         pygame.display.set_caption("Nao Balherkennning")
         window = 1
 
@@ -44,7 +45,7 @@ class RasterImage:
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
-        W2 = 100
+        W2 = imgsize
         Scale = float(float(W2 * 100) / float(W * 100))
         W = W2
         H = H * Scale
@@ -61,17 +62,17 @@ class RasterImage:
                 g = col.g
                 b = col.r
                 if (color == "red"):
-                    if (r > (b+g)*1.1):
+                    if (r > (b+g)*1.5):
                         redpic.set_at((i,j),(r,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "blue"):
-                    if (b > (r+g)*1.1):
+                    if (b > (r+g)*1.5):
                         redpic.set_at((i,j),(b,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "green"):
-                    if (g > (b+r)*1.1):
+                    if (g > (b+r)*1.5):
                         redpic.set_at((i,j),(g,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
