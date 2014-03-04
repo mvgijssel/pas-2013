@@ -8,6 +8,7 @@ import basebehavior.behaviorimplementation
 
 # for the time.time() method
 import time
+import motion
 
 class DetectableObject:
 
@@ -26,6 +27,7 @@ class DetectableObject:
         self.size = None
         self.width = None
         self.height = None
+        self.distance = None
 
         pass
 
@@ -104,7 +106,7 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
         # update the object using the object setting and the largest observation
         self.update_object(obj, largest_observation)
 
-
+    # print debug messages
     def print_messages(self, obj, largest_observation):
 
         # maybe update properties directly on the nao object? instead of adding to memory?
@@ -166,6 +168,8 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
     # update the values on the detectable object
     def update_object(self, detectable_object, largest_observation):
 
+        print largest_observation
+
         if detectable_object.is_found:
 
             detectable_object.x = largest_observation['x']
@@ -173,6 +177,29 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
             detectable_object.width = largest_observation['width']
             detectable_object.height = largest_observation['height']
             detectable_object.size = largest_observation['size']
+
+
+            # top / left i needs to be relative, 0,0 top left, 1,1 right down
+            left = 0
+            top = 0
+            rel_width =  detectable_object.width
+            rel_height = detectable_object.height
+
+            rect = (left, top, rel_width, rel_height)
+
+            # 6 cm
+            ball_width = 6
+
+            # camera number
+            camera = 0
+
+            # look at the ball
+            look_at = False
+
+            # the space used
+            space = motion.SPACE_NAO
+
+            print self._nao.localize_object_in_image(rect, None, ball_width, camera, look_at)
 
         else:
 

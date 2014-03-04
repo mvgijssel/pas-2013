@@ -598,6 +598,7 @@ class Nao(object):
 
         # Calculate corners (coordinates in relative values in image)
         left, top, rel_width, rel_height = rect
+
         corners = [(left, top), 
                    (left, top + rel_height),
                    (left + rel_width, top),
@@ -722,6 +723,7 @@ class Nao(object):
         # (-1,-1) links boven en (1,1) rechts onder
         (posx,posy) = self.detector.getPos()
         return (posx,posy)
+
     def hoe_ver_bal(self):
         # returned afstand van bal (in meters), maar werkt alleen als de bal in het midden van het blikveld ligt!
         # is niet nauwkeurig, alleen een indicatie. Moet worden getest om te zien wat de afwijking is.
@@ -729,11 +731,13 @@ class Nao(object):
         hoekhoofd = self.get_angles(['HeadPitch'], True)[0]
         dist = float(math.tan(float(-1 * hoekhoofd)) * 0.45)
         return dist
+
     def loop_naar_bal(self):
         # rekent afstand uit, en loopt dan die afstand vooruit
         dist = self.hoe_ver_bal() * 10
         print("Ik schat de afstand zo'n " + str(dist) + " meter.")
         self.walk(float(dist * 0.5),0,0)
+
     def zoek_bal(self):
         # draai tot je hem ziet, moet later beter
         choice = random.choice(["turn left","turn right","look down","look down","look up"])
@@ -745,10 +749,12 @@ class Nao(object):
             self.kijk_lager()
         elif (choice == "look up"):
             self.kijk_hoger()
+
     def kijk_hoger(self):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)
         pitch = HEAD_PITCH[0] - 0.05
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
+
     def kijk_lager(self):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)
         pitch = HEAD_PITCH[0] + 0.05
