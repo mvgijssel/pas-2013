@@ -61,7 +61,7 @@ class Nao(object):
         self.__nobody = nobody
 
         # toegevoegd door paul-luuk: initialisatie van de balherkenner
-        self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.nao.get_robot_ip()))
+        self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.get_robot_ip()))
 
         # Enable TTS notifications, just in case (so we can determine if the nao is currently speaking or not):
         if not self.__TTS == None:
