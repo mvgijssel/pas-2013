@@ -23,7 +23,7 @@ screen = None
 def init_window():
     global window,screen
     if (window == 0):
-        screen = pygame.display.set_mode((500,500))
+        screen = pygame.display.set_mode((200,200))
         pygame.display.set_caption("Nao Balherkennning")
         window = 1
 
@@ -165,8 +165,11 @@ class RasterImage:
         #cv2.imshow("Balherkenner", cv_image)
         #cv2.waitKey(10)
 
+        redpic.set_colorkey((0,0,0))
         screen.blit(oldpic,(0,0))
+        screen.blit(redpic,(0,0))
 
+        print("plain x: " + str(midX) + ", plain y: " + str(midY))
         #pygame.image.save(oldpic,"testpic.png")
 
-        return ((float(midX / W)-0.5)*2,(float(midY / H)-0.5)*2)
+        return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
