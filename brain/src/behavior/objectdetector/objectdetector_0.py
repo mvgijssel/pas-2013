@@ -20,6 +20,13 @@ class DetectableObject:
         self.is_found = None
         self.previous_is_found = False
 
+        # properties of the last observation
+        self.x = None
+        self.y = None
+        self.size = None
+        self.width = None
+        self.height = None
+
         pass
 
 
@@ -34,12 +41,15 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
         # create the detectable objects
         ball1 = DetectableObject('ball', 'workstation_red', 0.5, 40)
-        #ball2 = DetectableObject('ball2', 'global_red_1', 0.5, 40)
 
-        # instantiate an array of detectable objects
-        # self._target_objects = [ball1, ball2]
-
+        # instantiate the array with target objects
         self._target_objects = [ball1]
+
+        # store the nao reference
+        self._nao = self.body.nao(0)
+
+        # update the nao with the detectable objects
+        self._nao.set_detectable_objects(self._target_objects)
 
         pass
 
@@ -52,14 +62,11 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
         for target_object in self._target_objects:
 
             # for each object call the detect object method
-            self.detect_object(target_object, self._current_time)
+            self.detect_object(target_object)
 
     # try to detect an object
     # if detected add the object to memory
-    def detect_object(self, obj, current_time):
-
-        # copy the current is found state
-        obj.previous_is_found = obj.is_found
+    def detect_object(self, obj):
 
         # set the found default, False
         obj.is_found = False
@@ -73,47 +80,105 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
             # get the last observations in a specific interval
             # returns an (empty) array
-            observations = self.m.get_recent_observations(obj.target_color, current_time - obj.time_interval)
+            observations = self.m.get_recent_observations(obj.target_color, self._current_time - obj.time_interval)
 
             # sort the observations
             # if there are any observations
             if len(observations):
 
-                # sort the observations on the surface key, with the largest first
-                # use the [1] index because the observations is a list of tuples: (recognition time, observations)
-                observations.sort(key=lambda obs: obs[1]['surface'], reverse=True)
-
-                # get the observation with the largest surface
-                largest_observation = observations[0][1]
+                # get the largest observation
+                largest_observation = self.get_largest_observation(observations)
 
                 # get the first observation, get the second key of the tuple
-                if largest_observation['surface'] > obj.min_surface:
+                if largest_observation['size'] > obj.min_surface:
 
                     # found the ball!
                     obj.is_found = True
 
-        # if the previous state is different from the current state, add to memory
-        if obj.is_found != obj.previous_is_found:
+        # print messages about the object and the largest observation
+        self.print_messages(obj, largest_observation)
 
-            # debugging
-            print "Found the '" + str(obj.name) + "': " + str(obj.is_found)
+        # update memory using the object setting and the largest observation
+        # self.update_memory(obj, largest_observation)
+
+        # update the object using the object setting and the largest observation
+        self.update_object(obj, largest_observation)
+
+
+    def print_messages(self, obj, largest_observation):
+
+        # maybe update properties directly on the nao object? instead of adding to memory?
+        # debugging
+        print "Found the '" + str(obj.name) + "': " + str(obj.is_found)
+
+        # ball properties
+        props = {'is_found': obj.is_found}
+
+        print largest_observation
+        print ""
+
+    # get the largest observation
+    def get_largest_observation(self, observations):
+
+        # print of the data:
+        # [(1393928541.30118, {'source': ('', '/tmp//tmp/Vision_50033'), 'identifier': ('localhost', 'colorblob'), 'blobs': [{'y': 44, 'x': 88, 'size': 378, 'width': 18, 'height': 21}]})]
+
+        # sort the observations on the size of the largest blob
+        observations.sort(key=lambda obs: self.get_largest_blob(obs)['size'], reverse=True)
+
+        # return the first largest observation
+        return self.get_largest_blob(observations[0])
+
+    # get the largests blob from an observation
+    def get_largest_blob(self, observation):
+
+        # check if there exist any blobs
+        if len(observation[1]['blobs']):
+
+            # sort the blobs in the observation
+            observation[1]['blobs'].sort(key=lambda obs: obs['size'], reverse=True)
+
+            # return the largest of the blobs
+            return observation[1]['blobs'][0]
+
+        else:
+
+            # return 0 as no surface is detected
+            return {'size': 0}
+
+    # function for updating memory, target object has the target object settings
+    def update_memory(self, target_object, largest_observation):
+
+        # instantiate properties object
+        props = {'is_found': target_object.is_found}
+
+        # if the target object is found
+        if target_object.is_found:
 
             # ball properties
-            props = {'is_found': obj.is_found}
+            props = {'is_found': target_object.is_found, 'x': largest_observation['x'], 'y': largest_observation['y'],
+                     'width': largest_observation['width'], 'height': largest_observation['height'],
+                     'size': largest_observation['size']}
 
-            print largest_observation
-            print ""
+        # add to the actual memory
+        self.m.add_item(target_object.name, self._current_time, props)
 
-            # if the blob is found
-            if obj.is_found:
+    # update the values on the detectable object
+    def update_object(self, detectable_object, largest_observation):
 
-                # copy the properties to the memory object
-                props['x'] = largest_observation['x']
-                props['y'] = largest_observation['y']
-                props['surface'] = largest_observation['surface']
+        if detectable_object.is_found:
 
-            # add the item to memory with the object name
-            self.m.add_item(obj.name, current_time, props)
+            detectable_object.x = largest_observation['x']
+            detectable_object.y = largest_observation['y']
+            detectable_object.width = largest_observation['width']
+            detectable_object.height = largest_observation['height']
+            detectable_object.size = largest_observation['size']
 
+        else:
 
+            detectable_object.x = None
+            detectable_object.y = None
+            detectable_object.width = None
+            detectable_object.height = None
+            detectable_object.size = None
 
