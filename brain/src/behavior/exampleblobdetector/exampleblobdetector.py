@@ -14,9 +14,9 @@ import logging
 import util.nullhandler
 import bbie.bbie
 
-'''"Dummy behavior testing the color blob"'''
+'''"Just a simple behavior to demonstrate the usage of the blobdetector vision module."'''
 
-class BlobNao(basebehavior.abstractbehavior.AbstractBehavior):
+class ExampleBlobdetector(basebehavior.abstractbehavior.AbstractBehavior):
 
     def behavior_init():
         bbie_setting = ["no_time","max_succes"] #TODO: get this from behavior_config
@@ -25,7 +25,7 @@ class BlobNao(basebehavior.abstractbehavior.AbstractBehavior):
         self.logger.addHandler(util.nullhandler.NullHandler())
 
     def get_name(self):
-        return "BlobNao"
+        return "ExampleBlobdetector"
 
     def check_postcondition(self):
         m = memory.Memory()

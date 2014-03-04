@@ -11,8 +11,8 @@ class BlobNao_1(basebehavior.behaviorimplementation.BehaviorImplementation):
         pass
         
     def implementation_update(self):
-        if (self.m.n_occurs('Ball') > 0):
-        	(recogtime, observation) = self.m.get_last_observation('Ball')
+        if (self.m.n_occurs('red') > 0):
+        	(recogtime, observation) = self.m.get_last_observation('red')
         	if (recogtime > self.__last_ball_time):
         		self.__last_ball_time = recogtime
         		print "BALLS"
