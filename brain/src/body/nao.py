@@ -711,11 +711,11 @@ class Nao(object):
         self.walk(0,0,1)
     def kijk_hoger(self):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)
-        pitch = HEAD_PITCH - 0.2
+        pitch = HEAD_PITCH[0] - 0.05
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
     def kijk_lager(self):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)
-        pitch = HEAD_PITCH + 0.1
+        pitch = HEAD_PITCH[0] + 0.05
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
 
 
