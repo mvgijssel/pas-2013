@@ -61,7 +61,7 @@ class Nao(object):
         self.__nobody = nobody
 
         # toegevoegd door paul-luuk: initialisatie van de balherkenner
-        self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.nao.get_robot_ip()))
+        self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.get_robot_ip()))
 
         # Enable TTS notifications, just in case (so we can determine if the nao is currently speaking or not):
         if not self.__TTS == None:
@@ -710,12 +710,13 @@ class Nao(object):
         # draai tot je hem ziet, moet later beter
         self.walk(0,0,1)
     def kijk_hoger(self):
-        self.get_proxy("motion").setStiffnesses("Head", 1.0)
-        self.get_proxy("motion").angleInterpolation("HeadPitch", -1 * 15 * almath.TO_RAD, 1.0, True)
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
+        pitch = HEAD_PITCH - 0.2
+        self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
     def kijk_lager(self):
-        self.get_proxy("motion").setStiffnesses("Head", 1.0)
-        self.get_proxy("motion").angleInterpolation("HeadPitch", 15 * almath.TO_RAD, 1.0, True)
-
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
+        pitch = HEAD_PITCH + 0.1
+        self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
 
 
 #########
