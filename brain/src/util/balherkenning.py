@@ -22,7 +22,7 @@ window = 0
 def init_window():
     global window
     if (window == 0):
-        screen = pygame.display.set_mode((100,100))
+        screen = pygame.display.set_mode((500,500))
         pygame.display.set_caption("Nao Balherkennning")
         window = 1
 
