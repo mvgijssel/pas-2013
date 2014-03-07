@@ -811,7 +811,7 @@ class Nao(object):
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
     def zeg_dit(self,file):
         print("sound: " + str(file))
-        self.__Audio.post.playFile("/home/tim/PyCharmProjects/pas-2013/brain/sounds/"+str(file))
+        self.__Audio.post.playFile(file)
 #########
 # NOTES #
 #########
