@@ -7,7 +7,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 
 
-class sw_pluk_findball_1(basebehavior.behaviorimplementation.BehaviorImplementation):
+class plukfindball_1(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 

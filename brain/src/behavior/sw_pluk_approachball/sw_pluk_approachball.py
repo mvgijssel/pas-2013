@@ -29,7 +29,7 @@ class sw_pluk_approachball(basebehavior.abstractbehavior.AbstractBehavior):
 
     def check_postcondition(self):
         m = memory.Memory()
-        return eval("m.is_now('bal_vlakbij',['True'])")
+        return eval("False")
 
     def load_exceptions(self):
         self._all_exceptions = []
