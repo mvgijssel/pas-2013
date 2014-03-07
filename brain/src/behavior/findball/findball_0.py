@@ -11,8 +11,13 @@ class Position:
 
     # TOP = -38
     # BOTTOM = 29
-    TOP = -25
-    BOTTOM = 18 # maximum min 29
+    TOP = -38 # -38 is the maximum
+
+    # bottom positions are different for the different angles
+    # for example looking left, the nao can't turn his head all the way down
+    CENTER_BOTTOM = 24 # maximum min 29
+    LEFT_BOTTOM = 16
+    RIGHT_BOTTOM = 16
 
     CENTER = 0
 
@@ -24,13 +29,11 @@ class Position:
 
 class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
-
+    # instantiate all the user variables
     def implementation_init(self):
 
         # store the nao reference
         self.nao = self.body.nao(0)
-
-        self.nao.set_do_nothing_on_stop(True)
 
         # store the used proxy
         self.proxy = self.nao.get_proxy("motion")
@@ -47,51 +50,67 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # list with states to move the head to
         self.states = []
 
-        # use the sensors when determining the angles of the nao?
-        self.use_sensors = True
-
-        # the sensor names
-        self.sensor_names = ['HeadYaw', 'HeadPitch']
-
         # the x speed used
-        self.x_speed = 0.4
+        self.x_speed = 0.1
 
         # the speed used by the nao for moving it's head
-        self.y_speed = 0.3
+        self.y_speed = 0.1
+
+        # set the deviation from the target position
+        self.position_deviation = 2
+
+        # time out
+        self.time_out = 6
 
         # the sweep states
+        # upper sweep
         self.states.append(Position(Position.LEFT, Position.TOP))
-        # self.states.append(Position(Position.CENTER, Position.TOP))
         self.states.append(Position(Position.RIGHT, Position.TOP))
 
-        self.states.append(Position(Position.LEFT, Position.CENTER))
-        # self.states.append(Position(Position.CENTER, Position.CENTER))
-        self.states.append(Position(Position.RIGHT, Position.CENTER))
+        # lower sweep
+        self.states.append(Position(Position.LEFT, Position.LEFT_BOTTOM))
+        self.states.append(Position(Position.RIGHT, Position.RIGHT_BOTTOM))
 
-        self.states.append(Position(Position.LEFT, Position.BOTTOM))
-        # self.states.append(Position(Position.CENTER, Position.BOTTOM))
-        self.states.append(Position(Position.RIGHT, Position.BOTTOM))
+        # look straight ahead
+        self.states.append(Position(Position.CENTER, Position.CENTER))
 
-        # set the state
-        # go to the state
-        # on each iteration get the angles from the nao
-        # when state is done, the angles from the nao are the set angles, go to next state
-        # timeout within 10 seconds
+        # look at your feet
+        self.states.append(Position(Position.CENTER, Position.CENTER_BOTTOM))
 
         # define the current state
         self.current_state = None
 
+        # start the initial state
         self.switch_state()
 
+    # the update loop
     def implementation_update(self):
 
         # update the current time
         self.current_time = time.time()
 
-        # if the head is not moving, move the head
-        if not self.is_head_moving():
+        # try to get the ball
+        (recogtime, observation) = self.m.get_last_observation('ball')
 
-            self.switch_state()
+        # if ball is found
+        if observation['is_found']:
+
+            # get the angles
+            (x, y) = self.get_angles()
+
+            # create a new position object on the current position
+            pos = Position(x, y)
+
+            # move the head to the position
+            self.move_head_to(pos)
+
+        # if no observation is, move the head
+        else:
+
+            # if the head is not moving, move the head
+            if not self.is_head_moving():
+
+                self.switch_state()
 
     # switch the state
     def switch_state(self):
@@ -125,46 +144,60 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # adjusting the 'y' coordinate
         self.nao.set_angles('HeadPitch', position.y * almath.TO_RAD, self.y_speed, radians=True)
 
+    # determine if the angle is close to the target angle
     def is_close(self, val1, val2):
 
-        upper = val1 + 1
+        upper = val1 + self.position_deviation
 
-        lower = val1 - 1
+        lower = val1 - self.position_deviation
 
         return val2 <= upper and val2 >= lower
 
+    # get the current angles of the nao
+    def get_angles(self):
+
+        # get the angles
+         return self.nao.get_angles_sensors(['HeadYaw', 'HeadPitch'], radians=False)
 
     # returns a boolean value to determine if the head of the nao is moving
     def is_head_moving(self):
 
         # get the angles
-        (head_yaw, head_pitch) = self.nao.get_angles_sensors(self.sensor_names, radians=False)
+        (head_yaw, head_pitch) = self.get_angles()
 
         # get the target position
         target = self.states[self.current_state]
 
-        print ""
-        print "X target: " + str(target.x) + " --- " + str(head_yaw)
-        print "Y target: " + str(target.y) + " --- " + str(head_pitch)
+        # return
+        if (self.current_time - self.start_time) > self.time_out:
+
+            # reset the timeout timer
+            self.start_time = self.current_time
+
+            # debug messages
+            self.print_head_motion("TIMEOUT", target, head_yaw, head_pitch)
+
+            # the head of the Nao is assumed stopped moving
+            return False
 
 
         # # check if the position is reached
         if self.is_close(target.x, head_yaw) and self.is_close(target.y, head_pitch):
-            print "reached!"
+
+            # reset the timeout timer
+            self.start_time = self.current_time
+
+            # head is not moving when position is reached
             return False
         else:
+
+            # head is moving when position not reached
             return True
 
+    # print debug messages
+    def print_head_motion(self, message, target, head_yaw, head_pitch):
 
-        # #
-        # if (self.current_time - self.start_time) > 4:
-        #
-        #     self.start_time = self.current_time
-        #
-        #     return False
-        #
-        # else:
-        #
-        #     return True
-
-
+        print ""
+        print message
+        print "X target: " + str(target.x) + " --- " + str(head_yaw)
+        print "Y target: " + str(target.y) + " --- " + str(head_pitch)

@@ -1,5 +1,5 @@
 [general]
-starting_behavior = findball({})
+starting_behavior = sillywalkers({})
 
 [body]
 number_of_naos = 1
@@ -34,11 +34,11 @@ end_port = 52000
 modules_settings:
     # camera 0 is the top camera
     # camera 1 is the bottom camera
-    # colorblob = colorblob updatefreq=5 video_source=naovideo nao=<nao_ip> camera=0
+    colorblob = colorblob updatefreq=5 video_source=naovideo nao=<nao_ip> camera=0
 
 #Modules to run on each host
 modules:
-    # localhost = colorblob
+    localhost = colorblob
 
 [sonar_controller]
 
