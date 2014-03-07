@@ -48,7 +48,9 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             if (recogtime > self.prev_fall_time):
                 # I fell
                 sound = random.choice(["alarm.wav"])
-                self.nao.zeg_dit_loop(sound,3)
+                self.nao.zeg_dit(sound)
+                self.nao.zeg_dit(sound)
+                self.nao.zeg_dit(sound)
                 self.prev_fall_time = recogtime
                 self.nao.complete_behavior("standup")
                 sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
