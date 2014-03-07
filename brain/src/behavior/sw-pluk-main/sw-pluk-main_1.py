@@ -5,7 +5,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 import random
 
-class Sw-pluk-main_x(basebehavior.behaviorimplementation.BehaviorImplementation):
+class Sw-pluk-main_1(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 
