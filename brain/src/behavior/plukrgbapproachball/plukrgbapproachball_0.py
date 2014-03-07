@@ -35,6 +35,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             return
         else:
             if (self.nao.is_er_bal() == False):
+                # er is geen bal, fuck die shit.
                 self.set_finished()
                 return
             elif (posx < -0.3):

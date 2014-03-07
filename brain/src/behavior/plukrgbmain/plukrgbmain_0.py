@@ -38,8 +38,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     def implementation_update(self):
 
-        ranIdle = random.randint(1,300)
-        if (ranIdle == 5): # 1x per 30 seconde?
+        ranIdle = random.randint(1,100)
+        if (ranIdle == 5): # 1x per 10 seconden?
             sound = random.choice(["idle.wav","idle2.wav","idle3.wav","idle4.wav"])
             self.nao.zeg_dit(sound)
 
@@ -59,7 +59,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.nao.zeg_dit(sound)
                 time.sleep(0.1)
                 self.nao.zeg_dit(sound)
-                time.sleep(0.1)
+                time.sleep(0.1) # play alarm for a while
                 self.nao.complete_behavior("standup")
                 sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
                 self.nao.zeg_dit(sound)
@@ -67,25 +67,39 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 return
 
         print("updating...")
+
         waarbal = self.nao.is_er_bal()
         if (waarbal == True):
             verbal = self.nao.hoe_ver_bal()
         else:
+            # is er geen bal? dan niet checken hoe dichtbij bal is.
             verbal = 999
+
+
         if (waarbal == False):
             if (self.seeball == True):
+                # Hey, where did you go?
                 sound = random.choice(["target_lost1.wav","target_lost2.wav"])
                 self.nao.zeg_dit(sound)
                 self.seeball = False
         else:
             if (self.seeball == False):
+                # There you are!
                 sound = random.choice(["target.wav","target2.wav","target3.wav"])
                 self.nao.zeg_dit(sound)
                 self.seeball = True
         if (verbal <= 0.05):
             if (self.at_ball == False):
-
+                # ik ben bij de bal!
+                sound = random.choice(["ready.wav"])
+                self.nao.zeg_dit(sound)
                 self.at_bal = True
         else:
             if (self.seeball == True):
+                # ik zie de bal, maar ik ben er niet
+                sound = random.choice(["not_ready.wav"])
+                self.nao.zeg_dit(sound)
                 self.at_ball = False
+            else:
+                # ik zie de bal niet, maar misschien ben ik er wel?
+                pass
