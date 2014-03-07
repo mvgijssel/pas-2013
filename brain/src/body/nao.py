@@ -426,6 +426,7 @@ class Nao(object):
         # Perform te movement
         self.__Motion.setAngles(names, angles, max_speed)
 
+
     def get_angles(self, names, radians=False):
         useSensors  = False     # Cannot use sensors in simulation :(
         angles = self.__Motion.getAngles(names, useSensors)
@@ -759,6 +760,15 @@ class Nao(object):
 
     ################################# CUSTOM CODE #################################
 
+    def get_angles_sensors(self, names, radians=False):
+
+        useSensors  = True
+
+        angles = self.__Motion.getAngles(names, useSensors)
+
+        if not radians:
+            angles = [x / self.TO_RAD for x in angles]
+        return angles
 
     # get the reference to the detectable object
     def get_detectable_object(self, name):

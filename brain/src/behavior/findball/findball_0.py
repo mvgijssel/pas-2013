@@ -27,6 +27,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # store the nao reference
         self.nao = self.body.nao(0)
 
+        self.nao.set_do_nothing_on_stop(True)
+
         # store the used proxy
         self.proxy = self.nao.get_proxy("motion")
 
@@ -35,6 +37,9 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         # store the start time
         self.start_time = time.time()
+
+        # store the current time
+        self.current_time = self.start_time
 
         # list with states to move the head to
         self.states = []
@@ -73,11 +78,15 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # define the current state
         self.current_state = None
 
-        # switch the current state
         self.switch_state()
+
 
     def implementation_update(self):
 
+        # update the current time
+        self.current_time = time.time()
+
+        # if the head is not moving, move the head
         if not self.is_head_moving():
 
             self.switch_state()
@@ -118,12 +127,28 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
     def is_head_moving(self):
 
         # get the angles
-        (head_yaw, head_pitch) = self.proxy.getAngles(self.sensor_names, self.use_sensors)
+        (head_yaw, head_pitch) = self.nao.get_angles_sensors(self.sensor_names, radians=False)
 
         # get the target position
         target = self.states[self.current_state]
 
-        print "X target: " + target.x + " --- " + head_yaw
-        print "Y target: " + target.y + " --- " + head_pitch
+        # check if the position is reached
+        if (target.x == round(head_yaw)) and (target.y == round(head_pitch)):
+            return True
+        else:
+            return False
+        #
+        # print "X target: " + str(target.x) + " --- " + str(head_yaw)
+        # print "Y target: " + str(target.y) + " --- " + str(head_pitch)
+        #
+        # if (self.current_time - self.start_time) > 4:
+        #
+        #     self.start_time = self.current_time
+        #
+        #     return False
+        #
+        # else:
+        #
+        #     return True
 
 
