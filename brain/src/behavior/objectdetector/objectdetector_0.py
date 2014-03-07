@@ -40,7 +40,7 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
     def implementation_init(self):
 
         # create the detectable objects
-        ball1 = DetectableObject('ball', 'workstation_red', 0.5, 40)
+        ball1 = DetectableObject('ball', 'balrood', 0.5, 40)
 
         # instantiate the array with target objects
         self._target_objects = [ball1]

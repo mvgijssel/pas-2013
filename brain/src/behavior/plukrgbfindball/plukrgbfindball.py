@@ -14,9 +14,9 @@ import logging
 import util.nullhandler
 import bbie.bbie
 
-'''"loop naar de bal toe"'''
+'''"vindt de bal door rond te kijken"'''
 
-class Sw-pluk-approachball(basebehavior.abstractbehavior.AbstractBehavior):
+class PlukRGBfindball(basebehavior.abstractbehavior.AbstractBehavior):
 
     def behavior_init():
         bbie_setting = ["no_time","max_succes"] #TODO: get this from behavior_config
@@ -25,11 +25,11 @@ class Sw-pluk-approachball(basebehavior.abstractbehavior.AbstractBehavior):
         self.logger.addHandler(util.nullhandler.NullHandler())
 
     def get_name(self):
-        return "Sw-pluk-approachball"
+        return "PlukRGBfindball"
 
     def check_postcondition(self):
         m = memory.Memory()
-        return eval("m.is_now('bal_vlakbij',['True'])")
+        return eval("False")
 
     def load_exceptions(self):
         self._all_exceptions = []
