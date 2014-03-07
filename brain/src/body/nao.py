@@ -809,9 +809,13 @@ class Nao(object):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         if (HEAD_PITCH < -0.5):
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
+
     def zeg_dit(self,file):
+
         print("sound: " + str(file))
-        self.__Audio.post.playFile(file)
+
+        self.__Audio.post.playFile('/home/nao/sounds/' + file)
+
 #########
 # NOTES #
 #########
