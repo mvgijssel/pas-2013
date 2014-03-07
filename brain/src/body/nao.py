@@ -810,7 +810,7 @@ class Nao(object):
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
     def zeg_dit(self,file):
         try:
-            self.__Audio.post.playFile("/sounds/"+str(file))
+            self.__Audio.post.playFile("/home/tim/PyCharmProjects/pas-2013/brain/sounds/"+str(file))
         except:
             print("can not open /sounds/"+str(file))
 
