@@ -18,8 +18,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         self.nao = self.body.nao(0)
         self.selected_behaviors = [
-            ("plukrgbfindball", "self.seeball == False and self.at_ball == False"),
-            ("plukrgbapproachball", "self.at_ball == False & self.seeball == True"),
+            ("plukRGBfindball", "self.seeball == False and self.at_ball == False"),
+            ("plukRGBapproachball", "self.at_ball == False & self.seeball == True"),
         ]
 
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
