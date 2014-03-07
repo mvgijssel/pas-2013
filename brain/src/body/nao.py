@@ -695,6 +695,7 @@ class Nao(object):
 
     ################################# CUSTOM CODE #################################
 
+
     # get the reference to the detectable object
     def get_detectable_object(self, name):
 
