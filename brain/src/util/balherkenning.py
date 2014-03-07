@@ -181,7 +181,10 @@ class RasterImage:
         screen.blit(redpic,(0,0))
         pygame.display.flip()
 
-        print("plain x: " + str(midX) + ", plain y: " + str(midY) + ", 'redness' = " + str(highest))
+        diffX = rightX - leftX
+        diffY = upY - downY
+        size = diffX * diffY
+        print("plain x: " + str(midX) + ", plain y: " + str(midY) + ", 'redness' = " + str(highest), "power = " + str(highest/size))
         #pygame.image.save(oldpic,"testpic.png")
 
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
