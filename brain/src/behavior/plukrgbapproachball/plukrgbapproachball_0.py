@@ -34,7 +34,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             self.set_finished()
             return
         else:
-            if (posx == -999 or posy == -999):
+            if (self.nao.is_er_bal() == False):
                 self.set_finished()
                 return
             elif (posx < -0.3):
