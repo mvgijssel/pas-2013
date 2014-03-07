@@ -28,6 +28,9 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
             ("findball", "True"),
         ]
 
+        # when the nao is done, don't do anything. Don't sit down
+        self.nao.set_do_nothing_on_stop(True)
+
         self.restart_time = time.time()
 
         #Select Nao to use:
