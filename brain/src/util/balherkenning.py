@@ -61,7 +61,7 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                minwaarde = 50 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+                minwaarde = 100 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = 300 # de andere kleuren samen mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
@@ -186,8 +186,12 @@ class RasterImage:
         area = diffX * diffY
         maxima = area*255
         real = highest/area
-        percent = float(maxima)/float(max(1,real))
+        percent = int(float(max(1,real))/float(maxima)*100)
         print("I am this sure that that is the ball: " + str(percent) + "%" + "(power = " + str(real) + ")")
+        if (percent < 25):
+            print("So I'm probably wrong?")
+        else:
+            print("So I'm probably right?")
         #pygame.image.save(oldpic,"testpic.png")
 
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
