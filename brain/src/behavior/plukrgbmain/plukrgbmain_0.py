@@ -48,6 +48,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.nao.complete_behavior("standup")
                 return
 
+        print("updating...")
         waarbal = self.nao.is_er_bal()
         verbal = self.nao.hoe_ver_bal()
         if (waarbal == False):
