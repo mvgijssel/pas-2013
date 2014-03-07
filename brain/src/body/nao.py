@@ -816,7 +816,8 @@ class Nao(object):
         self.__Audio.post.playFile('/home/nao/sounds/' + file)
     def zeg_dit_loop(self,file):
         # careful! Must be ended by stopAll()
-        self.__Audio.playInLoop('/home/nao/sounds/' + file)
+        task = self.__Audio.loadFile('/home/nao/sounds/' + file)
+        self.__Audio.playInLoop(task)
 
 #########
 # NOTES #
