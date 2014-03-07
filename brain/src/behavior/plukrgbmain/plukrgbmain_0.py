@@ -31,6 +31,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         print("deploying")
         self.nao.zeg_dit(sound)
 
+        self.nao.complete_behavior("standup")
+
         self.seeball = False
         self.at_ball = False
 
