@@ -6,7 +6,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 
 import basebehavior.behaviorimplementation
 import random
-
+import time
 class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
@@ -49,11 +49,17 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 # I fell
                 sound = random.choice(["alarm.wav"])
                 self.nao.zeg_dit(sound)
-                time.sleep(3)
+                time.sleep(1)
                 self.nao.zeg_dit(sound)
-                time.sleep(3)
+                time.sleep(1)
                 self.nao.zeg_dit(sound)
-                time.sleep(3)
+                time.sleep(1)
+                self.nao.zeg_dit(sound)
+                time.sleep(1)
+                self.nao.zeg_dit(sound)
+                time.sleep(1)
+                self.nao.zeg_dit(sound)
+                time.sleep(1)
                 self.nao.complete_behavior("standup")
                 sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
                 self.nao.zeg_dit(sound)
