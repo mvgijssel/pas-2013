@@ -28,7 +28,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         # Fixing this to detect any goal scored and then stopping might be one of your improvements for this software.
         if (self.timer < 100):
             self.timer += 1
-            if (timer%10 == 0):
+            if (self.timer%10 == 0):
                 print("next test in " + str(self.timer%10) + " seconds.")
             return
         else:
