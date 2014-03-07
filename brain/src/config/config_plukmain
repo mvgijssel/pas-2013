@@ -1,5 +1,5 @@
 [general]
-starting_behavior = plukkleur({'somevar': 'somevalue'})
+starting_behavior = sw-pluk-main({'somevar': 'somevalue'})
 
 [body]
 number_of_naos = 1
