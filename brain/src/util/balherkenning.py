@@ -186,7 +186,7 @@ class RasterImage:
         area = diffX * diffY
         maxima = area*255
         real = highest/area
-        percent = float(maxima)/float(real)
+        percent = float(maxima)/float(max(1,real))
         print("I am this sure that that is the ball: " + str(percent) + "%" + "(power = " + str(real) + ")")
         #pygame.image.save(oldpic,"testpic.png")
 
