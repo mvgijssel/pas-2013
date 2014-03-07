@@ -20,7 +20,7 @@ class Sw-pluk-main_x(basebehavior.behaviorimplementation.BehaviorImplementation)
         ]
 
         sound = random.choice(["deploy1.wav","deploy2.wav"])
-        self.nao.say("Starting up",sound)
+        self.nao.zeg_dit(sound)
 
         self.seeball = False
         self.at_ball = False
@@ -32,12 +32,12 @@ class Sw-pluk-main_x(basebehavior.behaviorimplementation.BehaviorImplementation)
         if (waarbal == (-999,-999)):
             if (self.seeball == True):
                 sound = random.choice(["target_lost1.wav","target_lost2.wav"])
-                self.nao.say("target lost",sound)
+                self.nao.zeg_dit(sound)
                 self.seeball = False
         else:
             if (self.seeball == False):
                 sound = random.choice(["target.wav","target2.wav","target3.wav"])
-                self.nao.say("I see the ball",sound)
+                self.nao.zeg_dit(sound)
                 self.seeball = True
         if (verbal <= 0.05):
             if (self.at_ball == False):

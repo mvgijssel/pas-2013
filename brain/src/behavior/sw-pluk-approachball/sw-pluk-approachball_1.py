@@ -30,7 +30,7 @@ class Sw-pluk-approachball_x(basebehavior.behaviorimplementation.BehaviorImpleme
             # rekent afstand uit, en loopt dan een stuk van die afstand vooruit
             dist = abs(self.nao.hoe_ver_bal() * 10)
             sound = random.choice(["search1.wav","search2.wav"])
-            self.nao.say("Searching",sound)
+            self.nao.zeg_dit(sound)
             self.nao.walk(float(dist * 0.2),0,0)
         else:
             if (posx == -999 or posy == -999):
