@@ -814,10 +814,12 @@ class Nao(object):
         self.__Audio.stopAll() # end all previous sounds
         print("sound: " + str(file))
         self.__Audio.post.playFile('/home/nao/sounds/' + file)
-    def zeg_dit_loop(self,file):
+    def zeg_dit_loop(self,file,secs):
         # careful! Must be ended by stopAll()
         task = self.__Audio.loadFile('/home/nao/sounds/' + file)
         self.__Audio.playInLoop(task)
+        time.sleep(secs)
+        self__Audio.stopAll()
 
 #########
 # NOTES #
