@@ -7,7 +7,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 import random
 
-class Sw_pluk_approachball_1(basebehavior.behaviorimplementation.BehaviorImplementation):
+class sw_pluk_approachball_1(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 
@@ -31,11 +31,12 @@ class Sw_pluk_approachball_1(basebehavior.behaviorimplementation.BehaviorImpleme
             sound = random.choice(["search1.wav","search2.wav"])
             self.nao.zeg_dit(sound)
             self.nao.walk(float(dist * 0.2),0,0)
+            self.set_finished()
+            return
         else:
             if (posx == -999 or posy == -999):
-                #self.nao.say("Ik zie de bal niet.")
-                print("Ik zie de bal niet. Ik zoek verder.")
-                self.nao.zoek_bal()
+                self.set_finished()
+                return
             elif (posx < -0.3):
                 if (posy < -0.1):
                     print ("Ik zie de bal links boven.")

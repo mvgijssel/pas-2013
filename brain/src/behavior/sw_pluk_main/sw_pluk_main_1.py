@@ -5,7 +5,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 import random
 
-class Sw_pluk_main_1(basebehavior.behaviorimplementation.BehaviorImplementation):
+class sw_pluk_main_1(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 
@@ -39,9 +39,9 @@ class Sw_pluk_main_1(basebehavior.behaviorimplementation.BehaviorImplementation)
                 self.nao.complete_behavior("standup")
                 return
 
-        waarbal = self.nao.waar_is_bal()
+        waarbal = self.nao.is_er_bal()
         verbal = self.nao.hoe_ver_bal()
-        if (waarbal == (-999,-999)):
+        if (waarbal == False):
             if (self.seeball == True):
                 sound = random.choice(["target_lost1.wav","target_lost2.wav"])
                 self.nao.zeg_dit(sound)

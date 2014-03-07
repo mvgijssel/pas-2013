@@ -16,7 +16,7 @@ import bbie.bbie
 
 '''"vindt de bal door rond te kijken"'''
 
-class Sw-pluk-findball(basebehavior.abstractbehavior.AbstractBehavior):
+class sw_pluk_findball(basebehavior.abstractbehavior.AbstractBehavior):
 
     def behavior_init():
         bbie_setting = ["no_time","max_succes"] #TODO: get this from behavior_config
@@ -25,7 +25,7 @@ class Sw-pluk-findball(basebehavior.abstractbehavior.AbstractBehavior):
         self.logger.addHandler(util.nullhandler.NullHandler())
 
     def get_name(self):
-        return "Sw-pluk-findball"
+        return "sw_pluk_findball"
 
     def check_postcondition(self):
         m = memory.Memory()

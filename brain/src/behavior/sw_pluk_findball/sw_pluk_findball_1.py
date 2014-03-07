@@ -7,7 +7,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 
 
-class Sw_pluk_findball_1(basebehavior.behaviorimplementation.BehaviorImplementation):
+class sw_pluk_findball_1(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 
@@ -31,3 +31,6 @@ class Sw_pluk_findball_1(basebehavior.behaviorimplementation.BehaviorImplementat
             self.nao.kijk_lager()
         elif (choice == "look up"):
             self.nao.kijk_hoger()
+
+        if (self.nao.is_er_bal() == True):
+            self.set_finished()

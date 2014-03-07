@@ -16,7 +16,7 @@ import bbie.bbie
 
 '''"loop naar de bal toe"'''
 
-class Sw-pluk-approachball(basebehavior.abstractbehavior.AbstractBehavior):
+class sw_pluk_approachball(basebehavior.abstractbehavior.AbstractBehavior):
 
     def behavior_init():
         bbie_setting = ["no_time","max_succes"] #TODO: get this from behavior_config
@@ -25,7 +25,7 @@ class Sw-pluk-approachball(basebehavior.abstractbehavior.AbstractBehavior):
         self.logger.addHandler(util.nullhandler.NullHandler())
 
     def get_name(self):
-        return "Sw-pluk-approachball"
+        return "sw_pluk_approachball"
 
     def check_postcondition(self):
         m = memory.Memory()
