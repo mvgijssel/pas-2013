@@ -17,6 +17,10 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
+
+        self.plukRGBfindball = self.ab.plukRGBfindball({})
+        self.plukRGBapproachball = self.ab.plukRGBapproachball({})
+
         self.selected_behaviors = [
             ("plukRGBfindball", "self.seeball == False and self.at_ball == False"),
             ("plukRGBapproachball", "self.at_ball == False & self.seeball == True"),
