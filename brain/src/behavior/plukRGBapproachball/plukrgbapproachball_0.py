@@ -7,7 +7,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 import random
 
-class sw_pluk_approachball_1(basebehavior.behaviorimplementation.BehaviorImplementation):
+class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 

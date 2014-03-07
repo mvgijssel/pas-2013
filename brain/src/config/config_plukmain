@@ -1,5 +1,5 @@
 [general]
-starting_behavior = sw_pluk_main({'somevar': 'somevalue'})
+starting_behavior = plukRGBmain({'somevar': 'somevalue'})
 
 [body]
 number_of_naos = 1

@@ -1,3 +1,5 @@
+
+
 '''
 this is an automatically generated template, if you don't rename it, it will be overwritten!
 '''
@@ -5,7 +7,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 import basebehavior.behaviorimplementation
 import random
 
-class sw_pluk_main_1(basebehavior.behaviorimplementation.BehaviorImplementation):
+class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
 
@@ -16,8 +18,8 @@ class sw_pluk_main_1(basebehavior.behaviorimplementation.BehaviorImplementation)
 
         self.nao = self.body.nao(0)
         self.selected_behaviors = [
-            ("sw_pluk_findball", "self.seeball == False and self.at_ball == False"),
-            ("sw_pluk_approachball", "self.at_ball == False & self.seeball == True"),
+            ("plukrgbfindball", "self.seeball == False and self.at_ball == False"),
+            ("plukrgbapproachball", "self.at_ball == False & self.seeball == True"),
         ]
 
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
