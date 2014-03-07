@@ -32,11 +32,6 @@ class DetectableObject:
 
 class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
-    '''this is a behavior implementation template'''
-
-    #this implementation should not define an __init__ !!!
-
-
     def implementation_init(self):
 
         # create the detectable objects
@@ -99,10 +94,10 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
         self.print_messages(obj, largest_observation)
 
         # update memory using the object setting and the largest observation
-        # self.update_memory(obj, largest_observation)
+        self.update_memory(obj, largest_observation)
 
         # update the object using the object setting and the largest observation
-        self.update_object(obj, largest_observation)
+        # self.update_object(obj, largest_observation)
 
 
     def print_messages(self, obj, largest_observation):
