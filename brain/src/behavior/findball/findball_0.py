@@ -1,15 +1,18 @@
 import basebehavior.behaviorimplementation
 import time
 import almath
+import math
 
 class Position:
 
     # maximum values for the joints
-    LEFT = 119
-    RIGHT = -119
+    LEFT = 116 # 119 is maximum
+    RIGHT = -116 # 119 is maximum
 
-    TOP = -38
-    BOTTOM = 29
+    # TOP = -38
+    # BOTTOM = 29
+    TOP = -25
+    BOTTOM = 18 # maximum min 29
 
     CENTER = 0
 
@@ -58,15 +61,15 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         # the sweep states
         self.states.append(Position(Position.LEFT, Position.TOP))
-        self.states.append(Position(Position.CENTER, Position.TOP))
+        # self.states.append(Position(Position.CENTER, Position.TOP))
         self.states.append(Position(Position.RIGHT, Position.TOP))
 
         self.states.append(Position(Position.LEFT, Position.CENTER))
-        self.states.append(Position(Position.CENTER, Position.CENTER))
+        # self.states.append(Position(Position.CENTER, Position.CENTER))
         self.states.append(Position(Position.RIGHT, Position.CENTER))
 
         self.states.append(Position(Position.LEFT, Position.BOTTOM))
-        self.states.append(Position(Position.CENTER, Position.BOTTOM))
+        # self.states.append(Position(Position.CENTER, Position.BOTTOM))
         self.states.append(Position(Position.RIGHT, Position.BOTTOM))
 
         # set the state
@@ -79,7 +82,6 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.current_state = None
 
         self.switch_state()
-
 
     def implementation_update(self):
 
@@ -123,6 +125,15 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # adjusting the 'y' coordinate
         self.nao.set_angles('HeadPitch', position.y * almath.TO_RAD, self.y_speed, radians=True)
 
+    def is_close(self, val1, val2):
+
+        upper = val1 + 1
+
+        lower = val1 - 1
+
+        return val2 <= upper and val2 >= lower
+
+
     # returns a boolean value to determine if the head of the nao is moving
     def is_head_moving(self):
 
@@ -132,15 +143,20 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # get the target position
         target = self.states[self.current_state]
 
-        # check if the position is reached
-        if (target.x == round(head_yaw)) and (target.y == round(head_pitch)):
-            return True
-        else:
+        print ""
+        print "X target: " + str(target.x) + " --- " + str(head_yaw)
+        print "Y target: " + str(target.y) + " --- " + str(head_pitch)
+
+
+        # # check if the position is reached
+        if self.is_close(target.x, head_yaw) and self.is_close(target.y, head_pitch):
+            print "reached!"
             return False
-        #
-        # print "X target: " + str(target.x) + " --- " + str(head_yaw)
-        # print "Y target: " + str(target.y) + " --- " + str(head_pitch)
-        #
+        else:
+            return True
+
+
+        # #
         # if (self.current_time - self.start_time) > 4:
         #
         #     self.start_time = self.current_time
