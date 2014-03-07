@@ -17,6 +17,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
+        self.prev_fall_time = 0
 
         self.plukrgbfindball = self.ab.plukrgbfindball({})
         self.plukrgbapproachball = self.ab.plukrgbapproachball({})
