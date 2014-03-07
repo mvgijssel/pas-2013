@@ -50,7 +50,10 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         print("updating...")
         waarbal = self.nao.is_er_bal()
-        verbal = self.nao.hoe_ver_bal()
+        if (waarbal == True):
+            verbal = self.nao.hoe_ver_bal()
+        else:
+            verbal = 999
         if (waarbal == False):
             if (self.seeball == True):
                 sound = random.choice(["target_lost1.wav","target_lost2.wav"])
@@ -63,7 +66,6 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.seeball = True
         if (verbal <= 0.05):
             if (self.at_ball == False):
-
                 self.at_bal = True
         else:
             if (self.seeball == True):
