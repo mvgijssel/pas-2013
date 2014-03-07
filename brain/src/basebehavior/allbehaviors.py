@@ -58,7 +58,7 @@ class AllBehaviors(object):
             if attr in self.__dict__:
                 return self.__dict__[attr]
 
-            attr = attr.lower()
+            #attr = attr.lower() # pluk: waarom lowercase??
             path = os.getenv("BORG") + "/brain/src/behavior/" + attr + "/" + attr + ".py"
             init_path = os.getenv("BORG") + "/brain/src/behavior/" + attr + "/__init__.py"
             mod_path = "behavior." + attr + "." + attr
