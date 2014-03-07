@@ -61,6 +61,9 @@ class Nao(object):
         self.__stop_crouch = True
         self.__nobody = nobody
 
+        # toegevoegd door paul-luuk: audio
+        self.__Audio = ALProxy("ALAudioPlayer",IP,9559);
+
         # toegevoegd door paul-luuk: initialisatie van de balherkenner
         self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.get_robot_ip()))
 
@@ -733,24 +736,6 @@ class Nao(object):
         hoekhoofd = self.get_angles(['HeadPitch'], True)[0]
         dist = float(math.tan(float(hoekhoofd)) * 0.45)
         return dist
-    def loop_naar_bal(self):
-        # rekent afstand uit, en loopt dan die afstand vooruit
-        dist = abs(self.hoe_ver_bal() * 10)
-        print("Ik schat de afstand zo'n " + str(dist) + " meter.")
-        self.walk(float(dist * 0.2),0,0)
-    def zoek_bal(self):
-        # draai tot je hem ziet, moet later beter
-        choice = random.choice(["turn left","turn right","turn right","look down","look down","look up"])
-        if (choice == "turn left"):
-            self.corrigeer_hoofd()
-            self.walk(0,0,1)
-        elif (choice == "turn right"):
-            self.corrigeer_hoofd()
-            self.walk(0,0,-1)
-        elif (choice == "look down"):
-            self.kijk_lager()
-        elif (choice == "look up"):
-            self.kijk_hoger()
     def kijk_hoger(self):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         pitch = HEAD_PITCH - 0.05
@@ -765,7 +750,11 @@ class Nao(object):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         if (HEAD_PITCH < -0.5):
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
-
+    def zeg_dit(self,file):
+        try:
+            self.__Audio.post.playFile("/sounds/"+str(file))
+        except:
+            print("can not open /sounds/"+str(file))
 
 #########
 # NOTES #

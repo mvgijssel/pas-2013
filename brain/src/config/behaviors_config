@@ -80,9 +80,9 @@ postcondition = False
 description = "simpel soccer behavior op basis van RGB ipv HSV"
 
 [sw-pluk-findball]
-postcondition = m.is_now('bal_gevonden',['True'])
+postcondition = False
 description = "vindt de bal door rond te kijken"
 
 [sw-pluk-approachball]
-postcondition = m.is_now('bal_vlakbij',['True'])
+postcondition = False
 description = "loop naar de bal toe"
