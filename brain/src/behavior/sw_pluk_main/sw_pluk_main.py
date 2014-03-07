@@ -16,7 +16,7 @@ import bbie.bbie
 
 '''"simpel soccer behavior op basis van RGB ipv HSV"'''
 
-class Sw-pluk-main(basebehavior.abstractbehavior.AbstractBehavior):
+class sw_pluk_main(basebehavior.abstractbehavior.AbstractBehavior):
 
     def behavior_init():
         bbie_setting = ["no_time","max_succes"] #TODO: get this from behavior_config
@@ -25,7 +25,7 @@ class Sw-pluk-main(basebehavior.abstractbehavior.AbstractBehavior):
         self.logger.addHandler(util.nullhandler.NullHandler())
 
     def get_name(self):
-        return "Sw-pluk-main"
+        return "sw_pluk_main"
 
     def check_postcondition(self):
         m = memory.Memory()
