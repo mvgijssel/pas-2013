@@ -41,14 +41,14 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         ranIdle = random.randint(1,300)
         if (ranIdle == 5): # 1x per 30 seconde?
             sound = random.choice(["idle.wav","idle2.wav","idle3.wav","idle4.wav"])
-            self.nao.zeg_dit_loop(sound,3)
+            self.nao.zeg_dit(sound)
 
         if (self.m.n_occurs('naoHasFallen') > 0):
             (recogtime, observation) = self.m.get_last_observation('naoHasFallen')
             if (recogtime > self.prev_fall_time):
                 # I fell
                 sound = random.choice(["alarm.wav"])
-                self.nao.zeg_dit_loop(sound)
+                self.nao.zeg_dit_loop(sound,3)
                 self.prev_fall_time = recogtime
                 self.nao.complete_behavior("standup")
                 sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
