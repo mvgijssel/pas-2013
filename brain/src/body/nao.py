@@ -70,6 +70,7 @@ class Nao(object):
         self.__Leds = ALProxy("ALLeds", robot_ip, int(port))
         self.__behaviorIDs = {}
         self.__stop_crouch = True
+        self.__stop_do_nothing = False
         self.__nobody = nobody
 
         # toegevoegd door paul-luuk: audio
