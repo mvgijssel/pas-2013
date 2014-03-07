@@ -18,16 +18,17 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         self.nao = self.body.nao(0)
 
-        self.plukRGBfindball = self.ab.plukRGBfindball({})
-        self.plukRGBapproachball = self.ab.plukRGBapproachball({})
+        self.plukrgbfindball = self.ab.plukrgbfindball({})
+        self.plukrgbapproachball = self.ab.plukrgbapproachball({})
 
         self.selected_behaviors = [
-            ("plukRGBfindball", "self.seeball == False and self.at_ball == False"),
-            ("plukRGBapproachball", "self.at_ball == False & self.seeball == True"),
+            ("plukrgbfindball", "self.seeball == False and self.at_ball == False"),
+            ("plukrgbapproachball", "self.at_ball == False & self.seeball == True"),
         ]
 
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
         sound = random.choice(["deploy1.wav","deploy2.wav"])
+        print("deploying")
         self.nao.zeg_dit(sound)
 
         self.seeball = False
