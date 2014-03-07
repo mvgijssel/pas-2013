@@ -184,7 +184,10 @@ class RasterImage:
         diffX = abs(rightX - leftX)
         diffY = abs(upY - downY)
         area = diffX * diffY
-        print("plain x: " + str(midX) + ", plain y: " + str(midY) + ", 'redness' = " + str(highest), "power = " + str((highest/area)))
+        maxima = area*255
+        real = highest/area
+        percent = float(maxima)/float(max(1,real))
+        print("I am this sure that that is the ball: " + str(percent) + "%" + "(power = " + str(real) + ")")
         #pygame.image.save(oldpic,"testpic.png")
 
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
