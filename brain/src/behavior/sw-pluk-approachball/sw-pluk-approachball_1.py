@@ -16,8 +16,7 @@ class Sw-pluk-approachball_1(basebehavior.behaviorimplementation.BehaviorImpleme
 
     def implementation_init(self):
 
-        #define list of sub-behavior here
-        pass
+        self.nao = self.body.nao(0)
 
     def implementation_update(self):
 

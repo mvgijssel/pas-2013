@@ -14,11 +14,13 @@ class Sw-pluk-main_1(basebehavior.behaviorimplementation.BehaviorImplementation)
 
     def implementation_init(self):
 
+        self.nao = self.body.nao(0)
         self.selected_behaviors = [
             ("sw-pluk-findball", "self.seeball == False and self.at_ball == False"),
             ("sw-pluk-approachball", "self.at_ball == False & self.seeball == True"),
         ]
 
+        self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
         sound = random.choice(["deploy1.wav","deploy2.wav"])
         self.nao.zeg_dit(sound)
 
@@ -26,6 +28,16 @@ class Sw-pluk-main_1(basebehavior.behaviorimplementation.BehaviorImplementation)
         self.at_ball = False
 
     def implementation_update(self):
+
+        if (self.m.n_occurs('naoHasFallen') > 0):
+            (recogtime, observation) = self.m.get_last_observation('naoHasFallen')
+            if (recogtime > self.prev_fall_time):
+                # I fell
+                sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
+                self.nao.zeg_dit(sound)
+                self.prev_fall_time = recogtime
+                self.nao.complete_behavior("standup")
+                return
 
         waarbal = self.nao.waar_is_bal()
         verbal = self.nao.hoe_ver_bal()

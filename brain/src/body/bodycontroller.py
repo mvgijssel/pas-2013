@@ -108,6 +108,9 @@ class BodyController(object):
                         nao.say("I will now resume normal operation")
                         #nao.set_stifness()
                 self.add_to_memory(data)
+        for nao in self.__nao_list:
+            data = nao.update()
+            self.add_to_memory(data)
 
     def add_to_memory(self, objects):
         """add a list of dictionaries describing objects to memory database"""
