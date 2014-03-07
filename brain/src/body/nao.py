@@ -73,7 +73,7 @@ class Nao(object):
         self.__nobody = nobody
 
         # toegevoegd door paul-luuk: audio
-        self.__Audio = ALProxy("ALAudioPlayer",IP,9559);
+        self.__Audio = ALProxy("ALAudioPlayer",robot_ip,9559);
 
         # toegevoegd door paul-luuk: initialisatie van de balherkenner
         self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.get_robot_ip()))
