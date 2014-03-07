@@ -41,10 +41,12 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             (recogtime, observation) = self.m.get_last_observation('naoHasFallen')
             if (recogtime > self.prev_fall_time):
                 # I fell
-                sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
-                self.nao.zeg_dit(sound)
+                sound = random.choice(["alarm.wav"])
+                self.nao.zeg_dit_loop(sound)
                 self.prev_fall_time = recogtime
                 self.nao.complete_behavior("standup")
+                sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
+                self.nao.zeg_dit(sound)
                 return
 
         print("updating...")
@@ -65,6 +67,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.seeball = True
         if (verbal <= 0.05):
             if (self.at_ball == False):
+
                 self.at_bal = True
         else:
             if (self.seeball == True):

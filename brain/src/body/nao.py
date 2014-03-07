@@ -811,10 +811,12 @@ class Nao(object):
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
 
     def zeg_dit(self,file):
-
+        self.__Audio.stopAll() # end all previous sounds
         print("sound: " + str(file))
-
         self.__Audio.post.playFile('/home/nao/sounds/' + file)
+    def zeg_dit_loop(self,file):
+        # careful! Must be ended by stopAll()
+        self.__Audio.playInLoop('/home/nao/sounds/' + file)
 
 #########
 # NOTES #
