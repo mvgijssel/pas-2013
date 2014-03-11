@@ -346,7 +346,7 @@ def bestColor(actual):
     closest = 999
     best = None
     for color in colors:
-        newdist = getDist(color,wincolor)
+        newdist = getDist(color,actual)
         if (newdist < closest):
             closest = newdist
             best = color
