@@ -791,6 +791,10 @@ class Nao(object):
 
 
     # toegevoegd door paul-luuk: functie voor het vinden van de bal
+    def zie_hoek(self):
+        # returns True (corner seen) or False (corner not seen)
+        seen = self.detector.getCorner()
+        return seen # returns True or False
     def waar_is_bal(self):
         # returned (x,y) waar de bal is op het scherm
         # x en y zijn tussen -1 en 1, waar (0,0) het midden van het scherm is,

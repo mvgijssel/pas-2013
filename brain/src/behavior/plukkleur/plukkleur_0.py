@@ -43,4 +43,13 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         else:
             print("Ik zie WEL een bal.")
 
+        print("")
+        print("Ik kijk nu of ik een hoek zie...")
+        print("")
+        seen = self.nao.zie_hoek()
+        if (seen == True):
+            print("Ik zie WEL een hoek")
+        else:
+            print("Ik zie GEEN hoek")
+
         return
