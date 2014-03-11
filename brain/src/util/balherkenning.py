@@ -163,9 +163,9 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                minwaarde = 180 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+                minwaarde = 160 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = 1.1 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
-                maxwaarde = 50 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
+                maxwaarde = 80 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         redpic.set_at((i,j),(r-(b+g)/2,0,0))
