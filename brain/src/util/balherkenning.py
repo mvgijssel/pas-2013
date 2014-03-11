@@ -307,10 +307,10 @@ class RasterImage:
         wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
         wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
         wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
-        wincolor5 = oldpic.get_at((rightX,upY))
-        wincolor6 = oldpic.get_at((leftX,upY))
-        wincolor7 = oldpic.get_at((rightX,downY))
-        wincolor8 = oldpic.get_at((leftX,downY))
+        wincolor5 = oldpic.get_at((rightX-1,upY+1))
+        wincolor6 = oldpic.get_at((leftX+1,upY+1))
+        wincolor7 = oldpic.get_at((rightX-1,downY-1))
+        wincolor8 = oldpic.get_at((leftX+1,downY-1))
         wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
             
         for i in range(leftX,rightX):
@@ -332,6 +332,7 @@ class RasterImage:
                 break
         if (found_red == False):
             print("----This might actually not be the red ball.----")
+            return (-999,-999)
 
         redpic.set_colorkey((0,0,0))
         screen.blit(oldpic,(0,0))
