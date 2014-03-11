@@ -105,8 +105,13 @@ class RasterImage:
             else:
                 return False
 
-
-
+        for i in range(0,screen.get_width()):
+            screen.set_at((i,y_y),yellow)
+            screen.set_at((i,y_b),blue)
+        for i in range(0,screen.get_height()):
+            screen.set_at((x_y,i),yellow)
+            screen.set_at((x_b,i),blue)
+        pygame.display.flip()
 
 
     def getPos(self):
