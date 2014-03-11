@@ -205,8 +205,17 @@ class RasterImage:
                 self.p_maxwaarde = 0.5
                 self.p_factor = 0.5
                 self.pstage = 6
-        elif (self.pstage == 6):
-            print("DONE -- CAN NOT TEST ANY OTHER VALUES")
+        elif (self.pstage == 5):
+            self.p_maxwaarde += 0.1
+            self.p_factor += 0.1
+            self.p_minwaarde += 0.1
+            if (self.p_maxwaarde >= 2):
+                self.p_maxwaarde = 0.5
+                self.p_factor = 0.5
+                self.p_minwaarde = 0.5
+                self.pstage = 7
+        elif (self.pstage == 7):
+            self.pstage = 0
 
         self.p_maxwaarde += random.randint(-2,2)/10
         self.p_minwaarde += random.randint(-2,2)/10
