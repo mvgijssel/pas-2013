@@ -117,6 +117,10 @@ class RasterImage:
                 return True
         return False
 
+        pos_y_x = x_y / len(newpic) * screen.get_width()
+        pos_y_y = y_y / len(newpic[0]) * screen.get_height()
+        pos_b_x = x_b / len(newpic) * screen.get_width()
+        pos_b_y = y_b / len(newpic[0]) * screen.get_height()
         for i in range(0,screen.get_width()):
             screen.set_at((i,y_y),yellow)
             screen.set_at((i,y_b),blue)
@@ -133,7 +137,7 @@ class RasterImage:
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
-        W2 = imgsize
+        W2 = screen.get_width()
         Scale = float(float(W2 * 100) / float(W * 100))
         W = W2
         H = H * Scale
