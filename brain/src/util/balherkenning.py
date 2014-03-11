@@ -217,9 +217,9 @@ class RasterImage:
         elif (self.pstage == 7):
             self.pstage = 0
 
-        self.p_maxwaarde += random.randint(-2,2)/10
-        self.p_minwaarde += random.randint(-2,2)/10
-        self.p_factor += random.randint(-2,2)/10
+        self.p_maxwaarde += random.randint(0,2)/10
+        self.p_minwaarde += random.randint(0,2)/10
+        self.p_factor += random.randint(0,2)/10
 
         print("maxwaarde: " + str(self.p_maxwaarde))
         print("minwaarde: " + str(self.p_minwaarde))
