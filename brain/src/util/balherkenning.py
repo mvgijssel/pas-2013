@@ -57,105 +57,48 @@ class RasterImage:
         img = self.vid.get_image()
         return img
 
-    def getCorner(self):
+    def getGoal(self):
         oldpic = self.get_new_image()
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
-        yellow = (255,255,0)
-        blue = (0,0,255)
-
-        pic = []
-        for i in range(0,W):
-            pic.append([])
-            for j in range(0,H):
+        simplegrid = []
+        for i in range(0,W,int(W/10)):
+            simplegrid.append([])
+            for j in range(0,H,int(H/10)):
                 col = oldpic.get_at((i,j))
-                r = col.b
-                g = col.g
-                b = col.r
-                if (r > 150):
-                    r = 255
+                simplegrid[len(simplegrid)-1].append((col,(i,j))
+
+        found_corner = False
+        found_goal = False
+        for i in simplegrid:
+            block_blue = False
+            block_yellow = False
+            for j in i:
+                (col,(x,y)))
+                col = bestColor(col)
+                if (col == yellow):
+                    block_yellow = y
+                elif (col == blue):
+                    block_blue = y
+            if (block_blue != False and block_yellow != False):
+                if (block_blue < block_yellow):
+                    found_corner = "blue"
                 else:
-                    r = 0
-                if (g > 150):
-                    g = 255
-                else:
-                    g = 0
-                if (b > 150):
-                    b = 255
-                else:
-                    b = 0
-                pic[i].append((r,g,b))
+                    found_corner = "yellow"
+            elif (block_blue != False):
+                found_goal = "blue"
+            elif (block_yellow != False):
+                found_goal = "yellow"
 
-        newpic = []
-        num = 0
-        for i in range(0,len(pic)-2,2):
-            newpic.append([])
-            for j in range(0,len(pic[i])-2,2):
-                (r1,g1,b1) = pic[i][j]
-                (r2,g2,b2) = pic[i+1][j]
-                (r3,g3,b3) = pic[i][j+1]
-                (r4,g4,b4) = pic[i+1][j+1]
-                r = int((r1 + r2 + r3 + r4) / 4)
-                g = int((g1 + g2 + g3 + g4) / 4)
-                b = int((b1 + b2 + b3 + b4) / 4)
-                color = (r,g,b)
-                newpic[num].append(color)
-            num += 1
-
-        power_y = 0
-        (x_y,y_y) = (0,0)
-        power_b = 0
-        (x_b,y_b) = (0,0)
-        for i in range(0,len(newpic)-2,2):
-            for j in range(0,len(newpic[i])-2,2):
-                (r1,g1,b1) = newpic[i][j]
-                (r2,g2,b2) = newpic[i+1][j]
-                (r3,g3,b3) = newpic[i][j+1]
-                (r4,g4,b4) = newpic[i+1][j+1]
-                r = int((r1 + r2 + r3 + r4) / 4)
-                g = int((g1 + g2 + g3 + g4) / 4)
-                b = int((b1 + b2 + b3 + b4) / 4)
-                if (r > 150 and g > 150 and b < 100):
-                    (r,g,b) = yellow
-                    newpower = int((r + g) / 2)
-                    if (newpower > power_y):
-                        power_y = newpower
-                        (x_y,y_y) = (i,j)
-                elif (r < 100 and g < 100 and b > 150):
-                    (r,g,b) = blue
-                    newpower = b
-                    if (newpower > power_b):
-                        power_b = newpower
-                        (x_b,y_b) = (i,j)
-
-        if (y_y < y_b):
-            # yellow above blue
-            if (power_y > 200 and power_b > 200):
-                # blue and yellow strong enough
-                return True
-        return False
-
-        pos_y_x = int(x_y / len(newpic)) * imgsize
-        pos_y_y = int(y_y / len(newpic[0])) * imgheight
-        pos_b_x = int(x_b / len(newpic)) * imgsize
-        pos_b_y = int(y_b / len(newpic[0])) * imgheight
-        for i in range(0,imgsize):
-            screen.set_at((i,pos_y_y),yellow)
-            screen.set_at((i,pos_b_y),blue)
-            screen.set_at((i,pos_y_y-1),yellow)
-            screen.set_at((i,pos_b_y-1),blue)
-            screen.set_at((i,pos_y_y+1),yellow)
-            screen.set_at((i,pos_b_y+1),blue)
-        for i in range(0,imgheight):
-            screen.set_at((pos_y_x,i),yellow)
-            screen.set_at((pos_b_x,i),blue)
-            screen.set_at((pos_y_x-1,i),yellow)
-            screen.set_at((pos_b_x-1,i),blue)
-            screen.set_at((pos_y_x+1,i),yellow)
-            screen.set_at((pos_b_x+1,i),blue)
-        pygame.display.flip()
-
+        if (found_corner == "blue"):
+            print("I found the corner where the blue side is up.")
+        elif (found_corner == "yellow"):
+            print("I found the corner where the yellow side is up.")
+        elif (found_goal == "blue"):
+            print("I found the blue goal.")
+        elif (found_goal == "yellow"):
+            print("I found the yellow goal.")
 
     def getPos(self):
         init_window()

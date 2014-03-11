@@ -35,9 +35,11 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             self.timer = 0
 
         print("")
+
         #print("Ik kijk nu of ik een bal zie...")
         #print("")
         (posx,posy) = self.nao.waar_is_bal()
+        self.nao.check_goal()
         #if ((posx,posy) == (-999,-999)):
         #    print("Ik zie GEEN bal.")
         #else:
