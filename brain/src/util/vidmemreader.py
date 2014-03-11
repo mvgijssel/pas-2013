@@ -11,12 +11,6 @@ from util.binarysocket import BinarySocket
 
 logging.getLogger('Borg.Brain.Util.VidMemReader').addHandler(util.nullhandler.NullHandler())
 
-############ USED FOR SILLYWALKERS ###################
-
-from nao_calibration import NaoCalibration
-
-############ USED FOR SILLYWALKERS ###################
-
 class VidMemReader():
     """Reads video frames from shared memory to be used by vision modules"""
 
@@ -69,20 +63,6 @@ class VidMemReader():
             else:
                 print "Loading image from file"
                 mtime, img = self.get_latest_image_file(source)
-
-
-            ############ USED FOR SILLYWALKERS ###################
-
-            if img:
-
-                NaoCalibration.received_image(True)
-
-            else:
-
-                NaoCalibration.received_image(False)
-
-            ############ USED FOR SILLYWALKERS ###################
-
 
             if not img:
                 print "No image received"
