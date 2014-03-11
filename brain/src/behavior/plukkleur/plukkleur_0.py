@@ -26,7 +26,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         # Check for postcondition.
         # It is currently never set, so you'll have to stop the behavior manually by pressing Enter or Ctrl-C in the Terminal.
         # Fixing this to detect any goal scored and then stopping might be one of your improvements for this software.
-        if (self.timer < 30):
+        if (self.timer < 1):
             self.timer += 1
             if (self.timer%10 == 0):
                 print("next test in " + str(int(self.timer/10)) + " seconds.")
@@ -43,13 +43,13 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         else:
             print("Ik zie WEL een bal.")
 
-        print("")
-        print("Ik kijk nu of ik een hoek zie...")
-        print("")
-        seen = self.nao.zie_hoek()
-        if (seen == True):
-            print("Ik zie WEL een hoek")
-        else:
-            print("Ik zie GEEN hoek")
+        #print("")
+        #print("Ik kijk nu of ik een hoek zie...")
+        #print("")
+        #seen = self.nao.zie_hoek()
+        #if (seen == True):
+        #    print("Ik zie WEL een hoek")
+        #else:
+        #    print("Ik zie GEEN hoek")
 
         return

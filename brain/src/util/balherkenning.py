@@ -208,6 +208,10 @@ class RasterImage:
         elif (self.pstage == 6):
             print("DONE -- CAN NOT TEST ANY OTHER VALUES")
 
+        self.p_maxwaarde += random.randint(-2,2)/10
+        self.p_minwaarde += random.randint(-2,2)/10
+        self.p_factor += random.randint(-2,2)/10
+
         print("maxwaarde: " + str(self.p_maxwaarde))
         print("minwaarde: " + str(self.p_minwaarde))
         print("factor: " + str(self.p_factor))
@@ -224,17 +228,17 @@ class RasterImage:
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
-                        redpic.set_at((i,j),(r-(b+g)/2,0,0))
+                        redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "blue"):
                     if (b > (r+g)*factor and b > minwaarde and r < maxwaarde and g < maxwaarde):
-                        redpic.set_at((i,j),(b-(r+g)/2,0,0))
+                        redpic.set_at((i,j),(min(max(b-(r+g)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "green"):
                     if (g > (b+r)*factor and g > minwaarde and r < maxwaarde and b < maxwaarde):
-                        redpic.set_at((i,j),(g-(b+r)/2,0,0))
+                        redpic.set_at((i,j),(min(max(g-(b+r)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
         self.pic_ball = redpic
