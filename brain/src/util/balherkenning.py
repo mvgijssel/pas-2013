@@ -45,7 +45,6 @@ class RasterImage:
         self.p_minwaarde = 0.5
         self.p_factor = 0.5
         self.p_maxwaarde = 0.5
-        self.pstage = 0
 
     def get_new_image(self):
         img = self.vid.get_image()
@@ -169,57 +168,9 @@ class RasterImage:
 
         #print("color detection - redscaling")
 
-        if (self.pstage == 0):
-            self.p_minwaarde += 0.1
-            if (self.p_minwaarde >= 2):
-                self.p_minwaarde = 0.5
-                self.pstage += 1
-        elif (self.pstage == 1):
-            self.p_factor += 0.1
-            if (self.p_factor >= 2):
-                self.p_factor = 0.5
-                self.pstage += 1
-        elif (self.pstage == 2):
-            self.p_maxwaarde += 0.1
-            if (self.p_maxwaarde >= 2):
-                self.p_maxwaarde = 0.5
-                self.pstage = 3
-        elif (self.pstage == 3):
-            self.p_minwaarde += 0.1
-            self.p_maxwaarde += 0.1
-            if (self.p_minwaarde >= 2):
-                self.p_minwaarde = 0.5
-                self.p_maxwaarde = 0.5
-                self.pstage == 4
-        elif (self.pstage == 4):
-            self.p_minwaarde += 0.1
-            self.p_factor += 0.1
-            if (self.p_minwaarde >= 2):
-                self.p_minwaarde = 0.5
-                self.p_factor = 0.5
-                self.pstage = 5
-        elif (self.pstage == 5):
-            self.p_maxwaarde += 0.1
-            self.p_factor += 0.1
-            if (self.p_maxwaarde >= 2):
-                self.p_maxwaarde = 0.5
-                self.p_factor = 0.5
-                self.pstage = 6
-        elif (self.pstage == 5):
-            self.p_maxwaarde += 0.1
-            self.p_factor += 0.1
-            self.p_minwaarde += 0.1
-            if (self.p_maxwaarde >= 2):
-                self.p_maxwaarde = 0.5
-                self.p_factor = 0.5
-                self.p_minwaarde = 0.5
-                self.pstage = 7
-        elif (self.pstage == 7):
-            self.pstage = 0
-
-        self.p_maxwaarde += random.randint(0,2)/10
-        self.p_minwaarde += random.randint(0,2)/10
-        self.p_factor += random.randint(0,2)/10
+        self.p_maxwaarde = random.randint(9,11)/10
+        self.p_minwaarde = random.randint(9,11)/10
+        self.p_factor += random.randint(4,6)/10
 
         print("maxwaarde: " + str(self.p_maxwaarde))
         print("minwaarde: " + str(self.p_minwaarde))
