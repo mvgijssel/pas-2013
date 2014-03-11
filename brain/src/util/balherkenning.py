@@ -293,7 +293,21 @@ class RasterImage:
             downleft = 0
             downright = 0
 
+        pointUpLeft_x = (leftX + midX) / 2
+        pointUpLeft_y = (upY + midY) / 2
+        pointUpRight_x = (rightX + midX) / 2
+        pointUpRight_y = (upY + midY) / 2
+        pointDownLeft_x = (leftX + midX) / 2
+        pointDownLeft_y = (upY + midY) / 2
+        pointDownRight_x = (rightX + midX) / 2
+        pointDownRight_y = (upY + midY) / 2
+
         wincolor = oldpic.get_at((midX,midY))
+        wincolor1 = oldpic.get_at((pointUpLeft_x,pointUpLeft_y))
+        wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
+        wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
+        wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
+        wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4]
             
         for i in range(leftX,rightX):
             for j in range(upY,downY):
@@ -312,19 +326,12 @@ class RasterImage:
         #cv2.imshow("Balherkenner", cv_image)
         #cv2.waitKey(10)
 
-        best = bestColor(wincolor)
-        if (best == yellow):
-            print("---I'm not sure it isn't actually <YELLOW>.---")
-        elif (best == blue):
-            print("---Actually, this might be <BLUE>.---")
-        elif (best == red):
-            print("---I'm pretty sure this is in fact <RED>.---")
-        elif (best == white):
-            print("---This might be <WHITE>, actually.---")
-        elif (best == black):
-            print("---This seems to be <BLACK>, though.---")
-        elif (best == green):
-            print("---Although really, it might as well be <GREEN>.---")
+        for win in wins:
+            best = bestColor(win)
+            if (best == red):
+                print("I'm quite certain this is the red ball.")
+            else:
+                print("This might actually not be the red ball.")
 
         redpic.set_colorkey((0,0,0))
         screen.blit(oldpic,(0,0))
