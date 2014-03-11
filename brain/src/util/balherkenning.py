@@ -69,6 +69,7 @@ class RasterImage:
                 pic[i].append((r,g,b))
 
         newpic = []
+        num = 0
         for i in range(0,len(pic)-2,2):
             newpic.append([])
             for j in range(0,len(pic[i])-2,2):
@@ -80,7 +81,8 @@ class RasterImage:
                 g = int((g1 + g2 + g3 + g4) / 4)
                 b = int((b1 + b2 + b3 + b4) / 4)
                 color = (r,g,b)
-                newpic[i].append(color)
+                newpic[num].append(color)
+            num += 1
 
         power_y = 0
         (x_y,y_y) = (0,0)
