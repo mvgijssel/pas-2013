@@ -327,11 +327,11 @@ class RasterImage:
         for win in wins:
             best = bestColor(win)
             if (best == red):
-                print("I'm quite certain this is the red ball.")
-                found_red == True
+                print("----I'm quite certain this is the red ball.----")
+                found_red = True
                 break
         if (found_red == False):
-            print("This might actually not be the red ball.")
+            print("----This might actually not be the red ball.----")
 
         redpic.set_colorkey((0,0,0))
         screen.blit(oldpic,(0,0))
