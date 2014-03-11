@@ -168,7 +168,7 @@ class RasterImage:
 
         #print("color detection - redscaling")
 
-        self.p_maxwaarde = random.randint(9,2)/10
+        self.p_maxwaarde = random.randint(9,20)/10
         self.p_minwaarde = random.randint(5,11)/10
         self.p_factor += random.randint(4,6)/10
 
