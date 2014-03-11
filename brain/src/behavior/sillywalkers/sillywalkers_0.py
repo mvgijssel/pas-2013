@@ -8,6 +8,9 @@ import basebehavior.behaviorimplementation
 import os
 import time
 
+from util.naovideo import VideoModule
+from util.nao_calibration import NaoCalibration
+
 class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
@@ -27,21 +30,38 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         self.findball = self.ab.findball({})
         self.objectdetector = self.ab.objectdetector({})
 
+        # self.selected_behaviors = [
+        #     ("objectdetector", "True"),
+        #     ("findball", "True"),
+        # ]
+
         self.selected_behaviors = [
             ("objectdetector", "True"),
-            ("findball", "True"),
         ]
 
         self.restart_time = time.time()
 
 
+        self.naovideo = VideoModule(self.nao.get_robot_ip())
+
+
 
     def implementation_update(self):
 
-
-
-
         pass
+
+        # 1 is for the camera id
+        # print "Framerate: " + str(self.nao.get_proxy('video').getFrameRate(1))
+
+        # print "trying to get an image"
+
+        # is a blocking operation
+        # img = self.naovideo.get_image()
+
+        # print "the image: " + str(img)
+
+
+
 
 
 
