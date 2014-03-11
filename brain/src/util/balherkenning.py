@@ -13,14 +13,6 @@ screen = None
 imgsize = 200
 imgheight = 0
 
-# waardes voor rood herkennen trainen
-std_minwaarde = 200 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
-std_factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
-std_maxwaarde = 140 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
-p_minwaarde = 0.5
-p_factor = 0.5
-p_maxwaarde = 0.5
-pstage = 0
 
 pygame.init()
 
@@ -46,6 +38,14 @@ class RasterImage:
     def __init__(self,source,color="red"):
         self.vid = source # must be a naovideo class
         self.color = color
+        # waardes voor rood herkennen trainen
+        self.std_minwaarde = 200 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+        self.std_factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+        self.std_maxwaarde = 140 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
+        self.p_minwaarde = 0.5
+        self.p_factor = 0.5
+        self.p_maxwaarde = 0.5
+        self.pstage = 0
 
     def get_new_image(self):
         img = self.vid.get_image()
@@ -175,51 +175,51 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                if (pstage == 0):
-                    p_minwaarde += 0.1
-                    if (p_minwaarde == 2):
-                        p_minwaarde = 0.5
-                        pstage += 1
-                elif (pstage == 1):
-                    p_factor += 0.1
-                    if (p_factor == 2):
-                        p_factor = 0.5
-                        pstage += 1
-                elif (pstage == 2):
-                    p_maxwaarde += 0.1
-                    if (p_maxwaarde == 2):
-                        p_maxwaarde = 0.5
-                        pstage = 3
-                elif (pstage == 3):
-                    p_minwaarde += 0.1
-                    p_maxwaarde += 0.1
-                    if (p_minwaarde == 2):
-                        p_minwaarde = 0.5
-                        p_maxwaarde = 0.5
-                        pstage == 4
-                elif (pstage == 4):
-                    p_minwaarde += 0.1
-                    p_factor += 0.1
-                    if (p_minwaarde == 2):
-                        p_minwaarde = 0.5
-                        p_factor = 0.5
-                        pstage = 5
-                elif (pstage == 5):
-                    p_maxwaarde += 0.1
-                    p_factor += 0.1
-                    if (p_maxwaarde == 2):
-                        p_maxwaarde = 0.5
-                        p_factor = 0.5
-                        pstage = 6
-                elif (pstage == 6):
+                if (self.pstage == 0):
+                    self.p_minwaarde += 0.1
+                    if (self.p_minwaarde == 2):
+                        self.p_minwaarde = 0.5
+                        self.pstage += 1
+                elif (self.pstage == 1):
+                    self.p_factor += 0.1
+                    if (self.p_factor == 2):
+                        self.p_factor = 0.5
+                        self.pstage += 1
+                elif (self.pstage == 2):
+                    self.p_maxwaarde += 0.1
+                    if (self.p_maxwaarde == 2):
+                        self.p_maxwaarde = 0.5
+                        self.pstage = 3
+                elif (self.pstage == 3):
+                    self.p_minwaarde += 0.1
+                    self.p_maxwaarde += 0.1
+                    if (self.p_minwaarde == 2):
+                        self.p_minwaarde = 0.5
+                        self.p_maxwaarde = 0.5
+                        self.pstage == 4
+                elif (self.pstage == 4):
+                    self.p_minwaarde += 0.1
+                    self.p_factor += 0.1
+                    if (self.p_minwaarde == 2):
+                        self.p_minwaarde = 0.5
+                        self.p_factor = 0.5
+                        self.pstage = 5
+                elif (self.pstage == 5):
+                    self.p_maxwaarde += 0.1
+                    self.p_factor += 0.1
+                    if (self.p_maxwaarde == 2):
+                        self.p_maxwaarde = 0.5
+                        self.p_factor = 0.5
+                        self.pstage = 6
+                elif (self.pstage == 6):
                     print("DONE -- CAN NOT TEST ANY OTHER VALUES")
 
-                print("maxwaarde: " + str(p_maxwaarde))
-                print("minwaarde: " + str(p_minwaarde))
-                print("factor: " + str(p_factor))
-                minwaarde = std_minwaarde * p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
-                factor = std_factor * p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
-                maxwaarde = std_maxwaarde * p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
+                print("maxwaarde: " + str(self.p_maxwaarde))
+                print("minwaarde: " + str(self.p_minwaarde))
+                print("factor: " + str(self.p_factor))
+                minwaarde = self.std_minwaarde * self.p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+                factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+                maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         redpic.set_at((i,j),(r-(b+g)/2,0,0))
