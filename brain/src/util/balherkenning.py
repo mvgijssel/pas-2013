@@ -63,9 +63,10 @@ class RasterImage:
         W = oldpic.get_width()
         H = oldpic.get_height()
         simplegrid = []
-        for i in range(0,W,int(W/10)):
+        num_blocks = 25 # in hoeveel blokjes het beeld wordt verdeelt
+        for i in range(0,W,int(W/num_blocks)):
             simplegrid.append([])
-            for j in range(0,H,int(H/10)):
+            for j in range(0,H,int(H/num_blocks)):
                 col = oldpic.get_at((i,j))
                 simplegrid[len(simplegrid)-1].append((col,(i,j)))
 
