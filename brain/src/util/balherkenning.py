@@ -67,7 +67,7 @@ class RasterImage:
             simplegrid.append([])
             for j in range(0,H,int(H/10)):
                 col = oldpic.get_at((i,j))
-                simplegrid[len(simplegrid)-1].append((col,(i,j))
+                simplegrid[len(simplegrid)-1].append((col,(i,j)))
 
         found_corner = False
         found_goal = False
@@ -75,7 +75,7 @@ class RasterImage:
             block_blue = False
             block_yellow = False
             for j in i:
-                (col,(x,y)))
+                (col,(x,y)) = j
                 col = bestColor(col)
                 if (col == yellow):
                     block_yellow = y
