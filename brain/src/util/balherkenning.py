@@ -199,7 +199,8 @@ class RasterImage:
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
-                        redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
+                        if (bestColor(col) == red):
+                            redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
                 if (color == "blue"):
@@ -311,18 +312,7 @@ class RasterImage:
         #cv2.imshow("Balherkenner", cv_image)
         #cv2.waitKey(10)
 
-        redpic.set_colorkey((0,0,0))
-        screen.blit(oldpic,(0,0))
-        screen.blit(redpic,(0,0))
-        pygame.display.flip()
-
-        closest = 999
-        best = None
-        for color in colors:
-            newdist = getDist(color,wincolor)
-            if (newdist < closest):
-                closest = newdist
-                best = color
+        best = bestColor(wincolor)
         if (best == yellow):
             print("---I'm not sure it isn't actually <YELLOW>.---")
         elif (best == blue):
@@ -336,6 +326,11 @@ class RasterImage:
         elif (best == green):
             print("---Although really, it might as well be <GREEN>.---")
 
+        redpic.set_colorkey((0,0,0))
+        screen.blit(oldpic,(0,0))
+        screen.blit(redpic,(0,0))
+        pygame.display.flip()
+
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
 
 def getDist(defined,actual):
@@ -346,3 +341,13 @@ def getDist(defined,actual):
     distG = abs(g1 - g2)
     totalDist = (distR + distB + distG)/3
     return totalDist
+
+def bestColor(actual):
+    closest = 999
+    best = None
+    for color in colors:
+        newdist = getDist(color,wincolor)
+        if (newdist < closest):
+            closest = newdist
+            best = color
+    return best
