@@ -167,47 +167,41 @@ class RasterImage:
         imgheight = H
         oldpic = pygame.transform.scale(oldpic,(W,H))
 
-        print("color detection - redscaling")
-        redpic = pygame.transform.scale(oldpic,(W,H))
-        for i in range(0,W):
-            for j in range(0,H):
-                col = oldpic.get_at((i,j))
-                r = col.b
-                g = col.g
-                b = col.r
-                if (self.pstage == 0):
+        #print("color detection - redscaling")
+
+        if (self.pstage == 0):
                     self.p_minwaarde += 0.1
-                    if (self.p_minwaarde == 2):
+                    if (self.p_minwaarde >= 2):
                         self.p_minwaarde = 0.5
                         self.pstage += 1
                 elif (self.pstage == 1):
                     self.p_factor += 0.1
-                    if (self.p_factor == 2):
+                    if (self.p_factor >= 2):
                         self.p_factor = 0.5
                         self.pstage += 1
                 elif (self.pstage == 2):
                     self.p_maxwaarde += 0.1
-                    if (self.p_maxwaarde == 2):
+                    if (self.p_maxwaarde >= 2):
                         self.p_maxwaarde = 0.5
                         self.pstage = 3
                 elif (self.pstage == 3):
                     self.p_minwaarde += 0.1
                     self.p_maxwaarde += 0.1
-                    if (self.p_minwaarde == 2):
+                    if (self.p_minwaarde >= 2):
                         self.p_minwaarde = 0.5
                         self.p_maxwaarde = 0.5
                         self.pstage == 4
                 elif (self.pstage == 4):
                     self.p_minwaarde += 0.1
                     self.p_factor += 0.1
-                    if (self.p_minwaarde == 2):
+                    if (self.p_minwaarde >= 2):
                         self.p_minwaarde = 0.5
                         self.p_factor = 0.5
                         self.pstage = 5
                 elif (self.pstage == 5):
                     self.p_maxwaarde += 0.1
                     self.p_factor += 0.1
-                    if (self.p_maxwaarde == 2):
+                    if (self.p_maxwaarde >= 2):
                         self.p_maxwaarde = 0.5
                         self.p_factor = 0.5
                         self.pstage = 6
@@ -217,6 +211,14 @@ class RasterImage:
                 print("maxwaarde: " + str(self.p_maxwaarde))
                 print("minwaarde: " + str(self.p_minwaarde))
                 print("factor: " + str(self.p_factor))
+
+        redpic = pygame.transform.scale(oldpic,(W,H))
+        for i in range(0,W):
+            for j in range(0,H):
+                col = oldpic.get_at((i,j))
+                r = col.b
+                g = col.g
+                b = col.r
                 minwaarde = self.std_minwaarde * self.p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
