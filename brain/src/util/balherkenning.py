@@ -168,9 +168,13 @@ class RasterImage:
 
         #print("color detection - redscaling")
 
-        self.p_maxwaarde = float(random.randint(9,20))/float(10)
-        self.p_minwaarde = float(random.randint(5,11))/float(10)
-        self.p_factor = float(random.randint(4,6))/float(10)
+        #self.p_maxwaarde = float(random.randint(9,20))/float(10)
+        #self.p_minwaarde = float(random.randint(5,11))/float(10)
+        #self.p_factor = float(random.randint(4,6))/float(10)
+
+        self.p_maxwaarde = 0.9
+        self.p_minwaarde = 0.7
+        self.p_factor = 0.5
 
         print("maxwaarde: " + str(self.p_maxwaarde))
         print("minwaarde: " + str(self.p_minwaarde))
