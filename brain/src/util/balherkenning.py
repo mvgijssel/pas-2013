@@ -339,7 +339,7 @@ class RasterImage:
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
 
 def getDist(defined,actual):
-    (r1,g1,b1,a) = actual
+    (b1,g1,r1,a) = actual
     (r2,g2,b2) = defined
     distR = abs(r1 - r2)
     distB = abs(b1 - b2)
