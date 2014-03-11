@@ -121,7 +121,7 @@ class RasterImage:
         pos_y_x = int(x_y / len(newpic)) * imgsize
         pos_y_y = int(y_y / len(newpic[0])) * imgheight
         pos_b_x = int(x_b / len(newpic)) * imgsize
-        pos_b_y = int(y_b / len(newpic[0])) * imgheights
+        pos_b_y = int(y_b / len(newpic[0])) * imgheight
         for i in range(0,screen.get_width()):
             screen.set_at((i,y_y),yellow)
             screen.set_at((i,y_b),blue)
