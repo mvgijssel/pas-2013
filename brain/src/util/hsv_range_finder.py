@@ -26,7 +26,7 @@ class HSVRangeFinder():
         print "**************************"
     
         # Get Nao video source
-        self.camera_ID = 0
+        self.camera_ID = 1
         self.vidsource = naovid.VideoModule(IP=self.nao_ip, resolution="160x120", output="160x120", camera=self.camera_ID)
         
         # Create windows
