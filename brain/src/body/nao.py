@@ -108,8 +108,7 @@ class Nao(object):
             self.__Sonar.unsubscribe("Sonar")
 
     def stop(self):
-        #sound = random.choice(["bye1.wav","bye2.wav","bye3.wav","bye4.wav","bye5.wav"])
-        sound = "end_song.mp3"
+        sound = random.choice(["end_song.mp3","bye1.wav","bye2.wav","bye3.wav","bye4.wav","bye5.wav"])
         self.zeg_dit(sound)
 
         if self.__nobody:
