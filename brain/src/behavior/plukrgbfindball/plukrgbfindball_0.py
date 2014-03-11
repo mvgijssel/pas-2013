@@ -17,20 +17,23 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
+        self.step = 0
 
     def implementation_update(self):
 
-        choice = random.choice(["turn left","turn right","turn right","look down","look down","look up"])
-        if (choice == "turn left"):
-            self.nao.corrigeer_hoofd()
+        seq = ["up","turn","down","turn"]
+
+        self.step += 1
+        if (self.step >= len(seq)):
+            self.step = 0
+
+        action = seq[self.step]
+        if (action == "turn"):
             self.nao.walk(0,0,1)
-        elif (choice == "turn right"):
-            self.nao.corrigeer_hoofd()
-            self.nao.walk(0,0,-1)
-        elif (choice == "look down"):
-            self.nao.kijk_lager()
-        elif (choice == "look up"):
-            self.nao.kijk_hoger()
+        elif (action == "down"):
+            self.nao.kijk_lager(10)
+        elif (action == "up"):
+            self.nao.kijk_hoger(10)
 
         if (self.nao.is_er_bal() == True):
             self.set_finished()

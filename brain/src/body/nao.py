@@ -808,14 +808,14 @@ class Nao(object):
         hoekhoofd = self.get_angles(['HeadPitch'], True)[0]
         dist = float(math.tan(float(hoekhoofd)) * 0.45)
         return dist
-    def kijk_hoger(self):
+    def kijk_hoger(self,amount=1):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
-        pitch = HEAD_PITCH - 0.05
+        pitch = HEAD_PITCH - (0.05 * amount)
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
         self.corrigeer_hoofd()
-    def kijk_lager(self):
+    def kijk_lager(self,amount=1):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
-        pitch = HEAD_PITCH + 0.05
+        pitch = HEAD_PITCH + (0.05 * amount)
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
     def corrigeer_hoofd(self):
         # zet hoofd in het midden als het te hoog kijkt
