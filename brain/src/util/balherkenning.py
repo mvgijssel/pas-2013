@@ -86,6 +86,8 @@ class RasterImage:
 
         power_y = 0
         (x_y,y_y) = (0,0)
+        power_b = 0
+        (x_b,y_b) = (0,0)
         for i in range(0,len(newpic)-2,2):
             for j in range(0,len(newpic[i])-2,2):
                 (r1,g1,b1) = newpic[i][j]
@@ -108,7 +110,7 @@ class RasterImage:
                         power_b = newpower
                         (x_b,y_b) = (i,j)
 
-        if (y_y < b_y):
+        if (y_y < y_b):
             # yellow above blue
             if (power_y > 200 and power_b > 200):
                 # blue and yellow strong enough
