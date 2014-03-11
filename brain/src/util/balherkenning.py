@@ -23,13 +23,14 @@ screen = None
 imgsize = 200
 imgheight = 0
 
+# waardes voor rood herkennen trainen
 std_minwaarde = 200 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
 std_factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
 std_maxwaarde = 140 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
 p_minwaarde = 0.5
 p_factor = 0.5
 p_maxwaarde = 0.5
-stage = 0
+pstage = 0
 
 def init_window():
     global window,screen,imgsize
@@ -172,43 +173,43 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                if (stage == 0):
+                if (pstage == 0):
                     p_minwaarde += 0.1
                     if (p_minwaarde == 2):
                         p_minwaarde = 0.5
                         stage += 1
-                elif (stage == 1):
+                elif (pstage == 1):
                     p_factor += 0.1
                     if (p_factor == 2):
                         p_factor = 0.5
                         stage += 1
-                elif (stage == 2):
+                elif (pstage == 2):
                     p_maxwaarde += 0.1
                     if (p_maxwaarde == 2):
                         p_maxwaarde = 0.5
                         stage = 3
-                elif (stage == 3):
+                elif (pstage == 3):
                     p_minwaarde += 0.1
                     p_maxwaarde += 0.1
                     if (p_minwaarde == 2):
                         p_minwaarde = 0.5
                         p_maxwaarde = 0.5
                         stage == 4
-                elif (stage == 4):
+                elif (pstage == 4):
                     p_minwaarde += 0.1
                     p_factor += 0.1
                     if (p_minwaarde == 2):
                         p_minwaarde = 0.5
                         p_factor = 0.5
                         stage = 5
-                elif (stage == 5):
+                elif (pstage == 5):
                     p_maxwaarde += 0.1
                     p_factor += 0.1
                     if (p_maxwaarde == 2):
                         p_maxwaarde = 0.5
                         p_factor = 0.5
                         stage = 6
-                elif (stage == 6):
+                elif (pstage == 6):
                     print("DONE -- CAN NOT TEST ANY OTHER VALUES")
 
                 print("maxwaarde: " + str(p_maxwaarde))
