@@ -54,9 +54,18 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                if (r > 150): r = 255 else r = 0
-                if (g > 150): g = 255 else g = 0
-                if (b > 150): b = 255 else b = 0
+                if (r > 150):
+                    r = 255
+                else:
+                    r = 0
+                if (g > 150):
+                    g = 255
+                else:
+                    g = 0
+                if (b > 150):
+                    b = 255
+                else:
+                    b = 0
                 pic[i].append((r,g,b))
 
         newpic = []
