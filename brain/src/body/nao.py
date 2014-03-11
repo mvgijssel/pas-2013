@@ -811,11 +811,13 @@ class Nao(object):
     def kijk_hoger(self,amount=1):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         pitch = HEAD_PITCH - (0.05 * amount)
+        pitch = max(pitch,math.radians(-35))
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
         self.corrigeer_hoofd()
     def kijk_lager(self,amount=1):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         pitch = HEAD_PITCH + (0.05 * amount)
+        pitch = min(pitch,math.radians(45))
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
     def corrigeer_hoofd(self):
         # zet hoofd in het midden als het te hoog kijkt
