@@ -23,6 +23,14 @@ screen = None
 imgsize = 200
 imgheight = 0
 
+std_minwaarde = 200 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+std_factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+std_maxwaarde = 140 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
+p_minwaarde = 0.5
+p_factor = 0.5
+p_maxwaarde = 0.5
+stage = 0
+
 def init_window():
     global window,screen,imgsize
     if (window == 0):
@@ -164,21 +172,51 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                #minwaarde = 200 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
-                #factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
-                #maxwaarde = 140 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
-                minwaarde = -1
-                maxwaarde = -1
-                factor = -1
-                while (minwaarde == -1):
-                    minwaarde = int(raw_input("minwaarde "))
-                    time.sleep(2)
-                while(factor == -1):
-                    factor = int(raw_input("factor "))
-                    time.sleep(2)
-                while(maxwaarde == -1):
-                    maxwaarde = int(raw_input("maxwaarde "))
-                    time.sleep(2)
+                if (stage == 0):
+                    p_minwaarde += 0.1
+                    if (p_minwaarde == 2):
+                        p_minwaarde = 0.5
+                        stage += 1
+                elif (stage == 1):
+                    p_factor += 0.1
+                    if (p_factor == 2):
+                        p_factor = 0.5
+                        stage += 1
+                elif (stage == 2):
+                    p_maxwaarde += 0.1
+                    if (p_maxwaarde == 2):
+                        p_maxwaarde = 0.5
+                        stage = 3
+                elif (stage == 3):
+                    p_minwaarde += 0.1
+                    p_maxwaarde += 0.1
+                    if (p_minwaarde == 2):
+                        p_minwaarde = 0.5
+                        p_maxwaarde = 0.5
+                        stage == 4
+                elif (stage == 4):
+                    p_minwaarde += 0.1
+                    p_factor += 0.1
+                    if (p_minwaarde == 2):
+                        p_minwaarde = 0.5
+                        p_factor = 0.5
+                        stage = 5
+                elif (stage == 5):
+                    p_maxwaarde += 0.1
+                    p_factor += 0.1
+                    if (p_maxwaarde = 2):
+                        p_maxwaarde = 0.5
+                        p_factor = 0.5
+                        stage = 6
+                elif (stage == 6):
+                    print("DONE -- CAN NOT TEST ANY OTHER VALUES")
+
+                print("maxwaarde: " + str(p_maxwaarde))
+                print("minwaarde: " + str(p_minwaarde)
+                print("factor: " + str(p_factor))
+                minwaarde = std_minwaarde * p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+                factor = std_factor * p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+                maxwaarde = std_maxwaarde * p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         redpic.set_at((i,j),(r-(b+g)/2,0,0))
@@ -211,7 +249,7 @@ class RasterImage:
 
         crude = 4
 
-        print("color detection - finding hotspot")
+        #print("color detection - finding hotspot")
         while(crude >= 1):
             for i in range(0,redpic.get_width(),crude):
                 for j in range(0,redpic.get_height(),crude):
@@ -303,11 +341,11 @@ class RasterImage:
         real = highest/area
         percent = float(real)/float(maxima)*100
         percent = int(percent)
-        print("I am this sure that that is the ball: " + str(percent) + "%" + "(power = " + str(real) + ")")
-        if (percent < 25):
-            print("So I'm probably wrong?")
-        else:
-            print("So I'm probably right?")
+        #print("I am this sure that that is the ball: " + str(percent) + "%" + "(power = " + str(real) + ")")
+        #if (percent < 25):
+        #    print("So I'm probably wrong?")
+        #else:
+        #    print("So I'm probably right?")
         #pygame.image.save(oldpic,"testpic.png")
 
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
