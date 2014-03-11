@@ -307,7 +307,11 @@ class RasterImage:
         wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
         wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
         wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
-        wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4]
+        wincolor5 = oldpic.get_at((rightX,upY))
+        wincolor6 = oldpic.get_at((leftX,upY))
+        wincolor7 = oldpic.get_at((rightX,downY))
+        wincolor8 = oldpic.get_at((leftX,downY))
+        wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
             
         for i in range(leftX,rightX):
             for j in range(upY,downY):
