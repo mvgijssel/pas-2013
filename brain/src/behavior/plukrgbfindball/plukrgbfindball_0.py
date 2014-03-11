@@ -21,7 +21,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_update(self):
 
-        seq = ["up","turn","down","turn"]
+        seq = ["up","mid","down","turn"]
 
         self.step += 1
         if (self.step >= len(seq)):
@@ -34,6 +34,8 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
             self.nao.kijk_lager(30)
         elif (action == "up"):
             self.nao.kijk_hoger(30)
+        elif (action == "mid"):
+            self.nao.corrigeer_hoofd()
 
         if (self.nao.is_er_bal() == True):
             self.set_finished()
