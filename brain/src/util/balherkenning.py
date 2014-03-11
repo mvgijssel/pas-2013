@@ -123,19 +123,19 @@ class RasterImage:
         pos_b_x = int(x_b / len(newpic)) * imgsize
         pos_b_y = int(y_b / len(newpic[0])) * imgheight
         for i in range(0,screen.get_width()):
-            screen.set_at((i,y_y),yellow)
-            screen.set_at((i,y_b),blue)
-            screen.set_at((i,y_y-1),yellow)
-            screen.set_at((i,y_b-1),blue)
-            screen.set_at((i,y_y+1),yellow)
-            screen.set_at((i,y_b+1),blue)
+            screen.set_at((i,pos_y_y),yellow)
+            screen.set_at((i,pos_b_y),blue)
+            screen.set_at((i,pos_y_y-1),yellow)
+            screen.set_at((i,pos_b_y-1),blue)
+            screen.set_at((i,pos_y_y+1),yellow)
+            screen.set_at((i,pos_b_y+1),blue)
         for i in range(0,screen.get_height()):
-            screen.set_at((x_y,i),yellow)
-            screen.set_at((x_b,i),blue)
-            screen.set_at((x_y-1,i),yellow)
-            screen.set_at((x_b-1,i),blue)
-            screen.set_at((x_y+1,i),yellow)
-            screen.set_at((x_b+1,i),blue)
+            screen.set_at((pos_y_x,i),yellow)
+            screen.set_at((pos_b_x,i),blue)
+            screen.set_at((pos_y_x-1,i),yellow)
+            screen.set_at((pos_b_x-1,i),blue)
+            screen.set_at((pos_y_x+1,i),yellow)
+            screen.set_at((pos_b_x+1,i),blue)
         pygame.display.flip()
 
 
