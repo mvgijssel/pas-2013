@@ -163,12 +163,18 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                #minwaarde = 180 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
-                #factor = 0.8 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+                #minwaarde = 200 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+                #factor = 0.9 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 #maxwaarde = 140 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
-                minwaarde = int(raw_input("minwaarde: r moet minimaal zo sterk zijn. [0 - 255], std: 180 (anti-zwart)"))
-                factor = int(raw_input("factor: r > (g+b)*factor, [0.0-2.0], std: 0.9 (anti-grijs)"))
-                maxwaarde = int(raw_input("andere kleuren moeten lager zijn dan dit. [0 - 255], std: 140 (anti-wit)"))
+                minwaarde = -1
+                maxwaarde = -1
+                factor = -1
+                while (minwaarde == -1):
+                    minwaarde = int(raw_input("minwaarde: r moet minimaal zo sterk zijn. [0 - 255], std: 200 (anti-zwart). "))
+                while(factor == -1):
+                    factor = int(raw_input("factor: r > (g+b)*factor, [0.0-2.0], std: 0.9 (anti-grijs). "))
+                while(maxwaarde == -1):
+                    maxwaarde = int(raw_input("andere kleuren moeten lager zijn dan dit. [0 - 255], std: 140 (anti-wit). "))
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         redpic.set_at((i,j),(r-(b+g)/2,0,0))
