@@ -76,27 +76,26 @@ class RasterImage:
                 (r2,g2,b2) = pic[i+1][j]
                 (r3,g3,b3) = pic[i][j+1]
                 (r4,g4,b4) = pic[i+1][j+1]
-                r = (r1 + r2 + r3 + r4) / 4
-                g = (g1 + g2 + g3 + g4) / 4
-                b = (b1 + b2 + b3 + b4) / 4
-                newpic[i].append((r,g,b))
+                r = int((r1 + r2 + r3 + r4) / 4)
+                g = int((g1 + g2 + g3 + g4) / 4)
+                b = int((b1 + b2 + b3 + b4) / 4)
+                color = (r,g,b)
+                newpic[i].append(color)
 
-        newpic2 = []
         power_y = 0
         (x_y,y_y) = (0,0)
         for i in range(0,len(newpic)-2,2):
-            newpic.append([])
-            for j in range(0,len(newpic[i]-2),2):
+            for j in range(0,len(newpic[i])-2,2):
                 (r1,g1,b1) = newpic[i][j]
                 (r2,g2,b2) = newpic[i+1][j]
                 (r3,g3,b3) = newpic[i][j+1]
                 (r4,g4,b4) = newpic[i+1][j+1]
-                r = (r1 + r2 + r3 + r4) / 4
-                g = (g1 + g2 + g3 + g4) / 4
-                b = (b1 + b2 + b3 + b4) / 4
+                r = int((r1 + r2 + r3 + r4) / 4)
+                g = int((g1 + g2 + g3 + g4) / 4)
+                b = int((b1 + b2 + b3 + b4) / 4)
                 if (r > 150 and g > 150 and b < 100):
                     (r,g,b) = yellow
-                    newpower = (r + g)
+                    newpower = int((r + g) / 2)
                     if (newpower > power_y):
                         power_y = newpower
                         (x_y,y_y) = (i,j)
@@ -109,10 +108,10 @@ class RasterImage:
 
         if (y_y < b_y):
             # yellow above blue
-            if (power_y > 300 and power_b > 300):
+            if (power_y > 200 and power_b > 200):
+                # blue and yellow strong enough
                 return True
-            else:
-                return False
+        return False
 
         for i in range(0,screen.get_width()):
             screen.set_at((i,y_y),yellow)
