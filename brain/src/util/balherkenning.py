@@ -170,47 +170,47 @@ class RasterImage:
         #print("color detection - redscaling")
 
         if (self.pstage == 0):
-                    self.p_minwaarde += 0.1
-                    if (self.p_minwaarde >= 2):
-                        self.p_minwaarde = 0.5
-                        self.pstage += 1
-                elif (self.pstage == 1):
-                    self.p_factor += 0.1
-                    if (self.p_factor >= 2):
-                        self.p_factor = 0.5
-                        self.pstage += 1
-                elif (self.pstage == 2):
-                    self.p_maxwaarde += 0.1
-                    if (self.p_maxwaarde >= 2):
-                        self.p_maxwaarde = 0.5
-                        self.pstage = 3
-                elif (self.pstage == 3):
-                    self.p_minwaarde += 0.1
-                    self.p_maxwaarde += 0.1
-                    if (self.p_minwaarde >= 2):
-                        self.p_minwaarde = 0.5
-                        self.p_maxwaarde = 0.5
-                        self.pstage == 4
-                elif (self.pstage == 4):
-                    self.p_minwaarde += 0.1
-                    self.p_factor += 0.1
-                    if (self.p_minwaarde >= 2):
-                        self.p_minwaarde = 0.5
-                        self.p_factor = 0.5
-                        self.pstage = 5
-                elif (self.pstage == 5):
-                    self.p_maxwaarde += 0.1
-                    self.p_factor += 0.1
-                    if (self.p_maxwaarde >= 2):
-                        self.p_maxwaarde = 0.5
-                        self.p_factor = 0.5
-                        self.pstage = 6
-                elif (self.pstage == 6):
-                    print("DONE -- CAN NOT TEST ANY OTHER VALUES")
+            self.p_minwaarde += 0.1
+            if (self.p_minwaarde >= 2):
+                self.p_minwaarde = 0.5
+                self.pstage += 1
+        elif (self.pstage == 1):
+            self.p_factor += 0.1
+            if (self.p_factor >= 2):
+                self.p_factor = 0.5
+                self.pstage += 1
+        elif (self.pstage == 2):
+            self.p_maxwaarde += 0.1
+            if (self.p_maxwaarde >= 2):
+                self.p_maxwaarde = 0.5
+                self.pstage = 3
+        elif (self.pstage == 3):
+            self.p_minwaarde += 0.1
+            self.p_maxwaarde += 0.1
+            if (self.p_minwaarde >= 2):
+                self.p_minwaarde = 0.5
+                self.p_maxwaarde = 0.5
+                self.pstage == 4
+        elif (self.pstage == 4):
+            self.p_minwaarde += 0.1
+            self.p_factor += 0.1
+            if (self.p_minwaarde >= 2):
+                self.p_minwaarde = 0.5
+                self.p_factor = 0.5
+                self.pstage = 5
+        elif (self.pstage == 5):
+            self.p_maxwaarde += 0.1
+            self.p_factor += 0.1
+            if (self.p_maxwaarde >= 2):
+                self.p_maxwaarde = 0.5
+                self.p_factor = 0.5
+                self.pstage = 6
+        elif (self.pstage == 6):
+            print("DONE -- CAN NOT TEST ANY OTHER VALUES")
 
-                print("maxwaarde: " + str(self.p_maxwaarde))
-                print("minwaarde: " + str(self.p_minwaarde))
-                print("factor: " + str(self.p_factor))
+        print("maxwaarde: " + str(self.p_maxwaarde))
+        print("minwaarde: " + str(self.p_minwaarde))
+        print("factor: " + str(self.p_factor))
 
         redpic = pygame.transform.scale(oldpic,(W,H))
         for i in range(0,W):
