@@ -163,8 +163,8 @@ class RasterImage:
                 r = col.b
                 g = col.g
                 b = col.r
-                minwaarde = 160 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
-                factor = 1.1 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
+                minwaarde = 150 # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
+                factor = 0.75 # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = 80 # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
