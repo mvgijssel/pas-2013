@@ -20,6 +20,7 @@ pygame.init()
 window = 0
 screen = None
 imgsize = 200
+imgheight = 0
 
 def init_window():
     global window,screen,imgsize
@@ -117,16 +118,24 @@ class RasterImage:
                 return True
         return False
 
-        pos_y_x = x_y / len(newpic) * screen.get_width()
-        pos_y_y = y_y / len(newpic[0]) * screen.get_height()
-        pos_b_x = x_b / len(newpic) * screen.get_width()
-        pos_b_y = y_b / len(newpic[0]) * screen.get_height()
+        pos_y_x = int(x_y / len(newpic)) * imgsize
+        pos_y_y = int(y_y / len(newpic[0])) * imgheight
+        pos_b_x = int(x_b / len(newpic)) * imgsize
+        pos_b_y = int(y_b / len(newpic[0])) * imgheights
         for i in range(0,screen.get_width()):
             screen.set_at((i,y_y),yellow)
             screen.set_at((i,y_b),blue)
+            screen.set_at((i,y_y-1),yellow)
+            screen.set_at((i,y_b-1),blue)
+            screen.set_at((i,y_y+1),yellow)
+            screen.set_at((i,y_b+1),blue)
         for i in range(0,screen.get_height()):
             screen.set_at((x_y,i),yellow)
             screen.set_at((x_b,i),blue)
+            screen.set_at((x_y-1,i),yellow)
+            screen.set_at((x_b-1,i),blue)
+            screen.set_at((x_y+1,i),yellow)
+            screen.set_at((x_b+1,i),blue)
         pygame.display.flip()
 
 
@@ -143,6 +152,7 @@ class RasterImage:
         H = H * Scale
         W = int(W)
         H = int(H)
+        imgheight = H
         oldpic = pygame.transform.scale(oldpic,(W,H))
 
         print("color detection - redscaling")
