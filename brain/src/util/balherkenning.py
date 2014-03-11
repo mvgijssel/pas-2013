@@ -172,9 +172,9 @@ class RasterImage:
         #self.p_minwaarde = float(random.randint(5,11))/float(10)
         #self.p_factor = float(random.randint(4,6))/float(10)
 
-        self.p_maxwaarde = 0.9 * float((random.randint(80,130))/float(100))
-        self.p_minwaarde = 0.7 * float((random.randint(80,130))/float(100))
-        self.p_factor = 0.5 * (float(random.randint(80,130))/float(100))
+        self.p_maxwaarde = 0.88 #* float((random.randint(80,130))/float(100))
+        self.p_minwaarde = 0.77 #* float((random.randint(80,130))/float(100))
+        self.p_factor = 0.52 #* (float(random.randint(80,130))/float(100))
 
         print("maxwaarde: " + str(self.p_maxwaarde))
         print("minwaarde: " + str(self.p_minwaarde))
