@@ -93,7 +93,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 # ik ben bij de bal!
                 sound = random.choice(["ready.wav"])
                 self.nao.zeg_dit(sound)
-                self.at_bal = True
+                self.at_ball = True
         else:
             if (self.seeball == True):
                 # ik zie de bal, maar ik ben er niet
