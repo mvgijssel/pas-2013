@@ -8,16 +8,6 @@ import cv
 from pygame.locals import *
 import time
 
-pygame.init()
-
-
-#
-# hoe te gebruiken: een andere module kan dit typen:
-# import util.balherkenning
-# detector = balherkenning.rasterImage()
-# (posx,posy) = detector.getPos()
-#
-
 window = 0
 screen = None
 imgsize = 200
@@ -31,6 +21,18 @@ p_minwaarde = 0.5
 p_factor = 0.5
 p_maxwaarde = 0.5
 pstage = 0
+
+pygame.init()
+
+
+#
+# hoe te gebruiken: een andere module kan dit typen:
+# import util.balherkenning
+# detector = balherkenning.rasterImage()
+# (posx,posy) = detector.getPos()
+#
+
+
 
 def init_window():
     global window,screen,imgsize
@@ -177,38 +179,38 @@ class RasterImage:
                     p_minwaarde += 0.1
                     if (p_minwaarde == 2):
                         p_minwaarde = 0.5
-                        stage += 1
+                        pstage += 1
                 elif (pstage == 1):
                     p_factor += 0.1
                     if (p_factor == 2):
                         p_factor = 0.5
-                        stage += 1
+                        pstage += 1
                 elif (pstage == 2):
                     p_maxwaarde += 0.1
                     if (p_maxwaarde == 2):
                         p_maxwaarde = 0.5
-                        stage = 3
+                        pstage = 3
                 elif (pstage == 3):
                     p_minwaarde += 0.1
                     p_maxwaarde += 0.1
                     if (p_minwaarde == 2):
                         p_minwaarde = 0.5
                         p_maxwaarde = 0.5
-                        stage == 4
+                        pstage == 4
                 elif (pstage == 4):
                     p_minwaarde += 0.1
                     p_factor += 0.1
                     if (p_minwaarde == 2):
                         p_minwaarde = 0.5
                         p_factor = 0.5
-                        stage = 5
+                        pstage = 5
                 elif (pstage == 5):
                     p_maxwaarde += 0.1
                     p_factor += 0.1
                     if (p_maxwaarde == 2):
                         p_maxwaarde = 0.5
                         p_factor = 0.5
-                        stage = 6
+                        pstage = 6
                 elif (pstage == 6):
                     print("DONE -- CAN NOT TEST ANY OTHER VALUES")
 
