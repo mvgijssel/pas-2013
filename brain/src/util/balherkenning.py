@@ -204,7 +204,7 @@ class RasterImage:
                 elif (stage == 5):
                     p_maxwaarde += 0.1
                     p_factor += 0.1
-                    if (p_maxwaarde = 2):
+                    if (p_maxwaarde == 2):
                         p_maxwaarde = 0.5
                         p_factor = 0.5
                         stage = 6
@@ -212,7 +212,7 @@ class RasterImage:
                     print("DONE -- CAN NOT TEST ANY OTHER VALUES")
 
                 print("maxwaarde: " + str(p_maxwaarde))
-                print("minwaarde: " + str(p_minwaarde)
+                print("minwaarde: " + str(p_minwaarde))
                 print("factor: " + str(p_factor))
                 minwaarde = std_minwaarde * p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = std_factor * p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
