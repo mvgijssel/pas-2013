@@ -13,6 +13,13 @@ screen = None
 imgsize = 200
 imgheight = 0
 
+yellow = (255,255,0)
+blue = (0,0,255)
+green = (0,255,0)
+red = (255,0,0)
+white = (255,255,255)
+black = (0,0,0)
+colors = [yellow,blue,green,red,white,black]
 
 pygame.init()
 
@@ -284,6 +291,8 @@ class RasterImage:
             upright = 0
             downleft = 0
             downright = 0
+
+        wincolor = oldpic.get_at((midX,midY))
             
         for i in range(leftX,rightX):
             for j in range(upY,downY):
@@ -307,18 +316,33 @@ class RasterImage:
         screen.blit(redpic,(0,0))
         pygame.display.flip()
 
-        diffX = abs(rightX - leftX)
-        diffY = abs(upY - downY)
-        area = diffX * diffY
-        maxima = area*255
-        real = highest/area
-        percent = float(real)/float(maxima)*100
-        percent = int(percent)
-        #print("I am this sure that that is the ball: " + str(percent) + "%" + "(power = " + str(real) + ")")
-        #if (percent < 25):
-        #    print("So I'm probably wrong?")
-        #else:
-        #    print("So I'm probably right?")
-        #pygame.image.save(oldpic,"testpic.png")
+        closest = 999
+        best = None
+        for color in colors:
+            newdist = getDist(color,wincolor)
+            if (newdist < closest):
+                closest = newdist
+                best = color
+        if (best == yellow):
+            print("---I'm not sure it isn't actually <YELLOW>.---")
+        elif (best == blue):
+            print("---Actually, this might be <BLUE>.---")
+        elif (best == red):
+            print("---I'm pretty sure this is in fact <RED>.---")
+        elif (best == white):
+            print("---This might be <WHITE>, actually.---")
+        elif (best == black):
+            print("---This seems to be <BLACK>, though.---")
+        elif (best == green):
+            print("---Although really, it might as well be <GREEN>.---")
 
         return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
+
+def getDist(defined,actual):
+    (r1,g1,b1,a) = actual
+    (r2,g2,b2) = defined
+    distR = abs(r1 - r2)
+    distB = abs(b1 - b2)
+    distG = abs(g1 - g2)
+    totalDist = (distR + distB + distG)/3
+    return totalDist
