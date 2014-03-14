@@ -23,42 +23,55 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # get the nao reference
         self.nao = self.body.nao(0)
 
+        # get the ball object
+        self.ball = NaoSettings.BALL_OBJECT
+
         # when the nao is done, don't do anything. Don't sit down
         self.nao.set_do_nothing_on_stop(True)
 
-        #define list of sub-behavior here
-        self.findball = self.ab.findball({'debug': True})
-        self.objectdetector = self.ab.objectdetector({'debug': False})
-        self.naocalibration = self.ab.naocalibration({'debug': True})
+        # is a hack, should be an external behaviour which stands up when nao isn't standing
+        self.nao.complete_behavior("standup")
 
+        # instantiate the behaviours, acts as a reset
+        self.instantiate_behaviours()
+
+        # define all the beheviours with start conditions
         self.selected_behaviors = [
             ("naocalibration", "True"),
             ("objectdetector", "True"),
-            ("findball", "True")
+            ("findball", "True"),
+            ("aligntorso", "self.findball.is_finished()"),
+            ("approachball", "self.aligntorso.is_finished()")
         ]
 
         self.restart_time = time.time()
 
 
-
     def implementation_update(self):
 
-        pass
+        # if the approach ball fails
+        if self.approachball.is_failed():
 
-        # 1 is for the camera id
-        # print "Framerate: " + str(self.nao.get_proxy('video').getFrameRate(1))
+            # restart findball, aligntorso, approachball
 
-        # print "trying to get an image"
-
-        # is a blocking operation
-        # img = self.naovideo.get_image()
-
-        # print "the image: " + str(img)
+            # reset all the behaviours
+            self.instantiate_behaviours()
 
 
+    def instantiate_behaviours(self):
 
+        # set the debug flag
+        self.debug = True
 
+        # NEED BEHAVIOUR FOR STANDING BACK UP
 
+        # DO WE NEED TO MANUALLE STOP THE RUNNING BEHAVIOURS STILL RUNNING?
 
+        #define list of sub-behavior here
+        self.naocalibration = self.ab.naocalibration({'debug': False})
+        self.objectdetector = self.ab.objectdetector({'debug': False})
+        self.findball = self.ab.findball({'debug': True})
 
-
+        # the calling of self.ab.aligntorso({'debug': False}) creates a new instance, and restarts a behaviour
+        self.aligntorso = self.ab.aligntorso({'debug': True})
+        self.approachball = self.ab.approachball({'debug', True})
