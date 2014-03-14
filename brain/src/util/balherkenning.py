@@ -31,8 +31,8 @@ pygame.init()
 # (posx,posy) = detector.getPos()
 #
 
-lastreturn_goal = None
-lastreturn_ball = None
+lastreturn_goal = (-999,-999)
+lastreturn_ball = (-999,-999)
 lastreturn_goal_time = time.time()-5
 lastreturn_ball_time = time.time()-5
 
