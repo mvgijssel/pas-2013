@@ -28,10 +28,10 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         self.selected_behaviors = [
             ("plukrgbfindball", "self.finding_ball == True and self.approaching_ball == False"),
-            ("plukrgbapproachball", "self.approaching_ball == True and self.findball == False and self.alligngoal == False"),
-            ("plukrgbfindgoal", "self.finding_goal == True and self.alligngoal == False and self.findball == False"),
-            ("plukrgballigngoal", "self.allign_goal == True and self.findgoal == False and self.scoregoal == False"),
-            ("plukrgbscoregoal", "self.scoring_ball == True and self.alligngoal == False")
+            ("plukrgbapproachball", "self.approaching_ball == True and self.finding_ball == False and self.allign_goal == False"),
+            ("plukrgbfindgoal", "self.finding_goal == True and self.allign_goal == False and self.finding_ball == False"),
+            ("plukrgballigngoal", "self.allign_goal == True and self.finding_goal == False and self.scoring_goal == False"),
+            ("plukrgbscoregoal", "self.scoring_ball == True and self.allign_goal == False")
         ]
 
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
