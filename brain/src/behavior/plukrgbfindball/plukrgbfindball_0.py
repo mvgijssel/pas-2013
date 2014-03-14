@@ -5,7 +5,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 '''
 
 import basebehavior.behaviorimplementation
-import random
+import random,time
 
 class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
@@ -23,7 +23,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         self.__start_time = time.time()
 
         #Make sure the robot is standing and looks horizontal:
-        self.__nao.look_horizontal()
+        self.nao.look_horizontal()
 
         #Possible states (WALK or TURN):
         self.__state = "WALK"
@@ -35,13 +35,13 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         # verwijder vanaf hier
         if (time.time() - self.__start_time) > 10:
             if self.__state == "TURN":
-                if not self.__nao.isWalking():
+                if not self.nao.isWalking():
                     self.__state = "WALK"
-                    self.__nao.walkNav(random.random() * 10, 0, 0)
+                    self.nao.walkNav(random.random() * 10, 0, 0)
             elif self.__state == "WALK":
-                if not self.__nao.isWalking():
+                if not self.nao.isWalking():
                     self.__state = "TURN"
-                    self.__nao.walkNav(0, 0, random.random() * 2 - 1, 0.1)
+                    self.nao.walkNav(0, 0, random.random() * 2 - 1, 0.1)
 
 
 
