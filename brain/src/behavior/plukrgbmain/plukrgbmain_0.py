@@ -58,7 +58,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         ranIdle = random.randint(1,100)
         if (ranIdle == 5): # 1x per 10 seconden?
-            sound = random.choice(["idle.wav","idle2.wav","idle3.wav","idle4.wav"])
+            sound = random.choice(["idle.wav","idle2.wav","idle3.wav","idle4.wav","idle5.wav"])
             self.nao.zeg_dit(sound)
 
         if (self.m.n_occurs('naoHasFallen') > 0):
@@ -113,7 +113,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                     self.ball_seen = True
                 self.finding_ball = False
                 self.approaching_ball = True
-        if (self.approaching_ball == True and verbal <= 0.05):
+        elif (self.approaching_ball == True and verbal <= 0.05):
                 # ik ben bij de bal!
                 print("I am now at the ball. Now looking for goal.")
                 sound = random.choice(["ready.wav"])
@@ -130,7 +130,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.ball_seen = False
                 self.finding_ball = True
                 self.approaching_ball = False
-        if (self.finding_goal == True):
+        elif (self.finding_goal == True):
             if (waargoal != -999):
                 (naam,x) = self.nao.check_goal()
                 if (naam == "blue goal"):
@@ -160,13 +160,13 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.finding_goal = False
             else:
                 print("I do not see the goal or a corner.")
-        if (self.allign_goal == True):
+        elif (self.allign_goal == True):
             if (abs(waargoal) < 0.25):
                 # de goal is recht voor me
                 print("The goal is now right in front of me. Let's score!")
                 self.allign_goal = False
                 self.scoring_ball = True
-        if (self.scoring_ball == True):
+        elif (self.scoring_ball == True):
             if (waargoal == -999):
                 print("I don't see the goal anymore. Did I score or fall? Let's start looking again.")
                 self.reset()
