@@ -20,11 +20,11 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao = self.body.nao(0)
         self.prev_fall_time = 0
 
-        self.plukrgbfindball = self.ab.plukrgbfindball({})
-        self.plukrgbapproachball = self.ab.plukrgbapproachball({})
-        self.plukrgbfindgoal = self.ab.plukrgbfindgoal({})
-        self.plukrgballigngoal = self.ab.plukrgballigngoal({})
-        self.plukrgbscoregoal = self.ab.plukrgbscoregoal({})
+        self.plukrgbfindball = self.ab.plukrgbfindball({}) # kijk waar de bal is
+        self.plukrgbapproachball = self.ab.plukrgbapproachball({}) # loop naar de bal
+        self.plukrgbfindgoal = self.ab.plukrgbfindgoal({}) # kijk waar het doel is
+        self.plukrgballigngoal = self.ab.plukrgballigngoal({}) # krijg bal tussen jou en doel
+        self.plukrgbscoregoal = self.ab.plukrgbscoregoal({}) # ren vooruit, hopen dat de bal mee komt.
 
         self.selected_behaviors = [
             ("plukrgbfindball", "self.finding_ball == True"),

@@ -21,8 +21,7 @@ class Plukrgbscoregoal_x(basebehavior.behaviorimplementation.BehaviorImplementat
     def implementation_update(self):
 
         # just run forward
-        self.nao.walk(1,0,0)
+        self.nao.kijk_lager(30)
+        self.nao.walk(0.25,0,0)
         self.set_finished()
-
-
 
