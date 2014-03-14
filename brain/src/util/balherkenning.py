@@ -36,6 +36,7 @@ lastreturn_goal = (-999,-999)
 lastreturn_ball = (-999,-999)
 lastreturn_goal_time = time.time()-5
 lastreturn_ball_time = time.time()-5
+time_buffer = 0.5 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
     global window,screen,imgsize
@@ -64,7 +65,7 @@ class RasterImage:
     def getGoal(self):
         global lastreturn_goal,lastreturn_goal_time
         now = time.time()
-        if (lastreturn_goal_time >= now-0.5):
+        if (lastreturn_goal_time >= now-time_buffer):
             return lastreturn_goal
         oldpic = self.get_new_image()
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
@@ -161,7 +162,7 @@ class RasterImage:
     def getPos(self):
         global lastreturn_ball,lastreturn_ball_time
         now = time.time()
-        if (lastreturn_ball_time >= now-0.5):
+        if (lastreturn_ball_time >= now-time_buffer):
             return lastreturn_ball
         init_window()
         color = self.color

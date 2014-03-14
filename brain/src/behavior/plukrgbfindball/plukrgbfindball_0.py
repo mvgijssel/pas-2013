@@ -20,13 +20,14 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_update(self):
 
-        seq = ["mid","down","turn"] #"up"
+        seq = ["mid","up","down","turn"] #"up"
 
         self.step += 1
         if (self.step >= len(seq)):
             self.step = 0
 
         if (self.nao.is_er_bal() == True):
+            print("                             ::ending \"findball\", ball is found.::")
             self.set_finished()
             self.step = 0
             return
@@ -37,7 +38,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         elif (action == "down"):
             self.nao.kijk_lager(30)
         elif (action == "up"):
-            self.nao.kijk_hoger(30)
+            self.nao.kijk_hoger(10)
         elif (action == "mid"):
             self.nao.look_horizontal()
 

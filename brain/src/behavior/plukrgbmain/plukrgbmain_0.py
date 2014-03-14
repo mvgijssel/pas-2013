@@ -182,5 +182,6 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.finding_goal = False
         self.scoring_ball = False
         self.allign_goal = False
+
         self.goal_seen = False
         self.ball_seen = False
