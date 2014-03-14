@@ -161,7 +161,7 @@ class RasterImage:
     def getPos(self):
         global lastreturn_ball,lastreturn_ball_time
         now = time.time()
-        if (lastreturn_ball_time < now-1):
+        if (lastreturn_ball_time >= now-1):
             return lastreturn_ball
         init_window()
         color = self.color
