@@ -16,16 +16,16 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_init(self):
 
-        #define list of sub-behavior here
-        pass
+        self.nao = self.body.nao(0)
+        self.nao.look_horizontal()
 
     def implementation_update(self):
 
-        #you can do things here that are low-level, not consisting of other behaviors
-
-        #in this function you can check what behaviors have failed or finished
-        #and do possibly other things when something has failed
-        pass
+        # draai rondjes om de bal, tot je de goal hebt gevonden.
+        self.nao.walk(0,0.1,-0.25)
+        seen = self.nao.waar_goal()
+        if (seen != None):
+            self.set_finished()
 
 
 

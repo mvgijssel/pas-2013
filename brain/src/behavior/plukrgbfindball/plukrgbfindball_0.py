@@ -19,34 +19,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         self.nao = self.body.nao(0)
         self.step = 0
 
-        # verwijder vanaf hier
-        self.__start_time = time.time()
-
-        #Make sure the robot is standing and looks horizontal:
-        self.nao.look_horizontal()
-
-        #Possible states (WALK or TURN):
-        self.__state = "WALK"
-        self.__last_recogtime = time.time()
-        # tot hier
-
     def implementation_update(self):
-
-        # verwijder vanaf hier
-        if (time.time() - self.__start_time) > 10:
-            if self.__state == "TURN":
-                if not self.nao.isWalking():
-                    self.__state = "WALK"
-                    self.nao.walkNav(random.random() * 10, 0, 0)
-            elif self.__state == "WALK":
-                if not self.nao.isWalking():
-                    self.__state = "TURN"
-                    self.nao.walkNav(0, 0, random.random() * 2 - 1, 0.1)
-
-
-
-        return
-        # tot hier
 
         seq = ["up","mid","down","turn"]
 

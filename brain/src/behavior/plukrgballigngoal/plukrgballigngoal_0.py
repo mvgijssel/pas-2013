@@ -16,16 +16,27 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
 
     def implementation_init(self):
 
-        #define list of sub-behavior here
-        pass
+        self.nao = self.body.nao(0)
+        self.nao.look_horizontal()
 
     def implementation_update(self):
 
-        #you can do things here that are low-level, not consisting of other behaviors
+        # draai rondjes om de bal, tot je de goal hebt gevonden.
+        self.nao.kijk_lager(60)
+        (posx,posy) = self.nao.waar_is_bal()
+        if (posx == -999 or posy == -999):
+            self.set_finished()
+        elif (posy > 0):
+            self.nao.walk(-0.3,0,0)
+        elif (posy < 0):
+            self.nao.look_horizontal()
+            seen = self.nao.waar_goal()
+            if (seen != None):
+                if (seen > 0):
+                    self.nao.walk(0,0.1,-0.25)
+                else:
+                    self.nao.walk(0,-0.1,0.25)
 
-        #in this function you can check what behaviors have failed or finished
-        #and do possibly other things when something has failed
-        pass
 
 
 

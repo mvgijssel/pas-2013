@@ -16,16 +16,13 @@ class Plukrgbscoregoal_x(basebehavior.behaviorimplementation.BehaviorImplementat
 
     def implementation_init(self):
 
-        #define list of sub-behavior here
-        pass
+        self.nao = self.body.nao(0)
 
     def implementation_update(self):
 
-        #you can do things here that are low-level, not consisting of other behaviors
-
-        #in this function you can check what behaviors have failed or finished
-        #and do possibly other things when something has failed
-        pass
+        # just run forward
+        self.nao.walk(1,0,0)
+        self.set_finished()
 
 
 
