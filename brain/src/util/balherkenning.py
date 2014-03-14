@@ -33,8 +33,8 @@ pygame.init()
 
 lastreturn_goal = None
 lastreturn_ball = None
-lastreturn_goal_time = time.time()
-lastreturn_ball_time = time.time()
+lastreturn_goal_time = time.time()-5
+lastreturn_ball_time = time.time()-5
 
 def init_window():
     global window,screen,imgsize
