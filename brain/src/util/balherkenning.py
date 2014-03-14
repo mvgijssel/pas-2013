@@ -188,10 +188,6 @@ class RasterImage:
         self.p_minwaarde = 0.77 #* float((random.randint(80,130))/float(100))
         self.p_factor = 0.52 #* (float(random.randint(80,130))/float(100))
 
-        print("maxwaarde: " + str(self.p_maxwaarde))
-        print("minwaarde: " + str(self.p_minwaarde))
-        print("factor: " + str(self.p_factor))
-
         redpic = pygame.transform.scale(oldpic,(W,H))
         for i in range(0,W):
             for j in range(0,H):

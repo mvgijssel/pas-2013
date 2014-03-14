@@ -28,7 +28,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
         if (self.nao.is_er_bal() == True):
             self.set_finished()
-            self.step = 1
+            self.step = 0
             return
 
         action = seq[self.step]
@@ -39,8 +39,8 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         elif (action == "up"):
             self.nao.kijk_hoger(30)
         elif (action == "mid"):
-            self.nao.corrigeer_hoofd()
+            self.nao.look_horizontal()
 
         if (self.nao.is_er_bal() == True):
             self.set_finished()
-            self.step = 1
+            self.step = 0
