@@ -3,6 +3,8 @@ import time
 import almath
 import math
 
+from util.nao_settings import NaoSettings
+
 class Position:
 
     # maximum values for the joints
@@ -32,6 +34,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
     # instantiate all the user variables
     def implementation_init(self):
 
+        self.ball = NaoSettings.BALL_OBJECT
+
         # store the nao reference
         self.nao = self.body.nao(0)
 
@@ -43,6 +47,9 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         # store the start time
         self.start_time = time.time()
+
+        # time stamp for when nao head movement stops
+        self.stopped_moving = self.start_time
 
         # store the current time
         self.current_time = self.start_time
@@ -56,19 +63,24 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # the speed used by the nao for moving it's head
         self.y_speed = 0.05
 
+        # time out
+        self.time_out = 30
+
+        # the delay between states
+        self.state_delay = 3
+
         # set the deviation from the target position
         self.position_deviation = 2
-
-        # time out
-        self.time_out = 6
 
         # the sweep states
         # upper sweep
         self.states.append(Position(Position.LEFT, Position.TOP))
+        self.states.append(Position(Position.CENTER, Position.TOP))
         self.states.append(Position(Position.RIGHT, Position.TOP))
 
         # lower sweep
         self.states.append(Position(Position.RIGHT, Position.RIGHT_BOTTOM))
+        self.states.append(Position(Position.CENTER, Position.CENTER))
         self.states.append(Position(Position.LEFT, Position.LEFT_BOTTOM))
 
         # look straight ahead
@@ -90,7 +102,7 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.current_time = time.time()
 
         # try to get the ball
-        (recogtime, observation) = self.m.get_last_observation('ball')
+        (recogtime, observation) = self.m.get_last_observation(self.ball.name)
 
         # if ball is found
         if observation['is_found']:
@@ -110,7 +122,11 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
             # if the head is not moving, move the head
             if not self.is_head_moving():
 
-                self.switch_state()
+                #
+
+                if (self.current_time - self.stopped_moving) > self.state_delay:
+                    self.switch_state()
+
 
     # switch the state
     def switch_state(self):
@@ -187,8 +203,11 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
             # reset the timeout timer
             self.start_time = self.current_time
 
+            self.pause_time
+
             # head is not moving when position is reached
             return False
+
         else:
 
             # head is moving when position not reached
