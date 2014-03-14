@@ -54,7 +54,26 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.ball_seen = False
         self.goal_seen = False
 
+    def allOff(self):
+        self.finding_ball = False
+        self.approaching_ball = False
+        self.finding_goal = False
+        self.scoring_ball = False
+        self.allign_goal = False
+
+    def checkallOff(self):
+        if (self.finding_ball == False):
+            if (self.approaching_ball == False):
+                if (self.finding_ball == False):
+                    if (self.scoring_ball == False):
+                        if (self.allign_goal == False):
+                            return True
+        return False
+
     def implementation_update(self):
+
+        if (self.checkallOff() == True):
+            self.finding_ball = True
 
         ranIdle = random.randint(1,100)
         if (ranIdle == 5): # 1x per 10 seconden?
@@ -111,14 +130,14 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                     sound = random.choice(["target.wav","target2.wav","target3.wav"])
                     self.nao.zeg_dit(sound)
                     self.ball_seen = True
-                self.finding_ball = False
+                self.allOff()
                 self.approaching_ball = True
         elif (self.approaching_ball == True and verbal <= 0.05):
                 # ik ben bij de bal!
                 print("I am now at the ball. Now looking for goal.")
                 sound = random.choice(["ready.wav"])
                 self.nao.zeg_dit(sound)
-                self.approaching_ball = False
+                self.allOff()
                 self.ball_seen = False
                 self.finding_goal = True
         elif (self.approaching_ball == True):
@@ -142,7 +161,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                             self.nao.zeg_dit(sound)
                             self.goal_seen = True
                         print("I am now alligning to the goal.")
-                        self.finding_goal = False
+                        self.allOff()
                         self.allign_goal = True
                 elif (naam == "yellow goal"):
                     print("I see the yellow goal.")
@@ -152,7 +171,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                             self.nao.zeg_dit(sound)
                             self.goal_seen = True
                         print("I am now alligning to the goal.")
-                        self.finding_goal = False
+                        self.allOff()
                         self.allign_goal = True
                 elif (naam == "blue-side corner"):
                     print("I see the corner on the blue side.")
@@ -163,13 +182,13 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 print("I do not see the goal or a corner.")
         elif (self.allign_goal == True):
             print("there is a bug in \"allign goal\", so I'm just going to shoot.")
-            self.allign_goal = False
+            self.allOff()
             self.scoring_ball = True
             return
             if (abs(waargoal) < 0.25):
                 # de goal is recht voor me
                 print("The goal is now right in front of me. Let's score!")
-                self.allign_goal = False
+                self.allOff()
                 self.scoring_ball = True
         elif (self.scoring_ball == True):
             if (waargoal == -999):
