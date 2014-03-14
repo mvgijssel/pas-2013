@@ -64,7 +64,7 @@ class RasterImage:
     def getGoal(self):
         global lastreturn_goal,lastreturn_goal_time
         now = time.time()
-        if (lastreturn_goal_time >= now-1):
+        if (lastreturn_goal_time >= now-0.5):
             return lastreturn_goal
         oldpic = self.get_new_image()
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
@@ -161,7 +161,7 @@ class RasterImage:
     def getPos(self):
         global lastreturn_ball,lastreturn_ball_time
         now = time.time()
-        if (lastreturn_ball_time >= now-1):
+        if (lastreturn_ball_time >= now-0.5):
             return lastreturn_ball
         init_window()
         color = self.color

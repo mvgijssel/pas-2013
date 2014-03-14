@@ -30,7 +30,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             ("plukrgbfindball", "self.finding_ball == True and self.approaching_ball == False"),
             ("plukrgbapproachball", "self.approaching_ball == True and self.finding_ball == False and self.allign_goal == False"),
             ("plukrgbfindgoal", "self.finding_goal == True and self.allign_goal == False and self.finding_ball == False"),
-            ("plukrgballigngoal", "self.allign_goal == True and self.finding_goal == False and self.scoring_goal == False"),
+            ("plukrgballigngoal", "self.allign_goal == True and self.finding_goal == False and self.scoring_ball == False"),
             ("plukrgbscoregoal", "self.scoring_ball == True and self.allign_goal == False")
         ]
 
