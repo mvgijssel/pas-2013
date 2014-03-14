@@ -76,6 +76,10 @@ class RasterImage:
         highest_blue = -1
         lowest_yellow = 999
         highest_yellow = -1
+
+        middle_blue = 0
+        middle_yellow = 0
+
         MIN_NUM = 5 # minimum number of pixels of a color to be found
         for i in simplegrid:
             num_blue = 0
@@ -111,6 +115,7 @@ class RasterImage:
                     lowest_blue = ymin
                 if (ymax > highest_blue):
                     highest_blue = ymax
+                middle_blue += x
         if (len(found_yellow) > 0):
             for temp in found_yellow:
                 (x,ymin,ymax) = temp
@@ -118,20 +123,22 @@ class RasterImage:
                     lowest_yellow = ymin
                 if (ymax > highest_yellow):
                     highest_yellow = ymax
+                middle_yellow += x
+        middle_blue = middle_blue / len(found_blue)
+        middle_yellow = middle_yellow / len(found_yellow)
         if (len(found_blue) > 0 and len(found_yellow) > 0 and highest_blue < lowest_yellow):
             # found blue and yellow, blue above yellow
-            print("I see a corner: blue above yellow.")
+            return(("yellow-side corner",middle_yellow))
         elif (len(found_blue) > 0 and len(found_yellow) > 0 and highest_yellow < lowest_blue):
             # found blue and yellow, yellow above blue
-            print("I see a corner: yellow above blue.")
-        elif (len(found_blue) > 0 and len(found_yellow) > 0):
-            print("I see both blue and yellow, but I can't decide which is on top.")
+            return(("blue-side corner",middle_blue))
         elif (len(found_blue) > 0):
             # found blue
-            print("I see the blue goal.")
+            return(("blue goal",middle_blue))
         elif (len(found_yellow) > 0):
             # found blue
-            print("I see the yellow goal.")
+            return(("yellow goal",middle_yellow))
+        return None
 
 
     def getPos(self):
@@ -309,6 +316,8 @@ class RasterImage:
                 break
         if (found_red == False):
             print("----This might actually not be the red ball.----")
+            screen.blit(oldpic,(0,0))
+            pygame.display.flip()
             return (-999,-999)
 
         redpic.set_colorkey((0,0,0))
