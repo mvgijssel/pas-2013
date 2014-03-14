@@ -78,3 +78,11 @@ description = "Dummy behavior testing the color blob"
 [plukrgbfindgoal]
 postcondition = False
 description = "de goal zoeken op basis van RGB ipv HSV"
+
+[plukrgballigngoal]
+postcondition = False
+description = "met de goal allignen op basis van RGB ipv HSV"
+
+[plukrgbscoregoal]
+postcondition = False
+description = "in de goal schieten/lopen op basis van RGB ipv HSV"
