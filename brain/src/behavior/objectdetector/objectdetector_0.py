@@ -35,6 +35,7 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
     def implementation_init(self):
 
         # create the detectable objects
+        # surface of 20 is the lower bound!
         ball1 = DetectableObject('ball', 'balrood', 0.5, 40)
 
         # instantiate the array with target objects
@@ -45,8 +46,6 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
         # update the nao with the detectable objects
         self._nao.set_detectable_objects(self._target_objects)
-
-        pass
 
     def implementation_update(self):
 
