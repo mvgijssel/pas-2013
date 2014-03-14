@@ -8,26 +8,8 @@ import basebehavior.behaviorimplementation
 
 # for the time.time() method
 import time
+from util.nao_settings import NaoSettings
 
-class DetectableObject:
-
-    def __init__(self, name, target_color, time_interval, min_surface):
-
-        self.name = name
-        self.target_color = target_color
-        self.time_interval = time_interval
-        self.min_surface = min_surface
-        self.is_found = None
-        self.previous_is_found = False
-
-        # properties of the last observation
-        self.x = None
-        self.y = None
-        self.size = None
-        self.width = None
-        self.height = None
-
-        pass
 
 
 class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementation):
@@ -36,7 +18,7 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
         # create the detectable objects
         # surface of 20 is the lower bound!
-        ball1 = DetectableObject('ball', 'balrood', 0.5, 40)
+        ball1 = NaoSettings.BALL_OBJECT
 
         # instantiate the array with target objects
         self._target_objects = [ball1]
@@ -61,6 +43,9 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
     # try to detect an object
     # if detected add the object to memory
     def detect_object(self, obj):
+
+        # set the detection interval twice the framerate
+        obj.time_interval = 2 * NaoSettings.get_time_per_frame()
 
         # set the found default, False
         obj.is_found = False

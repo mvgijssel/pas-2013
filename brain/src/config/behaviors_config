@@ -86,3 +86,7 @@ description = "met de goal allignen op basis van RGB ipv HSV"
 [plukrgbscoregoal]
 postcondition = False
 description = "in de goal schieten/lopen op basis van RGB ipv HSV"
+
+[naocalibration]
+postcondition = False
+description = "Runs all the behaviour to calibrate the Nao"

@@ -9,7 +9,7 @@ import os
 import time
 
 from util.naovideo import VideoModule
-from util.nao_calibration import NaoCalibration
+from util.nao_settings import NaoSettings
 
 class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
@@ -29,20 +29,15 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         #define list of sub-behavior here
         self.findball = self.ab.findball({})
         self.objectdetector = self.ab.objectdetector({})
-
-        # self.selected_behaviors = [
-        #     ("objectdetector", "True"),
-        #     ("findball", "True"),
-        # ]
+        self.naocalibration = self.ab.naocalibration({})
 
         self.selected_behaviors = [
+            ("naocalibration", "True"),
             ("objectdetector", "True"),
+            ("findball", "True")
         ]
 
         self.restart_time = time.time()
-
-
-        self.naovideo = VideoModule(self.nao.get_robot_ip())
 
 
 

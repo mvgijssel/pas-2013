@@ -12,7 +12,7 @@ import numpy
 
 import util.nullhandler
 import util.loggingextra
-import util.vidmemreader
+import util.vidmemreader_extended
 import util.naovideo
 import util.sendsocket
 
@@ -31,7 +31,7 @@ class ColorblobExtended(AbstractVisionModule):
         self.logger = logging.getLogger("Borg.Brain.Vision.ColorblobExtended")
         super(ColorblobExtended, self).__init__(host, port)
         self.source = [source]
-        self.vid_mem_reader = util.vidmemreader.VidMemReader(self.source)
+        self.vid_mem_reader = util.vidmemreader_extended.VidMemReaderExtended(self.source)
         self.get_new_image()
         #Test code
         self.blobs = self.load_colors()  #{'Green': {'upper': [81, 204, 255], 'lower': [31, 43, 0]},'Yellow' : {'upper' : [33, 255, 255], 'lower': [0, 6, 255]}}
@@ -48,16 +48,7 @@ class ColorblobExtended(AbstractVisionModule):
         self.seconds_per_frame = None
 
 
-
-        #print self.load_colors()['Green']        
-
-
     ################ CUSTOM METHODS ################
-
-    def is_image_empty(self, img):
-
-        # only zeros is a black image, which is no image
-        return numpy.count_nonzero(img[:, :]) == 0
 
     def determine_seconds_per_frame(self):
 
@@ -71,7 +62,11 @@ class ColorblobExtended(AbstractVisionModule):
             self.seconds_per_frame = (current_time - self.start_time) / self.number_of_measurements
 
         # add the property to the new observation
+        self.add_property('name', 'framerate')
         self.add_property('seconds_per_frame', self.seconds_per_frame)
+
+        # store the observation
+        self.store_observation()
 
     ################ CUSTOM METHODS ################
 
@@ -92,18 +87,11 @@ class ColorblobExtended(AbstractVisionModule):
             #Convert BGR to HSV
             imageHSV = self.convert_to_HSV(image)
 
-            #Detect blobs in image
-            self.detect_blobs(imageHSV)
-
             # determine framerate!
             self.determine_seconds_per_frame()
 
-            print self.seconds_per_frame
-
-            # write the observation does it every time now, instead of only when the ball is found!
-            self.store_observation()
-
-
+            #Detect blobs in image
+            self.detect_blobs(imageHSV)
 
             #For debuging
             if self.DEBUG:
@@ -128,15 +116,13 @@ class ColorblobExtended(AbstractVisionModule):
     def get_new_image(self):
 
         """ Get new image from video shared memory """
-        img = self.vid_mem_reader.get_latest_image()[0]
+        (new_frame, images) = self.vid_mem_reader.get_latest_image()
 
-        # check if the image is empty
-        if not self.is_image_empty(img):
+        # when a new frame is received update number of measurements
+        if new_frame:
+           self.number_of_measurements += 1
 
-            # image detected! zo increase measurements
-            self.number_of_measurements += 1
-
-        return self.resize_image(numpy.asarray(img[:, :]))
+        return self.resize_image(numpy.asarray(images[0][:, :]))
 
     def resize_image(self, image):
         ''' Resize the original image '''
@@ -190,6 +176,7 @@ class ColorblobExtended(AbstractVisionModule):
 
         self.add_property('name', name)
         self.add_property('blobs', obs)
+        self.store_observation()
 
 
 def usage():
