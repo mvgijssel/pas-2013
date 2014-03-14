@@ -27,9 +27,9 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         self.nao.set_do_nothing_on_stop(True)
 
         #define list of sub-behavior here
-        self.findball = self.ab.findball({})
-        self.objectdetector = self.ab.objectdetector({})
-        self.naocalibration = self.ab.naocalibration({})
+        self.findball = self.ab.findball({'debug': True})
+        self.objectdetector = self.ab.objectdetector({'debug': False})
+        self.naocalibration = self.ab.naocalibration({'debug': True})
 
         self.selected_behaviors = [
             ("naocalibration", "True"),
