@@ -70,36 +70,69 @@ class RasterImage:
                 col = oldpic.get_at((i,j))
                 simplegrid[len(simplegrid)-1].append((col,(i,j)))
 
-        found_corner = False
-        found_goal = False
+        found_blue = []
+        found_yellow = []
+        lowest_blue = 999
+        highest_blue = -1
+        lowest_yellow = 999
+        highest_yellow = -1
+        MIN_NUM = 5 # minimum number of pixels of a color to be found
         for i in simplegrid:
-            block_blue = False
-            block_yellow = False
+            num_blue = 0
+            num_yellow = 0
+            low_blue = 999
+            high_blue = -1
+            low_yellow = 999
+            high_yellow = -1
             for j in i:
                 (col,(x,y)) = j
                 col = bestColor(col)
                 if (col == yellow):
-                    block_yellow = y
+                    num_yellow += 1
+                    if (y < low_yellow):
+                        low_yellow = y
+                    if (y > high_yellow):
+                        high_yellow = y
                 elif (col == blue):
-                    block_blue = y
-            if (block_blue != False and block_yellow != False):
-                if (block_blue < block_yellow):
-                    found_corner = "blue"
-                else:
-                    found_corner = "yellow"
-            elif (block_blue != False):
-                found_goal = "blue"
-            elif (block_yellow != False):
-                found_goal = "yellow"
+                    num_blue += 1
+                    if (y < low_blue):
+                        low_blue = y
+                    if (y > high_blue):
+                        high_blue = y
+            if (num_blue > MIN_NUM):
+                found_blue.append(i,low_blue,high_blue)
+            if (num_yellow > MIN_NUM):
+                found_yellow.append(i,low_yellow,high_yellow)
 
-        if (found_corner == "blue"):
-            print("I found the corner where the blue side is up.")
-        elif (found_corner == "yellow"):
-            print("I found the corner where the yellow side is up.")
-        elif (found_goal == "blue"):
-            print("I found the blue goal.")
-        elif (found_goal == "yellow"):
-            print("I found the yellow goal.")
+        if (len(found_blue) > 0):
+            for temp in found_blue:
+                (x,ymin,ymax) = temp
+                if (ymin < lowest_blue):
+                    lowest_blue = ymin
+                if (ymax > highest_blue):
+                    highest_blue = ymax
+        if (len(found_yellow) > 0):
+            for temp in found_yellow:
+                (x,ymin,ymax) = temp
+                if (ymin < lowest_yellow):
+                    lowest_yellow = ymin
+                if (ymax > highest_yellow):
+                    highest_yellow = ymax
+        if (len(found_blue) > 0 and len(found_yellow) > 0 and highest_blue < lowest_yellow):
+            # found blue and yellow, blue above yellow
+            print("I see a corner: blue above yellow.")
+        elif (len(found_blue) > 0 and len(found_yellow) > 0 and highest_yellow < lowest_blue):
+            # found blue and yellow, yellow above blue
+            print("I see a corner: yellow above blue.")
+        elif (len(found_blue) > 0 and len(found_yellow) > 0):
+            print("I see both blue and yellow, but I can't decide which is on top.")
+        elif (len(found_blue) > 0):
+            # found blue
+            print("I see the blue goal.")
+        elif (len(found_yellow) > 0):
+            # found blue
+            print("I see the yellow goal.")
+
 
     def getPos(self):
         init_window()
