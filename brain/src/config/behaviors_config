@@ -75,14 +75,6 @@ postcondition = False
 description = "Dummy behavior testing the color blob"
 
 # nieuwe behaviors
-[plukRGBmain]
+[plukrgbfindgoal]
 postcondition = False
-description = "simpel soccer behavior op basis van RGB ipv HSV"
-
-[plukRGBfindball]
-postcondition = False
-description = "vindt de bal door rond te kijken"
-
-[plukRGBapproachball]
-postcondition = False
-description = "loop naar de bal toe"
+description = "de goal zoeken op basis van RGB ipv HSV"

@@ -23,8 +23,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.plukrgbapproachball = self.ab.plukrgbapproachball({})
 
         self.selected_behaviors = [
-            ("plukrgbfindball", "self.seeball == False and self.at_ball == False"),
-            ("plukrgbapproachball", "self.seeball == True and self.at_ball == False")
+            ("plukrgbfindball", "self.seeball == False and self.at_ball == False and self.finding_goal == False"),
+            ("plukrgbapproachball", "self.seeball == True and self.at_ball == False and self.finding_goal == False")
         ]
 
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
@@ -35,6 +35,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         self.seeball = False
         self.at_ball = False
+        self.finding_goal = False
 
     def implementation_update(self):
 
@@ -76,27 +77,32 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             verbal = 999
 
 
-        if (waarbal == False):
+        if (self.finding_goal == False and waarbal == False):
             if (self.seeball == True):
                 # Hey, where did you go?
+                print("I have lost the ball.")
                 sound = random.choice(["target_lost1.wav","target_lost2.wav"])
                 self.nao.zeg_dit(sound)
                 self.seeball = False
-        else:
+                self.at_ball = False
+        elif (self.finding_goal == False):
             if (self.seeball == False):
                 # There you are!
+                print("I have found the ball.")
                 sound = random.choice(["target.wav","target2.wav","target3.wav"])
                 self.nao.zeg_dit(sound)
                 self.seeball = True
-        if (verbal <= 0.05):
+        if (self.finding_goal == False and verbal <= 0.05):
             if (self.at_ball == False):
                 # ik ben bij de bal!
+                print("I am now at the ball. Ready to allign to goal.")
                 sound = random.choice(["ready.wav"])
                 self.nao.zeg_dit(sound)
                 self.at_ball = True
-        else:
+        elif (self.find_goal == False):
             if (self.seeball == True):
                 # ik zie de bal, maar ik ben er niet
+                print("I see the ball, but I am not at the ball.")
                 sound = random.choice(["not_ready.wav"])
                 self.nao.zeg_dit(sound)
                 self.at_ball = False
