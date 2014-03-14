@@ -51,10 +51,10 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.states = []
 
         # the x speed used
-        self.x_speed = 0.1
+        self.x_speed = 0.05
 
         # the speed used by the nao for moving it's head
-        self.y_speed = 0.1
+        self.y_speed = 0.05
 
         # set the deviation from the target position
         self.position_deviation = 2
@@ -68,8 +68,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.states.append(Position(Position.RIGHT, Position.TOP))
 
         # lower sweep
-        self.states.append(Position(Position.LEFT, Position.LEFT_BOTTOM))
         self.states.append(Position(Position.RIGHT, Position.RIGHT_BOTTOM))
+        self.states.append(Position(Position.LEFT, Position.LEFT_BOTTOM))
 
         # look straight ahead
         self.states.append(Position(Position.CENTER, Position.CENTER))

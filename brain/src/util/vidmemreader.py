@@ -56,6 +56,7 @@ class VidMemReader():
         images = []
         mod_times = []
         vm_sources = ['kinect_rgb', 'kinect_depth', 'webcam', 'naovideo']
+
         for idx, source in enumerate(self.namelist):
             if source in vm_sources:
                 mtime, img = self.request_image(source)
