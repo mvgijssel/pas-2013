@@ -104,9 +104,9 @@ class RasterImage:
                     if (y > high_blue):
                         high_blue = y
             if (num_blue > MIN_NUM):
-                found_blue.append((i,low_blue,high_blue))
+                found_blue.append((x,low_blue,high_blue))
             if (num_yellow > MIN_NUM):
-                found_yellow.append((i,low_yellow,high_yellow))
+                found_yellow.append((x,low_yellow,high_yellow))
 
         if (len(found_blue) > 0):
             for temp in found_blue:
@@ -124,10 +124,12 @@ class RasterImage:
                 if (ymax > highest_yellow):
                     highest_yellow = ymax
                 middle_yellow += x
+
         if (len(found_blue) > 0):
             middle_blue = middle_blue / len(found_blue)
         if (len(found_yellow) > 0):
             middle_yellow = middle_yellow / len(found_yellow)
+
         if (len(found_blue) > 0 and len(found_yellow) > 0 and highest_blue < lowest_yellow):
             # found blue and yellow, blue above yellow
             return(("yellow-side corner",middle_yellow))
