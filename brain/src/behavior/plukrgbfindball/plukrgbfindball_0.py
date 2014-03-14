@@ -27,6 +27,11 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         if (self.step >= len(seq)):
             self.step = 0
 
+        if (self.nao.is_er_bal() == True):
+            self.set_finished()
+            self.step = 1
+            return
+
         action = seq[self.step]
         if (action == "turn"):
             self.nao.walk(0,0,1)
@@ -39,3 +44,4 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
         if (self.nao.is_er_bal() == True):
             self.set_finished()
+            self.step = 1

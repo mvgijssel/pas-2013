@@ -127,6 +127,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 print("I see the ball, but I am not at the ball.")
             else:
                 # ik zie de bal niet meer!
+                print("I don't see the ball anymore. Looking for ball now.")
                 self.ball_seen = False
                 self.finding_ball = True
                 self.approaching_ball = False
