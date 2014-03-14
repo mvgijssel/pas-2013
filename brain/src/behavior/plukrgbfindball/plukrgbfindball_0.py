@@ -20,7 +20,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_update(self):
 
-        seq = ["mid","up","down","turn"] #"up"
+        seq = ["mid","up","mid","down","turn"] #"up"
 
         self.step += 1
         if (self.step >= len(seq)):
