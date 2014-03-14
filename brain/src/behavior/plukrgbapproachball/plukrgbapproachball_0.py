@@ -65,9 +65,10 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 self.nao.kijk_lager()
                 dist = self.nao.hoe_ver_bal()
                 if (dist <= 0.05):
-                    # 5 cm of minder verderop
-                    print("de bal ligt op minder dan 5 cm, I loop er tegen aan.")
-                    self.nao.walk(0.5,0,0)
+                    # bal gevonden!
+                    print("bal op minder dan 5 cm")
+                    self.set_finished()
+                    return
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("ik zie de bal een eindje verderop.")
                 self.nao.kijk_hoger()

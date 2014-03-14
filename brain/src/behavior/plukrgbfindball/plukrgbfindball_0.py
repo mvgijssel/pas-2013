@@ -38,7 +38,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         elif (action == "down"):
             self.nao.kijk_lager(30)
         elif (action == "up"):
-            self.nao.kijk_hoger(10)
+            self.nao.kijk_hoger(5)
         elif (action == "mid"):
             self.nao.corrigeer_hoofd()
 
