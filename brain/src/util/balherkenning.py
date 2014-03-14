@@ -17,6 +17,7 @@ yellow = (255,255,0)
 blue = (0,0,255)
 green = (0,255,0)
 red = (255,0,0)
+pink = (255,150,150)
 white = (255,255,255)
 black = (0,0,0)
 colors = [yellow,blue,green,red,white,black]
@@ -203,7 +204,7 @@ class RasterImage:
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
-                        if (bestColor(col) == red):
+                        if (bestColor(col) == red or bestColor(col) == pink):
                             redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
@@ -336,8 +337,12 @@ class RasterImage:
                 print("----I'm quite certain this is the red ball.----")
                 found_red = True
                 break
+            elif (best == pink):
+                print("----It's pink, but I figure that's just as good.----")
+                found_red = True
+                break
         if (found_red == False):
-            print("----This might actually not be the red ball.----")
+            print("----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
             screen.blit(oldpic,(0,0))
             pygame.display.flip()
             lastreturn_ball = (-999,-999)
