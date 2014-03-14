@@ -44,8 +44,11 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
     # if detected add the object to memory
     def detect_object(self, obj):
 
-        # set the detection interval twice the framerate
-        obj.time_interval = 2 * NaoSettings.get_time_per_frame()
+        if NaoSettings.get_time_per_frame():
+
+            # set the detection interval twice the framerate
+            obj.time_interval = 2 * NaoSettings.get_time_per_frame()
+
 
         # set the found default, False
         obj.is_found = False
@@ -75,7 +78,8 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
                     obj.is_found = True
 
         # print messages about the object and the largest observation
-        self.print_messages(obj, largest_observation)
+        if self.debug:
+            self.print_messages(obj, largest_observation)
 
         # update memory using the object setting and the largest observation
         self.update_memory(obj, largest_observation)
