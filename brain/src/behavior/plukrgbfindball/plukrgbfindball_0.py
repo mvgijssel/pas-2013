@@ -5,7 +5,6 @@ this is an automatically generated template, if you don't rename it, it will be 
 '''
 
 import basebehavior.behaviorimplementation
-import random,time
 
 class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
@@ -21,7 +20,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_update(self):
 
-        seq = ["up","mid","down","mid","turn"]
+        seq = ["mid","up","down","turn"]
 
         self.step += 1
         if (self.step >= len(seq)):
@@ -38,7 +37,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         elif (action == "down"):
             self.nao.kijk_lager(30)
         elif (action == "up"):
-            self.nao.kijk_hoger(5)
+            self.nao.kijk_hoger(30)
         elif (action == "mid"):
             self.nao.corrigeer_hoofd()
 

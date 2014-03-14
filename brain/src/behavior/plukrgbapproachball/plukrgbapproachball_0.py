@@ -34,7 +34,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             self.set_finished()
             return
         else:
-            if (self.nao.is_er_bal() == False):
+            if (posx == -999 or posy == -999):
                 # er is geen bal, fuck die shit.
                 self.set_finished()
                 return
@@ -60,15 +60,6 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 else:
                     print("Ik zie de bal precies rechts.")
                 self.nao.walk(0,0,-0.25)
-            elif (posx > -0.3 and posx < .3 and posy > 0):
-                print("ik zie de bal vlak voor me.")
-                self.nao.kijk_lager()
-                dist = self.nao.hoe_ver_bal()
-                if (dist <= 0.05):
-                    # bal gevonden!
-                    print("bal op minder dan 5 cm")
-                    self.set_finished()
-                    return
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("ik zie de bal een eindje verderop.")
                 self.nao.kijk_hoger()

@@ -31,7 +31,10 @@ pygame.init()
 # (posx,posy) = detector.getPos()
 #
 
-
+lastreturn_goal = None
+lastreturn_ball = None
+lastreturn_goal_time = time.time()
+lastreturn_ball_time = time.time()
 
 def init_window():
     global window,screen,imgsize
@@ -58,6 +61,10 @@ class RasterImage:
         return img
 
     def getGoal(self):
+        global lastreturn_goal,lastreturn_goal_time
+        now = time.time()
+        if (lastreturn_goal_time < now-1):
+            return lastreturn_goal
         oldpic = self.get_new_image()
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
@@ -130,22 +137,31 @@ class RasterImage:
         if (len(found_yellow) > 0):
             middle_yellow = middle_yellow / len(found_yellow)
 
+
+        toreturn = None
         if (len(found_blue) > 0 and len(found_yellow) > 0 and highest_blue < lowest_yellow):
             # found blue and yellow, blue above yellow
-            return(("yellow-side corner",middle_yellow))
+            toreturn = ("yellow-side corner",middle_yellow)
         elif (len(found_blue) > 0 and len(found_yellow) > 0 and highest_yellow < lowest_blue):
             # found blue and yellow, yellow above blue
-            return(("blue-side corner",middle_blue))
+           toreturn = ("blue-side corner",middle_blue)
         elif (len(found_blue) > 0):
             # found blue
-            return(("blue goal",middle_blue))
+           toreturn = ("blue goal",middle_blue)
         elif (len(found_yellow) > 0):
             # found blue
-            return(("yellow goal",middle_yellow))
-        return None
+           toreturn = ("yellow goal",middle_yellow)
+
+        lastreturn_goal = toreturn
+        lastreturn_goal_time = time.time()
+        return toreturn
 
 
     def getPos(self):
+        global lastreturn_ball,lastreturn_ball_time
+        now = time.time()
+        if (lastreturn_ball_time < now-1):
+            return lastreturn_ball
         init_window()
         color = self.color
         oldpic = self.get_new_image()
@@ -239,6 +255,8 @@ class RasterImage:
                 if (crude == 0):
                     screen.blit(oldpic,(0,0))
                     pygame.display.flip()
+                    lastreturn_ball = (-999,-999)
+                    lastreturn_ball_time = time.time()
                     return (-999,-999)
                 else:
                     pass
@@ -322,6 +340,8 @@ class RasterImage:
             print("----This might actually not be the red ball.----")
             screen.blit(oldpic,(0,0))
             pygame.display.flip()
+            lastreturn_ball = (-999,-999)
+            lastreturn_ball_time = time.time()
             return (-999,-999)
 
         redpic.set_colorkey((0,0,0))
@@ -329,7 +349,10 @@ class RasterImage:
         screen.blit(redpic,(0,0))
         pygame.display.flip()
 
-        return ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
+        toreturn = ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
+        lastreturn_ball = toreturn
+        lastreturn_ball_time = time.time()
+        return toreturn
 
 def getDist(defined,actual):
     (b1,g1,r1,a) = actual
