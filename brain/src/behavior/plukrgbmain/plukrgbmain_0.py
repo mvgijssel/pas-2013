@@ -162,6 +162,10 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             else:
                 print("I do not see the goal or a corner.")
         elif (self.allign_goal == True):
+            print("there is a bug in \"allign goal\", so I'm just going to shoot.")
+            self.allign_goal = False
+            self.scoring_ball = True
+            return
             if (abs(waargoal) < 0.25):
                 # de goal is recht voor me
                 print("The goal is now right in front of me. Let's score!")

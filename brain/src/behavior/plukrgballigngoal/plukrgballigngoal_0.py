@@ -25,17 +25,17 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
         self.nao.kijk_lager(60)
         (posx,posy) = self.nao.waar_is_bal()
         if (posx == -999 or posy == -999):
-            self.set_finished()
+            self.nao.kijk_hoger(5)
         elif (posy > 0):
-            self.nao.walk(-0.3,0,0)
+            self.nao.walk(0.3,0,0)
         elif (posy < 0):
             self.nao.look_horizontal()
             seen = self.nao.waar_goal()
             if (seen != None):
                 if (seen > 0):
-                    self.nao.walk(0,0.1,-0.25)
+                    self.nao.walk(0,-0.1,-0.25)
                 else:
-                    self.nao.walk(0,-0.1,0.25)
+                    self.nao.walk(0,0.1,0.25)
 
 
 
