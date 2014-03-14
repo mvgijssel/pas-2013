@@ -90,3 +90,7 @@ description = "in de goal schieten/lopen op basis van RGB ipv HSV"
 [naocalibration]
 postcondition = False
 description = "Runs all the behaviour to calibrate the Nao"
+
+[aligntorso]
+postcondition = False
+description = "Aligns the nao torso with the ball"
