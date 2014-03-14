@@ -100,9 +100,9 @@ class RasterImage:
                     if (y > high_blue):
                         high_blue = y
             if (num_blue > MIN_NUM):
-                found_blue.append(i,low_blue,high_blue)
+                found_blue.append((i,low_blue,high_blue))
             if (num_yellow > MIN_NUM):
-                found_yellow.append(i,low_yellow,high_yellow)
+                found_yellow.append((i,low_yellow,high_yellow))
 
         if (len(found_blue) > 0):
             for temp in found_blue:
