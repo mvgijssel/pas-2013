@@ -792,9 +792,16 @@ class Nao(object):
 
     # toegevoegd door paul-luuk: functie voor het vinden van de bal
     def check_goal(self):
-        # returns True (corner seen) or False (corner not seen)
+        # returns the name of the goal or corner seen
         seen = self.detector.getGoal()
-        return seen # returns True or False
+        return seen
+    def waar_goal(self):
+        seen = self.check_goal()
+        if (seen != None):
+            (name,x) = seen
+            return x
+        else:
+            return -999
     def waar_is_bal(self):
         # returned (x,y) waar de bal is op het scherm
         # x en y zijn tussen -1 en 1, waar (0,0) het midden van het scherm is,
