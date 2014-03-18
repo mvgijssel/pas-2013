@@ -5,7 +5,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 '''
 
 import basebehavior.behaviorimplementation
-import random
+import random,time
 
 class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
@@ -21,6 +21,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
 
     def implementation_update(self):
 
+        time.sleep(0.5)
 
         (posx,posy) = self.nao.waar_is_bal()
         print("x: " + str(posx) + ", y: " + str(posy))
