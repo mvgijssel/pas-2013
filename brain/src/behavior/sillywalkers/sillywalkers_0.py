@@ -8,6 +8,9 @@ import basebehavior.behaviorimplementation
 import os
 import time
 
+from util.naovideo import VideoModule
+from util.nao_settings import NaoSettings
+
 class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     '''this is a behavior implementation template'''
@@ -18,37 +21,57 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
     def implementation_init(self):
 
         # get the nao reference
+        self.nao = self.body.nao(0)
 
-        #define list of sub-behavior here
-        self.findball = self.ab.findball({})
-        self.objectdetector = self.ab.objectdetector({})
+        # get the ball object
+        self.ball = NaoSettings.BALL_OBJECT
 
+        # when the nao is done, don't do anything. Don't sit down
+        self.nao.set_do_nothing_on_stop(True)
+
+        # is a hack, should be an external behaviour which stands up when nao isn't standing
+        self.nao.complete_behavior("standup")
+
+        # instantiate the behaviours, acts as a reset
+        self.instantiate_behaviours()
+
+        # define all the beheviours with start conditions
         self.selected_behaviors = [
+            ("naocalibration", "True"),
             ("objectdetector", "True"),
             ("findball", "True"),
+            ("aligntorso", "self.findball.is_finished()"),
+            ("approachball", "self.aligntorso.is_finished()")
         ]
 
         self.restart_time = time.time()
 
-        #Select Nao to use:
-        self.nao = self.body.nao(0)
-        self.nao.say("Lets play soccer!")
-
-        # idea:
-        # - one behaviour which walks towards whatever is in the center of the screen
-        # - another behaviour which centers the field of view while rotating the head
-        # - rotate the nao based on the rotation of the head to correct the course it is walking
-
-
 
     def implementation_update(self):
 
+        # if the approach ball fails
+        if self.approachball.is_failed():
+
+            # restart findball, aligntorso, approachball
+
+            # reset all the behaviours
+            self.instantiate_behaviours()
 
 
+    def instantiate_behaviours(self):
 
-        pass
+        # set the debug flag
+        self.debug = True
 
+        # NEED BEHAVIOUR FOR STANDING BACK UP
 
+        # DO WE NEED TO MANUALLE STOP THE RUNNING BEHAVIOURS STILL RUNNING?
 
+        #define list of sub-behavior here
+        self.naocalibration = self.ab.naocalibration({'debug': False})
+        self.objectdetector = self.ab.objectdetector({'debug': False})
+        self.findball = self.ab.findball({'debug': True})
 
-
+        # the calling of self.ab.aligntorso({'debug': False}) creates a new instance, and restarts a behaviour
+        self.aligntorso = self.ab.aligntorso({'debug': True})
+        self.approachball = self.ab.approachball({'debug', True})

@@ -53,13 +53,28 @@ class Nao(object):
             self.__BallTracker = None
             self.__Navigation = None
             self.simulation = True
+        try:
+            self.__Video = ALProxy("ALVideoDevice", robot_ip, int(port))
+            # Subscribe to video proxy with arguments:
+            # 0 = kQQVGA
+            # 13 = kBGRColorSpace
+            #self.camera_name = self.__Video.subscribeCamera("NAOvideo", 0, 0, 13, 30)
+            #self.vidsource = naovideo.VideoModule(IP=self.__robot_ip, resolution="160x120", output="160x120", camera=0)
+        except:
+            print "[nao.py] Failed to make video proxy."
+        #print self.vidsource.get_proxy_name()
+        #print 'Subscribed camera name: ' + str(self.camera_name)
         self.__Motion = ALProxy("ALMotion", robot_ip, int(port))
         self.__Memory = ALProxy("ALMemory", robot_ip, int(port))
         self.__Video = ALProxy("ALVideoDevice", robot_ip, int(port))
         self.__Leds = ALProxy("ALLeds", robot_ip, int(port))
         self.__behaviorIDs = {}
         self.__stop_crouch = True
+        self.__stop_do_nothing = False
         self.__nobody = nobody
+
+        # toegevoegd door paul-luuk: audio
+        self.__Audio = ALProxy("ALAudioPlayer",robot_ip,9559);
 
         # toegevoegd door paul-luuk: initialisatie van de balherkenner
         self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.get_robot_ip()))
@@ -75,6 +90,16 @@ class Nao(object):
         #Create LED Groups for NAO eyes or ears
         self.setLedsGroup()
 
+        hasFallenEventHistory = self.__Memory.getEventHistory("robotHasFallen")
+        self.robotHasFallen_prev_time = hasFallenEventHistory[-1][1]
+
+    def update(self):
+        hasFallenEventHistory = self.__Memory.getEventHistory("robotHasFallen")
+        if hasFallenEventHistory[-1][1] > self.robotHasFallen_prev_time:
+            self.robotHasFallen_prev_time = hasFallenEventHistory[-1][1]
+            return [{'name':'naoHasFallen', 'time': time.time(), 'property_dict': {'naoHasFallen': 'True'}}]
+        return []
+
 
     def __del__(self):
         self.logger.info("NAO controller stopping, de-enslaving NAO")
@@ -83,16 +108,28 @@ class Nao(object):
             self.__Sonar.unsubscribe("Sonar")
 
     def stop(self):
+        sound = random.choice(["end_song.mp3","bye1.wav","bye2.wav","bye3.wav","bye4.wav","bye5.wav"])
+        self.zeg_dit(sound)
+
         if self.__nobody:
+            return
+
+        if self.__stop_do_nothing:
             return
 
         if self.__stop_crouch:
             self.sit_down()
         else:
-            self.start_behavior('sitdown', True)
+            self.start_behavior("sitdown", False)
             time.sleep(10)
+
+        '''if self.__Video:
+            # Delete video proxy if one was created
+            self.__Video.unsubscribe(self.camera_name)'''
+
         print "De-enslaving Nao"
         self.set_stifness(['Body'], [0], [0.25])
+
     def setLedsGroup(self, names = None):
         if not names:
             # Create a new group
@@ -109,6 +146,9 @@ class Nao(object):
             
     def set_crouch_on_stop(self, crouch=True):
         self.__stop_crouch = crouch
+
+    def set_do_nothing_on_stop(self, stop=True):
+        self.__stop_do_nothing = stop
 
     def move(self, Joint, Angle, Speed):
         self.__Motion.setAngles(Joint, Angle, Speed)
@@ -386,6 +426,7 @@ class Nao(object):
         # Perform te movement
         self.__Motion.setAngles(names, angles, max_speed)
 
+
     def get_angles(self, names, radians=False):
         useSensors  = False     # Cannot use sensors in simulation :(
         angles = self.__Motion.getAngles(names, useSensors)
@@ -498,6 +539,29 @@ class Nao(object):
         # Disable stiffness of the arms, but not the legs
         self.set_stifness(['LArm', 'RArm', 'Head'], [0, 0, 0], [0.25, 0.25, 0.25])
 
+    def setup_camera_parameters(self):
+        '''
+        Set the NAO's camera parameters to default values.
+        '''
+        print "Camera params updated"
+        #self.__Video.setParam(5, 5)                # FPS
+
+        # 0 = Disabled, 1 = Enabled
+        self.__Video.setParam(11, 0)                # Auto exposition
+        self.__Video.setParam(12, 0)                # Auto white balance
+        self.__Video.setParam(13, 0)                # Auto gain
+
+        self.__Video.setParam(17, 504)              # Exposure
+        self.__Video.setParam(6, 54)                # Gain
+
+        self.__Video.setParam(4, 64)                # Red chroma
+        self.__Video.setParam(5, 190)               # Blue chroma
+        self.__Video.setParam(0, 128)               # Brightness
+        self.__Video.setParam(1, 64)                # Contrast
+        self.__Video.setParam(2, 128)               # Saturation
+        self.__Video.setParam(3, 0)                 # Hue
+
+
     def look_down(self):
         """
         Makes the Nao look completely down.
@@ -511,6 +575,7 @@ class Nao(object):
         """
         self.get_proxy("motion").setStiffnesses("Head", 1.0)
         self.get_proxy("motion").angleInterpolation("HeadPitch", 0, 1.0, True)
+
 
     def sit_down(self):
         """
@@ -695,6 +760,16 @@ class Nao(object):
 
     ################################# CUSTOM CODE #################################
 
+    def get_angles_sensors(self, names, radians=False):
+
+        useSensors  = True
+
+        angles = self.__Motion.getAngles(names, useSensors)
+
+        if not radians:
+            angles = [x / self.TO_RAD for x in angles]
+        return angles
+
     # get the reference to the detectable object
     def get_detectable_object(self, name):
 
@@ -716,45 +791,54 @@ class Nao(object):
 
 
     # toegevoegd door paul-luuk: functie voor het vinden van de bal
+    def check_goal(self):
+        # returns the name of the goal or corner seen
+        seen = self.detector.getGoal()
+        return seen
+    def waar_goal(self):
+        seen = self.check_goal()
+        if (seen != None):
+            (name,x) = seen
+            return x
+        else:
+            return -999
     def waar_is_bal(self):
         # returned (x,y) waar de bal is op het scherm
         # x en y zijn tussen -1 en 1, waar (0,0) het midden van het scherm is,
         # (-1,-1) links boven en (1,1) rechts onder
         (posx,posy) = self.detector.getPos()
         return (posx,posy)
+    def is_er_bal(self):
+        # returned of er een bal in beeld is
+        (posx,posy) = self.waar_is_bal()
+        return ((posx == -999) == False)
     def hoe_ver_bal(self):
         # returned afstand van bal (in meters), maar werkt alleen als de bal in het midden van het blikveld ligt!
         # is niet nauwkeurig, alleen een indicatie. Moet worden getest om te zien wat de afwijking is.
         # afstand (cm) = tan(hoek) * 45cm (want nao camera is 45cm hoog)
         hoekhoofd = self.get_angles(['HeadPitch'], True)[0]
-        dist = float(math.tan(float(-1 * hoekhoofd)) * 0.45)
+        dist = float(math.tan(float(hoekhoofd)) * 0.45)
         return dist
-    def loop_naar_bal(self):
-        # rekent afstand uit, en loopt dan die afstand vooruit
-        dist = self.hoe_ver_bal() * 10
-        print("Ik schat de afstand zo'n " + str(dist) + " meter.")
-        self.walk(float(dist * 0.5),0,0)
-    def zoek_bal(self):
-        # draai tot je hem ziet, moet later beter
-        choice = random.choice(["turn left","turn right","look down","look down","look up"])
-        if (choice == "turn left"):
-            self.walk(0,0,1)
-        elif (choice == "turn right"):
-            self.walk(0,0,-1)
-        elif (choice == "look down"):
-            self.kijk_lager()
-        elif (choice == "look up"):
-            self.kijk_hoger()
-    def kijk_hoger(self):
-        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
-        pitch = HEAD_PITCH[0] - 0.05
+    def kijk_hoger(self,amount=1):
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        pitch = HEAD_PITCH - (0.05 * amount)
+        pitch = max(pitch,math.radians(-35))
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
-    def kijk_lager(self):
-        HEAD_PITCH = self.get_angles(['HeadPitch'], True)
-        pitch = HEAD_PITCH[0] + 0.05
+        self.corrigeer_hoofd()
+    def kijk_lager(self,amount=1):
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        pitch = HEAD_PITCH + (0.05 * amount)
+        pitch = min(pitch,math.radians(45))
         self.set_angles(['HeadPitch'], [pitch], 0.2, radians=True)
+    def corrigeer_hoofd(self):
+        # zet hoofd in het midden als het te hoog kijkt
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        if (HEAD_PITCH < -0.5):
+            self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
 
-
+    def zeg_dit(self,file):
+        print("sound: " + str(file))
+        self.__Audio.post.playFile('/home/nao/sounds/' + file)
 #########
 # NOTES #
 #########

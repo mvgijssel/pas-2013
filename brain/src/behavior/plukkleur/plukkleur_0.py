@@ -16,53 +16,42 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.nao.say("Test Mode Us: Sook bahl.")
-        self.timer = 20
+        self.nao.say("Test: How often do I see the ball?")
+        self.timer = 30
         self.nao.complete_behavior("standup")
         self.nao.look_at(0.5,0.75)
-
-        self.selected_behaviors = [
-            ("sw-pluk-findball", "True")
-        ]
-
 
     def implementation_update(self):
 
         # Check for postcondition.
         # It is currently never set, so you'll have to stop the behavior manually by pressing Enter or Ctrl-C in the Terminal.
         # Fixing this to detect any goal scored and then stopping might be one of your improvements for this software.
-        if (self.timer < 5):
+        if (self.timer < 1):
             self.timer += 1
+            if (self.timer%10 == 0):
+                print("next test in " + str(int(self.timer/10)) + " seconds.")
             return
         else:
             self.timer = 0
 
+        print("")
+
+        #print("Ik kijk nu of ik een bal zie...")
+        #print("")
         (posx,posy) = self.nao.waar_is_bal()
-        print("x: " + str(posx) + ", y: " + str(posy))
-        if (abs(posx) <= 0.3 and abs(posy) <= 0.1):
-            # ligt in het midden van blikveld: loop er naar toe
-            print("ik zie de bal. Ik loop er naar toe.")
-            self.nao.loop_naar_bal()
-        else:
-            if (posx == -999 or posy == -999):
-                #self.nao.say("Ik zie de bal niet.")
-                print("Ik zie de bal niet. Ik zoek verder.")
-                self.nao.zoek_bal()
-            elif (posx < -0.3):
-                print ("Ik zie de bal links boven.")
-                self.nao.walk(0,0,0.25)
-            elif (posx >= 0.3):
-                print ("Ik zie de bal rechts boven.")
-                self.nao.walk(0,0,-0.25)
-            elif (posx > -0.3 and posx < .3 and posy > 0):
-                print("ik zie de bal vlak voor me.")
-                self.nao.kijk_lager()
-                dist = self.nao.hoe_ver_bal()
-                if (dist <= 0.05):
-                    # 5 cm of minder verderop
-                    print("de bal ligt op minder dan 5 cm, I loop er tegen aan.")
-                    self.nao.walk(0.5,0,0)
-            elif (posx > -0.3 and posx < 0.3 and posy < 0):
-                print("ik zie de bal een eindje verderop.")
-                self.nao.kijk_hoger()
+        self.nao.check_goal()
+        #if ((posx,posy) == (-999,-999)):
+        #    print("Ik zie GEEN bal.")
+        #else:
+        #    print("Ik zie WEL een bal.")
+
+        #print("")
+        #print("Ik kijk nu of ik een hoek zie...")
+        #print("")
+        #seen = self.nao.zie_hoek()
+        #if (seen == True):
+        #    print("Ik zie WEL een hoek")
+        #else:
+        #    print("Ik zie GEEN hoek")
+
         return

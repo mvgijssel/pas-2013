@@ -26,7 +26,8 @@ class HSVRangeFinder():
         print "**************************"
     
         # Get Nao video source
-        self.vidsource = naovid.VideoModule(IP=self.nao_ip, resolution="160x120", output="160x120", camera=0, port=9559)
+        self.camera_ID = 1
+        self.vidsource = naovid.VideoModule(IP=self.nao_ip, resolution="160x120", output="160x120", camera=self.camera_ID)
         
         # Create windows
         cv2.namedWindow('Nao video', cv2.WINDOW_NORMAL)
@@ -68,6 +69,7 @@ class HSVRangeFinder():
         print "**************************"
         
         print "If you want to save a color, focus on a window and press 'ENTER'."
+        print "Switching cameras can be done with 'SPACE BAR'."
         print "When done, press 'ESC' to stop and save the colors to a file."
         
     # Changing parameters
@@ -158,6 +160,17 @@ class HSVRangeFinder():
         elif k == 10 or k == 1048586:
             # Pressed: Enter
             self.saveColor()
+        elif k == 32 or k == 1048608:
+            # Pressed: Space Bar
+            self.camera_ID -= 1
+            if self.camera_ID < 0:
+                self.camera_ID = 1
+            self.vidsource.change_camera(camera=self.camera_ID)
+        elif k == 65535 or k == 1114111: 
+            self.lower_bound = np.array([255, 255, 255], dtype=np.uint8)
+            self.upper_bound = np.array([0, 0, 0], dtype=np.uint8)
+            self.updateSliders()
+            
     
     def saveColor(self):
         new_color_name = ""
