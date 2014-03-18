@@ -172,7 +172,7 @@ class RasterImage:
 
 
     def getPos(self):
-        global lastreturn_ball,lastreturn_ball_time
+        global lastreturn_ball,lastreturn_ball_time,lastsucces_bal_point,lastsucces_bal
         now = time.time()
         if (lastreturn_ball_time >= now-time_buffer):
             return lastreturn_ball_time
