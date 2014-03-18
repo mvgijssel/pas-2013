@@ -17,6 +17,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
+        self.laatst = None
 
     def implementation_update(self):
 
@@ -36,30 +37,49 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
         else:
             if (posx == -999 or posy == -999):
                 # er is geen bal, fuck die shit.
-                self.set_finished()
+                if (self.laatst == None):
+                    self.set_finished()
+                elif (self.laatst == "links"):
+                    self.nao.walk(0,0,-0.15)
+                elif (self.laatst == "rechts"):
+                    self.nao.walk(0,0,0.15)
+                elif (self.laatst == "boven"):
+                    self.nao.kijk_lager(5)
+                elif (self.laatst == "onder"):
+                    self.nao.kijk_hoger(5)
                 return
             elif (posx < -0.3):
                 if (posy < -0.1):
                     print ("Ik zie de bal links boven.")
                     dist = abs(posy * 10)
                     self.nao.kijk_hoger(dist)
+                    self.laatst = "boven"
                 elif (posy > 0.1):
                     print ("Ik zie de bal links onder.")
                     dist = abs(posy * 10)
                     self.nao.kijk_lager(dist)
+                    self.laatst = "onder"
                 else:
                     print("Ik zie de bal precies links.")
-                self.nao.walk(0,0,0.25)
+                    self.nao.walk(0,0,0.25)
+                    self.laatst = "links"
             elif (posx >= 0.3):
                 if (posy < -0.1):
                     print ("Ik zie de bal rechts boven.")
-                    self.nao.kijk_hoger()
+                    dist = abs(posy * 10)
+                    self.nao.kijk_hoger(dist)
+                    self.laatst = "boven"
                 elif (posy > 0.1):
                     print ("Ik zie de bal rechts onder.")
-                    self.nao.kijk_lager()
+                    dist = abs(posy * 10)
+                    self.nao.kijk_lager(dist)
+                    self.laatst = "onder"
                 else:
                     print("Ik zie de bal precies rechts.")
-                self.nao.walk(0,0,-0.25)
+                    self.nao.walk(0,0,-0.25)
+                    self.laatst = "rechts"
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("ik zie de bal een eindje verderop.")
-                self.nao.kijk_hoger()
+                dist = abs(posy * 10)
+                self.nao.kijk_hoger(dist)
+                self.laatst = "boven"
