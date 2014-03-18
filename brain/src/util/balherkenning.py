@@ -29,9 +29,10 @@ reds = [red]
 
 for color in colors:
     (r,g,b) = color
-    r = r / (r+g+b)
-    g = g / (r+g+b)
-    b = b / (r+g+b)
+    total = (r+g+b)
+    r = r / max(1,total)
+    g = g / max(1,total)
+    b = b / max(1,total)
     color = (r,g,b)
 #colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
 #reds = [red,pink,lightpink]
@@ -383,9 +384,9 @@ class RasterImage:
 def getDist(defined,actual):
     (b1,g1,r1,a) = actual
     total = b1 + g1 + r1
-    b1 = b1 / total
-    g1 = g1 / total
-    r1 = r1 / total
+    b1 = b1 / max(1,total)
+    g1 = g1 / max(1,total)
+    r1 = r1 / max(1,total)
     (r2,g2,b2) = defined
     distR = abs(r1 - r2)
     distB = abs(b1 - b2)
