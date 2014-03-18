@@ -344,7 +344,7 @@ class RasterImage:
         found_red = False
         for win in wins:
             best = bestColor(win)
-            print("kleur dists (R,G,B) :" + str(getDists(red,win)))
+            print("kleur dists (R,G,B) :" + str(getDists(red,win)) + ", totaldist: " + str(getDist(red,win)))
             if (reds.count(best) > 0):
                 print("----I'm quite certain this is the red ball.----")
                 found_red = True
