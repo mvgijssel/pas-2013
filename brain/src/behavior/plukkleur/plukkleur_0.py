@@ -38,6 +38,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             sound = random.choice(["target.wav","target2.wav","target3.wav"])
             self.nao.zeg_dit(sound)
             self.found = True
+            self.plukrgbfindball.set_finished()
         elif (self.found == True and (posx == -999 or posy == -999)):
             print("bal kwijt: verder gaan met zoeken")
             sound = random.choice(["target_lost1.wav","target_lost2.wav"])
