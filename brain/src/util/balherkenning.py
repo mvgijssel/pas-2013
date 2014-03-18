@@ -21,7 +21,8 @@ pink = (255,150,150)
 white = (255,255,255)
 black = (0,0,0)
 greybrown = (150,130,130)
-colors = [yellow,blue,green,red,white,black,greybrown]
+darkgreen = (30,90,20)
+colors = [yellow,blue,green,red,white,black,greybrown,darkgreen]
 
 pygame.init()
 
