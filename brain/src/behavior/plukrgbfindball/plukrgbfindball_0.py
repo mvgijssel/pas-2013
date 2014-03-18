@@ -22,17 +22,11 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_update(self):
 
-        seq = ["mid","wait","up","wait","mid","wait","down","wait","turn"] #"up"
+        seq = ["mid","wait","mid","wait","down","wait","turn"]
 
         self.step += 1
         if (self.step >= len(seq)):
             self.step = 0
-
-        if (self.nao.is_er_bal() == True):
-            print("                             ::ending \"findball\", ball is found.::")
-            self.set_finished()
-            self.step = 0
-            return
 
         action = seq[self.step]
         if (action == "turn"):
