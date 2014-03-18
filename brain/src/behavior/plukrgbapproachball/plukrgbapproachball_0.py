@@ -68,7 +68,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                     self.nao.walk(0,0,-0.25)
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("approach bal: ik zie de bal een eindje verderop.")
-                dist = abs(self.nao.hoe_ver_bal() * 10)
+                dist = abs(self.nao.hoe_ver_bal())
                 #self.nao.kijk_hoger(dist)
                 self.nao.walk(float(dist * 0.2),0,0)
             else:
