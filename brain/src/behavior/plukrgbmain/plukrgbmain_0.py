@@ -34,6 +34,13 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             ("plukrgbscoregoal", "self.scoring_ball == True and self.allign_goal == False")
         ]
 
+        x = 0 if (self.finding_ball == True and self.approaching_ball == False) else -1
+        x = 1 if (self.approaching_ball == True and self.finding_ball == False and self.allign_goal == False) else -1
+        x = 2 if (self.finding_goal == True and self.allign_goal == False and self.finding_ball == False) else -1
+        x = 3 if (self.allign_goal == True and self.finding_goal == False and self.scoring_ball == False) else -1
+        x = 4 if (self.scoring_ball == True and self.allign_goal == False) else -1
+
+
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
         sound = random.choice(["deploy1.wav","deploy2.wav"])
         self.nao.zeg_dit(sound)

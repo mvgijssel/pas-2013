@@ -36,7 +36,7 @@ lastreturn_goal = (-999,-999)
 lastreturn_ball = (-999,-999)
 lastreturn_goal_time = time.time()-5
 lastreturn_ball_time = time.time()-5
-time_buffer = 0.2 #hoeveel seconden hij een beeld bewaart
+time_buffer = 0 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
     global window,screen,imgsize

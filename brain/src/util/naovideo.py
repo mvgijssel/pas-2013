@@ -42,7 +42,8 @@ atexit.register(clean_up)
 class VideoModule():
     """Module that helps you get images from the NAO in your python program"""
 
-    def __init__(self, IP, resolution="640x480", output="640x480", camera=1, port = 9559):
+    #640x480
+    def __init__(self, IP, resolution="160x120", output="160x120", camera=1, port = 9559):
         """Create a proxy on video device, register themodule, and create image header"""
         self.logger = logging.getLogger('Borg.Brain.Util.NaoVideo')
         
