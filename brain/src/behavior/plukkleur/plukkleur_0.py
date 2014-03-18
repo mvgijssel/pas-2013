@@ -44,6 +44,11 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         print("")
 
         (posx,posy) = self.nao.waar_is_bal()
+        if (self.found == False and posx != -999 and posy != -999):
+            self.nao.say("found it!")
+            self.found = True
+        else:
+            self.found = False
 
         print("")
 
