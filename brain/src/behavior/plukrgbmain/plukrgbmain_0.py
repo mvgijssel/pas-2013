@@ -141,6 +141,13 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
 
         if (self.finding_ball == True):
+            if (self.plukrgbfindball.get_done() == True):
+                self.plukrgbfindball.set_finished()
+                self.activate("approaching_ball")
+            else:
+                pass
+
+        '''if (self.finding_ball == True):
             if (waarbal == False):
                 # Hey, where did you go?
                 print("I do not see the ball.")
@@ -218,7 +225,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             if (waargoal == -999):
                 print("I don't see the goal anymore. Did I score or fall? Let's start looking again.")
                 self.plukrgbscoregoal.set_finished()
-                self.reset()
+                self.reset()'''
 
     def reset(self):
         self.goal_seen = False

@@ -18,6 +18,10 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
 
         self.nao = self.body.nao(0)
         self.nao.look_horizontal()
+        self.done = False
+
+    def get_done(self):
+        return self.done
 
     def implementation_update(self):
 

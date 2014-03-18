@@ -17,6 +17,10 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
+        self.done = False
+
+    def get_done(self):
+        return self.done
 
     def implementation_update(self):
 

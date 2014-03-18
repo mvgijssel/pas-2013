@@ -17,6 +17,10 @@ class Plukrgbscoregoal_x(basebehavior.behaviorimplementation.BehaviorImplementat
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
+        self.done = False
+
+    def get_done(self):
+        return self
 
     def implementation_update(self):
 
