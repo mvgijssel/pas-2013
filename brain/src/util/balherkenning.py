@@ -24,8 +24,8 @@ greybrown = (150,130,130)
 darkgreen = (30,90,20)
 lightpink = (255,200,200)
 
-colors = [green,red,blue,yellow,white,black]
-reds = [red]
+colors = [green,red,blue,yellow,white,black,pink,lightpink]
+reds = [red,pink,lightpink]
 
 for color in colors:
     (r,g,b) = color
@@ -351,16 +351,9 @@ class RasterImage:
         found_red = False
         for win in wins:
             best = bestColor(win)
-            if (best == red):
+            print("kleur dists (R,G,B) :" + str(getDists(red,win)))
+            if (reds.count(best) > 0):
                 print("----I'm quite certain this is the red ball.----")
-                found_red = True
-                break
-            elif (best == pink):
-                print("----It's pink, but I figure that's just as good.----")
-                found_red = True
-                break
-            elif (best == lightpink):
-                print("----It's light pink, but I figure that's just as good.----")
                 found_red = True
                 break
         if (found_red == False):
@@ -393,6 +386,18 @@ def getDist(defined,actual):
     distG = abs(float(g1) - float(g2))
     totalDist = float(distR + distB + distG)/3.0
     return totalDist
+
+def getDists(defined,actual):
+    (b1,g1,r1,a) = actual
+    total = b1 + g1 + r1
+    b1 = b1 / max(1,total)
+    g1 = g1 / max(1,total)
+    r1 = r1 / max(1,total)
+    (r2,g2,b2) = defined
+    distR = abs(float(r1) - float(r2))
+    distB = abs(float(b1) - float(b2))
+    distG = abs(float(g1) - float(g2))
+    return (distR,distG,distB)
 
 def bestColor(actual):
     closest = 999
