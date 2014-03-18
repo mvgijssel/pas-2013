@@ -17,25 +17,22 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.nao.look_horizontal()
+
+    def set_done(self):
+        self.m.add_item('last_done',time.time(),{})
 
     def implementation_update(self):
 
-        # draai rondjes om de bal, tot je de goal hebt gevonden.
-        self.nao.kijk_lager(60)
-        (posx,posy) = self.nao.waar_is_bal()
-        if (posx == -999 or posy == -999):
-            self.nao.kijk_hoger(5)
-        elif (posy > 0):
-            self.nao.walk(0.3,0,0)
-        elif (posy < 0):
-            self.nao.look_horizontal()
             seen = self.nao.waar_goal()
             if (seen != None):
-                if (seen > 0):
+                if (seen > 0.3):
                     self.nao.walk(0,-0.1,-0.25)
-                else:
+                elif (seen > 0.3):
                     self.nao.walk(0,0.1,0.25)
+                else:
+                    self.set_done()
+            else:
+                self.set_done()
 
 
 

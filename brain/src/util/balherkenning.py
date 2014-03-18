@@ -10,18 +10,29 @@ import time
 
 window = 0
 screen = None
-imgsize = 200
-imgheight = 0
+imgsize = 160
+imgheight = 120
 
-yellow = (255,255,0)
-blue = (0,0,255)
-green = (0,255,0)
-red = (255,0,0)
-pink = (255,150,150)
-white = (255,255,255)
-black = (0,0,0)
-brown = (125,100,50)
-colors = [yellow,blue,green,red,white,black,brown]
+yellow = (0.5,0.5,0)
+blue = (0,0,1)
+darkblue = (0.16,0.16,0.68)
+green = (0,1,0)
+red = (1,0,0)
+pink = (0.46,0.27,0.27)
+#white = (0.33,0.33,0.33)
+#black = (0.5,0.5,0.5)
+greybrown = (0.37,0.32,0.32)
+darkgreen = (0.21,0.65,0.15)
+lightpink = (0.39,0.31,0.31)
+yellow2 = (0.42,0.42,0.14)
+whitered = (0.35,0.31,0.31)
+darkred = (0.5,0.2,0.2)
+
+#colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred]
+colors = [yellow,blue,green,red,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred]
+reds = [red,pink,lightpink,whitered,darkred]
+blues = [blue,darkblue]
+yellows = [yellow,yellow2]
 
 pygame.init()
 
@@ -40,9 +51,9 @@ lastreturn_ball_time = time.time()-5
 time_buffer = 0 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
-    global window,screen,imgsize
+    global window,screen,imgsize,imgheight
     if (window == 0):
-        screen = pygame.display.set_mode((imgsize,imgsize))
+        screen = pygame.display.set_mode((imgsize,imgheight))
         pygame.display.set_caption("Nao Balherkennning")
         window = 1
 
@@ -101,13 +112,13 @@ class RasterImage:
             for j in i:
                 (col,(x,y)) = j
                 col = bestColor(col)
-                if (col == yellow):
+                if (yellows.count(col) > 0):
                     num_yellow += 1
                     if (y < low_yellow):
                         low_yellow = y
                     if (y > high_yellow):
                         high_yellow = y
-                elif (col == blue):
+                elif (blues.count(col) > 0):
                     num_blue += 1
                     if (y < low_blue):
                         low_blue = y
@@ -164,7 +175,7 @@ class RasterImage:
         global lastreturn_ball,lastreturn_ball_time
         now = time.time()
         if (lastreturn_ball_time >= now-time_buffer):
-            return lastreturn_ball
+            return lastreturn_ball_time
         init_window()
         color = self.color
         oldpic = self.get_new_image()
@@ -200,9 +211,11 @@ class RasterImage:
                 minwaarde = self.std_minwaarde * self.p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
+                halfcol = combineCols(col,bestColor(col))
+                oldpic.set_at((i,j),halfcol)
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
-                        if (bestColor(col) == red or bestColor(col) == pink):
+                        if (reds.count(bestColor(col)) > 0):
                             redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
@@ -307,16 +320,21 @@ class RasterImage:
         pointDownRight_x = (rightX + midX) / 2
         pointDownRight_y = (upY + midY) / 2
 
-        wincolor = oldpic.get_at((midX,midY))
-        wincolor1 = oldpic.get_at((pointUpLeft_x,pointUpLeft_y))
-        wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
-        wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
-        wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
-        wincolor5 = oldpic.get_at((rightX-1,upY+1))
-        wincolor6 = oldpic.get_at((leftX+1,upY+1))
-        wincolor7 = oldpic.get_at((rightX-1,downY-1))
-        wincolor8 = oldpic.get_at((leftX+1,downY-1))
-        wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
+        #wincolor = oldpic.get_at((midX,midY))
+        #wincolor1 = oldpic.get_at((pointUpLeft_x,pointUpLeft_y))
+        #wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
+        #wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
+        #wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
+        #wincolor5 = oldpic.get_at((rightX-1,upY+1))
+        #wincolor6 = oldpic.get_at((leftX+1,upY+1))
+        #wincolor7 = oldpic.get_at((rightX-1,downY-1))
+        #wincolor8 = oldpic.get_at((leftX+1,downY-1))
+        #wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
+
+        wins = []
+        for i in range(leftX,rightX,2):
+            for j in range(upY,downY,2):
+                wins.append(oldpic.get_at((i,j)))
             
         for i in range(leftX,rightX):
             for j in range(upY,downY):
@@ -331,12 +349,8 @@ class RasterImage:
         found_red = False
         for win in wins:
             best = bestColor(win)
-            if (best == red):
+            if (reds.count(best) > 0):
                 print("----I'm quite certain this is the red ball.----")
-                found_red = True
-                break
-            elif (best == pink):
-                print("----It's pink, but I figure that's just as good.----")
                 found_red = True
                 break
         if (found_red == False):
@@ -352,6 +366,10 @@ class RasterImage:
         screen.blit(redpic,(0,0))
         pygame.display.flip()
 
+        sizeX = abs(leftX - rightX)
+        sizeY = abs(upY - downY)
+        totalSize = sizeX * sizeY
+
         toreturn = ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
         lastreturn_ball = toreturn
         lastreturn_ball_time = time.time()
@@ -359,12 +377,28 @@ class RasterImage:
 
 def getDist(defined,actual):
     (b1,g1,r1,a) = actual
+    total = b1 + g1 + r1
+    b1 = float(b1) / float(max(1,total))
+    g1 = float(g1) / float(max(1,total))
+    r1 = float(r1) / float(max(1,total))
     (r2,g2,b2) = defined
-    distR = abs(r1 - r2)
-    distB = abs(b1 - b2)
-    distG = abs(g1 - g2)
-    totalDist = (distR + distB + distG)/3
+    distR = abs(float(r1) - float(r2))
+    distB = abs(float(b1) - float(b2))
+    distG = abs(float(g1) - float(g2))
+    totalDist = float(distR + distB + distG)/3.0
     return totalDist
+
+def getDists(defined,actual):
+    (b1,g1,r1,a) = actual
+    total = b1 + g1 + r1
+    b1 = b1 / max(1,total)
+    g1 = g1 / max(1,total)
+    r1 = r1 / max(1,total)
+    (r2,g2,b2) = defined
+    distR = abs(float(r1) - float(r2))
+    distB = abs(float(b1) - float(b2))
+    distG = abs(float(g1) - float(g2))
+    return (distR,distG,distB)
 
 def bestColor(actual):
     closest = 999
@@ -375,3 +409,11 @@ def bestColor(actual):
             closest = newdist
             best = color
     return best
+
+def combineCols(col1,col2):
+    (r1,g1,b1,a) = col1
+    (r2,g2,b2) = col2
+    r = (r1+r2)/2
+    g = (g1+g2)/2
+    b = (b1+b2)/2
+    return (r,g,b)
