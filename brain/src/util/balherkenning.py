@@ -370,9 +370,9 @@ class RasterImage:
 def getDist(defined,actual):
     (b1,g1,r1,a) = actual
     total = b1 + g1 + r1
-    b1 = b1 / max(1,total)
-    g1 = g1 / max(1,total)
-    r1 = r1 / max(1,total)
+    b1 = float(b1) / float(max(1,total))
+    g1 = float(g1) / float(max(1,total))
+    r1 = float(r1) / float(max(1,total))
     (r2,g2,b2) = defined
     distR = abs(float(r1) - float(r2))
     distB = abs(float(b1) - float(b2))
