@@ -205,6 +205,9 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                     print("I see the corner on the yellow side. I ignore it.")
             else:
                 print("I do not see the goal or a corner.")
+                if (waarbal == False):
+                    self.plukrgbfindgoal.set_finished()
+                    self.activate("finding_ball")
         elif (self.allign_goal == True):
             if (abs(waargoal) < 0.25):
                 # de goal is recht voor me
