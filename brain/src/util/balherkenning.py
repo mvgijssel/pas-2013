@@ -15,6 +15,7 @@ imgheight = 0
 
 yellow = (0.5,0.5,0)
 blue = (0,0,1)
+darkblue = (0.16,0.16,0.68)
 green = (0,1,0)
 red = (1,0,0)
 pink = (0.46,0.27,0.27)
@@ -23,9 +24,12 @@ black = (0.0,0.0,0.0)
 greybrown = (0.37,0.32,0.32)
 darkgreen = (0.21,0.65,0.15)
 lightpink = (0.39,0.31,0.31)
+yellow2 = (0.42,0.42,0.14)
 
-colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
+colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2]
 reds = [red,pink,lightpink]
+blues = [blue,darkblue]
+yellows = [yellow,yellow2]
 
 pygame.init()
 
@@ -105,13 +109,13 @@ class RasterImage:
             for j in i:
                 (col,(x,y)) = j
                 col = bestColor(col)
-                if (col == yellow):
+                if (yellows.count(col) > 0):
                     num_yellow += 1
                     if (y < low_yellow):
                         low_yellow = y
                     if (y > high_yellow):
                         high_yellow = y
-                elif (col == blue):
+                elif (blues.count(col) > 0):
                     num_blue += 1
                     if (y < low_blue):
                         low_blue = y
