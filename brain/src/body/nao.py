@@ -811,7 +811,7 @@ class Nao(object):
     def is_er_bal(self):
         # returned of er een bal in beeld is
         (posx,posy) = self.waar_is_bal()
-        return ((posx == -999) == False)
+        return (posx != -999 and posy != -999)
     def hoe_ver_bal(self):
         # returned afstand van bal (in meters), maar werkt alleen als de bal in het midden van het blikveld ligt!
         # is niet nauwkeurig, alleen een indicatie. Moet worden getest om te zien wat de afwijking is.
