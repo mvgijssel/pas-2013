@@ -13,16 +13,16 @@ screen = None
 imgsize = 200
 imgheight = 0
 
-yellow = (255,255,0)
-blue = (0,0,255)
-green = (0,255,0)
-red = (255,0,0)
-pink = (255,150,150)
-white = (255,255,255)
-black = (0,0,0)
-greybrown = (150,130,130)
-darkgreen = (30,90,20)
-lightpink = (255,200,200)
+yellow = (0.5,0.5,0)
+blue = (0,0,1)
+green = (0,1,0)
+red = (1,0,0)
+pink = (0.46,0.27,0.27)
+white = (0.33,0.33,0.33)
+black = (0.0,0.0,0.0)
+greybrown = (0.37,0.32,0.32)
+darkgreen = (0.21,0.65,0.15)
+lightpink = (0.39,0.31,0.31)
 
 colors = [green,red,blue,yellow,white,black,pink,lightpink]
 reds = [red,pink,lightpink]
@@ -52,13 +52,6 @@ def init_window():
         screen = pygame.display.set_mode((imgsize,imgsize))
         pygame.display.set_caption("Nao Balherkennning")
         window = 1
-        for color in colors:
-            (r,g,b) = color
-            total = (r+g+b)
-            r = float(r) / float(max(1,total))
-            g = float(g) / float(max(1,total))
-            b = float(b) / float(max(1,total))
-            color = (r,g,b)
 
 class RasterImage:
 
