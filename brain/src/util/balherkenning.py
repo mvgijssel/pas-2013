@@ -22,7 +22,10 @@ white = (255,255,255)
 black = (0,0,0)
 greybrown = (150,130,130)
 darkgreen = (30,90,20)
-colors = [yellow,blue,green,red,white,black,greybrown,darkgreen]
+lightpink = (255,200,200)
+
+colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
+reds = [red,pink,lightpink]
 
 pygame.init()
 
@@ -204,7 +207,7 @@ class RasterImage:
                 oldpic.set_at((i,j),bestColor(col))
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
-                        if (bestColor(col) == red or bestColor(col) == pink):
+                        if (reds.count(bestColor(col)) > 0):
                             redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
@@ -344,6 +347,10 @@ class RasterImage:
                 break
             elif (best == pink):
                 print("----It's pink, but I figure that's just as good.----")
+                found_red = True
+                break
+            elif (best == lightpink):
+                print("----It's light pink, but I figure that's just as good.----")
                 found_red = True
                 break
         if (found_red == False):
