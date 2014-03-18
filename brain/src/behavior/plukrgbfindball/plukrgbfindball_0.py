@@ -28,6 +28,10 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         if (self.step >= len(seq)):
             self.step = 0
 
+        if (self.nao.is_er_bal() == True):
+            self.set_finished()
+            self.step = 0
+
         action = seq[self.step]
         if (action == "turn"):
             self.nao.walk(0,0,0.5)
@@ -40,7 +44,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
             self.nao.look_horizontal()
             self.nao.kijk_hoger(7)
         elif (action == "wait"):
-            time.sleep(0.25)
+            time.sleep(0.35)
 
         if (self.nao.is_er_bal() == True):
             self.set_finished()
