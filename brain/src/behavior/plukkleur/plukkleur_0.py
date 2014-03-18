@@ -21,6 +21,8 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao.complete_behavior("standup")
         self.nao.look_horizontal()
 
+        self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
+
         self.plukrgbfindball = self.ab.plukrgbfindball({}) # kijk waar de bal is
         self.selected_behaviors = [
             ("plukrgbfindball", "self.nao.is_er_bal() == False")
