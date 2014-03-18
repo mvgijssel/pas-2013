@@ -77,6 +77,10 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                             return True
         return False
 
+    def activate(self):
+        self.checkallOff()
+
+
     def implementation_update(self):
 
         if (self.checkallOff() == True):
