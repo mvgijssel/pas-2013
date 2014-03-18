@@ -129,7 +129,11 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         waarbal = self.nao.is_er_bal()
         waargoal = self.nao.waar_goal()
         if (waarbal == True):
-            verbal = self.nao.hoe_ver_bal()
+            (posx,posy) = self.nao.waar_is_bal()
+            if (abs(posx) <= 0.3 and abs(posy) <= 0.1):
+                verbal = self.nao.hoe_ver_bal()
+            else:
+                verbal = 999
         else:
             # is er geen bal? dan niet checken hoe dichtbij bal is.
             verbal = 999
@@ -158,9 +162,10 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 sound = random.choice(["ready.wav"])
                 self.nao.zeg_dit(sound)
                 self.ball_seen = False
+                self.plukrgbapproachball.set_finished()
                 self.activate("finding_goal")
         elif (self.approaching_ball == True):
-            if (verbal != 999):
+            if (waarbal == True):
                 # ik zie de bal, maar ik ben er niet
                 print("I see the ball, but I am not at the ball.")
             else:
@@ -168,6 +173,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 print("I don't see the ball anymore. Looking for ball now.")
                 sound = random.choice(["search1.wav","search2.wav"])
                 self.nao.zeg_dit(sound)
+                self.plukrgbapproachball.set_finished()
                 self.reset()
         elif (self.finding_goal == True):
             if (waargoal != -999):
@@ -179,8 +185,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                             sound = random.choice(["target.wav","target2.wav","target3.wav"])
                             self.nao.zeg_dit(sound)
                             self.goal_seen = True
-                            self.plukrgbfindgoal.set_finished()
                         print("I am now alligning to the goal.")
+                        self.plukrgbfindgoal.set_finished()
                         self.activate("allign_goal")
                 elif (naam == "yellow goal"):
                     print("I see the yellow goal.")
@@ -189,23 +195,25 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                             sound = random.choice(["target.wav","target2.wav","target3.wav"])
                             self.nao.zeg_dit(sound)
                             self.goal_seen = True
-                            self.plukrgbfindgoal.set_finished()
                         print("I am now alligning to the goal.")
+                        self.plukrgbfindgoal.set_finished()
                         self.activate("allign_goal")
                 elif (naam == "blue-side corner"):
-                    print("I see the corner on the blue side.")
+                    print("I see the corner on the blue side. I ignore it.")
                 elif (naam == "yellow-side corner"):
-                    print("I see the corner on the yellow side.")
+                    print("I see the corner on the yellow side. I ignore it.")
             else:
                 print("I do not see the goal or a corner.")
         elif (self.allign_goal == True):
             if (abs(waargoal) < 0.25):
                 # de goal is recht voor me
                 print("The goal is now right in front of me. Let's score!")
+                self.plukrgballigngoal.set_finished()
                 self.activate("scoring_ball")
         elif (self.scoring_ball == True):
             if (waargoal == -999):
                 print("I don't see the goal anymore. Did I score or fall? Let's start looking again.")
+                self.plukrgbscoregoal.set_finished()
                 self.reset()
 
     def reset(self):
