@@ -20,6 +20,8 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.timer = 30
         self.nao.complete_behavior("standup")
         self.nao.look_horizontal()
+
+        self.plukrgbfindball = self.ab.plukrgbfindball({}) # kijk waar de bal is
         self.selected_behaviors = [
             ("plukrgbfindball", "self.nao.is_er_bal() == False")
         ]
