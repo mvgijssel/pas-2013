@@ -71,11 +71,31 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
     def checkallOff(self):
         if (self.finding_ball == False):
             if (self.approaching_ball == False):
-                if (self.finding_ball == False):
+                if (self.finding_goal == False):
                     if (self.scoring_ball == False):
                         if (self.allign_goal == False):
                             return True
         return False
+
+    def activate(self,name):
+        self.allOff()
+        if (name == "finding_ball"):
+            self.finding_ball = True
+            self.plukrgbfindball = self.ab.plukrgbfindball({}) # kijk waar de bal is
+        elif (name == "approaching_ball"):
+            self.approaching_ball = True
+            self.plukrgbapproachball = self.ab.plukrgbapproachball({}) # loop naar de bal
+        elif (name == "finding_goal"):
+            self.finding_goal = True
+            self.plukrgbfindgoal = self.ab.plukrgbfindgoal({}) # kijk waar het doel is
+        elif (name == "scoring_ball"):
+            self.scoring_ball = True
+            self.plukrgbscoregoal = self.ab.plukrgbscoregoal({}) # ren vooruit, hopen dat de bal mee komt.
+        elif (name == "allign_goal"):
+            self.allign_goal = True
+            self.plukrgballigngoal = self.ab.plukrgballigngoal({}) # krijg bal tussen jou en doel
+        else:
+            print("error in \"activate\", misspelled: " + str(name))
 
     def implementation_update(self):
 
@@ -137,16 +157,14 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                     sound = random.choice(["target.wav","target2.wav","target3.wav"])
                     self.nao.zeg_dit(sound)
                     self.ball_seen = True
-                self.allOff()
-                self.approaching_ball = True
+                self.activate("approaching_ball")
         elif (self.approaching_ball == True and verbal <= 0.05):
                 # ik ben bij de bal!
                 print("I am now at the ball. Now looking for goal.")
                 sound = random.choice(["ready.wav"])
                 self.nao.zeg_dit(sound)
-                self.allOff()
                 self.ball_seen = False
-                self.finding_goal = True
+                self.activate("finding_goal")
         elif (self.approaching_ball == True):
             if (verbal != 999):
                 # ik zie de bal, maar ik ben er niet
@@ -164,50 +182,39 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                     print("I see the blue goal.")
                     if (self.target_goal == "blue"):
                         if (self.goal_seen == False):
-                            sound = random.choice(["target_lost1.wav","target_lost2.wav"])
+                            sound = random.choice(["target.wav","target2.wav","target3.wav"])
                             self.nao.zeg_dit(sound)
                             self.goal_seen = True
+                            self.plukrgbfindgoal.set_finished()
                         print("I am now alligning to the goal.")
-                        self.allOff()
-                        self.allign_goal = True
+                        self.activate("allign_goal")
                 elif (naam == "yellow goal"):
                     print("I see the yellow goal.")
                     if (self.target_goal == "yellow"):
                         if (self.goal_seen == False):
-                            sound = random.choice(["target_lost1.wav","target_lost2.wav"])
+                            sound = random.choice(["target.wav","target2.wav","target3.wav"])
                             self.nao.zeg_dit(sound)
                             self.goal_seen = True
+                            self.plukrgbfindgoal.set_finished()
                         print("I am now alligning to the goal.")
-                        self.allOff()
-                        self.allign_goal = True
+                        self.activate("allign_goal")
                 elif (naam == "blue-side corner"):
                     print("I see the corner on the blue side.")
                 elif (naam == "yellow-side corner"):
                     print("I see the corner on the yellow side.")
-                self.finding_goal = False
             else:
                 print("I do not see the goal or a corner.")
         elif (self.allign_goal == True):
-            print("there is a bug in \"allign goal\", so I'm just going to shoot.")
-            self.allOff()
-            self.scoring_ball = True
-            return
             if (abs(waargoal) < 0.25):
                 # de goal is recht voor me
                 print("The goal is now right in front of me. Let's score!")
-                self.allOff()
-                self.scoring_ball = True
+                self.activate("scoring_ball")
         elif (self.scoring_ball == True):
             if (waargoal == -999):
                 print("I don't see the goal anymore. Did I score or fall? Let's start looking again.")
                 self.reset()
 
     def reset(self):
-        self.finding_ball = True
-        self.approaching_ball = False
-        self.finding_goal = False
-        self.scoring_ball = False
-        self.allign_goal = False
-
         self.goal_seen = False
         self.ball_seen = False
+        self.activate("finding_ball")
