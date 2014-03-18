@@ -20,15 +20,16 @@ green = (0,1,0)
 red = (1,0,0)
 pink = (0.46,0.27,0.27)
 white = (0.33,0.33,0.33)
-black = (0.0,0.0,0.0)
+black = (0.5,0.5,0.5)
 greybrown = (0.37,0.32,0.32)
 darkgreen = (0.21,0.65,0.15)
 lightpink = (0.39,0.31,0.31)
 yellow2 = (0.42,0.42,0.14)
 whitered = (0.35,0.31,0.31)
+darkred = (0.5,0.2,0.2)
 
-colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered]
-reds = [red,pink,lightpink,whitered]
+colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred]
+reds = [red,pink,lightpink,whitered,darkred]
 blues = [blue,darkblue]
 yellows = [yellow,yellow2]
 
