@@ -23,3 +23,6 @@ class Naocalibration_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
             # set the framerate in the NaoCalibration object
             NaoSettings.set_time_per_frame(observation['seconds_per_frame'])
+
+            if self.debug:
+                print "Seconds per frame: " + str(observation['seconds_per_frame'])
