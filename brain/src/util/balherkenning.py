@@ -404,8 +404,8 @@ def bestColor(actual):
     return best
 
 def combineCols(col1,col2):
-    (r1,g1,b1,a=0) = col1
-    (r2,g2,b2,a=0) = col2
+    (r1,g1,b1,a) = col1
+    (r2,g2,b2) = col2
     r = (r1+r2)/2
     g = (g1+g2)/2
     b = (b1+b2)/2
