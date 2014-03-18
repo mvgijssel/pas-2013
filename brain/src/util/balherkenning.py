@@ -24,11 +24,8 @@ greybrown = (0.37,0.32,0.32)
 darkgreen = (0.21,0.65,0.15)
 lightpink = (0.39,0.31,0.31)
 
-colors = [green,red,blue,yellow,white,black,pink,lightpink]
+colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
 reds = [red,pink,lightpink]
-
-#colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
-#reds = [red,pink,lightpink]
 
 pygame.init()
 
@@ -344,7 +341,6 @@ class RasterImage:
         found_red = False
         for win in wins:
             best = bestColor(win)
-            print("kleur dists (R,G,B) :" + str(getDists(red,win)) + ", totaldist: " + str(getDist(red,win)))
             if (reds.count(best) > 0):
                 print("----I'm quite certain this is the red ball.----")
                 found_red = True
