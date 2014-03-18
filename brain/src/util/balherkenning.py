@@ -49,6 +49,7 @@ lastreturn_goal_time = time.time()-5
 lastreturn_ball_time = time.time()-5
 lastsucces_bal = time.time()-5
 lastsucces_bal_point = (-999,-999)
+lastsucces_bal_size = 999
 time_buffer = 0 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
@@ -371,11 +372,19 @@ class RasterImage:
         screen.blit(redpic,(0,0))
         pygame.display.flip()
 
+        sizeX = abs(leftX - rightX)
+        sizeY = abs(upY - downY)
+        totalSize = sizeX * sizeY
+
+        if (lastsucces_bal_size < totalSize and lastsucces_bal > now-1):
+            return lastsucces_bal_point
+
         toreturn = ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
         lastreturn_ball = toreturn
         lastreturn_ball_time = time.time()
         lastsucces_bal = time.time()
         lastsucces_bal_point = toreturn
+        lastsucces_bal_size = totalSize
         return toreturn
 
 def getDist(defined,actual):
