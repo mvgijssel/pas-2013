@@ -118,11 +118,14 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
             # create a new position object on the current position
             pos = Position(x, y)
 
-            # move the head to the position
-            #self.move_head_to(pos)
+            # move the head to the position, should be blocking
+            self.move_head_to(pos)
 
             if self.debug:
-                print "Looking at the ball!!"
+                print "Looking at the ball!"
+
+            # the behaviour is finished
+            self.set_finished()
 
         # if no observation is, move the head
         else:
@@ -140,7 +143,6 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                 else:
                     if self.debug:
                         print "Waiting"
-
 
     # switch the state
     def switch_state(self):
