@@ -2,7 +2,7 @@ import basebehavior.behaviorimplementation
 
 import time
 import almath
-from util.nao_settings import NaoSettings
+from util.custom_nao_classes import NaoSettings
 
 class ApproachBall_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 

@@ -1,35 +1,11 @@
+from docutils.parsers.rst.directives.body import MathBlock
 import basebehavior.behaviorimplementation
 import time
 import almath
 import math
 
-from util.nao_settings import NaoSettings
-
-class Position:
-
-    # maximum values for the joints
-    LEFT = 116 # 119 is maximum
-    RIGHT = -116 # 119 is maximum
-
-    # TOP = -38
-    # BOTTOM = 29
-    CENTER_TOP = -21 # -38 is the maximum
-    LEFT_TOP = -21#
-    RIGHT_TOP = -21 #
-
-    # bottom positions are different for the different angles
-    # for example looking left, the nao can't turn his head all the way down
-    CENTER_BOTTOM = 24 # maximum min 29
-    LEFT_BOTTOM = 16
-    RIGHT_BOTTOM = 16
-
-    CENTER = 0
-
-    def __init__(self, x, y):
-
-        self.x = x
-        self.y = y
-
+from util.custom_nao_classes import NaoSettings
+from util.custom_nao_classes import Position
 
 class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
@@ -79,14 +55,18 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         # the sweep states
         # upper sweep
-        self.states.append(Position(Position.LEFT, Position.LEFT_TOP))
+        self.states.append(Position(1.0 * Position.LEFT, Position.LEFT_TOP))
+        self.states.append(Position(0.5 * Position.LEFT, Position.LEFT_TOP))
         self.states.append(Position(Position.CENTER, Position.CENTER_TOP))
-        self.states.append(Position(Position.RIGHT, Position.RIGHT_TOP))
+        self.states.append(Position(0.5 * Position.RIGHT, Position.RIGHT_TOP))
+        self.states.append(Position(1.0 * Position.RIGHT, Position.RIGHT_TOP))
 
         # lower sweep
-        self.states.append(Position(Position.RIGHT, Position.RIGHT_BOTTOM))
+        self.states.append(Position(1.0 * Position.RIGHT, Position.RIGHT_BOTTOM))
+        self.states.append(Position(0.5 * Position.RIGHT, Position.RIGHT_BOTTOM))
         self.states.append(Position(Position.CENTER, Position.CENTER_BOTTOM))
-        self.states.append(Position(Position.LEFT, Position.LEFT_BOTTOM))
+        self.states.append(Position(0.5 * Position.LEFT, Position.LEFT_BOTTOM))
+        self.states.append(Position(1.0 * Position.LEFT, Position.LEFT_BOTTOM))
 
         # look straight ahead
         self.states.append(Position(Position.CENTER, Position.CENTER))
@@ -112,20 +92,35 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # if ball is found
         if observation['is_found']:
 
-            # get the angles
-            (x, y) = self.get_angles()
+            # get the nao angles
+            (nao_x, nao_y) = self.get_angles()
+
+            # get the ball position
+            # should calculate ball center??
+            ball_x = observation['x']
+            ball_y = observation['y']
+
+            # compute the deltas, convert ball_x and ball_y space to nao_x and nao_y space
+            delta_x = math.fabs(nao_x - ball_x)
+            delta_y = math.fabs(nao_y - ball_y)
+
+            if self.debug:
+                #print "Looking at the ball!"
+                #print "observation: " + str(observation)
+                print "nao x: " + str(nao_x) + " - nao y: " + str(nao_y)
+                #print "delta x: " + str(delta_x) + " - delta y: " + str(delta_y)
+                print "ball x: " + str(ball_x) + " - ball y: " + str(ball_y)
+                print ""
+
 
             # create a new position object on the current position
-            pos = Position(x, y)
+            pos = Position(nao_x, nao_y)
 
             # move the head to the position, should be blocking
             self.move_head_to(pos)
 
-            if self.debug:
-                print "Looking at the ball!"
-
             # the behaviour is finished
-            self.set_finished()
+            # self.set_finished()
 
         # if no observation is, move the head
         else:
