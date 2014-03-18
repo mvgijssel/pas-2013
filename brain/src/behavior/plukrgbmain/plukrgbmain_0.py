@@ -174,8 +174,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 print("I don't see the ball anymore. Looking for ball now.")
                 sound = random.choice(["search1.wav","search2.wav"])
                 self.nao.zeg_dit(sound)
-                self.plukrgbapproachball.set_finished()
-                self.reset()
+                #self.plukrgbapproachball.set_finished()
+                #self.reset()
         elif (self.finding_goal == True):
             if (waargoal != -999):
                 (naam,x) = self.nao.check_goal()

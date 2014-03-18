@@ -32,13 +32,15 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             sound = random.choice(["search1.wav","search2.wav"])
             self.nao.zeg_dit(sound)
             self.nao.walk(float(dist * 0.2),0,0)
-            self.set_finished()
+            self.laatst = "midden"
             return
         else:
             if (posx == -999 or posy == -999):
                 # er is geen bal, fuck die shit.
                 if (self.laatst == None):
-                    self.set_finished()
+                    print("Help! Ik ben de bal kwijt en zit nu in een loop!")
+                    self.nao.kijk_lager(random.randint(-5,5))
+                    self.nao.walk(0,0,random.randint(-1,1)/10)
                 elif (self.laatst == "links"):
                     self.nao.walk(0,0,-0.15)
                 elif (self.laatst == "rechts"):
@@ -47,16 +49,17 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                     self.nao.kijk_lager(5)
                 elif (self.laatst == "onder"):
                     self.nao.kijk_hoger(5)
+                self.laatst = "midden"
                 return
             elif (posx < -0.3):
                 if (posy < -0.1):
                     print ("Ik zie de bal links boven.")
-                    dist = abs(posy * 10)
+                    dist = abs(posy)
                     self.nao.kijk_hoger(dist)
                     self.laatst = "boven"
                 elif (posy > 0.1):
                     print ("Ik zie de bal links onder.")
-                    dist = abs(posy * 10)
+                    dist = abs(posy)
                     self.nao.kijk_lager(dist)
                     self.laatst = "onder"
                 else:
@@ -66,12 +69,12 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             elif (posx >= 0.3):
                 if (posy < -0.1):
                     print ("Ik zie de bal rechts boven.")
-                    dist = abs(posy * 10)
+                    dist = abs(posy)
                     self.nao.kijk_hoger(dist)
                     self.laatst = "boven"
                 elif (posy > 0.1):
                     print ("Ik zie de bal rechts onder.")
-                    dist = abs(posy * 10)
+                    dist = abs(posy)
                     self.nao.kijk_lager(dist)
                     self.laatst = "onder"
                 else:
@@ -80,6 +83,6 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                     self.laatst = "rechts"
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("ik zie de bal een eindje verderop.")
-                dist = abs(posy * 10)
+                dist = abs(posy)
                 self.nao.kijk_hoger(dist)
                 self.laatst = "boven"
