@@ -157,6 +157,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                     sound = random.choice(["target.wav","target2.wav","target3.wav"])
                     self.nao.zeg_dit(sound)
                     self.ball_seen = True
+                self.plukrgbfindgoal.set_finished()
                 self.activate("approaching_ball")
         elif (self.approaching_ball == True and verbal <= 0.05):
                 # ik ben bij de bal!
