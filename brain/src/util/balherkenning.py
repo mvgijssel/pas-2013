@@ -26,6 +26,13 @@ lightpink = (255,200,200)
 
 colors = [green,red,blue,yellow,white,black]
 reds = [red]
+
+for color in colors:
+    (r,g,b) = color
+    r = r / (r+g+b)
+    g = g / (r+g+b)
+    b = b / (r+g+b)
+    color = (r,g,b)
 #colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
 #reds = [red,pink,lightpink]
 
@@ -206,7 +213,7 @@ class RasterImage:
                 minwaarde = self.std_minwaarde * self.p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
-                oldpic.set_at((i,j),bestColor(col))
+                #oldpic.set_at((i,j),bestColor(col))
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (reds.count(bestColor(col)) > 0):
@@ -375,6 +382,10 @@ class RasterImage:
 
 def getDist(defined,actual):
     (b1,g1,r1,a) = actual
+    total = b1 + g1 + r1
+    b1 = b1 / total
+    g1 = g1 / total
+    r1 = r1 / total
     (r2,g2,b2) = defined
     distR = abs(r1 - r2)
     distB = abs(b1 - b2)
