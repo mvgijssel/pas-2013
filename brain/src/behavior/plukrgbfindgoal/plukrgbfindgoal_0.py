@@ -24,8 +24,6 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
         # draai rondjes om de bal, tot je de goal hebt gevonden.
         self.nao.walk(0,0.1,-0.25)
         seen = self.nao.waar_goal()
-        if (seen != None):
-            self.set_finished()
 
 
 
