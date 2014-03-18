@@ -24,13 +24,12 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_update(self):
 
-        if (self.nao.is_er_bal() == True):
-            self.set_done()
-            return
-
         # draai rondjes om de bal, tot je de goal hebt gevonden.
         self.nao.walk(0,0.1,-0.25)
-        seen = self.nao.waar_goal()
+        self.nao.kijk_hoger(1)
+        seen = self.nao.check_goal()
+        if (seen == True):
+            self.set_done()
 
 
 

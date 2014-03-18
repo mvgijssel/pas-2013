@@ -39,6 +39,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao.zeg_dit(sound)
 
         self.nao.complete_behavior("standup")
+        self.m.add_item('last_done',time.time()-5,{})
 
         self.finding_ball = True
         self.approaching_ball = False
@@ -142,19 +143,51 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             if (self.get_done() == True):
                 self.plukrgbfindball.set_finished()
                 self.activate("approaching_ball")
-            else:
-                pass
+
         elif (self.approaching_ball == True):
             print("main: approaching ball")
             if (self.get_done() == True):
                 self.plukrgbapproachball.set_finished()
-                self.activate("finding_goal")
+                if (self.nao.is_er_bal() == True):
+                    self.activate("finding_goal")
+                else:
+                    self.reset()
+
         elif (self.finding_goal == True):
             print("main: finding goal")
-            pass
+            if (self.get_done() == True):
+                self.plukrgbfindgoal.set_finished()
+                self.activate("allign_goal")
 
 
-        '''if (self.finding_ball == True):
+        elif (self.allign_goal == True):
+            print("main: alligning to goal")
+            if (self.get_done() == True):
+                self.plukrgballigngoal.set_finished()
+                if (self.nao.check_goal() == True):
+                    self.nao.kijk_lager(30)
+                    self.activate("scoring_ball")
+                else:
+                    self.reset()
+
+
+        elif (self.scoring_ball == True):
+            print("main: scoring goal")
+            if (self.get_done() == True):
+                self.plukrgbscoregoal.set_finished()
+                self.reset()
+
+        else:
+            print("not doing anything...")
+
+    def reset(self):
+        self.goal_seen = False
+        self.ball_seen = False
+        self.activate("finding_ball")
+
+
+### old
+'''if (self.finding_ball == True):
             if (waarbal == False):
                 # Hey, where did you go?
                 print("I do not see the ball.")
@@ -233,8 +266,3 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 print("I don't see the goal anymore. Did I score or fall? Let's start looking again.")
                 self.plukrgbscoregoal.set_finished()
                 self.reset()'''
-
-    def reset(self):
-        self.goal_seen = False
-        self.ball_seen = False
-        self.activate("finding_ball")

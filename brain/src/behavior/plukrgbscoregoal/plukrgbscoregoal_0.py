@@ -23,12 +23,10 @@ class Plukrgbscoregoal_x(basebehavior.behaviorimplementation.BehaviorImplementat
 
     def implementation_update(self):
 
-        if (self.nao.is_er_bal() == True):
+        if (self.nao.is_er_bal() == False):
             self.set_done()
             return
 
         # just run forward
-        self.nao.kijk_lager(30)
         self.nao.walk(0.25,0,0)
-        self.set_finished()
 
