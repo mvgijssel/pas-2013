@@ -199,6 +199,7 @@ class RasterImage:
                 minwaarde = self.std_minwaarde * self.p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
+                oldpic.set_at((i,j),bestColor(col))
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (bestColor(col) == red or bestColor(col) == pink):
@@ -306,16 +307,21 @@ class RasterImage:
         pointDownRight_x = (rightX + midX) / 2
         pointDownRight_y = (upY + midY) / 2
 
-        wincolor = oldpic.get_at((midX,midY))
-        wincolor1 = oldpic.get_at((pointUpLeft_x,pointUpLeft_y))
-        wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
-        wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
-        wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
-        wincolor5 = oldpic.get_at((rightX-1,upY+1))
-        wincolor6 = oldpic.get_at((leftX+1,upY+1))
-        wincolor7 = oldpic.get_at((rightX-1,downY-1))
-        wincolor8 = oldpic.get_at((leftX+1,downY-1))
-        wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
+        #wincolor = oldpic.get_at((midX,midY))
+        #wincolor1 = oldpic.get_at((pointUpLeft_x,pointUpLeft_y))
+        #wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
+        #wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
+        #wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
+        #wincolor5 = oldpic.get_at((rightX-1,upY+1))
+        #wincolor6 = oldpic.get_at((leftX+1,upY+1))
+        #wincolor7 = oldpic.get_at((rightX-1,downY-1))
+        #wincolor8 = oldpic.get_at((leftX+1,downY-1))
+        #wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
+
+        wins = []
+        for i in range(leftX,rightX,2):
+            for j in range(upY,downY,2):
+                wins.append(oldpic.get_at((i,j)))
             
         for i in range(leftX,rightX):
             for j in range(upY,downY):
