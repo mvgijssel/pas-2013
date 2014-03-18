@@ -17,7 +17,6 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.nao.look_horizontal()
 
     def implementation_update(self):
 
