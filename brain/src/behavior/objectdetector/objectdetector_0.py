@@ -8,7 +8,7 @@ import basebehavior.behaviorimplementation
 
 # for the time.time() method
 import time
-from util.nao_settings import NaoSettings
+from util.custom_nao_classes import NaoSettings
 
 
 
@@ -46,9 +46,12 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
         if NaoSettings.get_time_per_frame():
 
-            # set the detection interval twice the framerate
-            obj.time_interval = 2 * NaoSettings.get_time_per_frame()
+            # set the detection interval amount of seconds time the amount of seconds per frame
+            time_interval = obj.time_interval * NaoSettings.get_time_per_frame()
 
+        else:
+
+            time_interval = obj.time_interval
 
         # set the found default, False
         obj.is_found = False
@@ -62,7 +65,7 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
             # get the last observations in a specific interval
             # returns an (empty) array
-            observations = self.m.get_recent_observations(obj.target_color, self._current_time - obj.time_interval)
+            observations = self.m.get_recent_observations(obj.target_color, self._current_time - time_interval)
 
             # sort the observations
             # if there are any observations

@@ -5,7 +5,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 '''
 
 import basebehavior.behaviorimplementation
-from util.nao_settings import NaoSettings
+from util.custom_nao_classes import NaoSettings
 
 class Naocalibration_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
