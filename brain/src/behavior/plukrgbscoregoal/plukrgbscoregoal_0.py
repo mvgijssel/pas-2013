@@ -17,12 +17,15 @@ class Plukrgbscoregoal_x(basebehavior.behaviorimplementation.BehaviorImplementat
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.done = False
 
-    def get_done(self):
-        return self
+    def set_done(self):
+        self.m.add_item('last_done',time.time(),{})
 
     def implementation_update(self):
+
+        if (self.nao.is_er_bal() == True):
+            self.set_done()
+            return
 
         # just run forward
         self.nao.kijk_lager(30)

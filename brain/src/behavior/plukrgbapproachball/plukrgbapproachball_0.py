@@ -17,13 +17,15 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.fail = False
-        self.done = False
 
-    def get_done(self):
-        return self.done
+    def set_done(self):
+        self.m.add_item('last_done',time.time(),{})
 
     def implementation_update(self):
+
+        if (self.nao.is_er_bal() == True):
+            self.set_done()
+            return
 
         time.sleep(0.5) # wait some time so we can target the ball.
 

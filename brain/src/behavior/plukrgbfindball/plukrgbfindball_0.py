@@ -18,18 +18,15 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
         self.nao = self.body.nao(0)
         self.step = 0
-        self.done = False
 
-    def get_done(self):
-        return self.done
+    def set_done(self):
+        self.m.add_item('last_done',time.time(),{})
 
     def implementation_update(self):
 
         if (self.nao.is_er_bal() == True):
-            self.done = True
+            self.set_done()
             return
-        else:
-            self.done = False
 
         seq = ["wait","up","wait","mid","wait","down","wait","turn"]
 

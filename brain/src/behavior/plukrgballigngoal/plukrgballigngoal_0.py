@@ -17,12 +17,15 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
-        self.done = False
 
-    def get_done(self):
-        return self.done
+    def set_done(self):
+        self.m.add_item('last_done',time.time(),{})
 
     def implementation_update(self):
+
+        if (self.nao.is_er_bal() == True):
+            self.set_done()
+            return
 
         # draai rondjes om de bal, tot je de goal hebt gevonden.
         (posx,posy) = self.nao.waar_is_bal()

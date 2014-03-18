@@ -54,6 +54,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.ball_seen = False
         self.goal_seen = False
 
+        self.last_done = time.time()
+
     def allOff(self):
         self.finding_ball = False
         self.approaching_ball = False
@@ -89,7 +91,12 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             self.allign_goal = True
             self.plukrgballigngoal = self.ab.plukrgballigngoal({}) # krijg bal tussen jou en doel
         else:
-            print("error in \"activate\", misspelled: " + str(name))
+            print("error in \"activate\", misspelled? -> " + str(name))
+
+    def get_done(self):
+        (last,value) = self.m.get_last_observation("last_done")
+        if (last > time.time()-1 and last > self.last_done):
+            self.last_done = last
 
     def implementation_update(self):
 
@@ -141,7 +148,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
 
         if (self.finding_ball == True):
-            if (self.plukrgbfindball.get_done() == True):
+            if (self.get_done() == True):
                 self.plukrgbfindball.set_finished()
                 self.activate("approaching_ball")
             else:

@@ -18,12 +18,15 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
 
         self.nao = self.body.nao(0)
         self.nao.look_horizontal()
-        self.done = False
 
-    def get_done(self):
-        return self.done
+    def set_done(self):
+        self.m.add_item('last_done',time.time(),{})
 
     def implementation_update(self):
+
+        if (self.nao.is_er_bal() == True):
+            self.set_done()
+            return
 
         # draai rondjes om de bal, tot je de goal hebt gevonden.
         self.nao.walk(0,0.1,-0.25)
