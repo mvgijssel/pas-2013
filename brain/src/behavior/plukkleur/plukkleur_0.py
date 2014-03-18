@@ -50,7 +50,9 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             sound = random.choice(["target.wav","target2.wav","target3.wav"])
             self.nao.zeg_dit(sound)
             self.found = True
-        else:
+        elif (self.found == True and (posx == -999 or posy == -999)):
+            sound = random.choice(["target_lost1.wav","target_lost2.wav"])
+            self.nao.zeg_dit(sound)
             self.found = False
 
         print("")
