@@ -28,6 +28,8 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             ("plukrgbfindball", "self.nao.is_er_bal() == False")
         ]
 
+        self.found = False
+
     def implementation_update(self):
 
         # Check for postcondition.
@@ -45,7 +47,8 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         (posx,posy) = self.nao.waar_is_bal()
         if (self.found == False and posx != -999 and posy != -999):
-            self.nao.say("found it!")
+            sound = random.choice(["target.wav","target2.wav","target3.wav"])
+            self.nao.zeg_dit(sound)
             self.found = True
         else:
             self.found = False
