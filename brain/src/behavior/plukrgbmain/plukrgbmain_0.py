@@ -71,6 +71,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         return False
 
     def activate(self,name):
+        print("activating " + str(name))
         self.allOff()
         if (name == "finding_ball"):
             self.finding_ball = True
