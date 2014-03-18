@@ -37,6 +37,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
             self.nao.kijk_hoger(10)
         elif (action == "mid"):
             self.nao.look_horizontal()
+            self.nao.kijk_hoger(5)
         elif (action == "wait"):
             time.sleep(0.25)
 
