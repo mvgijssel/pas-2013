@@ -43,6 +43,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             sound = random.choice(["target_lost1.wav","target_lost2.wav"])
             self.nao.zeg_dit(sound)
             self.found = False
+            self.plukrgbfindball = self.ab.plukrgbfindball({})
 
 
         return
