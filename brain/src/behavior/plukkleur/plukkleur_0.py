@@ -32,19 +32,6 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     def implementation_update(self):
 
-        # Check for postcondition.
-        # It is currently never set, so you'll have to stop the behavior manually by pressing Enter or Ctrl-C in the Terminal.
-        # Fixing this to detect any goal scored and then stopping might be one of your improvements for this software.
-        if (self.timer > 0):
-            self.timer -= 1
-            if (self.timer%10 == 0):
-                print("next test in " + str(int(self.timer/10)) + " seconds.")
-            return
-        else:
-            self.timer = 30
-
-        print("")
-
         (posx,posy) = self.nao.waar_is_bal()
         if (self.found == False and posx != -999 and posy != -999):
             sound = random.choice(["target.wav","target2.wav","target3.wav"])

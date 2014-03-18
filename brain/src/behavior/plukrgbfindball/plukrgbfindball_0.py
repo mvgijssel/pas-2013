@@ -44,7 +44,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         elif (action == "mid"):
             self.nao.look_horizontal()
         elif (action == "wait"):
-            time.sleep(0.5)
+            time.sleep(0.25)
 
         if (self.nao.is_er_bal() == True):
             self.set_finished()
