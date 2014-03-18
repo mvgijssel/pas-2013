@@ -25,9 +25,10 @@ greybrown = (0.37,0.32,0.32)
 darkgreen = (0.21,0.65,0.15)
 lightpink = (0.39,0.31,0.31)
 yellow2 = (0.42,0.42,0.14)
+whitered = (0.35,0.31,0.31)
 
-colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2]
-reds = [red,pink,lightpink]
+colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered]
+reds = [red,pink,lightpink,whitered]
 blues = [blue,darkblue]
 yellows = [yellow,yellow2]
 
