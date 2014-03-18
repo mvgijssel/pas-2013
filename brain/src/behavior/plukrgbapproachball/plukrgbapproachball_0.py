@@ -32,7 +32,6 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             sound = random.choice(["search1.wav","search2.wav"])
             self.nao.zeg_dit(sound)
             self.nao.walk(float(dist * 0.2),0,0)
-            self.set_finished()
             return
         else:
             if (posx == -999 or posy == -999):
