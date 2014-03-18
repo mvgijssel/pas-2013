@@ -97,6 +97,9 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         (last,value) = self.m.get_last_observation("last_done")
         if (last > time.time()-1 and last > self.last_done):
             self.last_done = last
+            return True
+        else:
+            return False
 
     def implementation_update(self):
 
@@ -134,25 +137,22 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         print("updating...")
 
-        waarbal = self.nao.is_er_bal()
-        waargoal = self.nao.waar_goal()
-        if (waarbal == True):
-            (posx,posy) = self.nao.waar_is_bal()
-            if (abs(posx) <= 0.3 and abs(posy) <= 0.1):
-                verbal = self.nao.hoe_ver_bal()
-            else:
-                verbal = 999
-        else:
-            # is er geen bal? dan niet checken hoe dichtbij bal is.
-            verbal = 999
-
-
         if (self.finding_ball == True):
+            print("main: finding ball")
             if (self.get_done() == True):
                 self.plukrgbfindball.set_finished()
                 self.activate("approaching_ball")
             else:
                 pass
+        elif (self.approaching_ball == True):
+            print("main: approaching ball")
+            if (self.get_done() == True):
+                self.plukrgbapproachball.set_finished()
+                self.activate("finding_goal")
+        elif (self.finding_goal == True):
+            print("main: finding goal")
+            pass
+
 
         '''if (self.finding_ball == True):
             if (waarbal == False):
