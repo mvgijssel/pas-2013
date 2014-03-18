@@ -388,10 +388,10 @@ def getDist(defined,actual):
     g1 = g1 / max(1,total)
     r1 = r1 / max(1,total)
     (r2,g2,b2) = defined
-    distR = abs(r1 - r2)
-    distB = abs(b1 - b2)
-    distG = abs(g1 - g2)
-    totalDist = (distR + distB + distG)/3
+    distR = abs(float(r1) - float(r2))
+    distB = abs(float(b1) - float(b2))
+    distG = abs(float(g1) - float(g2))
+    totalDist = float(distR + distB + distG)/3.0
     return totalDist
 
 def bestColor(actual):
