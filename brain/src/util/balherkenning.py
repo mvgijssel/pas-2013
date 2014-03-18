@@ -24,7 +24,7 @@ greybrown = (150,130,130)
 darkgreen = (30,90,20)
 lightpink = (255,200,200)
 
-colors = [green,red,blue,yellow]
+colors = [green,red,blue,yellow,white,black]
 reds = [red]
 #colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
 #reds = [red,pink,lightpink]
