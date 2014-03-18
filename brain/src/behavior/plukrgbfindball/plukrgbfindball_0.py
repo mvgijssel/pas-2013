@@ -32,7 +32,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         if (action == "turn"):
             self.nao.walk(0,0,0.5)
         elif (action == "down"):
-            self.nao.kijk_lager(22)
+            self.nao.kijk_lager(15)
         elif (action == "up"):
             self.nao.kijk_hoger(10)
         elif (action == "mid"):
