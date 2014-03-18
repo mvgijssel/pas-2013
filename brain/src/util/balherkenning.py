@@ -27,13 +27,6 @@ lightpink = (255,200,200)
 colors = [green,red,blue,yellow,white,black,pink,lightpink]
 reds = [red,pink,lightpink]
 
-for color in colors:
-    (r,g,b) = color
-    total = (r+g+b)
-    r = r / max(1,total)
-    g = g / max(1,total)
-    b = b / max(1,total)
-    color = (r,g,b)
 #colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
 #reds = [red,pink,lightpink]
 
@@ -59,6 +52,13 @@ def init_window():
         screen = pygame.display.set_mode((imgsize,imgsize))
         pygame.display.set_caption("Nao Balherkennning")
         window = 1
+        for color in colors:
+            (r,g,b) = color
+            total = (r+g+b)
+            r = float(r) / float(max(1,total))
+            g = float(g) / float(max(1,total))
+            b = float(b) / float(max(1,total))
+            color = (r,g,b)
 
 class RasterImage:
 
