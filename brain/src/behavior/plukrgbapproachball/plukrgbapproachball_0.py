@@ -23,10 +23,6 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
 
     def implementation_update(self):
 
-        if (self.nao.is_er_bal() == True):
-            self.set_done()
-            return
-
         time.sleep(0.5) # wait some time so we can target the ball.
 
         (posx,posy) = self.nao.waar_is_bal()
@@ -39,13 +35,13 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             sound = random.choice(["search1.wav","search2.wav"])
             self.nao.zeg_dit(sound)
             self.nao.walk(float(dist * 0.2),0,0)
-            self.done = True
+            self.set_done()
             return
         else:
             if (posx == -999 or posy == -999):
                 print("approach bal: kan de bal niet meer vinden.")
                 # er is geen bal, fuck die shit.
-                self.done = True
+                self.set_done()
                 return
             elif (posx < -0.3):
                 if (posy < 0):

@@ -35,6 +35,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
             self.step = 0
 
         action = seq[self.step]
+        print("findball: action = " + str(action))
         if (action == "turn"):
             self.nao.walk(0,0,0.5)
         elif (action == "down"):
