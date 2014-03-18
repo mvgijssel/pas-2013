@@ -22,7 +22,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
 
     def implementation_update(self):
 
-        seq = ["mid","wait","turn","wait","down","wait","turn"]
+        seq = ["mid","wait","down","wait","turn"]
 
         self.step += 1
         if (self.step >= len(seq)):
@@ -40,4 +40,4 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
             self.nao.look_horizontal()
             self.nao.kijk_hoger(7)
         elif (action == "wait"):
-            time.sleep(0.35)
+            time.sleep(0.5)
