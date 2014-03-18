@@ -24,8 +24,10 @@ greybrown = (150,130,130)
 darkgreen = (30,90,20)
 lightpink = (255,200,200)
 
-colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
-reds = [red,pink,lightpink]
+colors = [green,red,blue,yellow]
+reds = [red]
+#colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink]
+#reds = [red,pink,lightpink]
 
 pygame.init()
 
