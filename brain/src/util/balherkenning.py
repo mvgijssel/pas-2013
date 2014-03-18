@@ -10,8 +10,8 @@ import time
 
 window = 0
 screen = None
-imgsize = 200
-imgheight = 0
+imgsize = 160
+imgheight = 120
 
 yellow = (0.5,0.5,0)
 blue = (0,0,1)
@@ -48,9 +48,9 @@ lastreturn_ball_time = time.time()-5
 time_buffer = 0 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
-    global window,screen,imgsize
+    global window,screen,imgsize,imgheight
     if (window == 0):
-        screen = pygame.display.set_mode((imgsize,imgsize))
+        screen = pygame.display.set_mode((imgsize,imgheight))
         pygame.display.set_caption("Nao Balherkennning")
         window = 1
 
@@ -208,7 +208,8 @@ class RasterImage:
                 minwaarde = self.std_minwaarde * self.p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
-                #oldpic.set_at((i,j),bestColor(col))
+                halfcol = combineCols(col,bestColor(col))
+                oldpic.set_at((i,j),halfcol)
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (reds.count(bestColor(col)) > 0):
@@ -401,3 +402,11 @@ def bestColor(actual):
             closest = newdist
             best = color
     return best
+
+def combineCols(col1,col2):
+    (r1,g1,b1,a=0) = col1
+    (r2,g2,b2,a=0) = col2
+    r = (r1+r2)/2
+    g = (g1+g2)/2
+    b = (b1+b2)/2
+    return (r,g,b)
