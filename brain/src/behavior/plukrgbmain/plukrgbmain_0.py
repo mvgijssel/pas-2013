@@ -39,6 +39,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao.zeg_dit(sound)
 
         self.nao.complete_behavior("standup")
+        self.nao.say("Let me just stretch first!")
+        self.nao.complete_behavior("stretch")
         self.m.add_item('last_done',time.time()-5,{})
 
         self.finding_ball = True

@@ -1,14 +1,7 @@
-
-
-'''
-this is an automatically generated template, if you don't rename it, it will be overwritten!
-'''
-
 import basebehavior.behaviorimplementation
 import os
 import time
 
-from util.naovideo import VideoModule
 from util.custom_nao_classes import NaoSettings
 
 class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation):
