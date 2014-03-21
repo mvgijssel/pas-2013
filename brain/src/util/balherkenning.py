@@ -10,8 +10,8 @@ import time
 
 window = 0
 screen = None
-imgsize = 320
-imgheight = 240
+imgsize = 640
+imgheight = 480
 
 # blue goal
 darkblue = (0.16,0.16,0.68,20,90)
@@ -182,7 +182,7 @@ class RasterImage:
             print("find goal: I think I see the yellow goal")
             toreturn = ("yellow goal",middle_yellow)
 
-        pygame.transform.scale(oldpic, (imgsize, imgheight), DestSurface = oldpic)
+        oldpic = pygame.transform.scale(oldpic, (imgsize, imgheight))
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
@@ -384,7 +384,7 @@ class RasterImage:
             lastreturn_ball_time = time.time()
             return (-999,-999)
 
-        oldpic = pygame.transform.scale(oldpic, (imgsize, imgheight))
+        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
@@ -439,8 +439,7 @@ def bestColor(actual):
 
 def drawColor(best):
     (r,g,b,minl,maxl) = best
-    intense = minl + maxl
-    intense /= 2
+    intense = maxl
     r = r * intense
     g = g * intense
     b = b * intense
