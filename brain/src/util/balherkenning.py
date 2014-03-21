@@ -31,8 +31,8 @@ darkred = (0.5,0.2,0.2)
 
 #colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred]
 colors = [yellow,blue,green,red,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue]
-reds = [red,pink,lightpink,whitered,darkred,uglyblue]
-blues = [blue,darkblue]
+reds = [red,pink,lightpink,whitered,darkred]
+blues = [blue,darkblue,uglyblue]
 yellows = [yellow,yellow2]
 
 pygame.init()
@@ -155,8 +155,10 @@ class RasterImage:
                 middle_yellow += x
 
         if (len(found_blue) > 0):
+            print("find goal: blue count is " + str(found_blue))
             middle_blue = middle_blue / len(found_blue)
         if (len(found_yellow) > 0):
+            print("find goal: yellow count is " + str(found_yellow))
             middle_yellow = middle_yellow / len(found_yellow)
 
 
