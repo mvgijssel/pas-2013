@@ -34,6 +34,9 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             ("plukrgbscoregoal", "self.scoring_ball == True and self.allign_goal == False")
         ]
 
+        # om te zorgen dat de camera niet steeds zichzelf blijft aanpassen
+        self.nao.setup_camera_parameters()
+
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
         sound = random.choice(["deploy1.wav","deploy2.wav"])
         self.nao.zeg_dit(sound)
@@ -131,8 +134,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 time.sleep(0.3)
                 self.nao.zeg_dit(sound)
                 time.sleep(0.3) # play alarm for a while
-                self.nao.complete_behavior("standup")
                 sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
+                self.nao.complete_behavior("standup")
                 self.nao.zeg_dit(sound)
                 self.prev_fall_time = recogtime
                 self.reset()
@@ -160,7 +163,6 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             if (self.get_done() == True):
                 self.plukrgbfindgoal.set_finished()
                 self.activate("allign_goal")
-
 
         elif (self.allign_goal == True):
             print("main: alligning to goal")

@@ -1,4 +1,4 @@
-# geschreven voor Paul-Luuk Profijt, 10-2-2014, voor Practicum Autonome Systemen aan de RuG
+# geschreven door Paul-Luuk Profijt, 10-2-2014, voor Practicum Autonome Systemen aan de RuG
 
 import pygame,random
 import util.vidmemreader
@@ -13,26 +13,38 @@ screen = None
 imgsize = 160
 imgheight = 120
 
-yellow = (0.5,0.5,0)
-blue = (0,0,1)
-darkblue = (0.16,0.16,0.68)
-green = (0,1,0)
-red = (1,0,0)
-pink = (0.46,0.27,0.27)
-#white = (0.33,0.33,0.33)
-#black = (0.5,0.5,0.5)
-greybrown = (0.37,0.32,0.32)
-darkgreen = (0.21,0.65,0.15)
-lightpink = (0.39,0.31,0.31)
-yellow2 = (0.42,0.42,0.14)
-whitered = (0.35,0.31,0.31)
-darkred = (0.5,0.2,0.2)
+# blue goal
+blue = (0,0,1,20,90)
+darkblue = (0.16,0.16,0.68,20,90)
+uglyblue = (0.3,0.3,0.4,20,90)
 
-#colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred]
-colors = [yellow,blue,green,red,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred]
-reds = [red,pink,lightpink,whitered,darkred]
-blues = [blue,darkblue]
-yellows = [yellow,yellow2]
+# red ball
+whitered = (0.35,0.31,0.31,20,255)
+darkred = (0.5,0.2,0.2,20,255)
+lightpink = (0.39,0.31,0.31,20,255)
+red = (1,0,0,20,255)
+pink = (0.46,0.27,0.27,20,255)
+orange = (0.5,0.3,0.2,20,250)
+
+# yellow goal
+uglyyellow = (0.38,0.37,0.25,20,255)
+yellow = (0.5,0.5,0,20,255)
+yellow2 = (0.42,0.42,0.14,20,255)
+
+# green floor
+green = (0,1,0,20,255)
+darkgreen = (0.21,0.65,0.15,20,255)
+floorgreen = (0.3,0.4,0.3,20,100)
+floorgreen2 = (0.25,0.5,0.25,20,100)
+
+# other
+white = (0.33,0.33,0.33,200,255)
+black = (0.33,0.33,0.33,0,20)
+
+colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,floorgreen2,white,black,orange]
+reds = [red,pink,lightpink,whitered,darkred,orange]
+blues = [blue,darkblue,uglyblue]
+yellows = [yellow,yellow2,uglyyellow]
 
 pygame.init()
 
@@ -85,11 +97,18 @@ class RasterImage:
         H = oldpic.get_height()
         simplegrid = []
         num_blocks = 25 # in hoeveel blokjes het beeld wordt verdeelt
-        for i in range(0,W,int(W/num_blocks)):
+        block_height = int(H/num_blocks)
+        block_width = int(W/num_blocks)
+        for i in range(0,W,block_width):
             simplegrid.append([])
-            for j in range(0,H,int(H/num_blocks)):
+            for j in range(0,H,block_height):
                 col = oldpic.get_at((i,j))
                 simplegrid[len(simplegrid)-1].append((col,(i,j)))
+
+                # draw
+                for x in range(i, i+block_width):
+                    for y in range(j, j+block_height):
+                        oldpic.set_at((x,y),drawColor(bestColor(col)))
 
         found_blue = []
         found_yellow = []
@@ -147,24 +166,33 @@ class RasterImage:
                 middle_yellow += x
 
         if (len(found_blue) > 0):
+            print("find goal: blue count is " + str(len(found_blue)))
             middle_blue = middle_blue / len(found_blue)
         if (len(found_yellow) > 0):
+            print("find goal: yellow count is " + str(len(found_yellow)))
             middle_yellow = middle_yellow / len(found_yellow)
 
 
         toreturn = None
         if (len(found_blue) > 0 and len(found_yellow) > 0 and highest_blue < lowest_yellow):
             # found blue and yellow, blue above yellow
+            print("find goal: I think I see the yellow-side corner")
             toreturn = ("yellow-side corner",middle_yellow)
         elif (len(found_blue) > 0 and len(found_yellow) > 0 and highest_yellow < lowest_blue):
             # found blue and yellow, yellow above blue
-           toreturn = ("blue-side corner",middle_blue)
+            print("find goal: I think I see the blue-side corner")
+            toreturn = ("blue-side corner",middle_blue)
         elif (len(found_blue) > 0):
             # found blue
-           toreturn = ("blue goal",middle_blue)
+            print("find goal: I think I see the blue goal")
+            toreturn = ("blue goal",middle_blue)
         elif (len(found_yellow) > 0):
             # found blue
-           toreturn = ("yellow goal",middle_yellow)
+            print("find goal: I think I see the yellow goal")
+            toreturn = ("yellow goal",middle_yellow)
+
+        screen.blit(oldpic,(0,0))
+        pygame.display.flip()
 
         lastreturn_goal = toreturn
         lastreturn_goal_time = time.time()
@@ -211,8 +239,8 @@ class RasterImage:
                 minwaarde = self.std_minwaarde * self.p_minwaarde # moet minimaal zoveel van de kleur aanwezig zijn <0,255>, om zwart uit te schakelen
                 factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
-                halfcol = combineCols(col,bestColor(col))
-                oldpic.set_at((i,j),halfcol)
+                best = bestColor(col)
+                oldpic.set_at((i,j),drawColor(best))
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (reds.count(bestColor(col)) > 0):
@@ -381,7 +409,7 @@ def getDist(defined,actual):
     b1 = float(b1) / float(max(1,total))
     g1 = float(g1) / float(max(1,total))
     r1 = float(r1) / float(max(1,total))
-    (r2,g2,b2) = defined
+    (r2,g2,b2,minlight,maxlight) = defined
     distR = abs(float(r1) - float(r2))
     distB = abs(float(b1) - float(b2))
     distG = abs(float(g1) - float(g2))
@@ -394,7 +422,7 @@ def getDists(defined,actual):
     b1 = b1 / max(1,total)
     g1 = g1 / max(1,total)
     r1 = r1 / max(1,total)
-    (r2,g2,b2) = defined
+    (r2,g2,b2,minlight,maxlight) = defined
     distR = abs(float(r1) - float(r2))
     distB = abs(float(b1) - float(b2))
     distG = abs(float(g1) - float(g2))
@@ -404,15 +432,29 @@ def bestColor(actual):
     closest = 999
     best = None
     for color in colors:
+        (x,y,z,minlight,maxlight) = color
+        (r,g,b,a) = actual
+        for c in [r,g,b]:
+            if (c < minlight or c > maxlight):
+                continue
         newdist = getDist(color,actual)
         if (newdist < closest):
             closest = newdist
             best = color
     return best
 
+def drawColor(best):
+    (r,g,b,minl,maxl) = best
+    intense = minl + maxl
+    intense /= 2
+    r = r * intense
+    g = g * intense
+    b = b * intense
+    return (r,g,b)
+
 def combineCols(col1,col2):
     (r1,g1,b1,a) = col1
-    (r2,g2,b2) = col2
+    (r2,g2,b2,minl,maxl) = col2
     r = (r1+r2)/2
     g = (g1+g2)/2
     b = (b1+b2)/2
