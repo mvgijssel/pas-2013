@@ -5,7 +5,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 '''
 
 import basebehavior.behaviorimplementation
-import random
+import random,time
 
 
 class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementation):
