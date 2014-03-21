@@ -48,6 +48,9 @@ class DetectableObject:
 
 class NaoSettings():
 
+    blob_dimension_width = 160
+    blob_dimension_height = 120
+
     # the ball object for the blob detector
     BALL_OBJECT = DetectableObject('ball', 'experiment_rood', 4, 20)
 

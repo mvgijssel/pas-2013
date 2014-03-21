@@ -23,30 +23,31 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         self.nao.set_do_nothing_on_stop(True)
 
         # is a hack, should be an external behaviour which stands up when nao isn't standing
-        self.nao.complete_behavior("standup")
+        # self.nao.complete_behavior("standup")
 
         # instantiate the behaviours, acts as a reset
-        self.instantiate_behaviours()
+        #define list of sub-behavior here
+        self.naocalibration = self.ab.naocalibration({'debug': False})
+        self.objectdetector = self.ab.objectdetector({'debug': False})
+        self.findball = self.ab.findball({'debug': False, 'info': True})
+        self.headfollowball = self.ab.headfollowball({'debug': True})
+        self.aligntorso = self.ab.aligntorso({'debug': True})
+        self.approachball = self.ab.approachball({'debug', True})
 
-        # define all the beheviours with start conditions
-        # self.selected_behaviors = [
-        #     ("naocalibration", "True"),
-        #     ("objectdetector", "True"),
-        #     ("findball", "True"),
-        #     ("aligntorso", "self.findball.is_finished()"),
-        #     ("approachball", "self.aligntorso.is_finished()")
-        # ]
 
         self.selected_behaviors = [
             ("naocalibration", "True"),
             ("objectdetector", "True"),
-            ("findball", "True")
+            #("findball", "True"),
+            ("headfollowball", "True")
         ]
 
         self.restart_time = time.time()
 
 
     def implementation_update(self):
+
+        # when first image is received, set the selected behaviours
 
         pass
 
@@ -59,11 +60,3 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
 
         # DO WE NEED TO MANUALLY STOP THE RUNNING BEHAVIOURS STILL RUNNING?
 
-        #define list of sub-behavior here
-        self.naocalibration = self.ab.naocalibration({'debug': True})
-        self.objectdetector = self.ab.objectdetector({'debug': False})
-        self.findball = self.ab.findball({'debug': False, 'info': True})
-
-        # the calling of self.ab.aligntorso({'debug': False}) creates a new instance, and restarts a behaviour
-        self.aligntorso = self.ab.aligntorso({'debug': True})
-        self.approachball = self.ab.approachball({'debug', True})
