@@ -47,11 +47,13 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 if (posy < 0):
                     print ("approach bal: Ik zie de bal links boven.")
                     dist = abs(posy * 2)
+                    dist = max(dist,1)
                     self.nao.kijk_hoger(dist)
                     self.nao.walk(0.1,0,0.35)
                 elif (posy > 0):
                     print ("approach bal: Ik zie de bal links onder.")
                     dist = abs(posy * 2)
+                    dist = max(dist,1)
                     self.nao.kijk_lager(dist)
                 else:
                     print("approach bal: Ik zie de bal precies links.")
@@ -60,11 +62,13 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 if (posy < 0):
                     print ("approach bal: Ik zie de bal rechts boven.")
                     dist = abs(posy * 2)
+                    dist = max(dist,1)
                     self.nao.kijk_hoger(dist)
                     self.nao.walk(0.1,0,-0.35)
                 elif (posy > 0):
                     print ("approach bal: Ik zie de bal rechts onder.")
                     dist = abs(posy * 2)
+                    dist = max(dist,1)
                     self.nao.kijk_lager(dist)
                 else:
                     print("approach bal: Ik zie de bal precies rechts.")
@@ -72,6 +76,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             elif (posy < 0):
                 print("approach bal: ik zie de bal een eindje verderop.")
                 dist = abs(self.nao.hoe_ver_bal())
+                dist = max(dist,0.1)
                 #self.nao.kijk_hoger(dist)
                 self.nao.walk(float(dist * 0.2),0,0)
             elif (posy > 0):
