@@ -38,7 +38,7 @@ floorgreen = (0.3,0.4,0.3,40,100)
 
 # other
 white = (0.33,0.33,0.33,200,255)
-black = (0.33,0.33,0.33,0,50)
+black = (0.33,0.33,0.33,0,20)
 
 colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,white,black,orange]
 reds = [red,pink,lightpink,whitered,darkred,orange]
