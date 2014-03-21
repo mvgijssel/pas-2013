@@ -28,12 +28,13 @@ lightpink = (0.39,0.31,0.31)
 yellow2 = (0.42,0.42,0.14)
 whitered = (0.35,0.31,0.31)
 darkred = (0.5,0.2,0.2)
+uglyyellow = (0.38,0.37,0.25)
 
 #colors = [yellow,blue,green,red,white,black,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred]
-colors = [yellow,blue,green,red,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue]
+colors = [yellow,blue,green,red,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
 reds = [red,pink,lightpink,whitered,darkred]
 blues = [blue,darkblue,uglyblue]
-yellows = [yellow,yellow2]
+yellows = [yellow,yellow2,uglyyellow]
 
 pygame.init()
 
