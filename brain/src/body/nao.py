@@ -108,14 +108,14 @@ class Nao(object):
             self.__Sonar.unsubscribe("Sonar")
 
     def stop(self):
-        sound = random.choice(["end_song.mp3","bye1.wav","bye2.wav","bye3.wav","bye4.wav","bye5.wav"])
+        sound = random.choice(["bye1.wav","bye2.wav","bye3.wav","bye4.wav","bye5.wav"])
         self.zeg_dit(sound)
 
         if self.__nobody:
             return
 
         if self.__stop_do_nothing:
-            self.nao.complete_behavior("superman_macarena")
+            self.complete_behavior("superman_macarena")
             return
 
         if self.__stop_crouch:
