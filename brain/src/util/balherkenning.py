@@ -194,7 +194,7 @@ class RasterImage:
         global lastreturn_ball,lastreturn_ball_time
         now = time.time()
         if (lastreturn_ball_time >= now-time_buffer):
-            return lastreturn_ball_time
+            return lastreturn_ball
         init_window()
         color = self.color
         oldpic = self.get_new_image()
