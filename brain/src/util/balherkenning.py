@@ -406,7 +406,7 @@ def getDist(defined,actual):
     b1 = float(b1) / float(max(1,total))
     g1 = float(g1) / float(max(1,total))
     r1 = float(r1) / float(max(1,total))
-    (r2,g2,b2) = defined
+    (r2,g2,b2,minlight,maxlight) = defined
     distR = abs(float(r1) - float(r2))
     distB = abs(float(b1) - float(b2))
     distG = abs(float(g1) - float(g2))
