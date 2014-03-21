@@ -109,6 +109,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     def implementation_update(self):
 
+        waar = self.nao.waar_is_bal()
+
         if (self.checkallOff() == True):
             self.finding_ball = True
 
