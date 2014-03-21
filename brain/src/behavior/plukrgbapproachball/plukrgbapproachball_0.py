@@ -27,7 +27,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
 
         (posx,posy) = self.nao.waar_is_bal()
         print("x: " + str(posx) + ", y: " + str(posy))
-        if (abs(posx) <= 0.3 and abs(posy) <= 0.1):
+        if (abs(posx) <= 0.1 and abs(posy) <= 0.1):
             # ligt in het midden van blikveld: loop er naar toe
             print("approach bal: ik zie de bal. Ik loop er naar toe.")
             # rekent afstand uit, en loopt dan een stuk van die afstand vooruit
@@ -43,7 +43,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 # er is geen bal, fuck die shit.
                 self.set_done()
                 return
-            elif (posx < -0.3):
+            elif (posx < -0.1):
                 if (posy < 0):
                     print ("approach bal: Ik zie de bal links boven.")
                     dist = abs(posy * 2)
@@ -56,7 +56,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 else:
                     print("approach bal: Ik zie de bal precies links.")
                     self.nao.walk(0,0,0.35)
-            elif (posx >= 0.3):
+            elif (posx > 0.1):
                 if (posy < 0):
                     print ("approach bal: Ik zie de bal rechts boven.")
                     dist = abs(posy * 2)
@@ -69,12 +69,12 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 else:
                     print("approach bal: Ik zie de bal precies rechts.")
                     self.nao.walk(0,0,-0.35)
-            elif (posx > -0.3 and posx < 0.3 and posy < 0):
+            elif (posy < 0):
                 print("approach bal: ik zie de bal een eindje verderop.")
                 dist = abs(self.nao.hoe_ver_bal())
                 #self.nao.kijk_hoger(dist)
                 self.nao.walk(float(dist * 0.2),0,0)
-            elif (posx > -0.3 and posx < 0.3 and posy > 0):
+            elif (posy > 0):
                 print("approach bal: ik zie de bal vlak voor me.")
                 self.nao.kijk_lager(5)
             else:
