@@ -13,30 +13,30 @@ screen = None
 imgsize = 160
 imgheight = 120
 
-# extra's
-#grey = (0.33,0.33,0.33) # is also black and white
-#greybrown = (0.37,0.32,0.32)
-
 # blue goal
-blue = (0,0,1)
-darkblue = (0.16,0.16,0.68)
-uglyblue = (0.3,0.3,0.4)
+blue = (0,0,1,50,255)
+darkblue = (0.16,0.16,0.68,50,255)
+uglyblue = (0.3,0.3,0.4,50,255)
 
 # red ball
-whitered = (0.35,0.31,0.31)
-darkred = (0.5,0.2,0.2)
-lightpink = (0.39,0.31,0.31)
-red = (1,0,0)
-pink = (0.46,0.27,0.27)
+whitered = (0.35,0.31,0.31,50,255)
+darkred = (0.5,0.2,0.2,50,255)
+lightpink = (0.39,0.31,0.31,50,255)
+red = (1,0,0,50,255)
+pink = (0.46,0.27,0.27,50,255)
 
 # yellow goal
-uglyyellow = (0.38,0.37,0.25)
-yellow = (0.5,0.5,0)
-yellow2 = (0.42,0.42,0.14)
+uglyyellow = (0.38,0.37,0.25,50,255)
+yellow = (0.5,0.5,0,50,255)
+yellow2 = (0.42,0.42,0.14,50,255)
 
 # green floor
-green = (0,1,0)
-darkgreen = (0.21,0.65,0.15)
+green = (0,1,0,50,255)
+darkgreen = (0.21,0.65,0.15,50,255)
+
+# other
+white = (0.33,0.33,0.33,200,255)
+black = (0.33,0.33,0.33,0,50)
 
 colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
 reds = [red,pink,lightpink,whitered,darkred]
@@ -429,6 +429,11 @@ def bestColor(actual):
     closest = 999
     best = None
     for color in colors:
+        (x,y,z,minlight,maxlight) = color
+        (r,g,b,a) = actual
+        for c in [r,g,b]:
+            if (c < minlight or c > maxlight):
+                continue
         newdist = getDist(color,actual)
         if (newdist < closest):
             closest = newdist
