@@ -45,6 +45,10 @@ class VideoModule():
     #640x480
     def __init__(self, IP, resolution="160x120", output="160x120", camera=1, port = 9559):
         """Create a proxy on video device, register themodule, and create image header"""
+
+        resolution = "160x120"
+        output = "160x120"
+
         self.logger = logging.getLogger('Borg.Brain.Util.NaoVideo')
         
         self.logger.info("Port being used: %d" % int(port))
@@ -138,9 +142,11 @@ class VideoModule():
 
 if __name__ == "__main__":
     cameranumber = 0
-    ip = "129.125.178.226" # Mies/Jan
-    resolution = "640x480"
-    output = "640x480"
+    ip = "192.168.1.201" # Mies/Jan
+    resolution = "160x120"
+    #resolution = "640x480"
+    #output = "640x480"
+    output = "160x120"
     naovideo = VideoModule(ip, resolution, output, cameranumber)
 
     import time
