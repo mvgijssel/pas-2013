@@ -115,6 +115,7 @@ class Nao(object):
             return
 
         if self.__stop_do_nothing:
+            self.nao.complete_behavior("superman_macarena")
             return
 
         if self.__stop_crouch:
