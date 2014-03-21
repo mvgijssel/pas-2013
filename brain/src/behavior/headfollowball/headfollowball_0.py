@@ -11,6 +11,7 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
         self.head_pitch_increment = 1
         self.head_yaw_increment = 1
+        self.head_center_speed = 0.2
 
         # the deviation from the center of the screen thats
         self.head_center_deviation = 5
@@ -33,22 +34,22 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
             if rel_x > self.head_center_deviation:
 
                 # move the head to the right
-                self.set_head_x(head_x + self.head_yaw_increment)
+                self.set_head_x(head_x - self.head_yaw_increment)
 
             elif rel_x < -self.head_center_deviation:
 
                 # move the head to the left
-                self.set_head_x(head_x - self.head_yaw_increment)
+                self.set_head_x(head_x + self.head_yaw_increment)
 
             if rel_y > self.head_center_deviation:
 
                 # move the head up
-                self.set_head_y(head_y + self.head_pitch_increment)
+                self.set_head_y(head_y - self.head_pitch_increment)
 
             elif rel_y < -self.head_center_deviation:
 
                 # move the head down
-                self.set_head_y(head_y - self.head_pitch_increment)
+                self.set_head_y(head_y + self.head_pitch_increment)
 
             print "rel x: " + str(rel_x) + " - rel y:" + str(rel_y)
             print "head x: " + str(head_x) + " - head y: " + str(head_y)
@@ -57,12 +58,12 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
     def set_head_x(self, x):
 
         # head yaw is the 'x' of the head
-        self.nao.set_angles('HeadYaw', x * almath.TO_RAD, 0.1, radians=True)
+        self.nao.set_angles('HeadYaw', x * almath.TO_RAD, self.head_center_speed, radians=True)
 
     def set_head_y(self, y):
 
          # adjusting the 'y' coordinate
-        self.nao.set_angles('HeadPitch', y * almath.TO_RAD, 0.1, radians=True)
+        self.nao.set_angles('HeadPitch', y * almath.TO_RAD, self.head_center_speed, radians=True)
 
     def calculate_relative_position(self, x, y):
 
