@@ -29,7 +29,10 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
         self.nao.look_at(random.randint(-1,1),random.randint(-1,1))
         self.nao.kijk_hoger(1)
         seen = self.nao.check_goal()
-        if (seen == True):
+        if (seen != None):
+            (name,x) = seen
+            if (name == "blue goal"):
+                print("find goal: blue goal found")
             self.set_done()
 
 
