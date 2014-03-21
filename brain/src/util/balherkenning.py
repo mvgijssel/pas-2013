@@ -384,7 +384,7 @@ class RasterImage:
             lastreturn_ball_time = time.time()
             return (-999,-999)
 
-        pygame.transform.scale(oldpic, (imgsize, imgheight), DestSurface = oldpic)
+        oldpic = pygame.transform.scale(oldpic, (imgsize, imgheight))
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
