@@ -45,12 +45,14 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
                     self.set_done()
                 elif (self.seen_angle > 0):
                     # toen ik de bal zag, was die links van mij
+                    print("allign goal: The goal is to my left.")
                     self.nao.walk(0,0.15,0)
                     self.nao.walk(0.15,0,0)
                     self.nao.walk(0,0,math.radians(-90))
                     self.set_done()
                 elif (self.seen_angle < 0):
                     # toen ik de bal zag, was die rechts van mij
+                    print("allign goal: The goal is to my right.")
                     self.nao.walk(0,-0.15,0)
                     self.nao.walk(0.15,0,0)
                     self.nao.walk(0,0,math.radians(90))
