@@ -811,10 +811,10 @@ class Nao(object):
         # x en y zijn tussen -1 en 1, waar (0,0) het midden van het scherm is,
         # (-1,-1) links boven en (1,1) rechts onder
         now = time.time()
-        if (now > lastBallTime-0.1):
+        if (now > lastBallTime-0.2):
             (posx,posy) = self.detector.getPos()
-            lastBallTime = now
             lastBallReturn = (posx,posy)
+            lastBallTime = now
         else:
             return lastBallReturn
         return (posx,posy)

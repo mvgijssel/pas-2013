@@ -109,7 +109,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     def implementation_update(self):
 
-        waar = self.nao.waar_is_bal()
+        waar = self.nao.waar_is_bal() # update zichzelf 5 keer per seconde?
 
         if (self.checkallOff() == True):
             self.finding_ball = True
