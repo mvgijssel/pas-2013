@@ -138,11 +138,14 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
         # instantiate properties object
         props = {'is_found': target_object.is_found}
 
+        # calculate the center of the observation
+        (x, y) = self.calculate_observation_center(largest_observation)
+
         # if the target object is found
         if target_object.is_found:
 
             # ball properties
-            props = {'is_found': target_object.is_found, 'x': largest_observation['x'], 'y': largest_observation['y'],
+            props = {'is_found': target_object.is_found, 'x': x, 'y': y,
                      'width': largest_observation['width'], 'height': largest_observation['height'],
                      'size': largest_observation['size']}
 
@@ -168,3 +171,10 @@ class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementatio
             detectable_object.height = None
             detectable_object.size = None
 
+    # calculate the center of the observation
+    def calculate_observation_center(self, observation):
+
+        x = observation['x'] + (observation['width'] / 2)
+        y = observation['y'] + (observation['height'] / 2)
+
+        return x, y
