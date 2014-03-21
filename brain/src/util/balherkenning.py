@@ -41,7 +41,7 @@ floorgreen2 = (0.25,0.5,0.25,20,100)
 white = (0.33,0.33,0.33,200,255)
 black = (0.33,0.33,0.33,0,20)
 
-colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,white,black,orange]
+colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,floorgreen2,white,black,orange]
 reds = [red,pink,lightpink,whitered,darkred,orange]
 blues = [blue,darkblue,uglyblue]
 yellows = [yellow,yellow2,uglyyellow]
