@@ -50,8 +50,8 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
                 # move the head down
                 self.set_head_y(head_y - self.head_pitch_increment)
 
-            print "rel x: " + rel_x + " - rel y:" + rel_y
-            print "head x: " + head_x + " - head y: " + head_y
+            print "rel x: " + str(rel_x) + " - rel y:" + str(rel_y)
+            print "head x: " + str(head_x) + " - head y: " + str(head_y)
             print ""
 
     def set_head_x(self, x):
