@@ -38,7 +38,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         if (self.found == False and posx != -999 and posy != -999):
             print("bal gevonden: stoppen met zoeken")
             sound = random.choice(["target.wav","target2.wav","target3.wav"])
-            self.nao.walk(0.5,0,0)
+            self.nao.walk(0.2,0,0)
             self.nao.kijk_lager(10)
             self.nao.zeg_dit(sound)
             self.found = True
@@ -47,7 +47,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             print("bal kwijt: verder gaan met zoeken")
             sound = random.choice(["target_lost1.wav","target_lost2.wav"])
             self.nao.zeg_dit(sound)
-            self.nao.walk(-0.5,0,0)
+            self.nao.walk(-0.2,0,0)
             self.nao.kijk_hoger(10)
             self.found = False
             self.plukrgbfindball = self.ab.plukrgbfindball({})
