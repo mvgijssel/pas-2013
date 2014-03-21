@@ -22,6 +22,9 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # when the nao is done, don't do anything. Don't sit down
         self.nao.set_do_nothing_on_stop(True)
 
+        # set the camera parameters
+        self.nao.setup_camera_parameters()
+
         # is a hack, should be an external behaviour which stands up when nao isn't standing
         # self.nao.complete_behavior("standup")
 
