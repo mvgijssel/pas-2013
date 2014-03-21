@@ -37,10 +37,10 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
 
             seen = self.nao.waar_goal()
             if (seen != None and self.seen_angle == -999):
-                (yaw,pitch) = self.nao.get_yaw_pitch() # yaw is horizontaal draaien
+                (yaw,pitch) = self.nao.get_yaw_pitch() # yaw is horizontaal draaien, van 120 (links) tot -120 (rechts)
                 self.seen_angle = yaw
             else:
-                if (abs(self.seen_angle) < 20):
+                if (abs(self.seen_angle) < 20): # dit is nog ongeveer binnen het huidige blikveld
                     print("allign goal: I am now alligned to the goal")
                     self.set_done()
                 elif (self.seen_angle > 0):
@@ -57,6 +57,8 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
                     self.nao.walk(0.15,0,0)
                     self.nao.walk(0,0,math.radians(90))
                     self.set_done()
+                else:
+                print("allign goal: nothing?            ERROR ERROR ERROR")
 
 
 

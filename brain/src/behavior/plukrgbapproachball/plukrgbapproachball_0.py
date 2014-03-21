@@ -81,7 +81,6 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 self.nao.walk(float(dist * 0.2),0,0)
             elif (posy > 0):
                 print("approach bal: ik zie de bal vlak voor me.")
-                self.set_done()
-                return
+                self.nao.walk(0.15,0,0)
             else:
                 print("approach bal: niks?              ERROR ERROR ERROR")
