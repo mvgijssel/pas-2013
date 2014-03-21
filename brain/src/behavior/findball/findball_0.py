@@ -3,7 +3,6 @@ from random import uniform
 import basebehavior.behaviorimplementation
 import time
 import almath
-import math
 
 from util.custom_nao_classes import NaoSettings
 from util.custom_nao_classes import Position
@@ -46,10 +45,10 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.y_speed = 0.4
 
         # time out, when can't detect is done moving head
-        self.time_out = 10
+        self.time_out = 4
 
         # the delay between states: 1.5 times the seconds per frame
-        self.state_delay = 2.5
+        self.state_delay = 3
 
         # set the deviation from the target position
         self.position_deviation = 5
@@ -135,55 +134,11 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
             # walk 0.5 meters straight ahead
             self.nao.walkNav(0, 0.5, 0)
 
-
         # try to get the ball
         (recogtime, observation) = self.m.get_last_observation(self.ball.name)
 
-        # if ball is found
-        if observation['is_found']:
-
-            # calculate the center of the ball
-
-            # reset the counters
-            self.sweep_counter = 0
-            self.rotate_counter = 0
-
-            # get the nao angles
-            (nao_x, nao_y) = self.get_angles()
-
-            # get the ball position
-            # should calculate ball center??
-            ball_x = observation['x']
-            ball_y = observation['y']
-
-            # compute the deltas, convert ball_x and ball_y space to nao_x and nao_y space
-            delta_x = math.fabs(nao_x - ball_x)
-            delta_y = math.fabs(nao_y - ball_y)
-
-            if self.info:
-                print "Looking at the ball!"
-
-            if self.debug:
-                #print "Looking at the ball!"
-                #print "observation: " + str(observation)
-                #print "nao x: " + str(nao_x) + " - nao y: " + str(nao_y)
-                #print "delta x: " + str(delta_x) + " - delta y: " + str(delta_y)
-                #print "ball x: " + str(ball_x) + " - ball y: " + str(ball_y)
-                #print ""
-                pass
-
-
-            # create a new position object on the current position
-            pos = Position(nao_x, nao_y)
-
-            # move the head to the position, should be blocking
-            self.move_head_to(pos)
-
-            # the behaviour is finished
-            # self.set_finished()
-
         # if no observation is, move the head
-        else:
+        if not observation['is_found']:
 
             # if the head is not moving, move the head
             if not self.is_head_moving():
@@ -225,15 +180,6 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         # move the head to the new state
         self.move_head_to(self.states[self.current_state])
 
-    # move the position of the head to the provided position instance
-    def move_head_to(self, position):
-
-        # adjusting the 'x' coordinate
-        self.nao.set_angles('HeadYaw', position.x * almath.TO_RAD, self.x_speed, radians=True)
-
-        # adjusting the 'y' coordinate
-        self.nao.set_angles('HeadPitch', position.y * almath.TO_RAD, self.y_speed, radians=True)
-
     # determine if the angle is close to the target angle
     def is_close(self, val1, val2):
 
@@ -248,6 +194,15 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         # get the angles
          return self.nao.get_angles_sensors(['HeadYaw', 'HeadPitch'], radians=False)
+
+    # move the position of the head to the provided position instance
+    def move_head_to(self, position):
+
+        # adjusting the 'x' coordinate
+        self.nao.set_angles('HeadYaw', position.x * almath.TO_RAD, self.x_speed, radians=True)
+
+        # adjusting the 'y' coordinate
+        self.nao.set_angles('HeadPitch', position.y * almath.TO_RAD, self.y_speed, radians=True)
 
     # returns a boolean value to determine if the head of the nao is moving
     def is_head_moving(self):
