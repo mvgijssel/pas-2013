@@ -14,8 +14,8 @@ imgsize = 640
 imgheight = 480
 
 # blue goal
-darkblue = (0.16,0.16,0.68,20,90)
-uglyblue = (0.25,0.25,0.5,20,90)
+darkblue = (0.16,0.16,0.68,50,120)
+uglyblue = (0.25,0.25,0.5,50,120)
 
 # red ball
 whitered = (0.35,0.31,0.31,0,255)
@@ -25,6 +25,7 @@ orange = (0.5,0.3,0.2,0,255)
 # yellow goal
 uglyyellow = (0.38,0.37,0.25,20,255)
 yellow2 = (0.42,0.42,0.14,20,255)
+yellow3 = (0.35,0.35,0.3,20,255)
 
 # green floor
 darkgreen = (0.21,0.65,0.15,20,255)
@@ -32,10 +33,10 @@ floorgreen = (0.3,0.4,0.3,20,100)
 
 black = (0.33,0.33,0.33,0,20)
 
-colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange]
+colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3]
 reds = [pink,whitered,orange]
 blues = [darkblue,uglyblue]
-yellows = [yellow2,uglyyellow]
+yellows = [yellow2,uglyyellow,yellow3]
 
 pygame.init()
 
