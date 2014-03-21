@@ -182,7 +182,7 @@ class RasterImage:
             print("find goal: I think I see the yellow goal")
             toreturn = ("yellow goal",middle_yellow)
 
-        oldpic = pygame.transform.scale(oldpic, (imgsize, imgheight))
+        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
@@ -208,7 +208,6 @@ class RasterImage:
         H = H * Scale
         W = int(W)
         H = int(H)
-        imgheight = H
         oldpic = pygame.transform.scale(oldpic,(W,H))
 
         #print("color detection - redscaling")
