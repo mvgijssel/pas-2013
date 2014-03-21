@@ -17,9 +17,12 @@ try:
 except:
     print "NAOQI Not available. Nao will not work, unless you are using FakeNao"
 import motion
-import random
+import random,time
 
 logging.getLogger('Borg.Brain.BodyController.Nao').addHandler(util.nullhandler.NullHandler())
+
+lastBallTime = time.time()-5
+lastBallReturn = (0,0)
 
 class Nao(object):
     """
@@ -803,10 +806,17 @@ class Nao(object):
         else:
             return -999
     def waar_is_bal(self):
+        global lastBallTime,lastBallReturn
         # returned (x,y) waar de bal is op het scherm
         # x en y zijn tussen -1 en 1, waar (0,0) het midden van het scherm is,
         # (-1,-1) links boven en (1,1) rechts onder
-        (posx,posy) = self.detector.getPos()
+        now = time.time()
+        if (now > lastBallTime-0.5):
+            (posx,posy) = self.detector.getPos()
+            lastBallReturn = (posx,posy)
+            lastBallTime = now
+        else:
+            return lastBallReturn
         return (posx,posy)
     def is_er_bal(self):
         # returned of er een bal in beeld is
@@ -835,6 +845,15 @@ class Nao(object):
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         if (HEAD_PITCH < -0.5):
             self.set_angles(['HeadPitch'], [0], 0.2, radians=True)
+    def kijkt_laagst(self):
+        # kijk ik al het laagst mogelijk?
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        if (HEAD_PITCH >= 25):
+            print("Nao: Can not look any lower")
+            return True
+        else:
+            print("Nao: Head Pitch is " + str(HEAD_PITCH))
+            return False
 
     def zeg_dit(self,file):
         print("sound: " + str(file))
