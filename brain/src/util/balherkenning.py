@@ -89,6 +89,9 @@ class RasterImage:
             simplegrid.append([])
             for j in range(0,H,int(H/num_blocks)):
                 col = oldpic.get_at((i,j))
+                for x in range(i, i+(int(W/num_blocks))):
+                    for y in range(j, i+(int(H/num_blocks))):
+                        oldpic.set_at((x,y),drawColor(bestColor(col)))
                 simplegrid[len(simplegrid)-1].append((col,(i,j)))
 
         found_blue = []
@@ -166,6 +169,9 @@ class RasterImage:
             # found blue
            toreturn = ("yellow goal",middle_yellow)
 
+        screen.blit(oldpic,(0,0))
+        pygame.display.flip()
+
         lastreturn_goal = toreturn
         lastreturn_goal_time = time.time()
         return toreturn
@@ -212,8 +218,7 @@ class RasterImage:
                 factor = self.std_factor * self.p_factor # er moet minimaal "factor" keer zoveel "kleur" zijn als andere kleuren samen
                 maxwaarde = self.std_maxwaarde * self.p_maxwaarde # de andere kleuren mogen maximaal deze waarde hebben, om wit uit te schakelen
                 best = bestColor(col)
-                halfcol = combineCols(col,best)
-                oldpic.set_at((i,j),best)
+                oldpic.set_at((i,j),drawColor(best))
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (reds.count(bestColor(col)) > 0):
@@ -410,6 +415,13 @@ def bestColor(actual):
             closest = newdist
             best = color
     return best
+
+def drawColor(best):
+    (r,g,b) = best
+    r = r * 255
+    g = g * 255
+    b = b * 255
+    return (r,g,b)
 
 def combineCols(col1,col2):
     (r1,g1,b1,a) = col1
