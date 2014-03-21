@@ -14,8 +14,8 @@ imgsize = 640
 imgheight = 480
 
 # blue goal
-darkblue = (0.16,0.16,0.68,50,120)
-uglyblue = (0.25,0.25,0.5,50,120)
+darkblue = (0.16,0.16,0.68,80,150)
+uglyblue = (0.20,0.20,0.6,80,150)
 
 # red ball
 whitered = (0.35,0.31,0.31,0,255)
@@ -30,10 +30,11 @@ yellow3 = (0.35,0.35,0.3,20,255)
 # green floor
 darkgreen = (0.21,0.65,0.15,20,255)
 floorgreen = (0.3,0.4,0.3,20,100)
+slightgreen = (0.25,0.5,0.25,10,255)
 
 black = (0.33,0.33,0.33,0,20)
 
-colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3]
+colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen]
 reds = [pink,whitered,orange]
 blues = [darkblue,uglyblue]
 yellows = [yellow2,uglyyellow,yellow3]
