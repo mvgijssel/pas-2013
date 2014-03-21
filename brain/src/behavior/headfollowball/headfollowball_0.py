@@ -9,12 +9,12 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
         self.nao = self.body.nao(0)
         self.ball = NaoSettings.BALL_OBJECT
 
-        self.head_pitch_increment = 1
-        self.head_yaw_increment = 1
-        self.head_center_speed = 0.2
+        self.head_pitch_increment = 5
+        self.head_yaw_increment = 3
+        self.head_center_speed = 0.4
 
         # the deviation from the center of the screen thats
-        self.head_center_deviation = 5
+        self.head_center_deviation = 10
 
     def implementation_update(self):
 
@@ -27,6 +27,8 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
             # get the relative positions from the observation
             # (0, 0) is the center
             (rel_x, rel_y) = self.calculate_relative_position(observation['x'], observation['y'])
+
+            print "rel_x: " + str(rel_x) + " - rel_y: " + str(rel_y)
 
             # get the head angles
             (head_x, head_y) = self.get_angles()
@@ -43,17 +45,21 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
 
             if rel_y > self.head_center_deviation:
 
+                print "current y: " + str(head_y) + " - target y: " + str(head_y + self.head_pitch_increment)
+
                 # move the head up
-                self.set_head_y(head_y - self.head_pitch_increment)
+                self.set_head_y(head_y + self.head_pitch_increment)
 
             elif rel_y < -self.head_center_deviation:
 
-                # move the head down
-                self.set_head_y(head_y + self.head_pitch_increment)
+                print "current y: " + str(head_y) + " - target y: " + str(head_y - self.head_pitch_increment)
 
-            print "rel x: " + str(rel_x) + " - rel y:" + str(rel_y)
-            print "head x: " + str(head_x) + " - head y: " + str(head_y)
-            print ""
+                # move the head down
+                self.set_head_y(head_y - self.head_pitch_increment)
+
+            #print "rel x: " + str(rel_x) + " - rel y:" + str(rel_y)
+            #print "head x: " + str(head_x) + " - head y: " + str(head_y)
+            # print ""
 
     def set_head_x(self, x):
 
