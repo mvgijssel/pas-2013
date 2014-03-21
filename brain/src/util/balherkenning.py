@@ -10,8 +10,8 @@ import time
 
 window = 0
 screen = None
-imgsize = 160
-imgheight = 120
+imgsize = 320
+imgheight = 240
 
 # blue goal
 darkblue = (0.16,0.16,0.68,20,90)
@@ -182,6 +182,7 @@ class RasterImage:
             print("find goal: I think I see the yellow goal")
             toreturn = ("yellow goal",middle_yellow)
 
+        pygame.transform.scale(oldpic, (imgsize, imgheight), DestSurface = oldpic)
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
@@ -201,7 +202,7 @@ class RasterImage:
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
-        W2 = screen.get_width()
+        W2 = 60
         Scale = float(float(W2 * 100) / float(W * 100))
         W = W2
         H = H * Scale
@@ -383,9 +384,8 @@ class RasterImage:
             lastreturn_ball_time = time.time()
             return (-999,-999)
 
-        redpic.set_colorkey((0,0,0))
+        pygame.transform.scale(oldpic, (imgsize, imgheight), DestSurface = oldpic)
         screen.blit(oldpic,(0,0))
-        screen.blit(redpic,(0,0))
         pygame.display.flip()
 
         sizeX = abs(leftX - rightX)
