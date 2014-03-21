@@ -419,7 +419,7 @@ def getDists(defined,actual):
     b1 = b1 / max(1,total)
     g1 = g1 / max(1,total)
     r1 = r1 / max(1,total)
-    (r2,g2,b2) = defined
+    (r2,g2,b2,minl,maxl) = defined
     distR = abs(float(r1) - float(r2))
     distB = abs(float(b1) - float(b2))
     distG = abs(float(g1) - float(g2))
@@ -441,7 +441,7 @@ def bestColor(actual):
     return best
 
 def drawColor(best):
-    (r,g,b) = best
+    (r,g,b,minl,maxl) = best
     r = r * 255
     g = g * 255
     b = b * 255
@@ -449,7 +449,7 @@ def drawColor(best):
 
 def combineCols(col1,col2):
     (r1,g1,b1,a) = col1
-    (r2,g2,b2) = col2
+    (r2,g2,b2,minl,maxl) = col2
     r = (r1+r2)/2
     g = (g1+g2)/2
     b = (b1+b2)/2
