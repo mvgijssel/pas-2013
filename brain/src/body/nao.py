@@ -849,6 +849,7 @@ class Nao(object):
         # kijk ik al het laagst mogelijk?
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
         if (HEAD_PITCH >= 25):
+            print("Nao: Can not look any lower")
             return True
         else:
             return False
