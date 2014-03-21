@@ -129,8 +129,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 time.sleep(0.3)
                 self.nao.zeg_dit(sound)
                 time.sleep(0.3) # play alarm for a while
-                self.nao.complete_behavior("standup")
                 sound = random.choice(["hate1.wav","hate2.wav","hate3.wav"])
+                self.nao.complete_behavior("standup")
                 self.nao.zeg_dit(sound)
                 self.prev_fall_time = recogtime
                 self.reset()
