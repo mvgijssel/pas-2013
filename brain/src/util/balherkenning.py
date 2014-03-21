@@ -85,14 +85,18 @@ class RasterImage:
         H = oldpic.get_height()
         simplegrid = []
         num_blocks = 25 # in hoeveel blokjes het beeld wordt verdeelt
-        for i in range(0,W,int(W/num_blocks)):
+        block_height = int(H/num_blocks)
+        block_width = int(W/num_blocks)
+        for i in range(0,W,block_width):
             simplegrid.append([])
-            for j in range(0,H,int(H/num_blocks)):
+            for j in range(0,H,block_height):
                 col = oldpic.get_at((i,j))
-                for x in range(i, i+(int(W/num_blocks))):
-                    for y in range(j, i+(int(H/num_blocks))):
-                        oldpic.set_at((x,y),drawColor(bestColor(col)))
                 simplegrid[len(simplegrid)-1].append((col,(i,j)))
+
+                # draw
+                for x in range(i, i+block_width):
+                    for y in range(j, j+block_height):
+                        oldpic.set_at((x,y),drawColor(bestColor(col)))
 
         found_blue = []
         found_yellow = []
