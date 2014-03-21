@@ -156,26 +156,30 @@ class RasterImage:
                 middle_yellow += x
 
         if (len(found_blue) > 0):
-            print("find goal: blue count is " + str(found_blue))
+            print("find goal: blue count is " + str(len(found_blue)))
             middle_blue = middle_blue / len(found_blue)
         if (len(found_yellow) > 0):
-            print("find goal: yellow count is " + str(found_yellow))
+            print("find goal: yellow count is " + str(len(found_yellow)))
             middle_yellow = middle_yellow / len(found_yellow)
 
 
         toreturn = None
         if (len(found_blue) > 0 and len(found_yellow) > 0 and highest_blue < lowest_yellow):
             # found blue and yellow, blue above yellow
+            print("find goal: I think I see the yellow-side corner")
             toreturn = ("yellow-side corner",middle_yellow)
         elif (len(found_blue) > 0 and len(found_yellow) > 0 and highest_yellow < lowest_blue):
             # found blue and yellow, yellow above blue
-           toreturn = ("blue-side corner",middle_blue)
+            print("find goal: I think I see the blue-side corner")
+            toreturn = ("blue-side corner",middle_blue)
         elif (len(found_blue) > 0):
             # found blue
-           toreturn = ("blue goal",middle_blue)
+            print("find goal: I think I see the blue goal")
+            toreturn = ("blue goal",middle_blue)
         elif (len(found_yellow) > 0):
             # found blue
-           toreturn = ("yellow goal",middle_yellow)
+            print("find goal: I think I see the yellow goal")
+            toreturn = ("yellow goal",middle_yellow)
 
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
