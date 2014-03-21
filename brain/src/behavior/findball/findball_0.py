@@ -1,4 +1,5 @@
 from docutils.parsers.rst.directives.body import MathBlock
+from random import uniform
 import basebehavior.behaviorimplementation
 import time
 import almath
@@ -39,22 +40,29 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.states = []
 
         # the x speed used
-        self.x_speed = 0.3
+        self.x_speed = 0.4
 
         # the speed used by the nao for moving it's head
-        self.y_speed = 0.3
+        self.y_speed = 0.4
 
-        # time out
+        # time out, when can't detect is done moving head
         self.time_out = 10
 
-        # the delay between states
-        self.state_delay = 3
+        # the delay between states: 1.5 times the seconds per frame
+        self.state_delay = 2.5
 
         # set the deviation from the target position
         self.position_deviation = 5
 
+        # define the sweep counter
+        self.sweep_counter = 0
+
+        # define the rotate counter
+        self.rotate_counter = 0
+
         # the sweep states
         # upper sweep
+        self.states.append(Position(1.0 * Position.CENTER, Position.CENTER))
         self.states.append(Position(1.0 * Position.LEFT, Position.LEFT_TOP))
         self.states.append(Position(0.5 * Position.LEFT, Position.LEFT_TOP))
         self.states.append(Position(Position.CENTER, Position.CENTER_TOP))
@@ -83,14 +91,62 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
     # the update loop
     def implementation_update(self):
 
+        # change the delay beteen states to twice the framerate
+        if NaoSettings.get_time_per_frame():
+            self.state_delay = 2.5 * NaoSettings.get_time_per_frame()
+
         # update the current time
         self.current_time = time.time()
+
+        # if the sweep counter exceeded the maximum rotate the nao
+        if self.sweep_counter > 0:
+
+            # reset the sweep counter
+            self.sweep_counter = 0
+
+            if self.info:
+                print "Rotating the nao for the next sweep"
+
+            # rotate the nao 120? degrees, teta 1 is 180?
+            # this is a blocking call
+            self.nao.walk(0, 0, 120 * self.nao.TO_RAD)
+
+            # update the rotate counter
+            self.rotate_counter += 1
+
+        # when made an entire circle
+        if self.rotate_counter > 2:
+
+            # reset the rotate counter
+            self.rotate_counter = 0
+
+            # get a random angle
+            random_angle = uniform(0, 360) * self.nao.TO_RAD
+
+            if self.info:
+                print "Rotating to a random angle: " + str(random_angle)
+
+            # rotate to a random angle
+            self.nao.walk(0, 0, random_angle)
+
+            if self.info:
+                print "Walking 0.5 meter ahead"
+
+            # walk 0.5 meters straight ahead
+            self.nao.walkNav(0, 0.5, 0)
+
 
         # try to get the ball
         (recogtime, observation) = self.m.get_last_observation(self.ball.name)
 
         # if ball is found
         if observation['is_found']:
+
+            # calculate the center of the ball
+
+            # reset the counters
+            self.sweep_counter = 0
+            self.rotate_counter = 0
 
             # get the nao angles
             (nao_x, nao_y) = self.get_angles()
@@ -104,13 +160,17 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
             delta_x = math.fabs(nao_x - ball_x)
             delta_y = math.fabs(nao_y - ball_y)
 
+            if self.info:
+                print "Looking at the ball!"
+
             if self.debug:
                 #print "Looking at the ball!"
                 #print "observation: " + str(observation)
-                print "nao x: " + str(nao_x) + " - nao y: " + str(nao_y)
+                #print "nao x: " + str(nao_x) + " - nao y: " + str(nao_y)
                 #print "delta x: " + str(delta_x) + " - delta y: " + str(delta_y)
-                print "ball x: " + str(ball_x) + " - ball y: " + str(ball_y)
-                print ""
+                #print "ball x: " + str(ball_x) + " - ball y: " + str(ball_y)
+                #print ""
+                pass
 
 
             # create a new position object on the current position
@@ -136,7 +196,7 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
                     self.stopped_moving = False
                     self.switch_state()
                 else:
-                    if self.debug:
+                    if self.info:
                         print "Waiting"
 
     # switch the state
@@ -155,6 +215,9 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         # if the current state is larger / equal length of the sweep states, reset
         if self.current_state >= len(self.states):
+
+            # update sweep counter
+            self.sweep_counter += 1
 
             # reset the state of the current state
             self.current_state = 0
@@ -206,7 +269,8 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
             self.start_time = self.current_time
 
             # debug messages
-            self.print_head_motion("TIMEOUT", target, head_yaw, head_pitch)
+            if self.info:
+                self.print_head_motion("TIMEOUT", target, head_yaw, head_pitch)
 
             # the head of the Nao is assumed stopped moving
             return False
@@ -229,7 +293,6 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
     # print debug messages
     def print_head_motion(self, message, target, head_yaw, head_pitch):
 
-        print ""
         print message
         print "X target: " + str(target.x) + " --- " + str(head_yaw)
         print "Y target: " + str(target.y) + " --- " + str(head_pitch)

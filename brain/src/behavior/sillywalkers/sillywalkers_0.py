@@ -69,7 +69,7 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         #define list of sub-behavior here
         self.naocalibration = self.ab.naocalibration({'debug': True})
         self.objectdetector = self.ab.objectdetector({'debug': False})
-        self.findball = self.ab.findball({'debug': True})
+        self.findball = self.ab.findball({'debug': False, 'info': True})
 
         # the calling of self.ab.aligntorso({'debug': False}) creates a new instance, and restarts a behaviour
         self.aligntorso = self.ab.aligntorso({'debug': True})
