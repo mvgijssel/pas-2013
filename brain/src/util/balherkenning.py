@@ -383,7 +383,7 @@ class RasterImage:
                 break
         if (found_red == False):
             print("DEBUG DEBUG DEBUG        It might be another color, but fuck that.       DEBUG DEBUG DEBUG")
-        found_red = True
+            found_red = True
         if (found_red == False):
             print("----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
             screen.blit(oldpic,(0,0))
