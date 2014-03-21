@@ -23,7 +23,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
 
     def implementation_update(self):
 
-        time.sleep(0.2) # wait some time so we can target the ball.
+        time.sleep(0.3) # wait some time so we can target the ball.
 
         (posx,posy) = self.nao.waar_is_bal()
         print("x: " + str(posx) + ", y: " + str(posy))

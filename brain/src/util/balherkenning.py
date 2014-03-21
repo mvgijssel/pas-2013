@@ -382,6 +382,9 @@ class RasterImage:
                 found_red = True
                 break
         if (found_red == False):
+            print("DEBUG DEBUG DEBUG        It might be another color, but fuck that.       DEBUG DEBUG DEBUG")
+        found_red = True
+        if (found_red == False):
             print("----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
             screen.blit(oldpic,(0,0))
             pygame.display.flip()
