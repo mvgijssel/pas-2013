@@ -23,7 +23,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
 
     def implementation_update(self):
 
-        time.sleep(0.1) # wait some time so we can target the ball.
+        time.sleep(0.2) # wait some time so we can target the ball.
 
         (posx,posy) = self.nao.waar_is_bal()
         print("x: " + str(posx) + ", y: " + str(posy))
@@ -48,34 +48,34 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                     print ("approach bal: Ik zie de bal links boven.")
                     dist = abs(posy * 2)
                     self.nao.kijk_hoger(dist)
-                    self.nao.walk(0.25,0,0.25)
+                    self.nao.walk(0.1,0,0.35)
                 elif (posy > 0):
                     print ("approach bal: Ik zie de bal links onder.")
                     dist = abs(posy * 2)
                     self.nao.kijk_lager(dist)
                 else:
                     print("approach bal: Ik zie de bal precies links.")
-                    self.nao.walk(0,0,0.25)
+                    self.nao.walk(0,0,0.35)
             elif (posx >= 0.3):
                 if (posy < 0):
                     print ("approach bal: Ik zie de bal rechts boven.")
                     dist = abs(posy * 2)
                     self.nao.kijk_hoger(dist)
-                    self.nao.walk(0.25,0,-0.25)
+                    self.nao.walk(0.1,0,-0.35)
                 elif (posy > 0):
                     print ("approach bal: Ik zie de bal rechts onder.")
                     dist = abs(posy * 2)
                     self.nao.kijk_lager(dist)
                 else:
                     print("approach bal: Ik zie de bal precies rechts.")
-                    self.nao.walk(0,0,-0.25)
+                    self.nao.walk(0,0,-0.35)
             elif (posx > -0.3 and posx < 0.3 and posy < 0):
                 print("approach bal: ik zie de bal een eindje verderop.")
                 dist = abs(self.nao.hoe_ver_bal())
                 #self.nao.kijk_hoger(dist)
                 self.nao.walk(float(dist * 0.2),0,0)
             elif (posx > -0.3 and posx < 0.3 and posy > 0):
-                print("approach bal: ik zie de bal een eindje vlak voor me.")
+                print("approach bal: ik zie de bal vlak voor me.")
                 self.nao.kijk_lager(5)
             else:
                 print("approach bal: niks?              ERROR ERROR ERROR")
