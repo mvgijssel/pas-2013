@@ -284,6 +284,7 @@ class RasterImage:
             if (max(max(upleft,upright),max(downleft,downright)) == 0):
                 # if we did not find any pixes at all, do not "rezoom", just zoom in
                 if (crude == 0):
+                    oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
                     screen.blit(oldpic,(0,0))
                     pygame.display.flip()
                     lastreturn_ball = (-999,-999)
@@ -365,6 +366,7 @@ class RasterImage:
         for j in range(0,redpic.get_height()):
             oldpic.set_at((midX,j),(255,255,255))
 
+        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         found_red = False
         for win in wins:
             best = bestColor(win)
@@ -383,7 +385,6 @@ class RasterImage:
             lastreturn_ball_time = time.time()
             return (-999,-999)
 
-        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
