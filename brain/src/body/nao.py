@@ -852,6 +852,7 @@ class Nao(object):
             print("Nao: Can not look any lower")
             return True
         else:
+            print("Nao: Head Pitch is " + str(HEAD_PITCH))
             return False
 
     def zeg_dit(self,file):
