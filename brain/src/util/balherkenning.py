@@ -14,37 +14,28 @@ imgsize = 160
 imgheight = 120
 
 # blue goal
-blue = (0,0,1,20,90)
 darkblue = (0.16,0.16,0.68,20,90)
 uglyblue = (0.3,0.3,0.4,20,90)
 
 # red ball
 whitered = (0.35,0.31,0.31,0,255)
-darkred = (0.5,0.2,0.2,0,255)
-lightpink = (0.39,0.31,0.31,0,255)
-red = (1,0,0,0,255)
 pink = (0.46,0.27,0.27,0,255)
 orange = (0.5,0.3,0.2,0,255)
 
 # yellow goal
 uglyyellow = (0.38,0.37,0.25,20,255)
-yellow = (0.5,0.5,0,20,255)
 yellow2 = (0.42,0.42,0.14,20,255)
 
 # green floor
-green = (0,1,0,20,255)
 darkgreen = (0.21,0.65,0.15,20,255)
 floorgreen = (0.3,0.4,0.3,20,100)
-floorgreen2 = (0.25,0.5,0.25,20,100)
 
-# other
-white = (0.33,0.33,0.33,200,255)
 black = (0.33,0.33,0.33,0,20)
 
-colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,floorgreen2,white,black,orange]
-reds = [red,pink,lightpink,whitered,darkred,orange]
-blues = [blue,darkblue,uglyblue]
-yellows = [yellow,yellow2,uglyyellow]
+colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange]
+reds = [pink,whitered,orange]
+blues = [darkblue,uglyblue]
+yellows = [yellow2,uglyyellow]
 
 pygame.init()
 
@@ -60,7 +51,7 @@ lastreturn_goal = (-999,-999)
 lastreturn_ball = (-999,-999)
 lastreturn_goal_time = time.time()-5
 lastreturn_ball_time = time.time()-5
-time_buffer = 0 #hoeveel seconden hij een beeld bewaart
+time_buffer = 0.2 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
     global window,screen,imgsize,imgheight
