@@ -848,11 +848,10 @@ class Nao(object):
     def kijkt_laagst(self):
         # kijk ik al het laagst mogelijk?
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
-        if (HEAD_PITCH >= 25):
+        if (HEAD_PITCH >= 0.9):
             print("Nao: Can not look any lower")
             return True
         else:
-            print("Nao: Head Pitch is " + str(HEAD_PITCH))
             return False
 
     def zeg_dit(self,file):
