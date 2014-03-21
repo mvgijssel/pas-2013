@@ -23,7 +23,7 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
 
     def implementation_update(self):
 
-        time.sleep(0.5) # wait some time so we can target the ball.
+        time.sleep(0.1) # wait some time so we can target the ball.
 
         (posx,posy) = self.nao.waar_is_bal()
         print("x: " + str(posx) + ", y: " + str(posy))
@@ -74,5 +74,8 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 dist = abs(self.nao.hoe_ver_bal())
                 #self.nao.kijk_hoger(dist)
                 self.nao.walk(float(dist * 0.2),0,0)
+            elif (posx > -0.3 and posx < 0.3 and posy > 0):
+                print("approach bal: ik zie de bal een eindje vlak voor me.")
+                self.nao.kijk_lager(5)
             else:
-                print("approach bal: niks?")
+                print("approach bal: niks?              ERROR ERROR ERROR")
