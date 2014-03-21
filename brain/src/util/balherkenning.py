@@ -438,10 +438,17 @@ def bestColor(actual):
 
 def drawColor(best):
     (r,g,b,minl,maxl) = best
-    intense = maxl
-    r = r * intense
-    g = g * intense
-    b = b * intense
+    if (blues.count(best) > 0):
+        (r,g,b) = (0,0,255)
+    elif (reds.count(best) > 0):
+        (r,g,b) = (255,0,0)
+    elif (yellows.count(best) > 0):
+        (r,g,b) = (255,255,0)
+    else:
+        intense = maxl
+        r = r * intense
+        g = g * intense
+        b = b * intense
     return (r,g,b)
 
 def combineCols(col1,col2):
