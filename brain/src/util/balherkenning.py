@@ -1,4 +1,4 @@
-# geschreven voor Paul-Luuk Profijt, 10-2-2014, voor Practicum Autonome Systemen aan de RuG
+# geschreven door Paul-Luuk Profijt, 10-2-2014, voor Practicum Autonome Systemen aan de RuG
 
 import pygame,random
 import util.vidmemreader
@@ -13,24 +13,35 @@ screen = None
 imgsize = 160
 imgheight = 120
 
-yellow = (0.5,0.5,0)
+# extra's
+#grey = (0.33,0.33,0.33) # is also black and white
+#greybrown = (0.37,0.32,0.32)
+
+# blue goal
 blue = (0,0,1)
 darkblue = (0.16,0.16,0.68)
 uglyblue = (0.3,0.3,0.4)
-green = (0,1,0)
-red = (1,0,0)
-pink = (0.46,0.27,0.27)
-grey = (0.33,0.33,0.33) # is also black and white
-greybrown = (0.37,0.32,0.32)
-darkgreen = (0.21,0.65,0.15)
-lightpink = (0.39,0.31,0.31)
-yellow2 = (0.42,0.42,0.14)
+
+# red ball
 whitered = (0.35,0.31,0.31)
 darkred = (0.5,0.2,0.2)
-uglyyellow = (0.38,0.37,0.25)
+lightpink = (0.39,0.31,0.31)
+red = (1,0,0)
+pink = (0.46,0.27,0.27)
 
-colors = [yellow,blue,green,red,grey,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
-#colors = [yellow,blue,green,red,greybrown,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
+# yellow goal
+uglyyellow = (0.38,0.37,0.25)
+yellow = (0.5,0.5,0)
+yellow2 = (0.42,0.42,0.14)
+
+# green floor
+green = (0,1,0)
+darkgreen = (0.21,0.65,0.15)
+
+# white walls
+white = (0.33,0.33,0.33)
+
+colors = [white,yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
 reds = [red,pink,lightpink,whitered,darkred]
 blues = [blue,darkblue,uglyblue]
 yellows = [yellow,yellow2,uglyyellow]
