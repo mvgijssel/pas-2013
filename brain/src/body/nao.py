@@ -115,7 +115,6 @@ class Nao(object):
             return
 
         if self.__stop_do_nothing:
-            self.complete_behavior("thriller")
             return
 
         if self.__stop_crouch:

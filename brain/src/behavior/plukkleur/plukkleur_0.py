@@ -19,8 +19,7 @@ class PlukKleur_0(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.nao.say("Test: Pluk's Find Ball")
         self.timer = 30
         self.nao.complete_behavior("standup")
-        self.nao.zeg_dit("end_song.mp3")
-        self.nao.complete_behavior("stretch")
+        self.nao.zeg_dit("end_song.wav")
         self.nao.look_horizontal()
 
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
