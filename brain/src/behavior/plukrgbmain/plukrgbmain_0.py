@@ -156,6 +156,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 if (self.nao.is_er_bal() == True):
                     self.activate("finding_goal")
                 else:
+                    # let's start back from the top
                     self.reset()
 
         elif (self.finding_goal == True):
