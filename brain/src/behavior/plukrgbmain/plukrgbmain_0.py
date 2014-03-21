@@ -34,6 +34,9 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             ("plukrgbscoregoal", "self.scoring_ball == True and self.allign_goal == False")
         ]
 
+        # om te zorgen dat de camera niet steeds zichzelf blijft aanpassen
+        self.nao.setup_camera_parameters()
+
         self.nao.set_do_nothing_on_stop(True) # The Nao will still be enslaved
         sound = random.choice(["deploy1.wav","deploy2.wav"])
         self.nao.zeg_dit(sound)
