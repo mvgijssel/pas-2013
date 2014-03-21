@@ -15,7 +15,7 @@ imgheight = 480
 
 # blue goal
 darkblue = (0.16,0.16,0.68,90,120)
-uglyblue = (0.20,0.20,0.6,90,120)
+uglyblue = (0.18,0.18,0.64,90,120)
 
 # red ball
 whitered = (0.35,0.31,0.31,0,255)
