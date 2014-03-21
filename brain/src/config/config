@@ -6,7 +6,7 @@ number_of_naos = 1
 number_of_pioneers = 0
 
 # Jen
-nao_ip_0 = 192.168.1.201
+# nao_ip_0 = 192.168.1.201
 
 # Nao
 # nao_ip_0 = 192.168.1.202
@@ -15,7 +15,7 @@ nao_ip_0 = 192.168.1.201
 # nao_ip_0 = 192.168.1.203
 
 # Kees
-# nao_ip_0 = 192.168.1.204
+nao_ip_0 = 192.168.1.204
 
 nao_port_0 = 9559
 pioneer_ip_0 = localhost

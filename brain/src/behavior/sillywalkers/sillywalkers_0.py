@@ -25,6 +25,9 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # set the camera parameters
         self.nao.setup_camera_parameters()
 
+        # set the head stiffness
+        self.nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+
         # is a hack, should be an external behaviour which stands up when nao isn't standing
         # self.nao.complete_behavior("standup")
 
