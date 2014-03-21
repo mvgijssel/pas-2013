@@ -38,10 +38,7 @@ yellow2 = (0.42,0.42,0.14)
 green = (0,1,0)
 darkgreen = (0.21,0.65,0.15)
 
-# white walls
-white = (0.33,0.33,0.33)
-
-colors = [white,yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
+colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
 reds = [red,pink,lightpink,whitered,darkred]
 blues = [blue,darkblue,uglyblue]
 yellows = [yellow,yellow2,uglyyellow]
