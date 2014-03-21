@@ -159,7 +159,6 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
                 self.plukrgbfindgoal.set_finished()
                 self.activate("allign_goal")
 
-
         elif (self.allign_goal == True):
             print("main: alligning to goal")
             if (self.get_done() == True):
