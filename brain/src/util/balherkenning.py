@@ -33,12 +33,13 @@ yellow2 = (0.42,0.42,0.14,50,255)
 # green floor
 green = (0,1,0,50,255)
 darkgreen = (0.21,0.65,0.15,50,255)
+floorgreen = (0.3,0.4,0.3,40,100)
 
 # other
 white = (0.33,0.33,0.33,200,255)
 black = (0.33,0.33,0.33,0,50)
 
-colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow]
+colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen]
 reds = [red,pink,lightpink,whitered,darkred]
 blues = [blue,darkblue,uglyblue]
 yellows = [yellow,yellow2,uglyyellow]
@@ -442,9 +443,11 @@ def bestColor(actual):
 
 def drawColor(best):
     (r,g,b,minl,maxl) = best
-    r = r * 255
-    g = g * 255
-    b = b * 255
+    intense = minl + maxl
+    intense /= 2
+    r = r * intense
+    g = g * intense
+    b = b * intense
     return (r,g,b)
 
 def combineCols(col1,col2):

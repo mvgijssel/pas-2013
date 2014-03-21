@@ -27,9 +27,9 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
             seen = self.nao.waar_goal()
             if (seen != None):
                 if (seen > 0.3):
-                    self.nao.walk(0,-0.1,-0.25)
+                    self.nao.walk(0.1,0.1,-0.25)
                 elif (seen > 0.3):
-                    self.nao.walk(0,0.1,0.25)
+                    self.nao.walk(0.1,-0.1,0.25)
                 else:
                     self.set_done()
             else:
