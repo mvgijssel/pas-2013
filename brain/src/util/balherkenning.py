@@ -10,41 +10,35 @@ import time
 
 window = 0
 screen = None
-imgsize = 160
-imgheight = 120
+imgsize = 640
+imgheight = 480
 
 # blue goal
-blue = (0,0,1,20,100)
-darkblue = (0.16,0.16,0.68,20,100)
-uglyblue = (0.3,0.3,0.4,20,100)
+darkblue = (0.16,0.16,0.68,90,120)
+uglyblue = (0.18,0.18,0.64,90,120)
 
 # red ball
-whitered = (0.35,0.31,0.31,20,255)
-darkred = (0.5,0.2,0.2,20,255)
-lightpink = (0.39,0.31,0.31,20,255)
-red = (1,0,0,20,255)
-pink = (0.46,0.27,0.27,20,255)
-orange = (0.5,0.3,0.2,20,250)
+whitered = (0.35,0.31,0.31,0,255)
+pink = (0.46,0.27,0.27,0,255)
+orange = (0.5,0.3,0.2,0,255)
+geelrood = (0.47,0.37,0.16,0,255)
 
 # yellow goal
 uglyyellow = (0.38,0.37,0.25,20,255)
-yellow = (0.5,0.5,0,20,255)
 yellow2 = (0.42,0.42,0.14,20,255)
+yellow3 = (0.35,0.35,0.3,20,255)
 
 # green floor
-green = (0,1,0,50,255)
 darkgreen = (0.21,0.65,0.15,20,255)
 floorgreen = (0.3,0.4,0.3,20,100)
-floorgreen2 = (0.25,0.5,0.25,20,100)
+slightgreen = (0.25,0.5,0.25,10,255)
 
-# other
-white = (0.33,0.33,0.33,200,255)
 black = (0.33,0.33,0.33,0,20)
 
-colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,white,black,orange]
-reds = [red,pink,lightpink,whitered,darkred,orange]
-blues = [blue,darkblue,uglyblue]
-yellows = [yellow,yellow2,uglyyellow]
+colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen,geelrood]
+reds = [pink,whitered,orange,geelrood]
+blues = [darkblue,uglyblue]
+yellows = [yellow2,uglyyellow,yellow3]
 
 pygame.init()
 
@@ -60,7 +54,7 @@ lastreturn_goal = (-999,-999)
 lastreturn_ball = (-999,-999)
 lastreturn_goal_time = time.time()-5
 lastreturn_ball_time = time.time()-5
-time_buffer = 0 #hoeveel seconden hij een beeld bewaart
+time_buffer = 0.2 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
     global window,screen,imgsize,imgheight
@@ -191,6 +185,7 @@ class RasterImage:
             print("find goal: I think I see the yellow goal")
             toreturn = ("yellow goal",middle_yellow)
 
+        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
@@ -203,20 +198,19 @@ class RasterImage:
         global lastreturn_ball,lastreturn_ball_time
         now = time.time()
         if (lastreturn_ball_time >= now-time_buffer):
-            return lastreturn_ball_time
+            return lastreturn_ball
         init_window()
         color = self.color
         oldpic = self.get_new_image()
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
-        W2 = screen.get_width()
+        W2 = 60
         Scale = float(float(W2 * 100) / float(W * 100))
         W = W2
         H = H * Scale
         W = int(W)
         H = int(H)
-        imgheight = H
         oldpic = pygame.transform.scale(oldpic,(W,H))
 
         #print("color detection - redscaling")
@@ -244,17 +238,7 @@ class RasterImage:
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (reds.count(bestColor(col)) > 0):
-                            redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
-                    else:
-                        redpic.set_at((i,j),(0,0,0))
-                if (color == "blue"):
-                    if (b > (r+g)*factor and b > minwaarde and r < maxwaarde and g < maxwaarde):
-                        redpic.set_at((i,j),(min(max(b-(r+g)/2,0),255),0,0))
-                    else:
-                        redpic.set_at((i,j),(0,0,0))
-                if (color == "green"):
-                    if (g > (b+r)*factor and g > minwaarde and r < maxwaarde and b < maxwaarde):
-                        redpic.set_at((i,j),(min(max(g-(b+r)/2,0),255),0,0))
+                            redpic.set_at((i,j),(255,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
         self.pic_ball = redpic
@@ -272,9 +256,210 @@ class RasterImage:
         downleft = 0
         downright = 0
 
-        crude = 4
+        crude = 2
 
-        #print("color detection - finding hotspot")
+        while(crude >= 1):
+
+            upleft = 0
+            upright = 0
+            upmid = 0
+            midleft = 0
+            midmid = 0
+            midright = 0
+            downleft = 0
+            downmid = 0
+            downright = 0
+
+            oneX = int((rightX - leftX) * 0.33 + leftX)
+            twoX = int((rightX - leftX) * 0.66 + leftX)
+            oneY = int((downY - upY) * 0.33 + upY)
+            twoY = int((downY - upY) * 0.66 + upY)
+
+            for i in range(leftX,rightX,1):
+                for j in range(upY,downY,1):
+                    col = oldpic.get_at((i,j))
+                    if (reds.count(bestColor(col)) > 0):
+                        if (i <= oneX and j <= oneY):
+                            upleft += 1
+                        elif (i <= oneX and j <= twoY):
+                            midleft += 1
+                        elif (i <= oneX and j >= twoY):
+                            downleft += 1
+                        elif (i <= twoX and j <= oneY):
+                            upmid += 1
+                        elif (i <= twoX and j <= twoY):
+                            midmid += 1
+                        elif (i <= twoX and j >= twoY):
+                            downmid += 1
+                        elif (i >= twoX and j <= oneY):
+                            upright += 1
+                        elif (i >= twoX and j <= twoY):
+                            midright += 1
+                        elif (i >= twoX and j >= twoY):
+                            downright += 1
+            crude -= 1
+            up = upleft + upmid + upright
+            mid = midleft + midmid + midright
+            down = downleft + downmid + downright
+            if (up <= 0 and mid <= 0 and down <= 0):
+                    print("balherkenning: could not find (enough) red")
+                    oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
+                    screen.blit(oldpic,(0,0))
+                    pygame.display.flip()
+                    lastreturn_ball = (-999,-999)
+                    lastreturn_ball_time = time.time()
+                    return (-999,-999)
+            if (up > mid and up > down):
+                if (upleft > upmid and upleft > upright):
+                    zone = "upleft"
+                elif (upmid >= upright):
+                    zone = "upmid"
+                else:
+                    zone = "upright"
+            elif (mid >= down):
+                if (midleft > midmid and midleft > midright):
+                    zone = "midleft"
+                elif (midmid >= midright):
+                    zone = "midmid"
+                else:
+                    zone = "midright"
+            else:
+                if (downleft > downmid and downleft > downright):
+                    zone = "downleft"
+                elif (downmid >= downright):
+                    zone = "downmid"
+                else:
+                    zone = "downright"
+
+            if (zone == "upleft" or zone == "upright" or zone == "upmid"):
+                upY = upY
+                downY = oneY
+            if (zone == "midleft" or zone == "midright" or zone == "midmid"):
+                upY = oneY
+                downY = twoY
+            if (zone == "downleft" or zone == "downright" or zone == "downmid"):
+                upY = twoY
+                downY = downY
+            if (zone == "upleft" or zone == "midleft" or zone == "downleft"):
+                leftX = leftX
+                rightX = oneX
+            if (zone == "upmid" or zone == "midmid" or zone == "downmid"):
+                leftX = oneX
+                rightX = twoX
+            if (zone == "upright" or zone == "midright" or zone == "downright"):
+                leftX = twoX
+                rightX = rightX
+
+        pygame.draw.line(screen,(255,255,255),(oneX,oneY),(oneX,twoY),1)
+        pygame.draw.line(screen,(255,255,255),(oneX,oneY),(twoX,oneY),1)
+        pygame.draw.line(screen,(255,255,255),(twoX,oneY),(twoX,twoY),1)
+        pygame.draw.line(screen,(255,255,255),(twoX,oneY),(twoX,oneY),1)
+
+        wins = []
+        for i in range(leftX,rightX,2):
+            for j in range(upY,downY,2):
+                wins.append(oldpic.get_at((i,j)))
+
+        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
+        found_red = False
+        for win in wins:
+            best = bestColor(win)
+            if (reds.count(best) > 0):
+                print("balherkenning: ----I'm quite certain this is the red ball.----")
+                found_red = True
+                break
+        #if (found_red == False):
+        #    print("balherkenning: ----It might be another color, but fuck that.----")
+        #    found_red = True
+        if (found_red == False):
+            # hier komt ie nooit door bovenstaande regel
+            print("balherkenning: ----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
+            screen.blit(oldpic,(0,0))
+            pygame.display.flip()
+            lastreturn_ball = (-999,-999)
+            lastreturn_ball_time = time.time()
+            return (-999,-999)
+
+        screen.blit(oldpic,(0,0))
+        pygame.display.flip()
+
+        sizeX = abs(leftX - rightX)
+        sizeY = abs(upY - downY)
+        totalSize = sizeX * sizeY
+
+        toreturn = ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
+        lastreturn_ball = toreturn
+        lastreturn_ball_time = time.time()
+        return toreturn
+
+def getDist(defined,actual):
+    (b1,g1,r1,a) = actual
+    total = b1 + g1 + r1
+    b1 = float(b1) / float(max(1,total))
+    g1 = float(g1) / float(max(1,total))
+    r1 = float(r1) / float(max(1,total))
+    (r2,g2,b2,minlight,maxlight) = defined
+    distR = abs(float(r1) - float(r2))
+    distB = abs(float(b1) - float(b2))
+    distG = abs(float(g1) - float(g2))
+    totalDist = float(distR + distB + distG)/3.0
+    return totalDist
+
+def getDists(defined,actual):
+    (b1,g1,r1,a) = actual
+    total = b1 + g1 + r1
+    b1 = b1 / max(1,total)
+    g1 = g1 / max(1,total)
+    r1 = r1 / max(1,total)
+    (r2,g2,b2,minlight,maxlight) = defined
+    distR = abs(float(r1) - float(r2))
+    distB = abs(float(b1) - float(b2))
+    distG = abs(float(g1) - float(g2))
+    return (distR,distG,distB)
+
+def bestColor(actual):
+    closest = 999
+    best = None
+    for color in colors:
+        (x,y,z,minlight,maxlight) = color
+        (r,g,b,a) = actual
+        for c in [r,g,b]:
+            if (c < minlight or c > maxlight):
+                continue
+        newdist = getDist(color,actual)
+        if (newdist < closest):
+            closest = newdist
+            best = color
+    return best
+
+def drawColor(best):
+    (r,g,b,minl,maxl) = best
+    if (blues.count(best) > 0):
+        (r,g,b) = (0,0,255)
+    elif (reds.count(best) > 0):
+        (r,g,b) = (255,0,0)
+    elif (yellows.count(best) > 0):
+        (r,g,b) = (255,255,0)
+    else:
+        intense = maxl
+        r = r * intense
+        g = g * intense
+        b = b * intense
+    return (r,g,b)
+
+def combineCols(col1,col2):
+    (r1,g1,b1,a) = col1
+    (r2,g2,b2,minl,maxl) = col2
+    r = (r1+r2)/2
+    g = (g1+g2)/2
+    b = (b1+b2)/2
+    return (r,g,b)
+
+
+
+
+### old:
+'''
         while(crude >= 1):
             for i in range(0,redpic.get_width(),crude):
                 for j in range(0,redpic.get_height(),crude):
@@ -293,6 +478,8 @@ class RasterImage:
             if (max(max(upleft,upright),max(downleft,downright)) == 0):
                 # if we did not find any pixes at all, do not "rezoom", just zoom in
                 if (crude == 0):
+                    print("balherkenning: could not find red")
+                    oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
                     screen.blit(oldpic,(0,0))
                     pygame.display.flip()
                     lastreturn_ball = (-999,-999)
@@ -363,7 +550,7 @@ class RasterImage:
         for i in range(leftX,rightX,2):
             for j in range(upY,downY,2):
                 wins.append(oldpic.get_at((i,j)))
-            
+
         for i in range(leftX,rightX):
             for j in range(upY,downY):
                 r = oldpic.get_at((i,j)).r
@@ -372,90 +559,4 @@ class RasterImage:
         for i in range(0,redpic.get_width()):
             oldpic.set_at((i,midY),(255,255,255))
         for j in range(0,redpic.get_height()):
-            oldpic.set_at((midX,j),(255,255,255))
-
-        found_red = False
-        for win in wins:
-            best = bestColor(win)
-            if (reds.count(best) > 0):
-                print("----I'm quite certain this is the red ball.----")
-                found_red = True
-                break
-        if (found_red == False):
-            print("----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
-            screen.blit(oldpic,(0,0))
-            pygame.display.flip()
-            lastreturn_ball = (-999,-999)
-            lastreturn_ball_time = time.time()
-            return (-999,-999)
-
-        redpic.set_colorkey((0,0,0))
-        screen.blit(oldpic,(0,0))
-        screen.blit(redpic,(0,0))
-        pygame.display.flip()
-
-        sizeX = abs(leftX - rightX)
-        sizeY = abs(upY - downY)
-        totalSize = sizeX * sizeY
-
-        toreturn = ((float(float(midX) / float(W))-0.5)*2,(float(float(midY) / float(H))-0.5)*2)
-        lastreturn_ball = toreturn
-        lastreturn_ball_time = time.time()
-        return toreturn
-
-def getDist(defined,actual):
-    (b1,g1,r1,a) = actual
-    total = b1 + g1 + r1
-    b1 = float(b1) / float(max(1,total))
-    g1 = float(g1) / float(max(1,total))
-    r1 = float(r1) / float(max(1,total))
-    (r2,g2,b2,minlight,maxlight) = defined
-    distR = abs(float(r1) - float(r2))
-    distB = abs(float(b1) - float(b2))
-    distG = abs(float(g1) - float(g2))
-    totalDist = float(distR + distB + distG)/3.0
-    return totalDist
-
-def getDists(defined,actual):
-    (b1,g1,r1,a) = actual
-    total = b1 + g1 + r1
-    b1 = b1 / max(1,total)
-    g1 = g1 / max(1,total)
-    r1 = r1 / max(1,total)
-    (r2,g2,b2,minlight,maxlight) = defined
-    distR = abs(float(r1) - float(r2))
-    distB = abs(float(b1) - float(b2))
-    distG = abs(float(g1) - float(g2))
-    return (distR,distG,distB)
-
-def bestColor(actual):
-    closest = 999
-    best = None
-    for color in colors:
-        (x,y,z,minlight,maxlight) = color
-        (r,g,b,a) = actual
-        for c in [r,g,b]:
-            if (c < minlight or c > maxlight):
-                continue
-        newdist = getDist(color,actual)
-        if (newdist < closest):
-            closest = newdist
-            best = color
-    return best
-
-def drawColor(best):
-    (r,g,b,minl,maxl) = best
-    intense = minl + maxl
-    intense /= 2
-    r = r * intense
-    g = g * intense
-    b = b * intense
-    return (r,g,b)
-
-def combineCols(col1,col2):
-    (r1,g1,b1,a) = col1
-    (r2,g2,b2,minl,maxl) = col2
-    r = (r1+r2)/2
-    g = (g1+g2)/2
-    b = (b1+b2)/2
-    return (r,g,b)
+            oldpic.set_at((midX,j),(255,255,255))'''
