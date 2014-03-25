@@ -15,13 +15,12 @@ imgheight = 480
 
 # blue goal
 darkblue = (0.16,0.16,0.68,90,120)
-uglyblue = (0.18,0.18,0.64,90,120)
+uglyblue = (0.20,0.20,0.6,90,120)
 
 # red ball
 whitered = (0.35,0.31,0.31,0,255)
 pink = (0.46,0.27,0.27,0,255)
 orange = (0.5,0.3,0.2,0,255)
-geelrood = (0.47,0.37,0.16,0,255)
 
 # yellow goal
 uglyyellow = (0.38,0.37,0.25,20,255)
@@ -35,8 +34,8 @@ slightgreen = (0.25,0.5,0.25,10,255)
 
 black = (0.33,0.33,0.33,0,20)
 
-colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen,geelrood]
-reds = [pink,whitered,orange,geelrood]
+colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen]
+reds = [pink,whitered,orange]
 blues = [darkblue,uglyblue]
 yellows = [yellow2,uglyyellow,yellow3]
 
@@ -238,7 +237,17 @@ class RasterImage:
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (reds.count(bestColor(col)) > 0):
-                            redpic.set_at((i,j),(255,0,0))
+                            redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
+                    else:
+                        redpic.set_at((i,j),(0,0,0))
+                if (color == "blue"):
+                    if (b > (r+g)*factor and b > minwaarde and r < maxwaarde and g < maxwaarde):
+                        redpic.set_at((i,j),(min(max(b-(r+g)/2,0),255),0,0))
+                    else:
+                        redpic.set_at((i,j),(0,0,0))
+                if (color == "green"):
+                    if (g > (b+r)*factor and g > minwaarde and r < maxwaarde and b < maxwaarde):
+                        redpic.set_at((i,j),(min(max(g-(b+r)/2,0),255),0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
         self.pic_ball = redpic
@@ -256,54 +265,27 @@ class RasterImage:
         downleft = 0
         downright = 0
 
-        crude = 3
+        crude = 4
 
+        #print("color detection - finding hotspot")
         while(crude >= 1):
-
-            upleft = 0
-            upright = 0
-            upmid = 0
-            midleft = 0
-            midmid = 0
-            midright = 0
-            downleft = 0
-            downmid = 0
-            downright = 0
-
-            oneX = int((rightX - leftX) * 0.33 + leftX)
-            twoX = int((rightX - leftX) * 0.66 + leftX)
-            oneY = int((downY - upY) * 0.33 + upY)
-            twoY = int((downY - upY) * 0.66 + upY)
-
-            for i in range(leftX,rightX,1):
-                for j in range(upY,downY,1):
-                    col = oldpic.get_at((i,j))
-                    if (reds.count(bestColor(col)) > 0):
-                        if (i <= oneX and j <= oneY):
-                            upleft += 1
-                        elif (i <= oneX and j <= twoY):
-                            midleft += 1
-                        elif (i <= oneX and j >= twoY):
-                            downleft += 1
-                        elif (i <= twoX and j <= oneY):
-                            upmid += 1
-                        elif (i <= twoX and j <= twoY):
-                            midmid += 1
-                        elif (i <= twoX and j >= twoY):
-                            downmid += 1
-                        elif (i >= twoX and j <= oneY):
-                            upright += 1
-                        elif (i >= twoX and j <= twoY):
-                            midright += 1
-                        elif (i >= twoX and j >= twoY):
-                            downright += 1
+            for i in range(0,redpic.get_width(),crude):
+                for j in range(0,redpic.get_height(),crude):
+                    r = redpic.get_at((i,j)).r
+                    if (r > 0):
+                        if (i < midX and j < midY):
+                            upleft += r
+                        elif (i > midX and j < midY):
+                            upright += r
+                        elif (i < midX):
+                            downleft += r
+                        else:
+                            downright += r
             crude -= 1
-            up = upleft + upmid + upright
-            mid = midleft + midmid + midright
-            down = downleft + downmid + downright
-            if (up <= 0 and mid <= 0 and down <= 0):
-                if (crude == 3):
-                    print("balherkenning: could not find (enough) red")
+            highest = 0
+            if (max(max(upleft,upright),max(downleft,downright)) == 0):
+                # if we did not find any pixes at all, do not "rezoom", just zoom in
+                if (crude == 0):
                     oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
                     screen.blit(oldpic,(0,0))
                     pygame.display.flip()
@@ -311,71 +293,94 @@ class RasterImage:
                     lastreturn_ball_time = time.time()
                     return (-999,-999)
                 else:
-                    zone = "midmid"
-            if (up > mid and up > down):
-                if (upleft > upmid and upleft > upright):
-                    zone = "upleft"
-                elif (upmid >= upright):
-                    zone = "upmid"
-                else:
-                    zone = "upright"
-            elif (mid >= down):
-                if (midleft > midmid and midleft > midright):
-                    zone = "midleft"
-                elif (midmid >= midright):
-                    zone = "midmid"
-                else:
-                    zone = "midright"
-            else:
-                if (downleft > downmid and downleft > downright):
-                    zone = "downleft"
-                elif (downmid >= downright):
-                    zone = "downmid"
-                else:
-                    zone = "downright"
-
-            if (zone == "upleft" or zone == "upright" or zone == "upmid"):
-                upY = upY
-                downY = oneY
-            if (zone == "midleft" or zone == "midright" or zone == "midmid"):
-                upY = oneY
-                downY = twoY
-            if (zone == "downleft" or zone == "downright" or zone == "downmid"):
-                upY = twoY
-                downY = downY
-            if (zone == "upleft" or zone == "midleft" or zone == "downleft"):
+                    pass
+            elif (upleft >= upright and upleft >= downleft and upleft >= downright):
+                # if we find most pixel up-left, rezoom up-left
                 leftX = leftX
-                rightX = oneX
-            if (zone == "upmid" or zone == "midmid" or zone == "downmid"):
-                leftX = oneX
-                rightX = twoX
-            if (zone == "upright" or zone == "midright" or zone == "downright"):
-                leftX = twoX
+                rightX = midX
+                upY = upY
+                downY = midY
+                highest = upleft
+            elif (upright >= downleft and upright >= downright):
+                # etc, upright
+                leftX = midX
                 rightX = rightX
+                upY = upY
+                downY = midY
+                highest = upright
+            elif (downleft >= downright):
+                # etc, downleft
+                leftX = leftX
+                rightX = midX
+                upY = midY
+                downY = downY
+                highest = downleft
+            elif (downright >= downleft):
+                # etc, downright
+                leftX = midX
+                rightX = rightX
+                upY = midY
+                downY = downY
+                highest = downright
+            else:
+                # dit zou niet moeten kunnen
+                print("error: no color detection")
 
-        pygame.draw.line(screen,(255,255,255),(oneX,oneY),(oneX,twoY),1)
-        pygame.draw.line(screen,(255,255,255),(oneX,oneY),(twoX,oneY),1)
-        pygame.draw.line(screen,(255,255,255),(twoX,oneY),(twoX,twoY),1)
-        pygame.draw.line(screen,(255,255,255),(twoX,oneY),(twoX,oneY),1)
+            midX = (leftX + rightX) / 2
+            midY = (upY + downY) / 2
+            upleft = 0
+            upright = 0
+            downleft = 0
+            downright = 0
+
+        pointUpLeft_x = (leftX + midX) / 2
+        pointUpLeft_y = (upY + midY) / 2
+        pointUpRight_x = (rightX + midX) / 2
+        pointUpRight_y = (upY + midY) / 2
+        pointDownLeft_x = (leftX + midX) / 2
+        pointDownLeft_y = (upY + midY) / 2
+        pointDownRight_x = (rightX + midX) / 2
+        pointDownRight_y = (upY + midY) / 2
+
+        #wincolor = oldpic.get_at((midX,midY))
+        #wincolor1 = oldpic.get_at((pointUpLeft_x,pointUpLeft_y))
+        #wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
+        #wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
+        #wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
+        #wincolor5 = oldpic.get_at((rightX-1,upY+1))
+        #wincolor6 = oldpic.get_at((leftX+1,upY+1))
+        #wincolor7 = oldpic.get_at((rightX-1,downY-1))
+        #wincolor8 = oldpic.get_at((leftX+1,downY-1))
+        #wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
 
         wins = []
         for i in range(leftX,rightX,2):
             for j in range(upY,downY,2):
                 wins.append(oldpic.get_at((i,j)))
+            
+        for i in range(leftX,rightX):
+            for j in range(upY,downY):
+                r = oldpic.get_at((i,j)).r
+                oldpic.set_at((i,j),(r,50,0))
+
+        for i in range(0,redpic.get_width()):
+            oldpic.set_at((i,midY),(255,255,255))
+        for j in range(0,redpic.get_height()):
+            oldpic.set_at((midX,j),(255,255,255))
 
         oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         found_red = False
         for win in wins:
             best = bestColor(win)
             if (reds.count(best) > 0):
-                print("balherkenning: ----I'm quite certain this is the red ball.----")
+                print("----I'm quite certain this is the red ball.----")
                 found_red = True
                 break
         if (found_red == False):
-            print("balherkenning: DEBUG DEBUG DEBUG        It might be another color, but fuck that.       DEBUG DEBUG DEBUG")
+            print("DEBUG DEBUG DEBUG        It might be another color, but fuck that.       DEBUG DEBUG DEBUG")
             found_red = True
         if (found_red == False):
-            print("balherkenning: ----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
+            print("----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
             screen.blit(oldpic,(0,0))
             pygame.display.flip()
             lastreturn_ball = (-999,-999)
@@ -456,109 +461,3 @@ def combineCols(col1,col2):
     g = (g1+g2)/2
     b = (b1+b2)/2
     return (r,g,b)
-
-
-
-
-### old:
-'''
-        while(crude >= 1):
-            for i in range(0,redpic.get_width(),crude):
-                for j in range(0,redpic.get_height(),crude):
-                    r = redpic.get_at((i,j)).r
-                    if (r > 0):
-                        if (i < midX and j < midY):
-                            upleft += r
-                        elif (i > midX and j < midY):
-                            upright += r
-                        elif (i < midX):
-                            downleft += r
-                        else:
-                            downright += r
-            crude -= 1
-            highest = 0
-            if (max(max(upleft,upright),max(downleft,downright)) == 0):
-                # if we did not find any pixes at all, do not "rezoom", just zoom in
-                if (crude == 0):
-                    print("balherkenning: could not find red")
-                    oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
-                    screen.blit(oldpic,(0,0))
-                    pygame.display.flip()
-                    lastreturn_ball = (-999,-999)
-                    lastreturn_ball_time = time.time()
-                    return (-999,-999)
-                else:
-                    pass
-            elif (upleft >= upright and upleft >= downleft and upleft >= downright):
-                # if we find most pixel up-left, rezoom up-left
-                leftX = leftX
-                rightX = midX
-                upY = upY
-                downY = midY
-                highest = upleft
-            elif (upright >= downleft and upright >= downright):
-                # etc, upright
-                leftX = midX
-                rightX = rightX
-                upY = upY
-                downY = midY
-                highest = upright
-            elif (downleft >= downright):
-                # etc, downleft
-                leftX = leftX
-                rightX = midX
-                upY = midY
-                downY = downY
-                highest = downleft
-            elif (downright >= downleft):
-                # etc, downright
-                leftX = midX
-                rightX = rightX
-                upY = midY
-                downY = downY
-                highest = downright
-            else:
-                # dit zou niet moeten kunnen
-                print("error: no color detection")
-
-            midX = (leftX + rightX) / 2
-            midY = (upY + downY) / 2
-            upleft = 0
-            upright = 0
-            downleft = 0
-            downright = 0
-
-        pointUpLeft_x = (leftX + midX) / 2
-        pointUpLeft_y = (upY + midY) / 2
-        pointUpRight_x = (rightX + midX) / 2
-        pointUpRight_y = (upY + midY) / 2
-        pointDownLeft_x = (leftX + midX) / 2
-        pointDownLeft_y = (upY + midY) / 2
-        pointDownRight_x = (rightX + midX) / 2
-        pointDownRight_y = (upY + midY) / 2
-
-        #wincolor = oldpic.get_at((midX,midY))
-        #wincolor1 = oldpic.get_at((pointUpLeft_x,pointUpLeft_y))
-        #wincolor2 = oldpic.get_at((pointUpRight_x,pointUpRight_y))
-        #wincolor3 = oldpic.get_at((pointDownLeft_x,pointDownLeft_y))
-        #wincolor4 = oldpic.get_at((pointDownRight_x,pointDownRight_y))
-        #wincolor5 = oldpic.get_at((rightX-1,upY+1))
-        #wincolor6 = oldpic.get_at((leftX+1,upY+1))
-        #wincolor7 = oldpic.get_at((rightX-1,downY-1))
-        #wincolor8 = oldpic.get_at((leftX+1,downY-1))
-        #wins = [wincolor,wincolor1,wincolor2,wincolor3,wincolor4,wincolor5,wincolor6,wincolor7,wincolor8]
-
-        wins = []
-        for i in range(leftX,rightX,2):
-            for j in range(upY,downY,2):
-                wins.append(oldpic.get_at((i,j)))
-
-        for i in range(leftX,rightX):
-            for j in range(upY,downY):
-                r = oldpic.get_at((i,j)).r
-                oldpic.set_at((i,j),(r,50,0))
-
-        for i in range(0,redpic.get_width()):
-            oldpic.set_at((i,midY),(255,255,255))
-        for j in range(0,redpic.get_height()):
-            oldpic.set_at((midX,j),(255,255,255))'''
