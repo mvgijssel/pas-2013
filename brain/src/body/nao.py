@@ -848,6 +848,9 @@ class Nao(object):
         else:
             # this is fine
             return False
+    def hoe_laag(self):
+        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
+        return HEAD_PITCH
 
     def zeg_dit(self,file):
         print("sound: " + str(file))
