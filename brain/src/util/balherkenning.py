@@ -353,7 +353,7 @@ class RasterImage:
         for i in range(0,H):
             oldpic.set_at((midX,i),(255,255,255))
 
-       wins = []
+        wins = []
         for i in range(leftX,rightX,2):
             for j in range(upY,downY,2):
                 wins.append(oldpic.get_at((i,j)))
