@@ -99,7 +99,7 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     def get_done(self):
         (last,value) = self.m.get_last_observation("last_done")
-        if (last > time.time()-1 and last > self.last_done):
+        if (last > self.last_done):
             self.last_done = last
             return True
         else:
