@@ -26,7 +26,11 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
     def implementation_update(self):
 
         # draai rondjes om de bal, tot je de goal hebt gevonden.
-        self.nao.look_at(random.randint(-100,100)/100,random.randint(-100,100)/100)
+
+        HEAD_YAW = self.get_angles(['HeadYaw'], True)[0]
+        HEAD_YAW += random.randint(-0.1,0.1)
+        self.set_angles(['HeadPitch'], [HEAD_YAW], 0.2, radians=True)
+
         self.nao.kijk_hoger(1)
         seen = self.nao.check_goal()
         if (seen != None):
