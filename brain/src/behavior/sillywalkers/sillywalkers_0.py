@@ -25,8 +25,11 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # set the camera parameters
         self.nao.setup_camera_parameters()
 
+        # set the head stiffness
+        self.nao.get_proxy("motion").setStiffnesses("Head", 1.0)
+
         # is a hack, should be an external behaviour which stands up when nao isn't standing
-        # self.nao.complete_behavior("standup")
+        self.nao.complete_behavior("standup")
 
         # instantiate the behaviours, acts as a reset
         #define list of sub-behavior here
@@ -34,15 +37,14 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         self.objectdetector = self.ab.objectdetector({'debug': False})
         self.findball = self.ab.findball({'debug': False, 'info': True})
         self.headfollowball = self.ab.headfollowball({'debug': True})
-        self.aligntorso = self.ab.aligntorso({'debug': True})
-        self.approachball = self.ab.approachball({'debug', True})
-
+        self.approachball = self.ab.approachball({'debug': True})
 
         self.selected_behaviors = [
             ("naocalibration", "True"),
             ("objectdetector", "True"),
-            #("findball", "True"),
-            ("headfollowball", "True")
+            ("findball", "True"),
+            ("headfollowball", "True"),
+            ("approachball", "True")
         ]
 
         self.restart_time = time.time()
