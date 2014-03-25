@@ -348,10 +348,10 @@ class RasterImage:
                 leftX = twoX
                 rightX = rightX
 
-        pygame.draw.line(screen,(oneX,oneY),(oneX,twoY),1)
-        pygame.draw.line(screen,(oneX,oneY),(twoX,oneY),1)
-        pygame.draw.line(screen,(twoX,oneY),(twoX,twoY),1)
-        pygame.draw.line(screen,(twoX,oneY),(twoX,oneY),1)
+        pygame.draw.line(screen,(255,255,255),(oneX,oneY),(oneX,twoY),1)
+        pygame.draw.line(screen,(255,255,255),(oneX,oneY),(twoX,oneY),1)
+        pygame.draw.line(screen,(255,255,255),(twoX,oneY),(twoX,twoY),1)
+        pygame.draw.line(screen,(255,255,255),(twoX,oneY),(twoX,oneY),1)
 
         wins = []
         for i in range(leftX,rightX,2):
