@@ -368,9 +368,9 @@ class RasterImage:
                 print("balherkenning: ----I'm quite certain this is the red ball.----")
                 found_red = True
                 break
-        #if (found_red == False):
-        #    print("balherkenning: ----It might be another color, but fuck that.----")
-        #    found_red = True
+        if (found_red == False):
+            print("balherkenning: ----It might be another color, but fuck that.----")
+            found_red = True
         if (found_red == False):
             # hier komt ie nooit door bovenstaande regel
             print("balherkenning: ----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
