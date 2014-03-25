@@ -258,17 +258,18 @@ class RasterImage:
 
         crude = 3
 
-        upleft = 0
-        upright = 0
-        upmid = 0
-        midleft = 0
-        midmid = 0
-        midright = 0
-        downleft = 0
-        downmid = 0
-        downright = 0
-
         while(crude >= 1):
+
+            upleft = 0
+            upright = 0
+            upmid = 0
+            midleft = 0
+            midmid = 0
+            midright = 0
+            downleft = 0
+            downmid = 0
+            downright = 0
+
             oneX = int((rightX - leftX) * 0.33 + leftX)
             twoX = int((rightX - leftX) * 0.66 + leftX)
             oneY = int((downY - upY) * 0.33 + upY)
@@ -282,19 +283,19 @@ class RasterImage:
                             upleft += 1
                         elif (i <= oneX and j <= twoY):
                             midleft += 1
-                        elif (i <= oneX and j > twoY):
+                        elif (i <= oneX and j >= twoY):
                             downleft += 1
                         elif (i <= twoX and j <= oneY):
                             upmid += 1
                         elif (i <= twoX and j <= twoY):
                             midmid += 1
-                        elif (i <= twoX and j > twoY):
+                        elif (i <= twoX and j >= twoY):
                             downmid += 1
-                        elif (i > twoX and j <= oneY):
+                        elif (i >= twoX and j <= oneY):
                             upright += 1
-                        elif (i > twoX and j <= twoY):
+                        elif (i >= twoX and j <= twoY):
                             midright += 1
-                        elif (i > twoX and j > twoY):
+                        elif (i >= twoX and j >= twoY):
                             downright += 1
             crude -= 1
             up = upleft + upmid + upright
