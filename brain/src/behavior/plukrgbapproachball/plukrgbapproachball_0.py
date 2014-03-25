@@ -89,7 +89,6 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
                 self.nao.walk(float(dist * 0.2),0,0)
             elif (posy > 0):
                 print("approach bal: ik zie de bal vlak voor me.")
-                print("approach bal: laagheid is " + str(self.nao.hoe_laag()))
                 if (self.nao.kijkt_laagst() == True):
                     self.set_done()
                     return

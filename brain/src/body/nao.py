@@ -841,16 +841,13 @@ class Nao(object):
     def kijkt_laagst(self):
         # kijk ik al het laagst mogelijk?
         HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
-        if (HEAD_PITCH >= 0.9):
+        if (HEAD_PITCH >= 0.5):
             # returned to the "approach ball" module
             print("Nao: Can not look any lower")
             return True
         else:
             # this is fine
             return False
-    def hoe_laag(self):
-        HEAD_PITCH = self.get_angles(['HeadPitch'], True)[0]
-        return HEAD_PITCH
 
     def zeg_dit(self,file):
         print("sound: " + str(file))
