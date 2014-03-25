@@ -276,7 +276,8 @@ class RasterImage:
 
             for i in range(leftX,rightX,1):
                 for j in range(upY,downY,1):
-                    if (reds.count(bestColor(oldpic.get_at((i,j)))) > 0):
+                    col = oldpic.get_at((i,j))
+                    if (reds.count(bestColor(col)) > 0):
                         if (i <= oneX and j <= oneY):
                             upleft += 1
                         elif (i <= oneX and j <= twoY):
