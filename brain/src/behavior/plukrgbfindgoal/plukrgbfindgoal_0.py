@@ -28,7 +28,7 @@ class Plukrgbfindgoal_x(basebehavior.behaviorimplementation.BehaviorImplementati
         # draai rondjes om de bal, tot je de goal hebt gevonden.
 
         HEAD_YAW = self.nao.get_angles(['HeadYaw'], True)[0]
-        HEAD_YAW += random.randint(-5,5)
+        HEAD_YAW += random.randint(-1,1)
         self.nao.set_angles(['HeadYaw'], [HEAD_YAW], 0.2, radians=True)
 
         self.nao.kijk_hoger(1)
