@@ -10,34 +10,41 @@ import time
 
 window = 0
 screen = None
-imgsize = 640
-imgheight = 480
+imgsize = 160
+imgheight = 120
 
 # blue goal
-darkblue = (0.16,0.16,0.68,90,120)
-uglyblue = (0.20,0.20,0.6,90,120)
+blue = (0,0,1,20,100)
+darkblue = (0.16,0.16,0.68,20,100)
+uglyblue = (0.3,0.3,0.4,20,100)
 
 # red ball
-whitered = (0.35,0.31,0.31,0,255)
-pink = (0.46,0.27,0.27,0,255)
-orange = (0.5,0.3,0.2,0,255)
+whitered = (0.35,0.31,0.31,20,255)
+darkred = (0.5,0.2,0.2,20,255)
+lightpink = (0.39,0.31,0.31,20,255)
+red = (1,0,0,20,255)
+pink = (0.46,0.27,0.27,20,255)
+orange = (0.5,0.3,0.2,20,250)
 
 # yellow goal
 uglyyellow = (0.38,0.37,0.25,20,255)
+yellow = (0.5,0.5,0,20,255)
 yellow2 = (0.42,0.42,0.14,20,255)
-yellow3 = (0.35,0.35,0.3,20,255)
 
 # green floor
+green = (0,1,0,50,255)
 darkgreen = (0.21,0.65,0.15,20,255)
 floorgreen = (0.3,0.4,0.3,20,100)
-slightgreen = (0.25,0.5,0.25,10,255)
+floorgreen2 = (0.25,0.5,0.25,20,100)
 
+# other
+white = (0.33,0.33,0.33,200,255)
 black = (0.33,0.33,0.33,0,20)
 
-colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen]
-reds = [pink,whitered,orange]
-blues = [darkblue,uglyblue]
-yellows = [yellow2,uglyyellow,yellow3]
+colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,white,black,orange]
+reds = [red,pink,lightpink,whitered,darkred,orange]
+blues = [blue,darkblue,uglyblue]
+yellows = [yellow,yellow2,uglyyellow]
 
 pygame.init()
 
@@ -53,7 +60,7 @@ lastreturn_goal = (-999,-999)
 lastreturn_ball = (-999,-999)
 lastreturn_goal_time = time.time()-5
 lastreturn_ball_time = time.time()-5
-time_buffer = 0.2 #hoeveel seconden hij een beeld bewaart
+time_buffer = 0 #hoeveel seconden hij een beeld bewaart
 
 def init_window():
     global window,screen,imgsize,imgheight
@@ -184,7 +191,6 @@ class RasterImage:
             print("find goal: I think I see the yellow goal")
             toreturn = ("yellow goal",middle_yellow)
 
-        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         screen.blit(oldpic,(0,0))
         pygame.display.flip()
 
@@ -197,19 +203,20 @@ class RasterImage:
         global lastreturn_ball,lastreturn_ball_time
         now = time.time()
         if (lastreturn_ball_time >= now-time_buffer):
-            return lastreturn_ball
+            return lastreturn_ball_time
         init_window()
         color = self.color
         oldpic = self.get_new_image()
         oldpic = pygame.image.fromstring(oldpic.tostring(),(oldpic.width,oldpic.height),"RGB")
         W = oldpic.get_width()
         H = oldpic.get_height()
-        W2 = 60
+        W2 = screen.get_width()
         Scale = float(float(W2 * 100) / float(W * 100))
         W = W2
         H = H * Scale
         W = int(W)
         H = int(H)
+        imgheight = H
         oldpic = pygame.transform.scale(oldpic,(W,H))
 
         #print("color detection - redscaling")
@@ -286,7 +293,6 @@ class RasterImage:
             if (max(max(upleft,upright),max(downleft,downright)) == 0):
                 # if we did not find any pixes at all, do not "rezoom", just zoom in
                 if (crude == 0):
-                    oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
                     screen.blit(oldpic,(0,0))
                     pygame.display.flip()
                     lastreturn_ball = (-999,-999)
@@ -368,7 +374,6 @@ class RasterImage:
         for j in range(0,redpic.get_height()):
             oldpic.set_at((midX,j),(255,255,255))
 
-        oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
         found_red = False
         for win in wins:
             best = bestColor(win)
@@ -377,9 +382,6 @@ class RasterImage:
                 found_red = True
                 break
         if (found_red == False):
-            print("DEBUG DEBUG DEBUG        It might be another color, but fuck that.       DEBUG DEBUG DEBUG")
-            found_red = True
-        if (found_red == False):
             print("----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
             screen.blit(oldpic,(0,0))
             pygame.display.flip()
@@ -387,7 +389,9 @@ class RasterImage:
             lastreturn_ball_time = time.time()
             return (-999,-999)
 
+        redpic.set_colorkey((0,0,0))
         screen.blit(oldpic,(0,0))
+        screen.blit(redpic,(0,0))
         pygame.display.flip()
 
         sizeX = abs(leftX - rightX)
@@ -441,17 +445,11 @@ def bestColor(actual):
 
 def drawColor(best):
     (r,g,b,minl,maxl) = best
-    if (blues.count(best) > 0):
-        (r,g,b) = (0,0,255)
-    elif (reds.count(best) > 0):
-        (r,g,b) = (255,0,0)
-    elif (yellows.count(best) > 0):
-        (r,g,b) = (255,255,0)
-    else:
-        intense = maxl
-        r = r * intense
-        g = g * intense
-        b = b * intense
+    intense = minl + maxl
+    intense /= 2
+    r = r * intense
+    g = g * intense
+    b = b * intense
     return (r,g,b)
 
 def combineCols(col1,col2):
