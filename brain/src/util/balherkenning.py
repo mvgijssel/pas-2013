@@ -299,7 +299,7 @@ class RasterImage:
             up = upleft + upmid + upright
             mid = midleft + midmid + midright
             down = downleft + downmid + downright
-            if (up <= 1 and mid <= 1 and down <= 1):
+            if (up <= 0 and mid <= 0 and down <= 0):
                 print("balherkenning: could not find (enough) red")
                 oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
                 screen.blit(oldpic,(0,0))
