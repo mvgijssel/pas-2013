@@ -238,17 +238,7 @@ class RasterImage:
                 if (color == "red"):
                     if (r > (b+g)*factor and r > minwaarde and g < maxwaarde and b < maxwaarde):
                         if (reds.count(bestColor(col)) > 0):
-                            redpic.set_at((i,j),(min(max(r-(b+g)/2,0),255),0,0))
-                    else:
-                        redpic.set_at((i,j),(0,0,0))
-                if (color == "blue"):
-                    if (b > (r+g)*factor and b > minwaarde and r < maxwaarde and g < maxwaarde):
-                        redpic.set_at((i,j),(min(max(b-(r+g)/2,0),255),0,0))
-                    else:
-                        redpic.set_at((i,j),(0,0,0))
-                if (color == "green"):
-                    if (g > (b+r)*factor and g > minwaarde and r < maxwaarde and b < maxwaarde):
-                        redpic.set_at((i,j),(min(max(g-(b+r)/2,0),255),0,0))
+                            redpic.set_at((i,j),(255,0,0))
                     else:
                         redpic.set_at((i,j),(0,0,0))
         self.pic_ball = redpic
@@ -287,6 +277,7 @@ class RasterImage:
             if (max(max(upleft,upright),max(downleft,downright)) == 0):
                 # if we did not find any pixes at all, do not "rezoom", just zoom in
                 if (crude == 0):
+                    print("balherkenning: could not find red")
                     oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
                     screen.blit(oldpic,(0,0))
                     pygame.display.flip()
@@ -374,14 +365,14 @@ class RasterImage:
         for win in wins:
             best = bestColor(win)
             if (reds.count(best) > 0):
-                print("----I'm quite certain this is the red ball.----")
+                print("balherkenning: ----I'm quite certain this is the red ball.----")
                 found_red = True
                 break
         if (found_red == False):
-            print("DEBUG DEBUG DEBUG        It might be another color, but fuck that.       DEBUG DEBUG DEBUG")
+            print("balherkenning: DEBUG DEBUG DEBUG        It might be another color, but fuck that.       DEBUG DEBUG DEBUG")
             found_red = True
         if (found_red == False):
-            print("----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
+            print("balherkenning: ----This might actually not be the red ball. Maybe its "+ str(best) + ".----")
             screen.blit(oldpic,(0,0))
             pygame.display.flip()
             lastreturn_ball = (-999,-999)
