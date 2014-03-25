@@ -266,7 +266,7 @@ class RasterImage:
         downleft = 0
         downright = 0
 
-        crude = 4
+        crude = 3
 
         #print("color detection - finding hotspot")
         while(crude >= 1):
