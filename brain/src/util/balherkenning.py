@@ -268,6 +268,11 @@ class RasterImage:
         downmid = 0
         downright = 0
 
+        oneY = (rightX - leftX) * 0.33 + leftX
+        twoY = (rightX - leftX) * 0.66 + leftX
+        oneX = (downY - upY) * 0.33 + upY
+        twoX = (downY - upY) * 0.66 + upY
+
         oldpic.set_at((oneX,oneY),(255,255,255))
         oldpic.set_at((oneX,twoY),(255,255,255))
         oldpic.set_at((twoX,oneY),(255,255,255))
