@@ -21,6 +21,7 @@ uglyblue = (0.18,0.18,0.64,90,120)
 whitered = (0.35,0.31,0.31,0,255)
 pink = (0.46,0.27,0.27,0,255)
 orange = (0.5,0.3,0.2,0,255)
+geelrood = (0.47,0.37,0.16,0,255)
 
 # yellow goal
 uglyyellow = (0.38,0.37,0.25,20,255)
@@ -34,8 +35,8 @@ slightgreen = (0.25,0.5,0.25,10,255)
 
 black = (0.33,0.33,0.33,0,20)
 
-colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen]
-reds = [pink,whitered,orange]
+colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen,geelrood]
+reds = [pink,whitered,orange,geelrood]
 blues = [darkblue,uglyblue]
 yellows = [yellow2,uglyyellow,yellow3]
 
