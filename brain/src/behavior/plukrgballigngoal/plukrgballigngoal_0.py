@@ -58,7 +58,7 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
                     self.nao.walk(0,0,math.radians(90))
                     self.set_done()
                 else:
-                print("allign goal: nothing?            ERROR ERROR ERROR")
+                    print("allign goal: nothing?            ERROR ERROR ERROR")
 
 
 

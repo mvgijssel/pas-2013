@@ -14,37 +14,31 @@ imgsize = 160
 imgheight = 120
 
 # blue goal
-blue = (0,0,1,20,100)
-darkblue = (0.16,0.16,0.68,20,100)
-uglyblue = (0.3,0.3,0.4,20,100)
+darkblue = (0.16,0.16,0.68,90,120)
+uglyblue = (0.18,0.18,0.64,90,120)
 
 # red ball
-whitered = (0.35,0.31,0.31,20,255)
-darkred = (0.5,0.2,0.2,20,255)
-lightpink = (0.39,0.31,0.31,20,255)
-red = (1,0,0,20,255)
-pink = (0.46,0.27,0.27,20,255)
-orange = (0.5,0.3,0.2,20,250)
+whitered = (0.35,0.31,0.31,0,255)
+pink = (0.46,0.27,0.27,0,255)
+orange = (0.5,0.3,0.2,0,255)
+geelrood = (0.47,0.37,0.16,0,255)
 
 # yellow goal
 uglyyellow = (0.38,0.37,0.25,20,255)
-yellow = (0.5,0.5,0,20,255)
 yellow2 = (0.42,0.42,0.14,20,255)
+yellow3 = (0.35,0.35,0.3,20,255)
 
 # green floor
-green = (0,1,0,50,255)
 darkgreen = (0.21,0.65,0.15,20,255)
 floorgreen = (0.3,0.4,0.3,20,100)
-floorgreen2 = (0.25,0.5,0.25,20,100)
+slightgreen = (0.25,0.5,0.25,10,255)
 
-# other
-white = (0.33,0.33,0.33,200,255)
 black = (0.33,0.33,0.33,0,20)
 
-colors = [yellow,blue,green,red,pink,darkgreen,lightpink,darkblue,yellow2,whitered,darkred,uglyblue,uglyyellow,floorgreen,white,black,orange]
-reds = [red,pink,lightpink,whitered,darkred,orange]
-blues = [blue,darkblue,uglyblue]
-yellows = [yellow,yellow2,uglyyellow]
+colors = [pink,darkgreen,darkblue,yellow2,whitered,uglyblue,uglyyellow,floorgreen,black,orange,yellow3,slightgreen,geelrood]
+reds = [pink,whitered,orange,geelrood]
+blues = [darkblue,uglyblue]
+yellows = [yellow2,uglyyellow,yellow3]
 
 pygame.init()
 
