@@ -286,8 +286,7 @@ class RasterImage:
 
             for i in range(leftX,rightX,1):
                 for j in range(upY,downY,1):
-                    r = oldpic.get_at((i,j)).r
-                    if (r > 0):
+                    if (reds.count(bestColor(oldpic.get_at((i,j)))) > 0):
                         if (i <= oneX and j <= oneY):
                             upleft += 1
                         elif (i <= oneX and j <= twoY):
@@ -310,8 +309,8 @@ class RasterImage:
             up = upleft + upmid + upright
             mid = midleft + midmid + midright
             down = downleft + downmid + downright
-            if (up == 0 and mid == 0 and down == 0):
-                print("balherkenning: could not find red")
+            if (up <= 5 and mid <= 5 and down <= 5):
+                print("balherkenning: could not find (enough) red")
                 oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
                 screen.blit(oldpic,(0,0))
                 pygame.display.flip()
