@@ -256,7 +256,7 @@ class RasterImage:
         downleft = 0
         downright = 0
 
-        crude = 2
+        crude = 3
 
         upleft = 0
         upright = 0
@@ -310,6 +310,14 @@ class RasterImage:
             up = upleft + upmid + upright
             mid = midleft + midmid + midright
             down = downleft + downmid + downright
+            if (up == 0 and mid == 0 and down == 0):
+                print("balherkenning: could not find red")
+                oldpic = pygame.transform.smoothscale(oldpic, (imgsize, imgheight))
+                screen.blit(oldpic,(0,0))
+                pygame.display.flip()
+                lastreturn_ball = (-999,-999)
+                lastreturn_ball_time = time.time()
+                return (-999,-999)
             if (up > mid and up > down):
                 if (upleft > upmid and upleft > upright):
                     zone = "upleft"
