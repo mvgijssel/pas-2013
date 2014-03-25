@@ -268,10 +268,10 @@ class RasterImage:
         downmid = 0
         downright = 0
 
-        oneY = (rightX - leftX) * 0.33 + leftX
-        twoY = (rightX - leftX) * 0.66 + leftX
-        oneX = (downY - upY) * 0.33 + upY
-        twoX = (downY - upY) * 0.66 + upY
+        oneY = int((rightX - leftX) * 0.33 + leftX)
+        twoY = int((rightX - leftX) * 0.66 + leftX)
+        oneX = int((downY - upY) * 0.33 + upY)
+        twoX = int((downY - upY) * 0.66 + upY)
 
         oldpic.set_at((oneX,oneY),(255,255,255))
         oldpic.set_at((oneX,twoY),(255,255,255))
@@ -279,10 +279,10 @@ class RasterImage:
         oldpic.set_at((twoX,twoY),(255,255,255))
 
         while(crude >= 1):
-            oneY = (rightX - leftX) * 0.33 + leftX
-            twoY = (rightX - leftX) * 0.66 + leftX
-            oneX = (downY - upY) * 0.33 + upY
-            twoX = (downY - upY) * 0.66 + upY
+            oneY = int((rightX - leftX) * 0.33 + leftX)
+            twoY = int((rightX - leftX) * 0.66 + leftX)
+            oneX = int((downY - upY) * 0.33 + upY)
+            twoX = int((downY - upY) * 0.66 + upY)
 
             for i in range(leftX,rightX,1):
                 for j in range(upY,downY,1):
