@@ -268,16 +268,6 @@ class RasterImage:
         downmid = 0
         downright = 0
 
-        oneX = int((rightX - leftX) * 0.33 + leftX)
-        twoX = int((rightX - leftX) * 0.66 + leftX)
-        oneY = int((downY - upY) * 0.33 + upY)
-        twoY = int((downY - upY) * 0.66 + upY)
-
-        oldpic.set_at((oneX,oneY),(255,255,255))
-        oldpic.set_at((oneX,twoY),(255,255,255))
-        oldpic.set_at((twoX,oneY),(255,255,255))
-        oldpic.set_at((twoX,twoY),(255,255,255))
-
         while(crude >= 1):
             oneX = int((rightX - leftX) * 0.33 + leftX)
             twoX = int((rightX - leftX) * 0.66 + leftX)
@@ -358,12 +348,10 @@ class RasterImage:
                 leftX = twoX
                 rightX = rightX
 
-        midX = (leftX + rightX) / 2
-        midY = (upY + downY) / 2
-        for i in range(0,W):
-            oldpic.set_at((i,midY),(255,255,255))
-        for i in range(0,H):
-            oldpic.set_at((midX,i),(255,255,255))
+        pygame.draw.line(screen,(oneX,oneY),(oneX,twoY),1)
+        pygame.draw.line(screen,(oneX,oneY),(twoX,oneY),1)
+        pygame.draw.line(screen,(twoX,oneY),(twoX,twoY),1)
+        pygame.draw.line(screen,(twoX,oneY),(twoX,oneY),1)
 
         wins = []
         for i in range(leftX,rightX,2):
