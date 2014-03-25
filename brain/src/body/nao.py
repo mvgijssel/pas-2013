@@ -806,17 +806,10 @@ class Nao(object):
         else:
             return -999
     def waar_is_bal(self):
-        global lastBallTime,lastBallReturn
         # returned (x,y) waar de bal is op het scherm
         # x en y zijn tussen -1 en 1, waar (0,0) het midden van het scherm is,
         # (-1,-1) links boven en (1,1) rechts onder
-        now = time.time()
-        if (now > lastBallTime-0.5):
-            (posx,posy) = self.detector.getPos()
-            lastBallReturn = (posx,posy)
-            lastBallTime = now
-        else:
-            return lastBallReturn
+        (posx,posy) = self.detector.getPos()
         return (posx,posy)
     def is_er_bal(self):
         # returned of er een bal in beeld is

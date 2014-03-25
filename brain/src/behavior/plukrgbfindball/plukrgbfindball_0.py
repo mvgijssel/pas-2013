@@ -25,6 +25,7 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
     def implementation_update(self):
 
         if (self.nao.is_er_bal() == True):
+            print("findball: stopping findball, I have seen the ball.")
             self.set_done()
             return
 
