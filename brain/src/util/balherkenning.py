@@ -279,10 +279,10 @@ class RasterImage:
         oldpic.set_at((twoX,twoY),(255,255,255))
 
         while(crude >= 1):
-            oneY = int((rightX - leftX) * 0.33 + leftX)
-            twoY = int((rightX - leftX) * 0.66 + leftX)
-            oneX = int((downY - upY) * 0.33 + upY)
-            twoX = int((downY - upY) * 0.66 + upY)
+            oneX = int((rightX - leftX) * 0.33 + leftX)
+            twoX = int((rightX - leftX) * 0.66 + leftX)
+            oneY = int((downY - upY) * 0.33 + upY)
+            twoY = int((downY - upY) * 0.66 + upY)
 
             for i in range(leftX,rightX,1):
                 for j in range(upY,downY,1):
