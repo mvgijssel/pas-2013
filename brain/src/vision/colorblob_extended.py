@@ -166,8 +166,9 @@ class ColorblobExtended(AbstractVisionModule):
         obs = []
         for contour in contours:
             x, y, width, height = cv2.boundingRect(contour)
+
             #Ignore observation: size < 20
-            if (width * height) > 20:
+            if (width * height) > 0:
                 obs.append({'x': x, 'y': y, 'width': width, 'height': height, 'size': (width * height)})
 
         if self.DEBUG:
