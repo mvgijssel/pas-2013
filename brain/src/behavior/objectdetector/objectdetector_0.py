@@ -10,8 +10,6 @@ import basebehavior.behaviorimplementation
 import time
 from util.custom_nao_classes import NaoSettings
 
-
-
 class ObjectDetector_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
     def implementation_init(self):
