@@ -9,6 +9,8 @@ from util.custom_nao_classes import Position
 
 class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
+    # TODO: should complete the entire sweep state, even starts in the center, should do each of the states
+
     # instantiate all the user variables
     def implementation_init(self):
 
@@ -92,7 +94,16 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
 
         # change the delay beteen states to twice the framerate
         if NaoSettings.get_time_per_frame():
-            self.state_delay = 2.5 * NaoSettings.get_time_per_frame()
+
+            # calculate the new delay
+            new_delay = self.state_delay * NaoSettings.get_time_per_frame()
+
+            # if the new delay is lower than 0.5, the delay is 0.5
+            if new_delay < 0.5:
+                new_delay = 0.5
+
+            # update the state delay
+            self.state_delay = new_delay
 
         # update the current time
         self.current_time = time.time()
