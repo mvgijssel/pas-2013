@@ -1,15 +1,11 @@
 import basebehavior.behaviorimplementation
-import os
 import time
 
 from util.custom_nao_classes import NaoSettings
 
 class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
-    '''this is a behavior implementation template'''
-
-    # this implementation should not define an __init__ !!!
-        
+    # TODO: implement a behaviour which stands up when the nao falls down
 
     def implementation_init(self):
 
@@ -28,7 +24,7 @@ class SillyWalkers_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         # set the head stiffness
         self.nao.get_proxy("motion").setStiffnesses("Head", 1.0)
 
-        # is a hack, should be an external behaviour which stands up when nao isn't standing
+        # TODO: is a hack, should be an external behaviour which stands up when nao isn't standing
         self.nao.complete_behavior("standup")
 
         # instantiate the behaviours, acts as a reset
