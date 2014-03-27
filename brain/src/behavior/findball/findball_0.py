@@ -50,7 +50,7 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
         self.time_out = 4
 
         # the delay between states: 1.5 times the seconds per frame
-        self.state_delay = 3
+        self.state_delay = 4
 
         # set the deviation from the target position
         self.position_deviation = 5
@@ -99,8 +99,10 @@ class FindBall_x(basebehavior.behaviorimplementation.BehaviorImplementation):
             new_delay = self.state_delay * NaoSettings.get_time_per_frame()
 
             # if the new delay is lower than 0.5, the delay is 0.5
-            if new_delay < 0.5:
-                new_delay = 0.5
+            if new_delay < 1:
+
+                # the delay is 1 second
+                new_delay = 1
 
             # update the state delay
             self.state_delay = new_delay
