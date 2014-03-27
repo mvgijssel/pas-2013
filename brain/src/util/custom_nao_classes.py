@@ -52,7 +52,7 @@ class NaoSettings():
     blob_dimension_height = 120
 
     # the ball object for the blob detector
-    BALL_OBJECT = DetectableObject('ball', 'experiment_rood', 4, 20)
+    BALL_OBJECT = DetectableObject('ball', 'experiment_rood', 6, 10)
 
     _seconds_per_frame = None
 
