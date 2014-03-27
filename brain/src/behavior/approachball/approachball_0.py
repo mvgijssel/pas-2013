@@ -44,10 +44,13 @@ class ApproachBall_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         self.slow_cone_total = self.slow_cone_bottom_edge - self.slow_cone_top_edge
 
         # set the maximum movement speed
-        self.max_movement_speed = 0.8
+        self.max_movement_speed = 1
 
         # set the minimum movement speed at which time the nao stops movement
-        self.min_movement_speed = 0.05
+        self.min_movement_speed = 0.1
+
+        # the rotation speed
+        self.max_rotation_speed = 0.1
 
         # Maximum angles of the head
         # HeadYaw    Head joint (X) degrees:	-119.5 to 119.5 rad: -2.0857 to 2.0857
@@ -61,8 +64,19 @@ class ApproachBall_0(basebehavior.behaviorimplementation.BehaviorImplementation)
             # looking to the left gives positive angles, looking to the right negative angles
             (head_x, head_y) = self.get_head_angles(False)
 
-            # set theta, the angle the nao has to walk in
-            theta = head_x * TO_RAD
+            # get the head x in rad
+            head_x_rad = head_x * TO_RAD
+
+
+            theta = 0
+
+            # when looking to the left, set the rotation speed to the left
+            if head_x_rad > 0:
+                theta = self.max_rotation_speed
+
+            # when looking to the right, set the rotation speed to the right
+            if head_x_rad < 0:
+                theta = -1 * self.max_rotation_speed
 
             # determine the movement speed
             movement_speed = self.max_movement_speed
@@ -78,17 +92,19 @@ class ApproachBall_0(basebehavior.behaviorimplementation.BehaviorImplementation)
                 # let the nao move gradually slower?
                 movement_speed = self.max_movement_speed * slow_speed_factor
 
+                # if the movement speed is really low, close to the ball! stop!
+                if movement_speed < self.min_movement_speed:
+
+                    movement_speed = 0
+                    theta = 0
+
             # if the angle of the yaw, the x, is outside the movement cone, don't have any movement speed
-            # OR if the movement speed is lower than the min, stop moving
-            if head_x > self.left_cone_edge or \
-               head_x < self.right_cone_edge or \
-               movement_speed < self.min_movement_speed:
+            if head_x > self.left_cone_edge or head_x < self.right_cone_edge:
 
                 movement_speed = 0
 
             if self.debug:
                 print "Movement speed: " + str(movement_speed) + " - theta: " + str(theta)
-
 
             #  void ALMotionProxy::moveToward(const float& x, const float& y, const float& theta, const AL::ALValue moveConfig)
             # move in the direction of the head angle
@@ -97,7 +113,7 @@ class ApproachBall_0(basebehavior.behaviorimplementation.BehaviorImplementation)
         else:
 
             # stop moving
-            # self.motion.moveToward(0, 0, 0)
+            self.motion.moveToward(0, 0, 0)
             pass
 
     # get the current angles of the nao
