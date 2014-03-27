@@ -9,11 +9,11 @@ class Headfollowball_0(basebehavior.behaviorimplementation.BehaviorImplementatio
         self.nao = self.body.nao(0)
         self.ball = NaoSettings.BALL_OBJECT
 
-        self.head_pitch_increment = 1
-        self.head_yaw_increment = 1
-        self.head_center_speed = 0.1
+        self.head_pitch_increment = 2 # previous 1
+        self.head_yaw_increment = 2 # previous 1
+        self.head_center_speed = 0.5 # previous 0.1
 
-        # the deviation from the center of the screen thats
+        # the deviation from the center of the screen that's
         self.head_center_deviation = 15
 
     def implementation_update(self):
