@@ -86,14 +86,20 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             self.approaching_ball = True
             self.plukrgbapproachball = self.ab.plukrgbapproachball({}) # loop naar de bal
         elif (name == "finding_goal"):
-            self.finding_goal = True
-            self.plukrgbfindgoal = self.ab.plukrgbfindgoal({}) # kijk waar het doel is
+            self.finding_ball = True
+            self.plukrgbfindball = self.ab.plukrgbfindball({})
+            #self.finding_goal = True
+            #self.plukrgbfindgoal = self.ab.plukrgbfindgoal({}) # kijk waar het doel is
         elif (name == "scoring_ball"):
-            self.scoring_ball = True
-            self.plukrgbscoregoal = self.ab.plukrgbscoregoal({}) # ren vooruit, hopen dat de bal mee komt.
+            self.finding_ball = True
+            self.plukrgbfindball = self.ab.plukrgbfindball({})
+            #self.scoring_ball = True
+            #self.plukrgbscoregoal = self.ab.plukrgbscoregoal({}) # ren vooruit, hopen dat de bal mee komt.
         elif (name == "allign_goal"):
-            self.allign_goal = True
-            self.plukrgballigngoal = self.ab.plukrgballigngoal({}) # krijg bal tussen jou en doel
+            self.finding_ball = True
+            self.plukrgbfindball = self.ab.plukrgbfindball({})
+            #self.allign_goal = True
+            #self.plukrgballigngoal = self.ab.plukrgballigngoal({}) # krijg bal tussen jou en doel
         else:
             print("error in \"activate\", misspelled? -> " + str(name))
 
