@@ -5,7 +5,7 @@ starting_behavior = plukRGBmain({})
 number_of_naos = 1
 number_of_pioneers = 0
 
-nao_ip_0 = 192.168.1.203
+nao_ip_0 = 192.168.1.201
 nao_port_0 = 9559
 pioneer_ip_0 = localhost
 pioneer_port_0 = 12345
