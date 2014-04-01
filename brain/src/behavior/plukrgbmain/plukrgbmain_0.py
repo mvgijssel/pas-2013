@@ -152,7 +152,8 @@ class PlukRGBmain_0(basebehavior.behaviorimplementation.BehaviorImplementation):
             if (self.get_done() == True):
                 self.plukrgbapproachball.set_finished()
                 if (self.nao.is_er_bal() == True):
-                    self.activate("finding_goal")
+                    self.activate("scoring_goal")
+                    #self.activate("finding_goal")
                 else:
                     # let's start back from the top
                     self.reset()
