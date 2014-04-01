@@ -94,6 +94,10 @@ description = "de goal zoeken op basis van RGB ipv HSV"
 postcondition = False
 description = "met de goal allignen op basis van RGB ipv HSV"
 
+[plukdefender]
+postcondition = False
+description = "pluk defender"
+
 [plukrgbscoregoal]
 postcondition = False
 description = "in de goal schieten/lopen op basis van RGB ipv HSV"
