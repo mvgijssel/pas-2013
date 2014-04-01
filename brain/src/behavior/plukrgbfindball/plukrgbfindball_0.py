@@ -5,7 +5,7 @@ this is an automatically generated template, if you don't rename it, it will be 
 '''
 
 import basebehavior.behaviorimplementation
-import time
+import time,random
 
 class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementation):
 
