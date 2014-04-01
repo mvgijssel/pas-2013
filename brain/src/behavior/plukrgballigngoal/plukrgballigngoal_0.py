@@ -26,9 +26,15 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
 
     def implementation_update(self):
 
-        if (time.time() > self.start_time + 30):
-            self.set_done()
-            return
+        print("We zijn bij alligngoal aangekomen")
+
+        print(time.time())
+        print(self.start_time)
+
+        if (time.time() > self.start_time + 5):
+            print("TimeTimeTime")
+            #self.set_done()
+            #return
 
         # als we hier aankomen, dan is er de volgende situatie:
         # het doel is in ons blikveld: waar we naar kijken
@@ -37,6 +43,7 @@ class Plukrgballigngoal_x(basebehavior.behaviorimplementation.BehaviorImplementa
 
             seen = self.nao.waar_goal()
             if (seen != None and self.seen_angle == -999):
+                print("Ja, hij is hier gekomen")
                 (yaw,pitch) = self.nao.get_yaw_pitch() # yaw is horizontaal draaien, van 120 (links) tot -120 (rechts)
                 self.seen_angle = yaw
             else:

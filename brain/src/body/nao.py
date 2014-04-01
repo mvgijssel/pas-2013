@@ -844,6 +844,7 @@ class Nao(object):
         if (HEAD_PITCH >= 0.5):
             # returned to the "approach ball" module
             print("Nao: Can not look any lower")
+            self.start_behavior("simple_kick", False)
             return True
         else:
             # this is fine
