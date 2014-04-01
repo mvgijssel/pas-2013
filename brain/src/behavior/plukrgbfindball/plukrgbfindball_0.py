@@ -19,6 +19,9 @@ class PlukRGBfindball_0(basebehavior.behaviorimplementation.BehaviorImplementati
         self.nao = self.body.nao(0)
         self.step = 0
 
+        sound = random.choice(["search1.wav","search2.wav"])
+        self.nao.zeg_dit(sound)
+
     def set_done(self):
         self.m.add_item('last_done',time.time(),{})
 

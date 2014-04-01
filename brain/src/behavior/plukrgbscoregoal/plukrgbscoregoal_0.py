@@ -29,5 +29,6 @@ class Plukrgbscoregoal_x(basebehavior.behaviorimplementation.BehaviorImplementat
             return
 
         # just run forward
-        self.nao.walk(0.25,0,0)
+        self.nao.complete_behavior("simple_kick")
+        #self.nao.walk(0.25,0,0)
 

@@ -17,6 +17,8 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
     def implementation_init(self):
 
         self.nao = self.body.nao(0)
+        sound = random.choice(["target.wav","target2.wav","target3.wav"])
+        self.nao.zeg_dit(sound)
 
     def set_done(self):
         self.m.add_item('last_done',time.time(),{})
@@ -32,8 +34,6 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             print("approach bal: ik zie de bal. Ik loop er naar toe.")
             # rekent afstand uit, en loopt dan een stuk van die afstand vooruit
             dist = abs(self.nao.hoe_ver_bal() * 10)
-            sound = random.choice(["search1.wav","search2.wav"])
-            self.nao.zeg_dit(sound)
             self.nao.walk(float(dist * 0.2),0,0)
             self.nao.kijk_lager(30)
             return
@@ -41,6 +41,8 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             if (posx == -999 or posy == -999):
                 print("approach bal: kan de bal niet meer vinden.")
                 # er is geen bal, fuck die shit.
+                sound = random.choice(["target_lost1.wav","target_lost2.wav"])
+                self.nao.zeg_dit(sound)
                 self.set_done()
                 return
             elif (posx < -0.1):
@@ -90,6 +92,8 @@ class PlukRGBapproachball_0(basebehavior.behaviorimplementation.BehaviorImplemen
             elif (posy > 0):
                 print("approach bal: ik zie de bal vlak voor me.")
                 if (self.nao.kijkt_laagst() == True):
+                    sound = random.choice(["ready.wav"])
+                    self.nao.zeg_dit(sound)
                     self.set_done()
                     return
                 else:
