@@ -80,7 +80,8 @@ class Nao(object):
         self.__Audio = ALProxy("ALAudioPlayer",robot_ip,9559);
 
         # toegevoegd door paul-luuk: initialisatie van de balherkenner
-        self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.get_robot_ip()))
+        #self.detector = balherkenning.RasterImage(naovideo.VideoModule(self.get_robot_ip()))
+        self.detector = None
 
         # Enable TTS notifications, just in case (so we can determine if the nao is currently speaking or not):
         if not self.__TTS == None:
